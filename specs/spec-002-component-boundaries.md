@@ -244,7 +244,7 @@ La spec establece que las interacciones entre capas dependen de contratos o arte
 - project_brief.md;
 - docs/context_refs.md;
 - spec-001-analytical-lifecycle.md;
-- futuras specs de contracts transversales.
+- spec-004-transversal-contracts.md.
 
 ---
 
@@ -259,8 +259,8 @@ La spec establece que las interacciones entre capas dependen de contratos o arte
 ## 16. Future Considerations
 
 - crear una taxonomia de artefactos de handoff;
-- crear un contract transversal para evidence, knowledge y recommendation sets;
-- definir gates especificos para validar boundary compliance.
+- alinear los handoffs con las categorias contractuales ya definidas en SPEC-004;
+- definir gates especificos para validar boundary compliance apoyandose en SPEC-005.
 
 ---
 
@@ -272,6 +272,8 @@ La spec establece que las interacciones entre capas dependen de contratos o arte
 | docs/context_refs.md | Fuente oficial de contexto utilizada para esta spec |
 | spec-001-analytical-lifecycle.md | Describe la secuencia comun que estos componentes soportan |
 | spec-003-extensibility-model.md | Define como extender componentes sin romper sus limites |
+| spec-004-transversal-contracts.md | Define contracts reutilizables para materializar handoffs entre capas |
+| spec-005-readiness-gates.md | Define gates que pueden validar cumplimiento de limites y handoffs |
 
 ---
 

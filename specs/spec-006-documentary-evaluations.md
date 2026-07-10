@@ -271,6 +271,7 @@ La spec fija reglas suficientes para preservar trazabilidad, separacion entre ob
 - spec-001-analytical-lifecycle.md;
 - spec-004-transversal-contracts.md;
 - spec-005-readiness-gates.md;
+- spec-007-extension-compatibility-reusability.md;
 - .github/agents/qa-gate.agent.md;
 - .github/agents/documentation.agent.md.
 
@@ -288,7 +289,7 @@ La spec fija reglas suficientes para preservar trazabilidad, separacion entre ob
 
 - crear un template reutilizable para documentary evaluations alineado con este marco;
 - definir la relacion exacta entre evaluaciones documentales y readiness gates de fase;
-- definir evaluaciones especializadas para contracts, boundaries y context governance cuando el alcance lo requiera.
+- instanciar evaluaciones especializadas para contracts, boundaries, context governance o compatibilidad de extensiones cuando el alcance lo requiera.
 
 ---
 
@@ -301,6 +302,7 @@ La spec fija reglas suficientes para preservar trazabilidad, separacion entre ob
 | spec-001-analytical-lifecycle.md | Define las fases cuyo progreso puede requerir evaluation support |
 | spec-004-transversal-contracts.md | Define contracts que pueden ser objeto de evaluation |
 | spec-005-readiness-gates.md | Define gates que pueden consumir evaluaciones como evidencia |
+| spec-007-extension-compatibility-reusability.md | Define un caso de uso donde las evaluaciones documentales pueden sustentar compatibilidad de extensiones |
 | .github/agents/qa-gate.agent.md | Define el agente que consume evaluaciones para decidir gates |
 | .github/agents/documentation.agent.md | Define el agente que produce y mantiene evaluaciones documentales |
 

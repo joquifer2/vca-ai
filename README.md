@@ -184,6 +184,7 @@ workflows/
 - Marcar ausencias de contexto como PENDING cuando corresponda.
 - Evitar duplicar contenido ya cubierto por otro artefacto canonico.
 - Priorizar claridad, trazabilidad y coherencia documental.
+- En caso de conflicto entre artefactos, aplicar la precedencia documental oficial definida en [.github/instructions/sdd.instructions.md](.github/instructions/sdd.instructions.md).
 
 ---
 

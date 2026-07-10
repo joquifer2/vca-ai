@@ -34,6 +34,8 @@ Definir como puede ampliarse AIF mediante Skills, Routines, Templates y Contract
 
 El Project Brief establece que la Foundation debe ser extensible y que el conocimiento de dominio pertenece a las Skills. Esta specification concreta que puede extenderse, que debe permanecer estable y que condiciones debe cumplir una extension compatible.
 
+La documentación y evaluación de una extensión concreta no pertenece a esta spec general. Ese rol se formaliza en SPEC-007 mediante el Extension Compatibility Dossier.
+
 ---
 
 ## 3. Objective
@@ -56,6 +58,7 @@ El resultado debe ser un modelo de extension controlada que permita evolucionar 
 ### Excluded
 
 - implementacion concreta de una Skill de dominio;
+- documentacion o evaluacion detallada de una extension concreta mediante un dossier instanciado;
 - catalogo exhaustivo de extensiones futuras;
 - packaging tecnico o mecanismo de despliegue de extensiones;
 - logica de negocio especifica.
@@ -256,23 +259,24 @@ La spec fija condiciones claras para que una extension no rompa el ciclo ni los 
 - project_brief.md;
 - docs/context_refs.md;
 - spec-001-analytical-lifecycle.md;
-- spec-002-component-boundaries.md.
+- spec-002-component-boundaries.md;
+- spec-004-transversal-contracts.md.
 
 ---
 
 ## 15. Open Questions
 
-- que metadata minima deberia exigirse a cada Skill o Routine en el futuro;
-- si sera necesario un gate especifico de compatibilidad de extensiones;
-- que contratos transversales deberian priorizarse primero para maximizar reuso.
+- que metadata adicional convendria especializar por categoria mas alla del dossier general definido en SPEC-007;
+- si convendra instanciar un gate especifico de compatibilidad para extensiones concretas cuando el volumen crezca;
+- que contracts fundacionales convendria instanciar primero para maximizar reuso entre extensiones.
 
 ---
 
 ## 16. Future Considerations
 
 - crear templates dedicados para Skills, Routines y Contracts;
-- definir un proceso de revision para aceptar extensiones en la Foundation;
-- crear criterios de evaluacion de reusabilidad y de no regresion metodologica.
+- aplicar SPEC-007 para documentar y evaluar extensiones concretas sin duplicar reglas generales de extensibilidad;
+- instanciar gates y evaluaciones apoyandose en SPEC-005 y SPEC-006 cuando una extension concreta lo requiera.
 
 ---
 
@@ -284,6 +288,8 @@ La spec fija condiciones claras para que una extension no rompa el ciclo ni los 
 | docs/context_refs.md | Fuente oficial de contexto utilizada para esta spec |
 | spec-001-analytical-lifecycle.md | Define el proceso comun que las extensiones deben respetar |
 | spec-002-component-boundaries.md | Define los limites que ninguna extension debe romper |
+| spec-004-transversal-contracts.md | Define contracts reutilizables que las extensiones pueden requerir o producir |
+| spec-007-extension-compatibility-reusability.md | Define como documentar y evaluar una extension concreta sin redefinir el modelo general |
 
 ---
 

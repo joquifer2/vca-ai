@@ -272,6 +272,7 @@ La spec fija reglas suficientes para preservar evidencia, trazabilidad, decision
 - spec-001-analytical-lifecycle.md;
 - spec-002-component-boundaries.md;
 - spec-004-transversal-contracts.md;
+- spec-006-documentary-evaluations.md;
 - .github/agents/qa-gate.agent.md.
 
 ---
@@ -287,7 +288,7 @@ La spec fija reglas suficientes para preservar evidencia, trazabilidad, decision
 ## 16. Future Considerations
 
 - crear un template reutilizable para gate evaluations alineado con este marco;
-- definir evaluaciones documentales que operen como evidencias estructuradas para gates;
+- instanciar evaluaciones documentales alineadas con SPEC-006 para que operen como evidencias estructuradas para gates;
 - definir la relacion exacta entre readiness gates, approvals y artefactos de compatibilidad de extensiones.
 
 ---
@@ -301,6 +302,8 @@ La spec fija reglas suficientes para preservar evidencia, trazabilidad, decision
 | spec-001-analytical-lifecycle.md | Define las fases cuyo avance puede requerir gates |
 | spec-002-component-boundaries.md | Define limites y handoffs que ciertos gates deben proteger |
 | spec-004-transversal-contracts.md | Define contracts que pueden ser prerequisito o evidencia de un gate |
+| spec-006-documentary-evaluations.md | Define evaluaciones documentales reutilizables como evidencia para gates |
+| spec-007-extension-compatibility-reusability.md | Define un caso de uso documental donde los gates pueden validar extensiones concretas |
 | .github/agents/qa-gate.agent.md | Define el comportamiento metodologico del agente que evaluara gates |
 
 ---

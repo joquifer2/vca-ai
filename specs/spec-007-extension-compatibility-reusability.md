@@ -36,7 +36,7 @@ La Foundation ya define el modelo general de extensibilidad en SPEC-003, junto c
 
 Ese marco necesita una formalizacion especifica para los artefactos que permiten declarar si una extension es compatible con la Foundation, si puede reutilizarse en mas de un contexto y que restricciones deben preservarse para no romper el core.
 
-Esta specification no redefine la extensibilidad general. Formaliza los artefactos documentales que permiten describir compatibilidad y reusabilidad de forma consistente.
+Esta specification no redefine la extensibilidad general. SPEC-003 sigue siendo la definicion del modelo general de extensibilidad; esta spec formaliza unicamente los artefactos documentales necesarios para describir y evaluar una extension concreta de forma consistente.
 
 ---
 
@@ -143,6 +143,8 @@ Todo dossier de compatibilidad y reutilizacion debe declarar, como minimo, lo si
 
 ## 7.3 Compatibility Rules
 
+Estas reglas complementan las reglas generales de compatibilidad definidas en SPEC-003 y las aterrizan al nivel de un dossier concreto.
+
 Una extension solo puede considerarse compatible cuando:
 
 - no elimina fases ni altera la secuencia metodologica comun;
@@ -156,6 +158,8 @@ Una extension solo puede considerarse compatible cuando:
 ---
 
 ## 7.4 Reusability Rules
+
+Estas reglas complementan los criterios generales de reuso de SPEC-003 y los convierten en criterios verificables dentro del dossier.
 
 Una extension solo puede considerarse reusable cuando:
 
@@ -281,14 +285,14 @@ La spec fija reglas suficientes para preservar compatibilidad, reusabilidad y tr
 
 - si convendra crear en el futuro templates distintos para extensiones compatibles y extensiones reusables;
 - que nivel de formalismo deberia tener la evidencia para aceptar una extension como reusable;
-- si el Extension Compatibility Dossier deberia convertirse en template reutilizable propio.
+- si convendra especializar templates complementarios por categoria de extension ademas del dossier general ya existente.
 
 ---
 
 ## 16. Future Considerations
 
-- crear un template reutilizable para extension dossiers alineado con este marco;
-- definir evaluaciones documentales especificas para compatibilidad de extensiones;
+- mantener alineado el template reutilizable de extension dossiers con este marco a medida que se documenten nuevas extensiones;
+- instanciar evaluaciones documentales especificas para compatibilidad de extensiones cuando el alcance lo requiera;
 - definir un registro o catalogo de extensiones compatibles y reusables cuando el volumen lo requiera.
 
 ---
@@ -303,6 +307,7 @@ La spec fija reglas suficientes para preservar compatibilidad, reusabilidad y tr
 | spec-004-transversal-contracts.md | Define contracts que una extension puede requerir o producir |
 | spec-005-readiness-gates.md | Define gates que pueden validar la compatibilidad de una extension |
 | spec-006-documentary-evaluations.md | Define evaluaciones que pueden sustentar una decision sobre la extension |
+| docs/templates/extension_compatibility_dossier.template.md | Template reutilizable para documentar el dossier definido por esta spec |
 | .github/agents/specification.agent.md | Define el agente que crea formalizaciones SDD |
 | .github/agents/qa-gate.agent.md | Define el agente que valida gates sobre artefactos |
 | .github/agents/documentation.agent.md | Define el agente que mantiene navegacion y coherencia documental |

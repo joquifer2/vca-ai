@@ -44,11 +44,11 @@ Normalizar evidencia observada para hacerla legible, trazable y utilizable por e
 
 ### Superficie del núcleo
 
-La rutina amplifica la superficie de evidencia y preparación documental dentro del ciclo analítico, especialmente en la transición entre análisis y razonamiento.
+La rutina amplifica la superficie de evidencia y preparación documental dentro del ciclo analítico, sin invadir la generación de conocimiento ni recomendaciones.
 
 ### Fases compatibles
 
-Contexto, Discovery, Preparación, Análisis y Razonamiento.
+Discovery, Preparación y Análisis.
 
 ### Impacto en la superficie del sistema
 
@@ -66,12 +66,12 @@ Facilita que distintos equipos produzcan evidencia comparable, revisable y traza
 |---|---|
 | Nombre de la extensión | Rutina de Normalización de Evidencia |
 | ID de la extensión | ROUTINE-NORMALIZACION-EVIDENCIA-001 |
-| Categoría de la extensión | Routine |
+| Categoría de la extensión | Rutina |
 | Superficie del núcleo | Evidencia y preparación documental |
 | Propósito | Normalizar evidencia observada para su consumo por evaluaciones y gates |
-| Fases compatibles | Contexto, Discovery, Preparación, Análisis, Razonamiento |
-| Contracts requeridos | Context Contract, Data Contract, Evidence Contract |
-| Contracts producidos | Evidence Contract, Knowledge Contract |
+| Fases compatibles | Discovery, Preparación, Análisis |
+| Contracts requeridos | Context Contract, Evidence Contract |
+| Contracts producidos | Evidence Contract |
 | Dependencias permitidas | Context refs, specs fundacionales, evaluaciones documentales |
 | Dependencias prohibidas | Runtime obligatorio, proveedor único, lógica de dominio cerrada |
 | Declaración de compatibilidad | Compatible con el núcleo metodológico mientras preserve trazabilidad y no altere fases |
@@ -87,18 +87,21 @@ Facilita que distintos equipos produzcan evidencia comparable, revisable y traza
 
 La rutina es compatible con el núcleo cuando se limita a organizar evidencia observada y no introduce nuevas fases, decisiones automáticas ni dependencias operativas.
 
+Su salida debe seguir siendo evidencia normalizada y trazable, no conocimiento interpretado ni recomendaciones.
+
 ### Responsabilidades que respeta
 
 - respeta la separación entre evidencia y conclusión;
-- respeta la responsabilidad del reasoning sobre la interpretación;
-- respeta la responsabilidad del reviewer y del QA Gate Agent sobre la aprobación documental.
+- respeta la responsabilidad del razonamiento sobre la interpretación;
+- respeta la responsabilidad del revisor y del QA Gate Agent sobre la aprobación documental.
 
 ### Responsabilidades que no reasigna
 
 - no reasigna el rol del Framework;
 - no sustituye el razonamiento;
 - no sustituye la evaluación humana;
-- no sustituye gates ni evaluaciones.
+- no sustituye gates ni evaluaciones;
+- no produce conocimiento ni recomendaciones.
 
 ### Dependencias permitidas
 
@@ -118,7 +121,7 @@ La rutina es compatible con el núcleo cuando se limita a organizar evidencia ob
 
 La rutina es tecnológicamente neutra porque describe una forma documental de normalizar evidencia, no una implementación.
 
-### Gestión de unknowns
+### Gestión de indeterminaciones
 
 Los huecos de definición futura deben marcarse como UNKNOWN hasta que exista evidencia documental verificable.
 
@@ -128,10 +131,10 @@ Los huecos de definición futura deben marcarse como UNKNOWN hasta que exista ev
 
 ### Casos de uso plausibles
 
-- normalización de hallazgos en una evaluation documental;
-- preparación de evidence sets para gates;
+- normalización de hallazgos en una evaluación documental;
+- preparación de conjuntos de evidencia para gates;
 - homogeneización de notas de revisión entre equipos;
-- estructuración de evidencia previa a recomendaciones.
+- estructuración de evidencia previa al razonamiento.
 
 ### Motivo de reutilización
 
@@ -140,7 +143,7 @@ La rutina resuelve un problema transversal: convertir evidencia heterogénea en 
 ### Contextos en los que sí debe reutilizarse
 
 - cuando se necesite reducir ambigüedad documental;
-- cuando exista un evidence set con formatos inconsistentes;
+- cuando exista un conjunto de evidencia con formatos inconsistentes;
 - cuando la revisión de gates requiera evidencia homogénea.
 
 ### Contextos en los que no debe reutilizarse
@@ -199,13 +202,13 @@ Verificar que la rutina no se usa para justificar conclusiones sin respaldo docu
 
 ### Recomendaciones
 
-- Aprobarla como candidata reusable con alcance documental.
+- Aprobarla como candidata reutilizable con alcance documental.
 - Mantenerla acotada a normalización de evidencia.
 - Revisarla de nuevo cuando exista una primera instancia de uso real en un proyecto derivado.
 
 ### Decisión documental
 
-Pass with minor conditions
+Aprobado con condiciones menores
 
 ---
 
@@ -252,7 +255,7 @@ La rutina ya está suficientemente acotada para revisión documental; conviene v
 
 ---
 
-## Definition of Done
+## Definición de completitud
 
 El dossier está completo cuando:
 
@@ -261,6 +264,6 @@ El dossier está completo cuando:
 - la reutilización está declarada;
 - la metadata mínima está completa;
 - las dependencias relevantes están documentadas;
-- los unknowns están declarados;
+- las indeterminaciones están declaradas;
 - la trazabilidad está documentada;
 - existen criterios claros para la decisión documental.

@@ -377,13 +377,15 @@ La specification define reglas suficientes para impedir la mezcla entre evidenci
 
 - project_brief.md;
 - docs/context_refs.md;
-- futuras definitions de contracts, gates y evals que concreten validaciones por fase.
+- spec-004-transversal-contracts.md;
+- spec-005-readiness-gates.md;
+- spec-006-documentary-evaluations.md.
 
 ---
 
 ## 15. Open Questions
 
-- que gate formal validara el cierre de cada fase del ciclo;
+- que gates concretos convendria instanciar por fase o por bloque del ciclo;
 - que nivel de granularidad deben tener los contratos de evidencia y conocimiento;
 - como se medira de forma reusable la suficiencia de evidencia en distintos dominios.
 
@@ -391,9 +393,9 @@ La specification define reglas suficientes para impedir la mezcla entre evidenci
 
 ## 16. Future Considerations
 
-- crear una spec transversal para contracts de evidencia, insights y recomendaciones;
-- crear gates de readiness por fase del ciclo analitico;
-- definir evals documentales para verificar trazabilidad entre evidencia y recomendaciones.
+- instanciar contracts transversales alineados con SPEC-004 cuando una fase requiera mayor formalizacion de handoff;
+- crear gates de readiness por fase o por bloque del ciclo analitico usando SPEC-005 cuando el alcance lo requiera;
+- crear evaluaciones documentales alineadas con SPEC-006 para verificar trazabilidad entre evidencia y recomendaciones.
 
 ---
 
@@ -405,6 +407,9 @@ La specification define reglas suficientes para impedir la mezcla entre evidenci
 | docs/context_refs.md | Fuente oficial de contexto utilizada para esta spec |
 | spec-002-component-boundaries.md | Define limites y handoffs entre componentes que ejecutan el ciclo |
 | spec-003-extensibility-model.md | Define como extender el ciclo mediante Skills, Routines y Templates |
+| spec-004-transversal-contracts.md | Define contracts transversales que soportan los handoffs entre fases |
+| spec-005-readiness-gates.md | Define gates reutilizables para validar avance y suficiencia documental |
+| spec-006-documentary-evaluations.md | Define evaluaciones documentales que pueden medir suficiencia de evidencia |
 
 ---
 

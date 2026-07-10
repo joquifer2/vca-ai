@@ -155,6 +155,23 @@ Si una tarea pierde relevancia o deja de aplicar, debe marcarse como descartada 
 
 - Regla explícita: Antes de generar cualquier Project Brief, Specification, Architecture o Tasks, comprobar la existencia de `docs/context_refs.md` y actuar conforme a su contenido.
 
+## Precedencia documental oficial
+
+Cuando exista conflicto entre artefactos del repositorio, aplicar este orden de precedencia:
+
+1. `.github/instructions/sdd.instructions.md`
+2. `.github/copilot-instructions.md`
+3. `docs/context_refs.md`
+4. `project_brief.md`
+5. `specs/` versionadas y aplicables
+6. `README.md`
+7. `docs/glosario_terminos.md`
+8. templates y artefactos auxiliares
+
+Esta es la unica jerarquia oficial de precedencia documental del repositorio.
+
+Los demas artefactos pueden referenciarla, pero no redefinirla ni mantener una version paralela.
+
 ## 9. SDD Harness
 
 ### 9.1 Rol del SDD Harness

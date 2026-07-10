@@ -281,6 +281,8 @@ La spec fija reglas suficientes para preservar trazabilidad, boundary compliance
 - spec-001-analytical-lifecycle.md;
 - spec-002-component-boundaries.md;
 - spec-003-extensibility-model.md;
+- spec-005-readiness-gates.md;
+- spec-006-documentary-evaluations.md;
 - docs/templates/contracts.template.md.
 
 ---
@@ -295,9 +297,9 @@ La spec fija reglas suficientes para preservar trazabilidad, boundary compliance
 
 ## 16. Future Considerations
 
-- crear un template especifico o ajustar el template de contracts para alinearlo explicitamente con estas categorias fundacionales;
-- definir gates de readiness para validar contracts antes de su uso en handoffs criticos;
-- definir evaluaciones documentales que verifiquen trazabilidad entre contracts de evidencia, conocimiento y recomendacion.
+- seguir refinando el template de contracts existente cuando la instanciacion de contratos fundacionales revele ajustes necesarios;
+- instanciar gates de readiness alineados con SPEC-005 para validar contracts antes de su uso en handoffs criticos;
+- instanciar evaluaciones documentales alineadas con SPEC-006 para verificar trazabilidad entre contracts de evidencia, conocimiento y recomendacion.
 
 ---
 
@@ -310,6 +312,8 @@ La spec fija reglas suficientes para preservar trazabilidad, boundary compliance
 | spec-001-analytical-lifecycle.md | Define las fases que intercambian contracts |
 | spec-002-component-boundaries.md | Define handoffs y boundary rules soportados por contracts |
 | spec-003-extensibility-model.md | Define como las extensiones pueden especializar contracts sin romper el core |
+| spec-005-readiness-gates.md | Define gates reutilizables para validar readiness contractual |
+| spec-006-documentary-evaluations.md | Define evaluaciones documentales aplicables a contracts transversales |
 | docs/templates/contracts.template.md | Template reutilizable que puede alinearse con este marco fundacional |
 
 ---

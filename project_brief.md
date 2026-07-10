@@ -148,6 +148,7 @@ Las restricciones conocidas son:
 | --- | --- |
 | .github/instructions/sdd.instructions.md | Definir reglas de fase, alcance y gobierno SDD |
 | .github/copilot-instructions.md | Definir restricciones especificas de Foundation y precedencia metodologica |
+| docs/context_refs.md | Actuar como indice oficial de contexto y trazabilidad |
 | README.md | Describir el proposito, limites y estructura de la Foundation |
 | docs/glosario_terminos.md | Mantener consistencia terminologica de los artefactos |
 
@@ -168,6 +169,8 @@ Fuentes principales consultadas:
 Notas relevantes sobre el contexto utilizado:
 
 Se ha generado un brief fundacional, no un brief de cliente ni de implementacion. Donde faltan decisiones o referencias formales externas se ha marcado `PENDING`. Se ha evitado fijar tecnologia concreta para mantener la independencia declarada por la Foundation.
+
+En caso de conflicto entre artefactos, aplica la precedencia documental oficial definida en `.github/instructions/sdd.instructions.md`.
 
 
 ## 12. Success Criteria

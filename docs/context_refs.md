@@ -65,7 +65,7 @@ ccd:
 | --- | --- | --- | --- |
 | 2026-07-10 | Mantener la Foundation como repositorio metodologico, sin implementacion productiva | Limita el alcance a metodologia, gobernanza, templates y artefactos reutilizables | .github/copilot-instructions.md |
 | 2026-07-10 | Mantener independencia respecto a dominio, runtime y proveedor tecnologico | Condiciona alcance, arquitectura conceptual y criterios de exito | README.md |
-| 2026-07-10 | Tras completar las tres specs fundacionales iniciales, priorizar specifications adicionales para contracts transversales, gates de readiness y evaluaciones documentales; despues, formalizar artefactos de compatibilidad y reutilizacion de extensiones cuando el alcance lo requiera | Ordena el siguiente tramo del roadmap fundacional y reduce ambiguedad en la secuencia de evolucion documental | README.md; specs/spec-001-analytical-lifecycle.md; specs/spec-002-component-boundaries.md; specs/spec-003-extensibility-model.md |
+| 2026-07-10 | Mantener materializado el roadmap fundacional inicial en las specs 001-007, los gates documentales y el dossier de compatibilidad ya publicados, sin ampliar alcance funcional | Consolida la secuencia de evolucion documental ya resuelta y evita reabrir decisiones de alcance ya cerradas | README.md; specs/spec-001-analytical-lifecycle.md; specs/spec-002-component-boundaries.md; specs/spec-003-extensibility-model.md; specs/spec-004-transversal-contracts.md; specs/spec-005-readiness-gates.md; specs/spec-006-documentary-evaluations.md; specs/spec-007-extension-compatibility-reusability.md |
 
 ## Decisiones pendientes de validar
 
@@ -222,20 +222,15 @@ Antes de crear o modificar cualquier artefacto del proyecto, se deben seguir est
 6. No introducir implementacion productiva, runtime ni tecnologia ejecutable dentro de la Foundation.
 7. Marcar cualquier ausencia de contexto relevante como `PENDING`.
 8. No depender de memoria informal si existe una fuente publicada en el repositorio.
-9. Si existe conflicto entre fuentes, aplicar la jerarquia definida en este documento.
+9. Si existe conflicto entre fuentes, aplicar la precedencia documental oficial definida en `.github/instructions/sdd.instructions.md`.
 
 ---
 
 # 10. Jerarquia de Contexto en Caso de Conflicto
 
-Cuando exista conflicto entre fuentes, aplicar este orden:
+La precedencia documental oficial del repositorio se define exclusivamente en `.github/instructions/sdd.instructions.md`.
 
-1. `.github/instructions/sdd.instructions.md`
-2. `.github/copilot-instructions.md`
-3. `README.md`
-4. `docs/glosario_terminos.md`
-5. `project_brief.md`
-6. Templates y artefactos auxiliares
+Este documento debe remitir a esa jerarquia y no mantener una version paralela.
 
 ---
 
