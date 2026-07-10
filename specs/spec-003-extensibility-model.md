@@ -98,6 +98,64 @@ El resultado debe ser un modelo de extension controlada que permita evolucionar 
 
 ---
 
+## 7.1 Extension Declaration Requirements
+
+Toda extension candidata debe declararse mediante un artefacto reutilizable que incluya, como minimo, los siguientes campos:
+
+| Field | Required Content |
+| --- | --- |
+| Extension Name | Nombre unico y estable de la extension |
+| Extension Category | Skill, Routine, Template o Contract |
+| Purpose | Problema que resuelve y valor que aporta |
+| System Surface | Parte del sistema que amplifica o especializa |
+| Inputs | Artefactos, contratos o contexto requeridos |
+| Outputs | Artefactos, conocimiento o estructuras que produce |
+| Applicable Phase | Fase o fases del ciclo comun en las que aplica |
+| Domain Dependence | Dependencias de dominio que introduce, si existen |
+| Boundary Impact | Limites que debe respetar y capas que no puede invadir |
+| Reuse Rationale | Motivo por el que la extension es reusable y no puntual |
+| Unknowns | Huecos, supuestos o incertidumbres declaradas |
+
+---
+
+## 7.2 Extension Review Rules
+
+Una extension solo puede considerarse compatible cuando supera las siguientes comprobaciones:
+
+| Review Check | Expected Result |
+| --- | --- |
+| Core Preservation | No elimina fases ni altera la secuencia metodologica comun |
+| Boundary Preservation | No reasigna responsabilidades entre componentes fundacionales |
+| Input/Output Clarity | Declara inputs y outputs de forma explicita y revisable |
+| Domain Containment | Mantiene el conocimiento de dominio encapsulado dentro de la extension |
+| Technology Neutrality | No impone una tecnologia obligatoria al core fundacional |
+| Reuse Test | Su valor no depende de un unico caso puntual no generalizable |
+| Traceability | Permite rastrear su efecto sobre evidencia, conocimiento o presentacion |
+| Unknown Handling | Declara estados UNKNOWN o supuestos cuando falta contexto verificable |
+
+---
+
+## 7.3 Stability Rules For The Core
+
+- el ciclo de vida comun definido por la Foundation no puede ser acortado ni reordenado por una extension;
+- los limites entre adquisicion, analisis, razonamiento y presentacion no pueden ser alterados;
+- una extension no puede mover conocimiento de dominio al nucleo metodologico comun;
+- ningun Template puede introducir logica analitica nueva;
+- ninguna Routine reusable puede asumir dependencias obligatorias sobre una unica tecnologia del core.
+
+---
+
+## 7.4 Reuse Criteria
+
+Para considerarse reusable, una extension debe cumplir como minimo lo siguiente:
+
+- aplica a mas de un caso de uso plausible dentro de la metodologia;
+- se describe por su procedimiento, estructura o regla general y no por un incidente aislado;
+- puede revisarse sin depender de conocimiento tacito no documentado;
+- explicita que parte del sistema amplifica y que parte permanece inalterada.
+
+---
+
 ## 8. Functional Requirements
 
 ### FR-001

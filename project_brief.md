@@ -184,14 +184,14 @@ Se ha generado un brief fundacional, no un brief de cliente ni de implementacion
 
 - que artefactos fundacionales adicionales deben priorizarse tras este brief para acelerar la adopcion en proyectos derivados;
 - que criterio formal se utilizara para validar la primera Skill piloto de la metodologia;
-- como se documentara y aprobara la hoja de ruta fundacional para evitar ambiguedad en la priorizacion.
+- que criterio concreto determinara cuando priorizar artefactos de compatibilidad y reutilizacion de extensiones dentro del roadmap fundacional.
 
 ---
 
 ## 14. Next Recommended Step
 
 ```text
-Create initial specifications for the analytical lifecycle, component boundaries, and extensibility model.
+Create additional specifications for transversal contracts, readiness gates, and documentary evaluations; then formalize extension compatibility and reusability artifacts when the scope requires it.
 ```
 
 ---

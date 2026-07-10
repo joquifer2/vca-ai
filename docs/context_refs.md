@@ -65,12 +65,11 @@ ccd:
 | --- | --- | --- | --- |
 | 2026-07-10 | Mantener la Foundation como repositorio metodologico, sin implementacion productiva | Limita el alcance a metodologia, gobernanza, templates y artefactos reutilizables | .github/copilot-instructions.md |
 | 2026-07-10 | Mantener independencia respecto a dominio, runtime y proveedor tecnologico | Condiciona alcance, arquitectura conceptual y criterios de exito | README.md |
+| 2026-07-10 | Tras completar las tres specs fundacionales iniciales, priorizar specifications adicionales para contracts transversales, gates de readiness y evaluaciones documentales; despues, formalizar artefactos de compatibilidad y reutilizacion de extensiones cuando el alcance lo requiera | Ordena el siguiente tramo del roadmap fundacional y reduce ambiguedad en la secuencia de evolucion documental | README.md; specs/spec-001-analytical-lifecycle.md; specs/spec-002-component-boundaries.md; specs/spec-003-extensibility-model.md |
 
 ## Decisiones pendientes de validar
 
-| Tema | Motivo de la duda | Responsable | Estado |
-| --- | --- | --- | --- |
-| Roadmap de adopcion inicial | El orden de priorizacion de capacidades fundacionales no esta aprobado formalmente | Foundation maintainers | PENDING |
+No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fundacional con la informacion actualmente publicada en el repositorio.
 
 ---
 
@@ -108,7 +107,7 @@ ccd:
 ```yaml
 repositorios:
   - nombre: aif-foundation
-    url: PENDING
+    url: https://github.com/joquifer2/analytical-intelligence-foundation.git
     rama: main
     descripcion: Repositorio Foundation reutilizable para metodologia y gobernanza de inteligencia analitica
 ```
@@ -151,9 +150,29 @@ runtime_sources:
       uri: README.md
       version: versionada en repositorio
       estado: activo
+    - nombre: Project Brief
+      tipo: Definicion fundacional
+      uri: project_brief.md
+      version: versionada en repositorio
+      estado: activo
     - nombre: SDD Instructions
       tipo: Instrucciones de gobernanza
       uri: .github/instructions/sdd.instructions.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SPEC-001 Analytical Lifecycle
+      tipo: Specification fundacional
+      uri: specs/spec-001-analytical-lifecycle.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SPEC-002 Component Boundaries
+      tipo: Specification fundacional
+      uri: specs/spec-002-component-boundaries.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SPEC-003 Extensibility Model
+      tipo: Specification fundacional
+      uri: specs/spec-003-extensibility-model.md
       version: versionada en repositorio
       estado: activo
 
@@ -195,10 +214,7 @@ Cuando exista conflicto entre fuentes, aplicar este orden:
 
 # 11. Contexto Pendiente
 
-| Fuente pendiente | Motivo | Impacto | Responsable | Estado |
-| --- | --- | --- | --- | --- |
-| URL canonica del repositorio | No aparece en el contexto disponible | Baja | Foundation maintainers | PENDING |
-| Acta o decision formal de roadmap | No existe referencia versionada en el repositorio | Media | Foundation maintainers | PENDING |
+No hay fuentes de contexto pendientes que bloqueen o introduzcan ambiguedad material sobre el roadmap inicial de evolucion fundacional con la informacion actualmente publicada en el repositorio.
 
 ---
 
@@ -212,7 +228,7 @@ trazabilidad:
   actualizado_por: GitHub Copilot
   contexto_validado_por: PENDING
   fecha_validacion: PENDING
-  version_contexto: inicial
+  version_contexto: inicial-roadmap-resuelto
 ```
 
 ---

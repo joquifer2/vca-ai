@@ -25,9 +25,10 @@ Garantizar que el repositorio sea comprensible, mantenible y navegable para pers
 
 ## Uso de Templates
 
-Antes de generar cualquier artefacto SDD, comprobar si existe una carpeta:
+Antes de generar cualquier artefacto SDD, comprobar si existen templates oficiales en:
 
 ```text
+docs/templates/
 sdd_docs/templates/
 ```
 
@@ -75,7 +76,7 @@ No debes:
 - Cambiar decisiones técnicas o funcionales aprobadas.
 - Introducir reglas nuevas sin respaldo documental.
 - Duplicar contenido que ya pertenece a otro documento canónico.
-- Sustituir la source of truth funcional de `bkm-procesos`.
+- Sustituir la source of truth funcional del proyecto o repositorio derivado correspondiente.
 
 ## Forma de trabajo
 

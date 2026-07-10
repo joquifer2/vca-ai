@@ -98,6 +98,52 @@ El resultado debe impedir que una decision de datos, una interpretacion de domin
 
 ---
 
+## 7.1 Responsibility Map
+
+| Component | Primary Responsibility | Must Not Do |
+| --- | --- | --- |
+| Data Provider | Adquirir y exponer informacion mediante contratos estandarizados | Interpretar datos, priorizar hallazgos o formular recomendaciones |
+| Analytical Layer | Preparar datos y producir evidencia observable | Introducir conclusiones de negocio o reescribir contexto de dominio |
+| Reasoning Layer | Convertir evidencia en conocimiento accionable | Reconsultar la fuente original para compensar evidencia mal definida |
+| Presentation Layer | Construir artefactos finales a partir de conocimiento ya generado | Crear nueva evidencia, reinterpretar conclusiones o alterar prioridades |
+| Framework | Coordinar el flujo metodologico y validar precondiciones de handoff | Actuar como runtime productivo o sustituir responsabilidades de una capa |
+| Skill | Aportar reglas de dominio dentro de limites controlados | Reasignar el rol basal de un componente o eliminar fases del ciclo |
+
+---
+
+## 7.2 Handoff Rules
+
+| From | To | Allowed Artifact | Receiver Preconditions | Sender Exit Condition |
+| --- | --- | --- | --- | --- |
+| Data Provider | Analytical Layer | Data Contract | El contrato identifica origen, estructura y limitaciones relevantes | La informacion fue expuesta sin interpretacion analitica |
+| Analytical Layer | Reasoning Layer | Evidence Contract | La evidencia es observable, trazable y separada de conclusiones | Los hallazgos estan estructurados y respaldados por el modelo analitico |
+| Reasoning Layer | Presentation Layer | Knowledge Contract | El conocimiento incluye insights, hipotesis, prioridades e incertidumbres declaradas | La interpretacion esta respaldada por evidencia identificable |
+| Reasoning Layer | Framework | Recommendation Set o Knowledge Contract | El Framework puede verificar trazabilidad, completitud y cumplimiento metodologico | Las recomendaciones o conclusiones estan justificadas |
+| Framework | Presentation Layer | Presentation Approval o equivalente documental | Existe validacion metodologica previa del contenido a presentar | Se verifico que el formato no sustituye al analisis |
+| Skill | Analytical Layer o Reasoning Layer | Skill Rules | La extension declara su alcance, inputs y outputs | Las reglas de dominio no alteran responsabilidades fundacionales |
+
+---
+
+## 7.3 Boundary Constraints
+
+- el Data Provider no puede emitir insights, hipotesis ni conclusiones;
+- la capa analitica no puede formular recomendaciones ni reescribir objetivos de negocio;
+- la capa de razonamiento no puede modificar retrospectivamente los hechos observados para sostener una conclusion;
+- la capa de presentacion no puede introducir nueva evidencia, nueva interpretacion ni nuevo orden de prioridad;
+- el Framework solo valida secuencia, completitud y precondiciones metodologicas;
+- las Skills solo pueden enriquecer criterios o interpretaciones dentro de la capa donde se apliquen.
+
+---
+
+## 7.4 Coordination Principles
+
+- todo handoff debe materializarse en un artefacto identificable y revisable;
+- cada componente recibe solo la informacion necesaria para su responsabilidad;
+- si falta una precondicion, el flujo debe detenerse o marcar el estado como incompleto en lugar de compensarlo informalmente;
+- cualquier excepcion o estado UNKNOWN debe propagarse de forma explicita al siguiente componente cuando afecte la interpretacion.
+
+---
+
 ## 8. Functional Requirements
 
 ### FR-001

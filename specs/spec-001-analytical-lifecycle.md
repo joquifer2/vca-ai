@@ -101,6 +101,179 @@ El resultado debe ser un marco comun que separe preparacion, evidencia, razonami
 
 ---
 
+## 7.1 Phase Definitions
+
+### Phase 0. Contexto
+
+**Objective**
+
+Delimitar el analisis antes de tocar datos o producir interpretaciones.
+
+**Expected Activities**
+
+- definir el objetivo del analisis y la decision a soportar;
+- identificar restricciones, supuestos y criterios de relevancia;
+- confirmar las fuentes oficiales de contexto y su jerarquia.
+
+**Primary Outputs**
+
+- Context Definition;
+- lista de fuentes de contexto aplicables.
+
+**Transition Criteria**
+
+Solo puede avanzarse a Discovery cuando el objetivo, las restricciones y las fuentes oficiales de contexto hayan quedado explicitados.
+
+**Definition of Done**
+
+El analisis tiene una finalidad declarada, un alcance delimitado y un marco de contexto verificable.
+
+### Phase 1. Discovery
+
+**Objective**
+
+Entender la estructura logica del espacio de datos y sus limitaciones antes de preparar informacion para analisis.
+
+**Expected Activities**
+
+- identificar datasets, entidades, dimensiones, metricas y relaciones relevantes;
+- registrar supuestos, vacios y limitaciones observadas en la fuente de datos;
+- delimitar que porcion del espacio de datos sera util para el objetivo definido.
+
+**Primary Outputs**
+
+- Discovery Model.
+
+**Transition Criteria**
+
+Solo puede avanzarse a Preparacion cuando existe una descripcion logica suficiente del espacio de datos y sus limitaciones.
+
+**Definition of Done**
+
+Quedan documentados los elementos de datos relevantes, sus relaciones principales y las restricciones que condicionan el analisis.
+
+### Phase 2. Preparacion
+
+**Objective**
+
+Transformar los datos identificados en un modelo analitico coherente y apto para producir evidencia.
+
+**Expected Activities**
+
+- consolidar, normalizar o derivar estructuras necesarias para el analisis;
+- validar integridad, coherencia y suficiencia minima de los datos preparados;
+- dejar explicitas las transformaciones que afectan a la interpretacion posterior.
+
+**Primary Outputs**
+
+- Analytical Model.
+
+**Transition Criteria**
+
+Solo puede avanzarse a Analisis cuando el modelo preparado es coherente con el objetivo, interpretable y utilizable sin ambiguedad material.
+
+**Definition of Done**
+
+Existe un modelo analitico estable, entendible y con validaciones minimas suficientes para producir evidencia.
+
+### Phase 3. Analisis
+
+**Objective**
+
+Producir evidencia observable a partir del modelo analitico preparado.
+
+**Expected Activities**
+
+- explorar patrones, comparaciones, distribuciones, anomalias o tendencias;
+- aislar hallazgos observables sin convertirlos todavia en conclusiones;
+- registrar limites de lectura, huecos y sensibilidad de los hallazgos.
+
+**Primary Outputs**
+
+- Evidence Set.
+
+**Transition Criteria**
+
+Solo puede avanzarse a Razonamiento cuando existe evidencia suficiente para sostener interpretaciones sin inventar hechos no observados.
+
+**Definition of Done**
+
+Los hallazgos observables estan estructurados, trazables y separados de cualquier interpretacion o recomendacion.
+
+### Phase 4. Razonamiento
+
+**Objective**
+
+Transformar evidencia en conocimiento explicito, manteniendo la trazabilidad entre hechos e interpretacion.
+
+**Expected Activities**
+
+- convertir evidencia en insights, hipotesis, oportunidades y riesgos;
+- priorizar interpretaciones segun relevancia para la decision soportada;
+- declarar incertidumbres, conflictos o estados UNKNOWN cuando la evidencia no sea concluyente.
+
+**Primary Outputs**
+
+- Knowledge Set.
+
+**Transition Criteria**
+
+Solo puede avanzarse a Recomendaciones cuando las interpretaciones estan respaldadas por evidencia identificable y las incertidumbres han sido declaradas.
+
+**Definition of Done**
+
+Existe un conjunto de conocimiento estructurado, trazable y diferenciado de la evidencia original.
+
+### Phase 5. Recomendaciones
+
+**Objective**
+
+Convertir el conocimiento priorizado en acciones sugeridas, justificadas y evaluables.
+
+**Expected Activities**
+
+- formular acciones sugeridas alineadas con el objetivo del analisis;
+- justificar impacto esperado, esfuerzo, dependencias y riesgos;
+- explicitar la relacion entre cada recomendacion y la evidencia o insight que la respalda.
+
+**Primary Outputs**
+
+- Recommendation Set.
+
+**Transition Criteria**
+
+Solo puede avanzarse a Constructor de Informes cuando cada recomendacion tiene justificacion, trazabilidad y nivel de confianza declarado.
+
+**Definition of Done**
+
+Las recomendaciones son accionables, priorizadas y trazables al conocimiento y evidencia que las sustentan.
+
+### Phase 6. Constructor de Informes
+
+**Objective**
+
+Representar conocimiento y recomendaciones ya validados metodologicamente en el formato de salida requerido.
+
+**Expected Activities**
+
+- seleccionar la estructura de salida adecuada sin alterar el contenido analitico;
+- transformar conocimiento y recomendaciones en un artefacto legible;
+- verificar que el formato no omite evidencia, incertidumbre ni trazabilidad relevante.
+
+**Primary Outputs**
+
+- Output Artifact.
+
+**Transition Criteria**
+
+Esta es la fase final del ciclo. No puede reabrir fases previas salvo que se detecte una inconsistencia metodologica explicita.
+
+**Definition of Done**
+
+El artefacto final presenta el conocimiento ya generado sin introducir nueva evidencia, nueva interpretacion ni nuevas recomendaciones.
+
+---
+
 ## 8. Functional Requirements
 
 ### FR-001

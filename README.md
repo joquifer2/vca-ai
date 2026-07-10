@@ -118,9 +118,9 @@ Eso implica que este repositorio debe permanecer documental, no ejecutable, y no
 ## Flujo recomendado
 
 ```text
-Project Brief
-↓
 Context References
+↓
+Project Brief
 ↓
 Specifications
 ↓
