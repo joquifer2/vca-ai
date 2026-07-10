@@ -183,15 +183,14 @@ Se ha generado un brief fundacional, no un brief de cliente ni de implementacion
 ## 13. Open Questions
 
 - que artefactos fundacionales adicionales deben priorizarse tras este brief para acelerar la adopcion en proyectos derivados;
-- que criterio formal se utilizara para validar la primera Skill piloto de la metodologia;
-- que criterio concreto determinara cuando priorizar artefactos de compatibilidad y reutilizacion de extensiones dentro del roadmap fundacional.
+- que criterio formal se utilizara para validar la primera Skill piloto de la metodologia.
 
 ---
 
 ## 14. Next Recommended Step
 
 ```text
-Create additional specifications for transversal contracts, readiness gates, and documentary evaluations; then formalize extension compatibility and reusability artifacts when the scope requires it.
+Create additional specialized documentary evaluations when the scope requires it.
 ```
 
 ---

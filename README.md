@@ -76,6 +76,10 @@ El objetivo es estandarizar el proceso de razonamiento analitico para que los in
 - [specs/spec-001-analytical-lifecycle.md](specs/spec-001-analytical-lifecycle.md)
 - [specs/spec-002-component-boundaries.md](specs/spec-002-component-boundaries.md)
 - [specs/spec-003-extensibility-model.md](specs/spec-003-extensibility-model.md)
+- [specs/spec-004-transversal-contracts.md](specs/spec-004-transversal-contracts.md)
+- [specs/spec-005-readiness-gates.md](specs/spec-005-readiness-gates.md)
+- [specs/spec-006-documentary-evaluations.md](specs/spec-006-documentary-evaluations.md)
+- [specs/spec-007-extension-compatibility-reusability.md](specs/spec-007-extension-compatibility-reusability.md)
 
 ### Templates reutilizables
 
@@ -85,6 +89,7 @@ El objetivo es estandarizar el proceso de razonamiento analitico para que los in
 - [docs/templates/architecture_as_is.template.md](docs/templates/architecture_as_is.template.md)
 - [docs/templates/contracts.template.md](docs/templates/contracts.template.md)
 - [docs/templates/data_lineage.template.md](docs/templates/data_lineage.template.md)
+- [docs/templates/extension_compatibility_dossier.template.md](docs/templates/extension_compatibility_dossier.template.md)
 - [docs/templates/retrospective_spec.template.md](docs/templates/retrospective_spec.template.md)
 - [docs/templates/sdd_readiness_assessment.template.md](docs/templates/sdd_readiness_assessment.template.md)
 - [docs/templates/copilot-instructions.template.md](docs/templates/copilot-instructions.template.md)
@@ -157,6 +162,10 @@ specs/
 ├── spec-001-analytical-lifecycle.md
 ├── spec-002-component-boundaries.md
 ├── spec-003-extensibility-model.md
+├── spec-004-transversal-contracts.md
+├── spec-005-readiness-gates.md
+├── spec-006-documentary-evaluations.md
+├── spec-007-extension-compatibility-reusability.md
 └── templates/
 
 gates/
@@ -192,4 +201,4 @@ Esta foundation sera util cuando:
 
 ## Siguiente paso recomendado
 
-Crear specifications adicionales para contracts transversales, gates de readiness y evaluaciones documentales cuando el alcance lo requiera.
+Crear evaluaciones especializadas adicionales cuando el alcance lo requiera.

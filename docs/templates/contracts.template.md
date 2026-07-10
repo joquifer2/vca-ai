@@ -46,9 +46,9 @@ Describir brevemente:
 
 # Contratos Identificados
 
-| Contract ID | Nombre | Estado |
-|---|---|---|
-| | | |
+| Contract ID | Nombre | Categoria Fundacional | Estado |
+|---|---|---|---|
+| | | | |
 
 Estado:
 
@@ -64,6 +64,19 @@ Estado:
 ## Contract ID
 
 ### Nombre
+
+### Categoria Fundacional
+
+- Context Contract
+- Data Contract
+- Discovery Contract
+- Analytical Contract
+- Evidence Contract
+- Knowledge Contract
+- Recommendation Contract
+- Presentation Contract
+- Extension Contract
+- Unknown
 
 ### Tipo
 
@@ -108,6 +121,14 @@ Datos producidos.
 | Regla | Descripción |
 |---|---|
 | | | |
+
+### Trazabilidad
+
+Referencias a evidencia, conocimiento, specs u otros artefactos que justifican el contenido del contrato.
+
+### Unknown Handling
+
+Documentar huecos, limitaciones o estados UNKNOWN que afecten al contrato.
 
 ### Reglas de Idempotencia
 

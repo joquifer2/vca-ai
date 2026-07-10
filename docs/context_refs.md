@@ -95,6 +95,8 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 | --- | --- | --- | --- |
 | Project Brief Template | Template | Estructura oficial del project brief | docs/templates/project_brief.template.md |
 | Context References Template | Template | Estructura oficial de referencias de contexto | docs/templates/context_refs.template.md |
+| Extension Compatibility Dossier Template | Template | Estructura oficial para documentar compatibilidad y reutilización de extensiones | docs/templates/extension_compatibility_dossier.template.md |
+| Routine de Normalización de Evidencia | Dossier documental | Instancia ejemplo de compatibilidad y reutilización para una rutina transversal | docs/extension_dossiers/routine_normalizacion_evidencia.md |
 | Glosario SDD | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
 | SDD Harness Instructions | Instrucciones | Reglas de fase, alcance y contexto | .github/instructions/sdd.instructions.md |
 
@@ -175,6 +177,31 @@ runtime_sources:
       uri: specs/spec-003-extensibility-model.md
       version: versionada en repositorio
       estado: activo
+    - nombre: SPEC-004 Transversal Contracts
+      tipo: Specification fundacional
+      uri: specs/spec-004-transversal-contracts.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SPEC-005 Readiness Gates
+      tipo: Specification fundacional
+      uri: specs/spec-005-readiness-gates.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SPEC-006 Documentary Evaluations
+      tipo: Specification fundacional
+      uri: specs/spec-006-documentary-evaluations.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SPEC-007 Extension Compatibility and Reusability
+      tipo: Specification fundacional
+      uri: specs/spec-007-extension-compatibility-reusability.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Routine de Normalización de Evidencia
+      tipo: Dossier documental
+      uri: docs/extension_dossiers/routine_normalizacion_evidencia.md
+      version: versionada en repositorio
+      estado: activo
 
   indices_vectoriales: []
 
@@ -228,7 +255,7 @@ trazabilidad:
   actualizado_por: GitHub Copilot
   contexto_validado_por: PENDING
   fecha_validacion: PENDING
-  version_contexto: inicial-roadmap-resuelto
+  version_contexto: inicial-roadmap-extension-compatibility-resuelto
 ```
 
 ---
