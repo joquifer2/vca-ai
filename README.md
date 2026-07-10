@@ -1,171 +1,128 @@
-# JQF SDD Foundation
+# Analytical Intelligence Foundation
 
-## ¿Qué es JQF SDD Foundation?
+## Foundation de Inteligencia Analitica
 
-JQF SDD Foundation es una base reutilizable para diseñar, documentar, gobernar y evolucionar proyectos mediante Specification Driven Development (SDD).
+Analytical Intelligence Foundation (AIF) es una foundation reutilizable basada en SDD para definir la metodologia comun de analisis asistido por inteligencia artificial.
 
-Puede utilizarse para:
+Su proposito es transformar el razonamiento analitico experto en un marco documental, modular y trazable que pueda reutilizarse en distintos dominios sin depender de una fuente de datos, un proveedor tecnologico o un runtime concreto.
 
-- sistemas basados en agentes;
-- aplicaciones software;
-- proyectos de datos;
-- automatizaciones;
-- sistemas de IA;
-- proyectos híbridos.
-
-Su propósito es proporcionar una estructura común que permita construir proyectos de forma consistente, trazable y mantenible.
-
-No es un framework de ejecución.
-
-No es un runtime de agentes.
-
-No contiene lógica de negocio.
-
-No contiene implementaciones productivas.
-
-Es la capa de diseño, gobierno y documentación sobre la que se construyen proyectos específicos.
+Esta foundation no contiene logica de negocio, implementacion productiva ni automatizacion operativa.
 
 ---
 
-## ¿Por qué existe?
+## Proposito del repositorio
 
-Muchos proyectos tecnológicos comienzan implementando soluciones antes de definir correctamente:
+El repositorio existe para gobernar y documentar los artefactos metodologicos de AIF:
 
-* el problema a resolver;
-* el alcance;
-* los límites;
-* las responsabilidades;
-* los criterios de validación;
-* los mecanismos de gobierno.
+- principios de diseno y arquitectura conceptual;
+- ciclo de vida del analisis;
+- limites entre componentes;
+- modelo de extensibilidad;
+- templates reutilizables;
+- instrucciones y reglas de gobierno SDD;
+- referencias de contexto oficiales.
 
-Esto suele provocar:
-
-* documentación inconsistente;
-* agentes difíciles de mantener;
-* duplicación de lógica;
-* falta de trazabilidad;
-* implementación prematura;
-* crecimiento desordenado del sistema.
-
-JQF SDD Foundation proporciona una estructura común para evitar estos problemas.
+El objetivo no es automatizar la generacion de informes.
+El objetivo es estandarizar el proceso de razonamiento analitico para que los informes sean un resultado trazable, no el centro del sistema.
 
 ---
 
-## ¿Qué incluye?
+## Que incluye
 
-### Gobierno SDD (Estado actual)
+- metodologia analitica comun.
+- ciclo de vida del analisis.
+- componentes reutilizables como Framework, Skills, Routines, Templates y Contracts.
+- principios arquitectonicos y criterios de separacion de responsabilidades.
+- artefactos documentales para Specification y Structure.
+- gobierno SDD y trazabilidad de contexto.
 
-* Instructions SDD ✓
-* Reglas de precedencia documental ✓
-* Criterios de readiness ✓
-* Context Governance (framework definido, en evolución)
-* Context References (framework definido, en evolución)
-* Trazabilidad de fuentes de contexto ✓
+## Que no incluye
 
-### Agentes metodológicos (Actuales)
-
-* Legacy to SDD Agent ✓
-* Specification Agent ✓
-* Architect Agent ✓
-* Tasks Planner Agent ✓
-* Reviewer Agent ✓
-* Documentation Agent ✓
-* QA Gate Agent ✓
-* Implementation Agent ✓
-
-### Skills reutilizables (Actuales)
-
-* git-sync-main (sync controlado con GitHub) ✓
-* legacy-to-sdd (descubrimiento de proyectos existentes) ✓
-* cloud-runtime-discovery (discovery metodológico) ✓
-* data-platform-discovery (discovery metodológico) ✓
-* integration-discovery (discovery metodológico) ✓
-
-### Plantillas (Actuales)
-
-* Project Brief Template ✓
-* Specification Template ✓
-* Architecture As-Is Template ✓
-* Context References Template ✓
-* SDD Readiness Assessment Template ✓
-* System Overview Template ✓
-* Client Context Document (CCD) Template ✓
-* Contracts Template ✓
-* Copilot Instructions Template ✓
-* Data Lineage Template ✓
-* Legacy Procedure Template ✓
-* Retrospective Spec Template ✓
-* AGENTS Template ✓
-
-### Documentación (Actual)
-
-* Glosario SDD (glosario_terminos.md) ✓
-* Definiciones de artefactos (incluidas en glosario) ✓
-* Convenciones de gobierno (sdd.instructions.md) ✓
-* Reglas de trazabilidad (incluidas en instrucciones) ✓
+- runtimes de agentes.
+- implementaciones productivas.
+- conocimiento de cliente o dominio especifico.
+- herramientas reales de BI, ETL, RAG, dashboarding o orquestacion.
+- pipelines ejecutables o workflows operativos.
 
 ---
 
-## ¿Qué NO incluye?
+## Principios rectores
 
-Esta foundation no incluye:
-
-* lógica de negocio;
-* SOPs;
-* conocimiento específico de clientes;
-* herramientas reales;
-* integraciones;
-* runtimes de agentes;
-* infraestructura;
-* despliegues;
-* implementaciones productivas.
-
-Todos esos elementos pertenecen a los repositorios construidos a partir de esta foundation.
+- La simplicidad prevalece sobre la complejidad.
+- La reutilizacion prevalece sobre la duplicacion.
+- La metodologia prevalece sobre la implementacion.
+- El analisis precede a la presentacion.
+- La evidencia precede a las conclusiones.
+- Las responsabilidades deben permanecer claramente separadas.
+- La foundation debe permanecer independiente del dominio y de las fuentes de datos.
 
 ---
 
-## Conceptos principales
+## Artefactos canonicos
 
-### Project Brief
+### Contexto y gobierno
 
-Define por qué existe un proyecto.
+- [docs/context_refs.md](docs/context_refs.md)
+- [docs/glosario_terminos.md](docs/glosario_terminos.md)
+- [.github/instructions/sdd.instructions.md](.github/instructions/sdd.instructions.md)
+- [.github/copilot-instructions.md](.github/copilot-instructions.md)
 
-### Specification
+### Definicion fundacional
 
-Define qué es una capacidad y qué debe hacer.
+- [project_brief.md](project_brief.md)
 
-### Gate
+### Specifications iniciales
 
-Controla la transición entre fases.
+- [specs/spec-001-analytical-lifecycle.md](specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](specs/spec-002-component-boundaries.md)
+- [specs/spec-003-extensibility-model.md](specs/spec-003-extensibility-model.md)
 
-### Eval
+### Templates reutilizables
 
-Valida calidad y comportamiento esperado.
-
-### Skill
-
-Define conocimiento operativo reutilizable.
-
-### Agent
-
-Representa una responsabilidad estable dentro del sistema.
-
-### SDD Harness
-
-Sistema de gobierno utilizado para diseñar y evolucionar capacidades.
-
-### Operational Harness
-
-Sistema utilizado para gobernar y ejecutar capacidades operativas en producción, incluyendo agentes, herramientas, integraciones y procesos automatizados.
+- [docs/templates/project_brief.template.md](docs/templates/project_brief.template.md)
+- [docs/templates/context_refs.template.md](docs/templates/context_refs.template.md)
+- [docs/templates/system_overview.template.md](docs/templates/system_overview.template.md)
+- [docs/templates/architecture_as_is.template.md](docs/templates/architecture_as_is.template.md)
+- [docs/templates/contracts.template.md](docs/templates/contracts.template.md)
+- [docs/templates/data_lineage.template.md](docs/templates/data_lineage.template.md)
+- [docs/templates/retrospective_spec.template.md](docs/templates/retrospective_spec.template.md)
+- [docs/templates/sdd_readiness_assessment.template.md](docs/templates/sdd_readiness_assessment.template.md)
+- [docs/templates/copilot-instructions.template.md](docs/templates/copilot-instructions.template.md)
+- [docs/templates/copilot-instructions-project.template.md](docs/templates/copilot-instructions-project.template.md)
+- [docs/templates/AGENTS.template.md](docs/templates/AGENTS.template.md)
 
 ---
 
-## Ciclo de trabajo recomendado
+## Como leer este repositorio
+
+1. Leer primero [docs/context_refs.md](docs/context_refs.md) para entender el contexto oficial.
+2. Leer [project_brief.md](project_brief.md) para comprender el proposito y el alcance de la Foundation.
+3. Revisar [specs/](specs/) para ver la definicion inicial del ciclo analitico, los limites entre componentes y el modelo de extensibilidad.
+4. Consultar [docs/glosario_terminos.md](docs/glosario_terminos.md) si necesitas definiciones de artefactos o conceptos SDD.
+5. Aplicar [.github/instructions/sdd.instructions.md](.github/instructions/sdd.instructions.md) antes de crear o modificar artefactos metodologicos.
+
+---
+
+## Estado SDD actual
+
+Estado vigente:
+
+- SDD -> Specification / Structure.
+
+No estamos en Development.
+
+Eso implica que este repositorio debe permanecer documental, no ejecutable, y no debe introducir implementacion prematura.
+
+---
+
+## Flujo recomendado
 
 ```text
 Project Brief
 ↓
-Specification
+Context References
+↓
+Specifications
 ↓
 Structure
 ↓
@@ -174,180 +131,65 @@ Tasks
 Development
 ↓
 Validation
-↓
-Active
 ```
 
 ---
 
-## Estructura actual del repositorio
+## Estructura del repositorio
 
 ```text
 AGENTS.md
 README.md
 
 .github/
-├── agents/                    # Agentes metodológicos definidos
-├── instructions/              # Instrucciones SDD y gobierno
-├── prompts/                   # Prompts reutilizables
-├── copilot-instructions.md    # Instrucciones de Copilot
-└── skills/                    # Skills metodológicas y de discovery
+├── agents/
+├── instructions/
+├── prompts/
+├── copilot-instructions.md
+└── skills/
 
 docs/
-├── glosario_terminos.md       # Glosario SDD
-└── templates/                 # Plantillas reutilizables
+├── glosario_terminos.md
+├── context_refs.md
+└── templates/
 
 specs/
-├── templates/                 # Plantillas de specifications
-└── .gitkeep
+├── spec-001-analytical-lifecycle.md
+├── spec-002-component-boundaries.md
+├── spec-003-extensibility-model.md
+└── templates/
 
+gates/
+memory/
 tests/
-├── evals/                     # Evaluaciones
-└── .gitkeep
-
 tools/
 workflows/
-memory/
-gates/
 ```
 
 ---
 
-## Cómo utilizar esta Foundation
+## Forma de trabajo esperada
 
-### Paso 1
-
-Clonar el repositorio.
-
-### Paso 2
-
-Crear un Project Brief utilizando la plantilla base.
-
-### Paso 3
-
-Utilizar el Specification Agent para generar las specifications iniciales.
-
-### Paso 4
-
-Definir las capacidades necesarias para el proyecto.
-
-### Paso 5
-
-Validar la documentación mediante los gates correspondientes.
-
-### Paso 6
-
-Iniciar Development únicamente cuando exista aprobación explícita.
+- Mantener separacion entre metodologia, gobernanza y posible implementacion futura.
+- Crear artefactos reutilizables, no instancias especificas de cliente.
+- Marcar ausencias de contexto como PENDING cuando corresponda.
+- Evitar duplicar contenido ya cubierto por otro artefacto canonico.
+- Priorizar claridad, trazabilidad y coherencia documental.
 
 ---
 
-## Principios de diseño
+## Criterios de exito
 
-* Human-in-the-loop
-* No implementación prematura
-* Trazabilidad antes que velocidad
-* Documentación antes que ejecución
-* Evolución controlada
-* Separación de responsabilidades
-* Source of Truth única
-* Simplicidad sobre complejidad
+Esta foundation sera util cuando:
 
----
-
-## Cómo se utiliza esta Foundation
-
-JQF SDD Foundation no contiene proyectos de negocio.
-
-Su función es proporcionar una base reutilizable para crear nuevos repositorios basados en SDD.
-
-Cada proyecto se desarrolla en su propio repositorio independiente.
-
-```text
-JQF SDD Foundation
-        ↓ utilizada como base
-
-Repositorio derivado 1
-
-Repositorio derivado 2
-
-Repositorio derivado N
-```
-
-La Foundation proporciona:
-
-* metodología;
-* gobernanza;
-* agentes metodológicos;
-* skills reutilizables;
-* plantillas;
-* reglas de trabajo;
-* glosario;
-* artefactos SDD.
-
-Cada repositorio derivado define posteriormente:
-
-* su Project Brief;
-* sus Specifications;
-* sus agentes operativos;
-* sus workflows;
-* sus evaluaciones;
-* sus herramientas;
-* sus integraciones.
+- la misma metodologia pueda reutilizarse en distintos dominios;
+- nuevas Skills puedan incorporarse sin modificar el nucleo metodologico;
+- el proceso de analisis permanezca desacoplado de la presentacion;
+- la evidencia pueda trazarse hasta las conclusiones y recomendaciones;
+- el repositorio sirva como base comun para futuros proyectos de analisis asistido por IA.
 
 ---
 
-## Alcance actual
+## Siguiente paso recomendado
 
-El estado vigente del repositorio está en fase **Specification / Structure**. No estamos en Development.
-
-**En scope ahora:**
-
-* Specification de metodología SDD
-* Structure de artefactos y gobierno
-* Governance documental y procedural
-* Documentación y plantillas reutilizables
-* Agentes metodológicos (governance, no ejecución)
-* Skills de descubrimiento y soporte documental
-
-**Fuera de scope (Roadmap futuro):**
-
-* Ejecución operativa de agentes (pertenece a proyectos derivados)
-* Operational Harness (implementación en proyectos derivados)
-* GitHub Workflow Agent (planeado, no implementado aún)
-* Gates totalmente automatizados (están como estructura documental)
-* Workflows ejecutables en producción
-
----
-
-## Relación con Harness Engineering
-
-JQF SDD Foundation implementa un **SDD Harness** (eje actual).
-
-Un SDD Harness es un sistema de gobierno diseñado para controlar cómo se diseñan, documentan, validan y evolucionan capacidades, componentes y sistemas dentro de un proyecto.
-
-### SDD Harness (Implementado hoy)
-
-Esta foundation proporciona:
-
-* Estados y fases definidas (Specification, Structure, Development)
-* Reglas de precedencia documental
-* Agentes metodológicos (8 agentes operativos)
-* Estructura de gates (framework definido)
-* Framework de evaluaciones
-* Artefactos base y plantillas
-* Criterios de readiness
-* Context Governance
-
-### Operational Harness (Roadmap futuro)
-
-No implementado aún en esta foundation.
-
-El Operational Harness pertenecerá a los repositorios derivados y será responsable de:
-
-* Ejecución de agentes funcionales
-* Herramientas operativas reales
-* Observabilidad y monitoreo
-* Evaluaciones automáticas en producción
-* Workflows ejecutables
-* Integraciones productivas
-
+Crear specifications adicionales para contracts transversales, gates de readiness y evaluaciones documentales cuando el alcance lo requiera.
