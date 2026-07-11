@@ -12,7 +12,7 @@ vca-ia
 
 ### Status
 
-Proposed
+Development Authorized
 
 ### Owner
 
@@ -34,6 +34,8 @@ El proyecto merece ser construido porque proporciona una capacidad analítica co
 
 VCA IA se concibe como una plataforma para desarrollar y ejecutar múltiples casos de uso analíticos reutilizando un mismo marco metodológico, en lugar de construir soluciones independientes para cada necesidad de análisis.
 
+El primer caso de uso analítico aprobado es AUC-001, Meta Lead Quality Analysis, que valida el enfoque del sistema y actúa como referencia inicial para el resto de capacidades analíticas.
+
 VCA IA no sustituye la plataforma de datos existente de VCA. La consume como fuente de información para ejecutar procesos analíticos asistidos por IA.
 
 ---
@@ -45,6 +47,8 @@ VCA dispone de un ecosistema analítico consolidado que integra procesos comerci
 Entre los principales activos existentes se encuentran la documentación de contexto, la plataforma analítica, los modelos de datos, los procesos comerciales y los sistemas de soporte desarrollados por VCA.
 
 El proyecto debe organizar y aprovechar ese entorno para convertirlo en un sistema analítico corporativo coherente, con trazabilidad entre contexto, evidencia, razonamiento y salida.
+
+AUC-001 y la skill [meta-lead-quality-analysis](.github/skills/meta-lead-quality-analysis/SKILL.md) ya forman parte del marco aprobado de Specification y sirven como primer ciclo validado del sistema analítico.
 
 AIF Foundation actua como dependencia metodologica del proyecto, no como objeto del sistema. Su papel es aportar la base SDD, la gobernanza documental y el marco comun de analisis que VCA IA reutilizara sin modificar su naturaleza.
 
@@ -90,6 +94,8 @@ Sabremos que el proyecto ha tenido exito cuando VCA disponga de un sistema que:
 - definir el flujo de trabajo analitico, sus salidas esperadas y su relacion con la plataforma de datos existente;
 - definir el papel de los Data Providers especializados dentro del sistema;
 - definir usuarios, stakeholders y dependencias del sistema;
+- incorporar el primer caso de uso analitico aprobado como referencia operacional inicial del sistema;
+- reutilizar la primera skill analitica aprobada como capacidad ejecutable de analisis documental;
 - usar AIF Foundation como base metodologica reutilizable;
 - documentacion inicial necesaria para iniciar Specification del proyecto.
 
@@ -128,6 +134,7 @@ VCA IA no reemplaza la plataforma de datos existente de VCA. La consume y la org
 - responsables de gobernanza del proyecto;
 - equipos propietarios de Data Providers y fuentes analiticas;
 - mantenedores de AIF Foundation como dependencia metodologica;
+- QA Gate Agent y Reviewer Agent como consumidores de la evidencia documental del cierre de Specification;
 - futuros usuarios del sistema analítico.
 
 ---
@@ -139,7 +146,8 @@ VCA IA no reemplaza la plataforma de datos existente de VCA. La consume y la org
 - VCA ya cuenta con una plataforma analítica que el proyecto debe aprovechar;
 - los Data Providers especializados son una pieza central del sistema;
 - la metodología de AIF Foundation es válida como base del proyecto y no debe redefinirse;
-- el contexto de negocio de VCA se completará mediante documentación posterior;
+- el contexto de negocio relevante para el arranque ya está suficientemente documentado para el primer caso de uso;
+- AUC-001 y su skill asociada representan el primer ciclo analítico validado del proyecto;
 - el sistema debe permanecer reutilizable y no depender de un dominio demasiado específico en esta fase.
 
 ---
@@ -152,6 +160,7 @@ Las restricciones conocidas son:
 - el sistema debe seguir siendo documental y no ejecutable en esta fase;
 - no se debe acoplar a un proveedor, runtime o tecnología concreta sin validacion posterior;
 - no se debe asumir contexto de negocio no publicado;
+- el proyecto es greenfield y no requiere reconstrucción As-Is para el arranque del Phase Gate;
 - AIF Foundation debe tratarse como dependencia metodologica, no como sustituto del proyecto VCA.
 
 ---
@@ -180,6 +189,9 @@ Documentos o sistemas que contienen la logica funcional principal.
 | README.md | Resumen del proposito, limites y estructura del proyecto |
 | plataforma analitica existente de VCA | Fuente de datos, contexto y servicios analiticos que VCA IA consume |
 | AIF Foundation | Dependencia metodologica reutilizable para el sistema analitico de VCA |
+| analytical_use_cases/meta_lead_quality_analysis.md | Primer caso de uso analitico aprobado del proyecto |
+| .github/skills/meta-lead-quality-analysis/SKILL.md | Primera skill analitica aprobada para ejecutar el caso AUC-001 |
+| knowledge/ | Base de conocimiento del proyecto para contexto persistente y reutilizable |
 | futuras specifications del proyecto VCA | Definicion funcional detallada del sistema analitico |
 
 ### Context References
@@ -194,12 +206,14 @@ Fuentes principales consultadas:
 - Instrucciones SDD del repositorio.
 - Template oficial de Project Brief.
 - Context References del proyecto.
+- AUC-001 como primer caso de uso analitico aprobado.
+- Skill meta-lead-quality-analysis como capacidad analitica inicial del sistema.
 - conocimiento de contexto proporcionado por VCA sobre CCD, FARO, CLARO, BigQuery, dbt, Marketing, Comercial, SOP, hipótesis e informes.
 - AIF Foundation como dependencia metodologica.
 
 Notas relevantes sobre el contexto utilizado:
 
-Este brief describe exclusivamente el sistema analitico que se va a construir para VCA. AIF Foundation se usa solo como base metodologica reutilizable. El contexto de negocio específico de VCA ya existe parcialmente y se irá consolidando en artefactos posteriores.
+Este brief describe exclusivamente el sistema analitico que se va a construir para VCA. AIF Foundation se usa solo como base metodologica reutilizable. El contexto de negocio específico de VCA ya existe para el arranque del proyecto y se sigue consolidando en la Base de Conocimiento y en los artefactos de contexto.
 
 ## 12. Success Criteria
 
@@ -208,24 +222,22 @@ Este brief describe exclusivamente el sistema analitico que se va a construir pa
 - la evidencia y la interpretacion permanecen separadas;
 - el sistema puede evolucionar sin reabrir la definicion metodologica base;
 - el sistema puede incorporar nuevos analisis sin modificar la arquitectura analitica comun;
+- el primer caso de uso analitico aprobado y su skill asociada pueden ejecutarse de forma trazable;
 - el brief aporta contexto suficiente para iniciar Specification sin ambiguedades críticas.
 
 ---
 
 ## 13. Open Questions
 
-- cuál es el alcance funcional exacto del sistema analítico de VCA en su primera version;
-- qué fuentes de contexto y evidencia deben considerarse obligatorias;
-- qué actores concretos participarán en la revisión y aprobación de resultados;
-- qué criterios de éxito adicionales debe usar VCA para validar la utilidad del sistema;
-- qué dependencias documentales del proyecto deben iniciarse en paralelo al Project Brief.
+- No quedan preguntas abiertas relevantes para el alcance actualmente aprobado de VCA IA.
+- Las preguntas que puedan surgir sobre nuevos casos de uso deberán documentarse cuando se abran nuevas specifications.
 
 ---
 
 ## 14. Next Recommended Step
 
 ```text
-Identify and prioritize the first analytical use case that will validate VCA IA.
+Review the SDD Readiness Assessment and apply SPEC-008.
 ```
 
 ---

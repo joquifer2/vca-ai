@@ -2,11 +2,11 @@
 
 # Referencias de Contexto del Proyecto
 
-> Este documento define las fuentes de contexto oficiales que deben consultarse antes de generar o modificar cualquier Project Brief, Spec, documento de Arquitectura, Tasks, codigo o documentacion tecnica de este proyecto.
+> Este documento define las fuentes de contexto oficiales que deben consultarse antes de generar o modificar cualquier Project Brief, Spec, documento de arquitectura, Tasks, codigo o documentacion tecnica de vca-ai.
 >
-> No duplica el contenido completo de otras fuentes. Actua como indice de referencias y trazabilidad del contexto utilizado por esta Foundation.
+> No duplica el contenido completo de otras fuentes. Actua como indice de referencias y trazabilidad del contexto oficial del proyecto.
 >
-> Estado de transicion del proyecto derivado: PENDING adaptacion.
+> Estado de transicion del proyecto derivado: Development Authorized.
 
 ---
 
@@ -14,67 +14,65 @@
 
 ```yaml
 proyecto:
-  nombre: Analytical Intelligence Foundation
-  id_proyecto: AIF-FOUNDATION
-  tipo_proyecto: Foundation reutilizable basada en SDD
-  estado: Stable
+  nombre: VCA IA
+  id_proyecto: VCA-IA
+  tipo_proyecto: Proyecto derivado SDD para un sistema analitico trazable de VCA
+  estado: Development Authorized
   version: v1.0.0
   fecha_creacion: 2026-07-10
-  responsable: Foundation maintainers
+  responsable: VCA IA maintainers
 
 cliente:
-  id_cliente: N/A
-  nombre_cliente: N/A
-  estado_relacion: No aplica
+  id_cliente: VCA
+  nombre_cliente: VCA
+  estado_relacion: Contexto operativo del proyecto
 ```
 
 ---
 
 # 2. Contexto de Cliente Requerido
 
-## CCD - Client Context Document
+## Contexto oficial del proyecto
 
 ```yaml
-ccd:
-  requerido: false
+contexto_proyecto:
+  conocimiento_persistente:
+    sistema: filesystem
+    ubicacion: knowledge/client/
+    version: activa
+    estado: vigente
+    ultima_revision: 2026-07-11
+    fecha_consulta: 2026-07-11
 
-  fuente_humana:
-    sistema: N/A
-    ubicacion: N/A
-
-  fuente_runtime_ia:
-    sistema: N/A
-    uri: N/A
-
-  version: N/A
-  estado: No aplica
-  ultima_revision: N/A
-  fecha_consulta: 2026-07-10
+  ccd_independiente:
+    requerido: false
+    estado: no_publicado
+    observacion: El contexto oficial del proyecto se concentra actualmente en la Knowledge Base y en los artefactos canonicos del repositorio.
 ```
 
-## Notas sobre el uso del CCD
+## Notas sobre el uso del contexto oficial
 
-- Esta Foundation no esta asociada a un cliente concreto.
-- No debe inferirse conocimiento de negocio especifico desde fuentes externas no publicadas en el repositorio.
-- Cualquier proyecto derivado debera inicializar su propio CCD o marcarlo como PENDING segun corresponda.
+- La Knowledge Base del proyecto es la referencia primaria para el contexto persistente y reutilizable.
+- No debe inferirse conocimiento de negocio, arquitectura o restricciones desde fuentes externas no publicadas en el repositorio.
+- Si en el futuro se formaliza un CCD independiente, debera registrarse aqui como referencia oficial adicional.
 
 ---
 
 # 3. Decisiones Relacionadas
 
-> La fuente oficial de decisiones para esta Foundation son sus artefactos documentales versionados en el repositorio.
+> La fuente oficial de decisiones del proyecto son los artefactos versionados en el repositorio.
 
-| Fecha | Decision | Impacto en este proyecto | Fuente |
+| Fecha | Decisión | Impacto en este proyecto | Fuente |
 | --- | --- | --- | --- |
-| 2026-07-10 | Mantener la Foundation como repositorio metodologico, sin implementacion productiva | Limita el alcance a metodologia, gobernanza, templates y artefactos reutilizables | .github/copilot-instructions.md |
-| 2026-07-10 | Mantener independencia respecto a dominio, runtime y proveedor tecnologico | Condiciona alcance, arquitectura conceptual y criterios de exito | README.md |
-| 2026-07-10 | Mantener materializado el roadmap fundacional inicial en las specs 001-007, los gates documentales y el dossier de compatibilidad ya publicados, sin ampliar alcance funcional | Consolida la secuencia de evolucion documental ya resuelta y evita reabrir decisiones de alcance ya cerradas | README.md; specs/spec-001-analytical-lifecycle.md; specs/spec-002-component-boundaries.md; specs/spec-003-extensibility-model.md; specs/spec-004-transversal-contracts.md; specs/spec-005-readiness-gates.md; specs/spec-006-documentary-evaluations.md; specs/spec-007-extension-compatibility-reusability.md |
-| 2026-07-11 | Publicar la Foundation como version estable v1.0.0 | Marca el primer corte estable documental del repositorio sin modificar su estado SDD en Specification / Structure | README.md; project_brief.md |
-| 2026-07-11 | Validar el caso de uso AUC-001 y la skill meta-lead-quality-analysis como primer caso analitico trazable de VCA IA | Deja constancia documental de la evidencia base para iniciar la linea de trabajo analitica del proyecto | analytical_use_cases/meta_lead_quality_analysis.md; .github/skills/meta-lead-quality-analysis/SKILL.md |
+| 2026-07-11 | Adoptar AIF Foundation como dependencia metodologica reutilizable | Permite reutilizar la base SDD sin convertir la Foundation en el objeto del proyecto | README.md; project_brief.md |
+| 2026-07-11 | Validar el caso de uso AUC-001 y la skill meta-lead-quality-analysis como primer ciclo analitico trazable | Define la primera capacidad analitica aprobada del proyecto y su via de ejecucion | analytical_use_cases/meta_lead_quality_analysis.md; .github/skills/meta-lead-quality-analysis/SKILL.md |
+| 2026-07-11 | Definir criterios de validacion para AUC-001 | Establece criterios observables y reutilizables para validar el caso | analytical_use_cases/meta_lead_quality_analysis.md; docs/tasks.md |
+| 2026-07-11 | Cerrar el primer ciclo de tareas de AUC-001 | Registra la delimitacion, evidencia, flujo y validacion del primer caso analitico | analytical_use_cases/meta_lead_quality_analysis.md; docs/tasks.md; docs/context_refs.md |
+| 2026-07-11 | Autorizar la entrada a Development mediante SPEC-008 con PASS WITH OBSERVATIONS | Situa el proyecto en Development manteniendo visibles las observaciones activas del Phase Gate | gates/spec-008-development-entry-phase-gate.md; sdd_readiness_assessment.md |
 
 ## Decisiones pendientes de validar
 
-No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fundacional con la informacion actualmente publicada en el repositorio.
+No hay decisiones pendientes de validar que bloqueen la evolucion actual del proyecto con la informacion publicada en el repositorio.
 
 ---
 
@@ -82,15 +80,14 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 
 | Proyecto | Relacion con este proyecto | Estado | Fuente |
 | --- | --- | --- | --- |
-| jqf-sdd-foundation | Base metodologica y de gobernanza sobre la que se define esta Foundation | Activo | README.md |
+| AIF Foundation | Dependencia metodologica reutilizable | Activo | .github/instructions/sdd.instructions.md; .github/copilot-instructions.md |
+| Ecosistema analitico existente de VCA | Fuente operativa de contexto y evidencia para los casos analiticos del proyecto | Activo | project_brief.md; knowledge/client/ |
 
 ---
 
 # 5. Reuniones Relacionadas
 
-| Fecha | Reunion | Informacion relevante | Fuente |
-| --- | --- | --- | --- |
-| PENDING | PENDING | No hay actas versionadas en el repositorio para esta inicializacion | PENDING |
+No hay reuniones versionadas relevantes para la contextualizacion actual del proyecto en el repositorio.
 
 ---
 
@@ -98,14 +95,17 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 
 | Recurso | Tipo | Motivo de uso | Fuente |
 | --- | --- | --- | --- |
-| Project Brief Template | Template | Estructura oficial del project brief | docs/templates/project_brief.template.md |
-| Context References Template | Template | Estructura oficial de referencias de contexto | docs/templates/context_refs.template.md |
-| Extension Compatibility Dossier Template | Template | Estructura oficial para documentar compatibilidad y reutilización de extensiones | docs/templates/extension_compatibility_dossier.template.md |
-| Analytical Use Case AUC-001 | Caso de uso | Caso de uso analítico fuente para validar VCA IA y definir la primera capability analítica | analytical_use_cases/meta_lead_quality_analysis.md |
-| Meta Lead Quality Analysis Skill | Skill | Skill reutilizable asociada al caso de uso AUC-001 | .github/skills/meta-lead-quality-analysis/SKILL.md |
-| Tasks Backlog | Governance | Backlog auxiliar de trabajo trazable para la Foundation | docs/tasks.md |
-| Glosario SDD | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
-| SDD Harness Instructions | Instrucciones | Reglas de fase, alcance y contexto | .github/instructions/sdd.instructions.md |
+| Knowledge Base del proyecto | Base de conocimiento | Contexto persistente y reutilizable del proyecto | knowledge/client/ |
+| Analytical Use Case AUC-001 | Caso de uso analitico | Primer caso aprobado que valida la linea de trabajo del proyecto | analytical_use_cases/meta_lead_quality_analysis.md |
+| Meta Lead Quality Analysis Skill | Skill | Skill asociada al primer caso analitico aprobado | .github/skills/meta-lead-quality-analysis/SKILL.md |
+| Project Brief | Definicion oficial del proyecto | Proposito, alcance, limites y criterios de exito | project_brief.md |
+| README | Vision general navegable del proyecto | Estructura de entrada y orientacion general | README.md |
+| Specifications del proyecto | Specifications | Lifecycle, boundaries, extensibilidad, contracts, gates y evaluaciones del proyecto | specs/ |
+| Tasks Backlog | Governance | Seguimiento trazable del trabajo aprobado | docs/tasks.md |
+| SDD Readiness Assessment | Evaluation | Evidencia de readiness para la entrada a Development | sdd_readiness_assessment.md |
+| Phase Gate Record | Governance | Registro de la autorizacion de entrada a Development | gates/spec-008-development-entry-phase-gate.md |
+| SDD Instructions | Instrucciones | Reglas de fase, contexto y precedencia documental | .github/instructions/sdd.instructions.md |
+| Glosario de terminos | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
 
 ---
 
@@ -115,10 +115,10 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 
 ```yaml
 repositorios:
-  - nombre: aif-foundation
-    url: https://github.com/joquifer2/analytical-intelligence-foundation.git
+  - nombre: vca-ai
+    url: https://github.com/joquifer2/vca-ai.git
     rama: main
-    descripcion: Repositorio Foundation reutilizable para metodologia y gobernanza de inteligencia analitica
+    descripcion: Repositorio principal del proyecto derivado VCA IA
 ```
 
 ## Google Cloud
@@ -141,67 +141,40 @@ dashboards: []
 ## APIs / Plataformas Externas
 
 ```yaml
-apis: []
+apis:
+  - nombre: BigQuery MCP Server
+    documentacion: PENDING
+    uso_en_proyecto: Fuente principal de evidencia para el caso AUC-001 y futuros analisis trazables
 ```
 
 ---
 
 # 8. Fuentes Runtime para Agentes IA
 
-> Esta Foundation no define fuentes runtime operativas. Solo documenta referencias metodologicas y de gobernanza.
+> Esta seccion indica que fuentes deben consultar los agentes durante el desarrollo y la evolucion del proyecto.
 
 ```yaml
 runtime_sources:
 
   documentos_publicados:
     - nombre: README
-      tipo: Documentacion fundacional
+      tipo: Documento oficial del proyecto
       uri: README.md
       version: versionada en repositorio
       estado: activo
     - nombre: Project Brief
-      tipo: Definicion fundacional
+      tipo: Definicion oficial del proyecto
       uri: project_brief.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Context References
+      tipo: Indice oficial de contexto
+      uri: docs/context_refs.md
       version: versionada en repositorio
       estado: activo
     - nombre: SDD Instructions
       tipo: Instrucciones de gobernanza
       uri: .github/instructions/sdd.instructions.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-001 Analytical Lifecycle
-      tipo: Specification fundacional
-      uri: specs/spec-001-analytical-lifecycle.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-002 Component Boundaries
-      tipo: Specification fundacional
-      uri: specs/spec-002-component-boundaries.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-003 Extensibility Model
-      tipo: Specification fundacional
-      uri: specs/spec-003-extensibility-model.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-004 Transversal Contracts
-      tipo: Specification fundacional
-      uri: specs/spec-004-transversal-contracts.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-005 Readiness Gates
-      tipo: Specification fundacional
-      uri: specs/spec-005-readiness-gates.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-006 Documentary Evaluations
-      tipo: Specification fundacional
-      uri: specs/spec-006-documentary-evaluations.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: SPEC-007 Extension Compatibility and Reusability
-      tipo: Specification fundacional
-      uri: specs/spec-007-extension-compatibility-reusability.md
       version: versionada en repositorio
       estado: activo
     - nombre: Analytical Use Case AUC-001 Meta Lead Quality Analysis
@@ -212,6 +185,26 @@ runtime_sources:
     - nombre: Meta Lead Quality Analysis Skill
       tipo: Skill
       uri: .github/skills/meta-lead-quality-analysis/SKILL.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Specifications del proyecto
+      tipo: Specifications versionadas
+      uri: specs/
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Tasks Backlog
+      tipo: Governance
+      uri: docs/tasks.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: SDD Readiness Assessment
+      tipo: Evaluation
+      uri: sdd_readiness_assessment.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Phase Gate Record
+      tipo: Governance
+      uri: gates/spec-008-development-entry-phase-gate.md
       version: versionada en repositorio
       estado: activo
 
@@ -228,27 +221,28 @@ Antes de crear o modificar cualquier artefacto del proyecto, se deben seguir est
 
 1. Consultar este archivo como indice oficial de contexto.
 2. Revisar `.github/instructions/sdd.instructions.md` antes de proponer cambios de alcance, artefactos o evolucion de fase.
-3. Revisar `README.md` para mantener coherencia con el proposito y limites de la Foundation.
-4. Consultar `docs/glosario_terminos.md` antes de introducir nuevos artefactos o redefinir terminos.
-5. Usar templates oficiales antes de crear variantes de documentos.
-6. No introducir implementacion productiva, runtime ni tecnologia ejecutable dentro de la Foundation.
-7. Marcar cualquier ausencia de contexto relevante como `PENDING`.
+3. Revisar `README.md` y `project_brief.md` para mantener coherencia con el proposito, alcance y estado del proyecto.
+4. Consultar `knowledge/client/` como fuente primaria de contexto persistente del proyecto.
+5. Consultar `docs/glosario_terminos.md` antes de introducir nuevos terminos o redefinir artefactos.
+6. Consultar las specifications, AUC-001, la skill asociada, tasks y gates cuando el cambio afecte a la linea analitica o a la gobernanza del proyecto.
+7. No duplicar el contenido completo de la Knowledge Base ni de otras fuentes canonicas dentro de este documento.
 8. No depender de memoria informal si existe una fuente publicada en el repositorio.
-9. Si existe conflicto entre fuentes, aplicar la precedencia documental oficial definida en `.github/instructions/sdd.instructions.md`.
+9. Marcar como `PENDING` solo aquello que realmente no exista o no este verificado.
+10. Si existe conflicto entre fuentes, aplicar la precedencia documental oficial definida en `.github/instructions/sdd.instructions.md`.
 
 ---
 
 # 10. Jerarquia de Contexto en Caso de Conflicto
 
-La precedencia documental oficial del repositorio se define exclusivamente en `.github/instructions/sdd.instructions.md`.
+La precedencia documental oficial del repositorio es la definida en `.github/instructions/sdd.instructions.md`.
 
-Este documento debe remitir a esa jerarquia y no mantener una version paralela.
+Este documento la referencia y no la redefine.
 
 ---
 
 # 11. Contexto Pendiente
 
-No hay fuentes de contexto pendientes que bloqueen o introduzcan ambiguedad material sobre el roadmap inicial de evolucion fundacional con la informacion actualmente publicada en el repositorio.
+No hay fuentes de contexto pendientes que bloqueen la evolucion actual del proyecto.
 
 ---
 
@@ -258,13 +252,11 @@ No hay fuentes de contexto pendientes que bloqueen o introduzcan ambiguedad mate
 trazabilidad:
   creado_por: GitHub Copilot
   fecha_creacion: 2026-07-10
-  ultima_actualizacion: 2026-07-10
-  actualizado_por: GitHub Copilot
   ultima_actualizacion: 2026-07-11
   actualizado_por: GitHub Copilot
-  contexto_validado_por: PENDING
-  fecha_validacion: PENDING
-  version_contexto: inicial-roadmap-extension-compatibility-resuelto
+  contexto_validado_por: Documentation Agent
+  fecha_validacion: 2026-07-11
+  version_contexto: vca-ia-contexto-oficial-development-authorized
 ```
 
 ---
@@ -278,6 +270,7 @@ Antes de generar o modificar `project_brief.md`, specs, arquitectura, tasks, cod
 3. Revisar decisiones relacionadas.
 4. Revisar conocimiento reutilizable.
 5. Revisar fuentes tecnicas relacionadas cuando aplique.
-6. Marcar cualquier ausencia de contexto como `PENDING`.
-7. No inventar contexto de cliente, negocio, arquitectura, restricciones o decisiones si no esta documentado.
-8. Registrar en este archivo cualquier nueva fuente relevante descubierta durante el proyecto.
+6. Revisar `knowledge/client/`, `README.md`, `project_brief.md`, `analytical_use_cases/`, la skill asociada, `docs/tasks.md` y los gates cuando el trabajo afecte al flujo analitico o a la transicion de fase.
+7. Marcar cualquier ausencia de contexto como `PENDING` solo si la fuente realmente no existe o no esta publicada.
+8. No inventar contexto de cliente, negocio, arquitectura, restricciones o decisiones si no esta documentado.
+9. Registrar en este archivo cualquier nueva fuente relevante descubierta durante el proyecto.

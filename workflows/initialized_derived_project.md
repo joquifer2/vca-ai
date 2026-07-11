@@ -94,6 +94,87 @@ En el caso de `docs/tasks.md`:
 
 ---
 
+### Regeneración de los artefactos de identidad del proyecto
+
+Los siguientes documentos describen la identidad del repositorio y, por tanto, **no deben adaptarse parcialmente** desde AIF Foundation:
+
+- `README.md`
+- `project_brief.md`
+- `docs/context_refs.md`
+
+Estos documentos deberán regenerarse para describir exclusivamente el proyecto derivado.
+
+AIF Foundation debe utilizarse únicamente como referencia estructural y metodológica.
+
+Su contenido no debe reutilizarse cuando describa la propia Foundation.
+
+Al regenerar estos documentos:
+
+- conservar únicamente la estructura que siga siendo útil;
+- sustituir completamente cualquier contenido cuyo sujeto continúe siendo AIF Foundation;
+- describir el propósito, alcance y objetivos del proyecto derivado;
+- incorporar el contexto real del dominio cuando ya exista;
+- reflejar los activos, fuentes de contexto y capacidades propias del proyecto;
+- registrar únicamente decisiones, dependencias y conocimiento pertenecientes al proyecto derivado;
+- presentar AIF Foundation exclusivamente como dependencia metodológica reutilizable;
+- eliminar cualquier referencia al roadmap fundacional, evolución histórica o construcción de AIF Foundation que no aporte contexto al nuevo proyecto.
+
+Cada documento debe cumplir además su responsabilidad específica.
+
+#### README
+
+Debe explicar el proyecto derivado, incluyendo como mínimo:
+
+- qué es el proyecto;
+- qué problema resuelve;
+- cuál es su propósito;
+- qué capacidades proporciona;
+- cómo está organizado;
+- su arquitectura conceptual;
+- cuáles son sus artefactos principales y su Source of Truth;
+- cuál es su estado SDD;
+- cómo evolucionará el proyecto.
+
+#### Project Brief
+
+Debe definir exclusivamente el proyecto derivado, incluyendo:
+
+- problema;
+- objetivo;
+- alcance;
+- restricciones;
+- riesgos;
+- criterios de éxito;
+- dependencias;
+- contexto del dominio.
+
+No debe describir AIF Foundation como objeto del proyecto.
+
+#### Context References
+
+Debe convertirse en el índice oficial de contexto del proyecto derivado.
+
+Debe identificar:
+
+- las fuentes oficiales de contexto;
+- la Knowledge Base cuando exista;
+- los activos reutilizables;
+- las decisiones del proyecto;
+- las dependencias relevantes;
+- las fuentes técnicas;
+- el conocimiento reutilizable;
+- las reglas de carga de contexto.
+
+No debe conservar referencias propias de la construcción o evolución de AIF Foundation.
+
+### Criterio de validación
+
+Un lector que únicamente disponga de estos tres documentos debe poder comprender correctamente el proyecto derivado sin necesidad de conocer previamente AIF Foundation.
+
+Si cualquiera de ellos todavía puede interpretarse como un documento de AIF Foundation con algunos nombres sustituidos, la adaptación deberá considerarse incompleta.
+
+---
+
 ## 5. Inicializar la Base de Conocimiento del proyecto
 
 Evaluar si el proyecto derivado requiere una Base de Conocimiento (Knowledge Base) independiente de la documentación metodológica.
@@ -102,15 +183,17 @@ Una Base de Conocimiento agrupa el conocimiento persistente del dominio del proy
 
 Cuando el proyecto requiera gestionar conocimiento reutilizable, crear la estructura inicial:
 
+```text
 knowledge/
 ├── client/
 ├── domain/
 ├── research/
 └── reports/
+```
 
 Esta estructura no forma parte de la documentación metodológica heredada de AIF Foundation, sino del conocimiento propio del proyecto derivado.
 
-Cuando exista conocimiento previo (por ejemplo un Client Context Document, documentación de dominio, procesos de negocio o investigación existente), incorporarlo dentro de `knowledge/` y referenciarlo posteriormente desde `docs/context_refs.md`.
+Cuando exista conocimiento previo (por ejemplo, un Client Context Document, documentación de dominio, procesos de negocio o investigación existente), incorporarlo dentro de `knowledge/` y referenciarlo posteriormente desde `docs/context_refs.md`.
 
 No crear la Base de Conocimiento cuando el proyecto no requiera mantener conocimiento persistente separado de la documentación del repositorio.
 

@@ -36,6 +36,32 @@ Construir una capacidad analítica que permita generar un informe ejecutivo sobr
 
 ---
 
+# Delimitación del caso
+
+## Incluye
+
+- análisis de calidad de leads procedentes de Meta Ads;
+- revisión de volumen, coste, calidad y eficiencia de inversión;
+- consolidación de contexto y evidencia desde las fuentes oficiales del proyecto;
+- síntesis ejecutiva con conclusiones y recomendaciones priorizadas;
+- trazabilidad entre contexto, evidencia, razonamiento y resultado final.
+
+## No incluye
+
+- diseño o implementación de runtime productivo;
+- definición de nuevas fuentes no publicadas en el repositorio;
+- cambios en la arquitectura de la Foundation;
+- automatizaciones operativas fuera del alcance documental aprobado;
+- decisiones de negocio no sustentadas por evidencia disponible.
+
+## Límites de trabajo
+
+- la skill meta-lead-quality-analysis actua como vehículo de validacion del caso de uso;
+- BigQuery MCP Server se mantiene como Data Provider principal para la evidencia;
+- cualquier necesidad de ampliar el alcance debe volver a Specification antes de incorporarse al caso de uso.
+
+---
+
 # Usuarios
 
 ## Principal
@@ -60,6 +86,78 @@ La capacidad analítica deberá utilizar, cuando resulte necesario:
 - CLARO.
 - KPIs oficiales.
 - Knowledge Base del proyecto.
+
+---
+
+# Inventario minimo de evidencia
+
+## Evidencia base a reunir
+
+| Categoria | Evidencia esperada | Fuente prioritaria | Uso en el caso |
+| --- | --- | --- | --- |
+| Volumen de captacion | Leads, impresiones, clics y conversiones por periodo | BigQuery MCP Server | Dimensionar la entrada del embudo |
+| Calidad del lead | Señales que permitan distinguir calidad alta, media o baja | BigQuery MCP Server + contexto oficial | Evaluar la efectividad real de la captacion |
+| Eficiencia economica | Coste, CPA, CPL o metricas equivalentes publicadas | BigQuery MCP Server | Medir eficiencia de inversion |
+| Campanas y creatividades | Rendimiento comparado por campaña, conjunto y creatividad | BigQuery MCP Server | Identificar patrones de mejor rendimiento |
+| Segmentacion | Diferencias por periodo, audiencia o segmento aplicable | BigQuery MCP Server | Explicar variaciones relevantes |
+| Contexto de negocio | Criterios y definiciones oficiales del proyecto | CCD, FARO, CLARO, KPIs oficiales | Evitar interpretaciones no alineadas |
+
+## Evidencia minima obligatoria
+
+- una fuente oficial de contexto consultada antes del analisis;
+- una fuente principal de evidencia verificable;
+- un criterio operativo para distinguir calidad de lead;
+- un periodo de analisis definido;
+- un resultado ejecutivo con trazabilidad completa.
+
+---
+
+# Flujo de analisis
+
+## Secuencia base
+
+1. Confirmar objetivo, periodo y alcance operativo.
+2. Cargar contexto oficial y verificar definiciones aplicables.
+3. Identificar Data Providers y priorizar la evidencia principal.
+4. Reunir y estructurar la evidencia minima obligatoria.
+5. Separar hechos observables, evidencia derivada e interpretaciones.
+6. Construir el razonamiento que conecta evidencia con conclusiones.
+7. Formular recomendaciones priorizadas y accionables.
+8. Redactar el informe ejecutivo con limitaciones y pendientes.
+
+## Salidas esperadas por etapa
+
+| Etapa | Salida esperada |
+| --- | --- |
+| Confirmacion | Alcance del analisis validado |
+| Contexto | Fuentes oficiales identificadas |
+| Evidencia | Inventario trazado y verificable |
+| Analisis | Hallazgos observables y derivados |
+| Razonamiento | Justificacion explicita de conclusiones |
+| Recomendaciones | Acciones priorizadas |
+| Informe | Documento ejecutivo final |
+
+---
+
+# Criterios de validacion
+
+El caso AUC-001 quedara listo para validacion cuando cumpla, como minimo, con estos criterios:
+
+1. Existe un periodo de analisis definido y documentado.
+2. Existe al menos una fuente oficial de contexto consultada antes del analisis.
+3. La evidencia principal proviene de BigQuery MCP Server o una fuente equivalente explicitamente justificada.
+4. El analisis separa hechos observables, evidencia derivada, interpretaciones y recomendaciones.
+5. Las conclusiones pueden rastrearse hasta la evidencia usada.
+6. Las recomendaciones son accionables y priorizadas.
+7. Las limitaciones y pendientes quedan explicitados en el informe final.
+8. No se introducen supuestos no verificados.
+
+## Señales de validacion exitosa
+
+- el informe final reproduce una lectura coherente del rendimiento de leads;
+- el proceso puede repetirse con la misma estructura sin perder trazabilidad;
+- la skill meta-lead-quality-analysis puede operar sin redefinir el alcance del caso;
+- la salida resultante es util para analisis ejecutivo y para futura revision documental.
 
 ---
 
@@ -111,3 +209,7 @@ No constituye una specification ni una implementación.
 	- [docs/context_refs.md](../docs/context_refs.md)
 	- [project_brief.md](../project_brief.md)
 	- [meta-lead-quality-analysis skill](../.github/skills/meta-lead-quality-analysis/SKILL.md)
+
+## Evidencia adicional registrada
+
+- La definicion de criterios de validacion del caso AUC-001 queda registrada en [docs/context_refs.md](../docs/context_refs.md) y en [docs/tasks.md](../docs/tasks.md) como parte del cierre trazable de T-004 y T-005.
