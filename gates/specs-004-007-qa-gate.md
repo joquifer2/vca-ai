@@ -68,8 +68,6 @@ Confirmar que el marco de contracts, gates, evaluaciones y compatibilidad de ext
 
 ## Gates relacionados
 
-- [gates/fundational-roadmap-qa-gate.md](fundational-roadmap-qa-gate.md)
-
 ## Trazabilidad
 
 - [README.md](../README.md)

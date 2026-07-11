@@ -5,6 +5,8 @@
 > Este documento define las fuentes de contexto oficiales que deben consultarse antes de generar o modificar cualquier Project Brief, Spec, documento de Arquitectura, Tasks, codigo o documentacion tecnica de este proyecto.
 >
 > No duplica el contenido completo de otras fuentes. Actua como indice de referencias y trazabilidad del contexto utilizado por esta Foundation.
+>
+> Estado de transicion del proyecto derivado: PENDING adaptacion.
 
 ---
 
@@ -98,10 +100,7 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 | Project Brief Template | Template | Estructura oficial del project brief | docs/templates/project_brief.template.md |
 | Context References Template | Template | Estructura oficial de referencias de contexto | docs/templates/context_refs.template.md |
 | Extension Compatibility Dossier Template | Template | Estructura oficial para documentar compatibilidad y reutilización de extensiones | docs/templates/extension_compatibility_dossier.template.md |
-| Specification to Tasks Handoff | Handoff | Relevo documental reusable entre Specification y Tasks Planning | docs/handoffs/specification_to_tasks_handoff.md |
 | Tasks Backlog | Governance | Backlog auxiliar de trabajo trazable para la Foundation | docs/tasks.md |
-| Specification Phase Close Gate | Gate | Hito trazable de cierre documental del alcance inicial | gates/specification_phase_close.md |
-| Routine de Normalización de Evidencia | Dossier documental | Instancia ejemplo de compatibilidad y reutilización para una rutina transversal | docs/extension_dossiers/routine_normalizacion_evidencia.md |
 | Glosario SDD | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
 | SDD Harness Instructions | Instrucciones | Reglas de fase, alcance y contexto | .github/instructions/sdd.instructions.md |
 
@@ -200,11 +199,6 @@ runtime_sources:
     - nombre: SPEC-007 Extension Compatibility and Reusability
       tipo: Specification fundacional
       uri: specs/spec-007-extension-compatibility-reusability.md
-      version: versionada en repositorio
-      estado: activo
-    - nombre: Routine de Normalización de Evidencia
-      tipo: Dossier documental
-      uri: docs/extension_dossiers/routine_normalizacion_evidencia.md
       version: versionada en repositorio
       estado: activo
 

@@ -4,6 +4,8 @@
 
 Version estable: v1.0.0
 
+Estado de adaptacion al proyecto derivado: PENDING.
+
 Analytical Intelligence Foundation (AIF) es una foundation reutilizable basada en SDD para definir la metodologia comun de analisis asistido por inteligencia artificial.
 
 Su proposito es transformar el razonamiento analitico experto en un marco documental, modular y trazable que pueda reutilizarse en distintos dominios sin depender de una fuente de datos, un proveedor tecnologico o un runtime concreto.
@@ -98,13 +100,9 @@ El objetivo es estandarizar el proceso de razonamiento analitico para que los in
 - [docs/templates/copilot-instructions-project.template.md](docs/templates/copilot-instructions-project.template.md)
 - [docs/templates/AGENTS.template.md](docs/templates/AGENTS.template.md)
 
-### Handoffs reutilizables
-
-- [docs/handoffs/specification_to_tasks_handoff.md](docs/handoffs/specification_to_tasks_handoff.md)
-
 ### Gates documentales
 
-- [gates/specification_phase_close.md](gates/specification_phase_close.md)
+Sin gates documentales exclusivos heredados en esta fase.
 
 ---
 

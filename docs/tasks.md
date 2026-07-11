@@ -4,6 +4,8 @@
 
 Este documento actua como backlog auxiliar de gobernanza para la Foundation.
 
+Estado de transicion del proyecto derivado: PENDING adaptacion.
+
 Su funcion es traducir specifications aprobadas, decisiones publicadas y handoffs documentales en una lista de trabajo trazable.
 
 No sustituye a las specifications.
@@ -19,7 +21,6 @@ No introduce trabajo fuera del alcance aprobado.
 - [project_brief.md](../project_brief.md)
 - [README.md](../README.md)
 - [docs/context_refs.md](context_refs.md)
-- [docs/handoffs/specification_to_tasks_handoff.md](handoffs/specification_to_tasks_handoff.md)
 - [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md)
 - [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md)
 - [specs/spec-003-extensibility-model.md](../specs/spec-003-extensibility-model.md)

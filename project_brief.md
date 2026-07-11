@@ -26,6 +26,10 @@ Foundation maintainers
 
 2026-07-11
 
+### Transition Status
+
+PENDING adaptation to derived project.
+
 ---
 
 ## 2. Purpose

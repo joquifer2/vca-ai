@@ -67,8 +67,6 @@ Confirmar que el lifecycle analítico, los límites entre componentes y el model
 
 ## Gates relacionados
 
-- [gates/fundational-roadmap-qa-gate.md](fundational-roadmap-qa-gate.md)
-
 ## Trazabilidad
 
 - [README.md](../README.md)
