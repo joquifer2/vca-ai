@@ -88,10 +88,6 @@ El objetivo es estandarizar el proceso de razonamiento analitico para que los in
 - [docs/templates/system_overview.template.md](docs/templates/system_overview.template.md)
 - [docs/templates/architecture_as_is.template.md](docs/templates/architecture_as_is.template.md)
 - [docs/templates/contracts.template.md](docs/templates/contracts.template.md)
-
-### Handoffs reutilizables
-
-- [docs/handoffs/specification_to_tasks_handoff.md](docs/handoffs/specification_to_tasks_handoff.md)
 - [docs/templates/data_lineage.template.md](docs/templates/data_lineage.template.md)
 - [docs/templates/extension_compatibility_dossier.template.md](docs/templates/extension_compatibility_dossier.template.md)
 - [docs/templates/retrospective_spec.template.md](docs/templates/retrospective_spec.template.md)
@@ -99,6 +95,14 @@ El objetivo es estandarizar el proceso de razonamiento analitico para que los in
 - [docs/templates/copilot-instructions.template.md](docs/templates/copilot-instructions.template.md)
 - [docs/templates/copilot-instructions-project.template.md](docs/templates/copilot-instructions-project.template.md)
 - [docs/templates/AGENTS.template.md](docs/templates/AGENTS.template.md)
+
+### Handoffs reutilizables
+
+- [docs/handoffs/specification_to_tasks_handoff.md](docs/handoffs/specification_to_tasks_handoff.md)
+
+### Gates documentales
+
+- [gates/specification_phase_close.md](gates/specification_phase_close.md)
 
 ---
 
@@ -161,7 +165,22 @@ docs/
 ├── glosario_terminos.md
 ├── context_refs.md
 ├── tasks.md
-└── templates/
+├── handoffs/
+└── extension_dossiers/
+
+docs/templates/
+├── project_brief.template.md
+├── context_refs.template.md
+├── system_overview.template.md
+├── architecture_as_is.template.md
+├── contracts.template.md
+├── data_lineage.template.md
+├── extension_compatibility_dossier.template.md
+├── retrospective_spec.template.md
+├── sdd_readiness_assessment.template.md
+├── copilot-instructions.template.md
+├── copilot-instructions-project.template.md
+└── AGENTS.template.md
 
 specs/
 ├── spec-001-analytical-lifecycle.md

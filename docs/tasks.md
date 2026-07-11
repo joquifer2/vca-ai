@@ -80,13 +80,13 @@ Este despiece sirve como base reutilizable para planificar trabajo en proyectos 
 
 | ID | Spec base | Tipo | Objetivo | Dependencias | Resultado esperado | Estado |
 | --- | --- | --- | --- | --- | --- | --- |
-| D-001 | SPEC-001 | Planning / Documentation | Instanciar el lifecycle analitico comun en el proyecto derivado con artefactos de contexto, discovery, preparacion, analisis, razonamiento, recomendaciones y salida | project_brief, context_refs, spec-001 | El proyecto derivado puede ejecutar el ciclo 0-6 con outputs trazables | Planned |
-| D-002 | SPEC-002 | Governance / Review | Definir limites de componentes y handoffs entre Data Provider, Analytical Layer, Reasoning Layer, Presentation Layer y Framework | D-001 | Cada interaccion entre capas ocurre mediante artefactos o contracts explicitos | Planned |
-| D-003 | SPEC-003 | Planning / Documentation | Seleccionar y documentar Skills, Routines, Templates y Contracts como extensiones compatibles | D-001, D-002 | El proyecto derivado dispone de criterios de extensibilidad sin alterar el core | Planned |
-| D-004 | SPEC-004 | Planning / Validation | Instanciar contracts transversales minimos para datos, evidencia, conocimiento, recomendacion y presentacion | D-002, D-003 | Los handoffs entre componentes quedan desacoplados y trazables | Planned |
-| D-005 | SPEC-005 | Governance / Validation | Definir gates de readiness para fases e hitos relevantes del proyecto derivado | D-001, D-004 | El avance entre fases puede evaluarse con criterios documentales y bloqueos explicitos | Planned |
-| D-006 | SPEC-006 | Documentation / Validation | Definir evaluaciones documentales para artefactos, gates y contextos del proyecto derivado | D-005 | Las decisiones de avance pueden apoyarse en evaluaciones trazables y comparables | Planned |
-| D-007 | SPEC-007 | Documentation / Review | Documentar compatibilidad y reutilizacion de extensiones concretas mediante dossier | D-003, D-004, D-006 | Cada extension relevante puede evaluarse sin ambiguedad sobre compatibilidad y reuso | Planned |
+| D-001 | SPEC-001 | Planning / Documentation | Instanciar el lifecycle analitico comun en el proyecto derivado con artefactos de contexto, discovery, preparacion, analisis, razonamiento, recomendaciones y salida | project_brief, context_refs, spec-001 | El proyecto derivado puede ejecutar el ciclo 0-6 con outputs trazables | Completed |
+| D-002 | SPEC-002 | Governance / Review | Definir limites de componentes y handoffs entre Data Provider, Analytical Layer, Reasoning Layer, Presentation Layer, Framework y Skill | D-001 | Cada interaccion entre capas y skills ocurre mediante artefactos o contracts explicitos | Completed |
+| D-003 | SPEC-003 | Planning / Documentation | Seleccionar y documentar Skills, Routines, Templates y Contracts como extensiones compatibles | D-001, D-002 | El proyecto derivado dispone de criterios de extensibilidad sin alterar el core | Completed |
+| D-004 | SPEC-004 | Planning / Validation | Instanciar contracts transversales minimos para datos, evidencia, conocimiento, recomendacion y presentacion | D-002, D-003 | Los handoffs entre componentes quedan desacoplados y trazables | Completed |
+| D-005 | SPEC-005 | Governance / Validation | Definir gates de readiness para fases e hitos relevantes del proyecto derivado | D-001, D-004 | El avance entre fases puede evaluarse con criterios documentales y bloqueos explicitos | Completed |
+| D-006 | SPEC-006 | Documentation / Validation | Definir evaluaciones documentales para artefactos, gates y contextos del proyecto derivado | D-005 | Las decisiones de avance pueden apoyarse en evaluaciones trazables y comparables | Completed |
+| D-007 | SPEC-007 | Documentation / Review | Documentar compatibilidad y reutilizacion de extensiones concretas mediante dossier | D-003, D-004, D-006 | Cada extension relevante puede evaluarse sin ambiguedad sobre compatibilidad y reuso | Completed |
 
 ---
 
@@ -99,6 +99,36 @@ Este despiece sirve como base reutilizable para planificar trabajo en proyectos 
 5. D-005
 6. D-006
 7. D-007
+
+---
+
+## Desglose operativo de D-001
+
+Esta tarea no instancia un proyecto derivado real dentro de la Foundation. Su resultado es un plan reutilizable que otro repositorio derivado puede aplicar sin redefinir el lifecycle.
+
+| Paso | Enfoque | Tipo | Fuente principal | Resultado esperado | Estado |
+| --- | --- | --- | --- | --- | --- |
+| D-001.1 | Delimitar contexto de analisis y decision soportada | Documentation | SPEC-001, project_brief, context_refs | El proyecto derivado tiene un marco de contexto inicial verificable | Completed |
+| D-001.2 | Instanciar artefactos de Discovery, Preparacion y Analisis | Planning / Documentation | SPEC-001, SPEC-002 | El ciclo 0-3 queda representado como artefactos separados y trazables | Completed |
+| D-001.3 | Definir salida de Razonamiento, Recomendaciones y Constructor de Informes | Planning / Validation | SPEC-001, SPEC-004 | El ciclo 4-6 queda claramente separado de evidencia y salida final | Completed |
+| D-001.4 | Alinear dependencias con handoffs y contracts transversales | Governance / Review | SPEC-002, SPEC-004, handoff | Cada traspaso entre fases queda respaldado por un artefacto contractual | Completed |
+| D-001.5 | Preparar criterios de validacion para el ciclo completo | Validation | SPEC-005, SPEC-006 | El proyecto derivado dispone de criterios reutilizables para revisar readiness | Completed |
+| D-001.6 | Confirmar trazabilidad con contexto oficial y precedencia documental | Review / Governance | context_refs, sdd.instructions | El plan queda libre de contradicciones documentales y alineado con la jerarquia oficial | Completed |
+
+### Orden recomendado para D-001
+
+Sin pasos pendientes.
+
+---
+
+## Estado actual de D-001
+
+- D-001.1 completada: el contexto de analisis y la decision soportada ya quedan delimitados en project_brief y context_refs.
+- D-001.2 completada: los limites y handoffs del ciclo 0-3 ya quedan respaldados por SPEC-002.
+- D-001.3 completada: las salidas de Razonamiento, Recomendaciones y Constructor de Informes ya quedan definidas en SPEC-001.
+- D-001.4 completada: los handoffs y contracts transversales ya quedan respaldados por SPEC-004 y el handoff documental.
+- D-001.5 completada: los criterios de readiness y evaluaciones documentales ya quedan formalizados en SPEC-005 y SPEC-006.
+- D-001.6 completada: la trazabilidad con contexto oficial y precedencia documental ya queda respaldada por sdd.instructions y context_refs.
 
 ---
 
