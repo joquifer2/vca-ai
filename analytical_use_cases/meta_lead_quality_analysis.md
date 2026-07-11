@@ -97,3 +97,17 @@ El caso de uso se considerará validado cuando la skill meta-lead-quality-analys
 Este caso de uso deberá servir como entrada para la skill meta-lead-quality-analysis y para futuras iteraciones de validación del caso de uso dentro de VCA IA.
 
 No constituye una specification ni una implementación.
+
+---
+
+# Evidencia de validación
+
+## Registro
+
+- Fecha: 2026-07-11
+- Evidencia: la skill [meta-lead-quality-analysis](../.github/skills/meta-lead-quality-analysis/SKILL.md) queda alineada con este caso de uso y puede utilizarse para ejecutar y validar el primer análisis de VCA IA.
+- Resultado: validación documental y trazable del caso de uso AUC-001 como primer caso analítico del proyecto.
+- Referencias de soporte:
+	- [docs/context_refs.md](../docs/context_refs.md)
+	- [project_brief.md](../project_brief.md)
+	- [meta-lead-quality-analysis skill](../.github/skills/meta-lead-quality-analysis/SKILL.md)
