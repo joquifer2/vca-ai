@@ -100,6 +100,8 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 | Project Brief Template | Template | Estructura oficial del project brief | docs/templates/project_brief.template.md |
 | Context References Template | Template | Estructura oficial de referencias de contexto | docs/templates/context_refs.template.md |
 | Extension Compatibility Dossier Template | Template | Estructura oficial para documentar compatibilidad y reutilización de extensiones | docs/templates/extension_compatibility_dossier.template.md |
+| Analytical Use Case AUC-001 | Caso de uso | Caso de uso analítico fuente para validar VCA IA y definir la primera capability analítica | analytical_use_cases/meta_lead_quality_analysis.md |
+| Meta Lead Quality Analysis Skill | Skill | Skill reutilizable asociada al caso de uso AUC-001 | .github/skills/meta-lead-quality-analysis/SKILL.md |
 | Tasks Backlog | Governance | Backlog auxiliar de trabajo trazable para la Foundation | docs/tasks.md |
 | Glosario SDD | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
 | SDD Harness Instructions | Instrucciones | Reglas de fase, alcance y contexto | .github/instructions/sdd.instructions.md |
@@ -199,6 +201,16 @@ runtime_sources:
     - nombre: SPEC-007 Extension Compatibility and Reusability
       tipo: Specification fundacional
       uri: specs/spec-007-extension-compatibility-reusability.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Analytical Use Case AUC-001 Meta Lead Quality Analysis
+      tipo: Caso de uso analitico
+      uri: analytical_use_cases/meta_lead_quality_analysis.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: Meta Lead Quality Analysis Skill
+      tipo: Skill
+      uri: .github/skills/meta-lead-quality-analysis/SKILL.md
       version: versionada en repositorio
       estado: activo
 

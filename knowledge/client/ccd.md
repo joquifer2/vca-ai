@@ -1,0 +1,1225 @@
+# CCD - Viaja con Álvaro
+
+Fecha de creación: 28 de junio de 2026 12:08
+🧑 Clientes: Viaja con Alvaro (https://app.notion.com/p/Viaja-con-Alvaro-3582fcf6211d805689d2fd6be5ad5296?pvs=21)
+Estado: Activo
+Resumen: Diseño y comercialización de viajes personalizados a España para viajeros puertorriqueños y su diáspora
+Uso IA : Yes
+
+# **Índice**
+
+1. Identidad del Cliente
+2. Resumen Ejecutivo
+3. Modelo de Negocio
+4. Mental Model
+5. Objetivos Estratégicos
+6. Problemas de Negocio Identificados
+7. Restricciones Conocidas
+8. Ecosistema Tecnológico
+9. Arquitectura Actual
+10. KPIs Oficiales
+11. Glosario de Negocio
+12. Proyectos Realizados
+13. Decisiones Relevantes
+14. Conocimiento del Dominio
+15. Aprendizajes Reales
+16. Oportunidades Detectadas
+17. Referencias Documentales
+18. Preferencias del Cliente
+19. Riesgos Actuales
+20. Relaciones
+21. Metadatos
+22. Instrucciones para IA
+23. Estado del Documento
+
+# **1. Identidad del Cliente**
+
+cliente:
+
+nombre: Viaja con Álvaro (VCA)
+
+marca_comercial: Viaja con Álvaro
+abreviatura: VCA
+
+sector: Turismo
+
+subsector: Agencia de viajes experienciales y turismo receptivo
+
+tipo_negocio: Agencia especializada en viajes personalizados y experiencias premium en España
+
+pais_principal: España
+
+mercado_principal: Puerto Rico
+
+mercados_secundarios:
+
+- Comunidad puertorriqueña (diáspora), especialmente Florida (EE. UU.)
+- Mercado hispanohablante interesado en viajar a España
+
+web: [https://viajaconalvaro.com](https://viajaconalvaro.com/)
+
+estado_relacion: Cliente activo
+
+contactos_principales:
+
+- nombre: Álvaro García Cañizares
+cargo: Fundador y Director
+email:
+rol: Dirección general, desarrollo de negocio y marca personal
+
+fecha_inicio_relacion:
+
+responsable_cuenta: Jordi Quiroga
+
+# **2. Resumen Ejecutivo**
+
+# **Descripción General**
+
+Viaja con Álvaro es una agencia especializada en el diseño y comercialización de viajes personalizados a España para viajeros puertorriqueños y su diáspora, con un posicionamiento basado en la especialización, la confianza y la creación de experiencias de alto valor.
+
+Dentro del ámbito de actuación de VCA Project, la colaboración se centra en el diseño, implantación y evolución del ecosistema de captación, inteligencia comercial, analítica y automatización que soporta el proceso de adquisición de clientes.
+
+Este ecosistema se articula principalmente sobre el framework estratégico **FARO**, la plataforma de datos **CLARO**, las integraciones con plataformas externas (Meta Conversions API, GIAV y otros sistemas) y el conjunto de dashboards, modelos de datos y procesos de decisión asociados.
+
+# **Situación Actual**
+
+El ecosistema se encuentra en una fase de consolidación y evolución.
+
+Actualmente dispone de una arquitectura funcional que diferencia las capas de Atención, Activación y Comercial, un modelo inicial de scoring para la pre-cualificación automática de leads, una plataforma de datos centralizada en BigQuery y una primera integración operativa con Meta Conversions API mediante el envío de eventos QualifiedLead.
+
+Paralelamente, continúa la evolución de CLARO como plataforma de datos gobernada y la futura integración con GIAV para cerrar el ciclo completo entre captación, cualificación comercial, aprendizaje y optimización continua del sistema.
+
+El objetivo no es únicamente mejorar la eficiencia publicitaria, sino construir un sistema capaz de transformar datos en decisiones, aprender del comportamiento real de los leads y optimizar progresivamente la calidad de la captación.
+
+# **Alcance del CCD**
+
+Este Client Context Document describe el cliente exclusivamente desde el ámbito de responsabilidad de VCA.
+
+Su alcance comprende la estrategia de captación, publicidad digital, inteligencia comercial, analítica, plataforma de datos, automatización, integraciones y sistemas de apoyo a la decisión desarrollados o mantenidos por VCA Project.
+
+No pretende documentar la totalidad del negocio de Viaja con Álvaro ni sus procesos internos de operaciones, organización o gestión empresarial. Estos aspectos únicamente se incluyen cuando resultan necesarios para proporcionar contexto al ecosistema descrito en este documento.
+
+Este documento constituye la fuente principal de contexto permanente del cliente dentro del ámbito cubierto por este CCD. Puede ser utilizado por múltiples proyectos, agentes de IA y procesos que requieran conocimiento del negocio. Los proyectos derivados deberán referenciar este documento como fuente de contexto cuando resulte aplicable, evitando duplicar la información aquí contenida y manteniendo este CCD como referencia canónica del contexto del cliente.
+
+# **3. Modelo de Negocio**
+
+modelo_negocio:
+
+tipo:
+
+Agencia de viajes experienciales especializada en turismo receptivo en España para viajeros puertorriqueños y la diáspora puertorriqueña, basada en una estrategia de marca personal, comunidad y experiencias premium.
+
+productos_servicios:
+
+- Tours privados en España.
+- Paquetes de viaje personalizados.
+- Viajes en grupo de edición limitada (Bori Tours).
+- Experiencias gastronómicas, culturales y enológicas.
+- Travel Coaching para planificación del viaje.
+- Guías de viaje propias.
+- Asesoramiento integral del viaje.
+- Gestión de hoteles y otros servicios turísticos.
+
+fuentes_ingresos:
+
+- Venta de tours privados.
+- Venta de paquetes turísticos.
+- Venta de viajes experienciales de grupo.
+- Venta de sesiones de Travel Coaching.
+- Venta de guías de viaje.
+- Margen sobre servicios turísticos comercializados.
+
+mercados:
+
+- Puerto Rico (mercado principal).
+- Diáspora puertorriqueña, especialmente Florida (EE. UU.).
+- Mercado hispanohablante interesado en viajar a España.
+
+clientes_objetivo:
+
+- Viajeros puertorriqueños.
+- Puertorriqueños residentes en EE. UU.
+- Parejas.
+- Familias.
+- Pequeños grupos.
+- Viajeros que priorizan experiencias auténticas y personalizadas sobre el turismo convencional.
+
+proceso_comercial:
+
+- Generación de audiencia mediante contenido y marca personal.
+- Construcción de confianza a través de redes sociales, testimonios y eventos.
+- Captación de leads mediante la web, WhatsApp y formularios.
+- Asesoramiento personalizado.
+- Diseño del viaje o selección de experiencia.
+- Reserva y pago.
+- Ejecución del viaje.
+- Fidelización mediante una experiencia diferencial y recomendaciones.
+
+propuesta_valor:
+
+No vende únicamente viajes a España. Vende experiencias cuidadosamente diseñadas, personalizadas y acompañadas, apoyándose en la confianza generada por la marca personal de Álvaro y en una comunidad de viajeros principalmente puertorriqueños.
+
+# **4. Mental Model**
+
+## **Cómo debe entenderse este negocio**
+
+- El producto no es un viaje, sino una experiencia transformadora y emocional en España.
+- El principal activo del negocio es la confianza generada por la marca personal de Álvaro y la comunidad que ha construido, especialmente en Puerto Rico.
+- El cliente compra tranquilidad, cercanía, autenticidad y la seguridad de sentirse acompañado durante todo el proceso, más que un itinerario turístico.
+- La diferenciación no reside en ofrecer destinos exclusivos, sino en la forma de vivirlos: grupos reducidos, atención personalizada, experiencias locales y cuidado del detalle.
+- El negocio se basa en relaciones a largo plazo. Un viajero satisfecho se convierte en prescriptor y genera nuevas oportunidades mediante recomendaciones y redes sociales.
+- La estrategia comercial debe priorizar la generación de confianza antes que la venta directa. El contenido, los testimonios y las experiencias compartidas son parte esencial del proceso de captación.
+- El mercado objetivo no es el turista internacional en general, sino principalmente el viajero puertorriqueño y la diáspora puertorriqueña, cuya cultura, lenguaje y forma de comunicarse deben estar presentes en toda la estrategia.
+
+## **Factores críticos de éxito**
+
+- Mantener una reputación excelente y un alto nivel de satisfacción del viajero.
+- Continuar fortaleciendo la marca personal y la comunidad alrededor de Viaja con Álvaro.
+- Diseñar experiencias memorables que generen recomendaciones orgánicas y repetición de compra.
+- Comprender profundamente la cultura y las expectativas del cliente puertorriqueño.
+- Mantener una comunicación cercana, auténtica y altamente personalizada durante todo el ciclo del viaje.
+
+## **Factores que suelen generar problemas**
+
+- Comunicar el servicio como un viaje convencional en lugar de una experiencia diferencial.
+- Escalar el negocio sacrificando la atención personalizada o la calidad de la experiencia.
+- Captar volumen de leads sin mantener la calidad y afinidad con el cliente ideal.
+- Depender excesivamente de un único canal de captación o de la marca personal sin desarrollar activos complementarios.
+- No gestionar adecuadamente las expectativas del viajero antes del inicio del viaje.
+
+# **5. Objetivos Estratégicos**
+
+objetivos:
+
+- Consolidarse como la marca de referencia para los viajeros puertorriqueños que desean descubrir España mediante experiencias auténticas y personalizadas.
+- Incrementar el volumen de viajeros manteniendo un posicionamiento premium basado en la calidad de la experiencia, evitando competir por precio.
+- Fortalecer la marca personal de Álvaro como principal generador de confianza, diferenciación y captación de nuevos clientes.
+- Desarrollar una comunidad de viajeros fieles que impulse la recomendación, la repetición de compra y el crecimiento orgánico de la marca.
+- Diversificar la oferta de experiencias y viajes temáticos de edición limitada para aumentar el valor medio por cliente y la diferenciación.
+- Escalar el negocio mediante la estandarización de procesos y el crecimiento del equipo, preservando la atención personalizada que caracteriza a la marca.
+- Consolidar el liderazgo en el mercado puertorriqueño y ampliar progresivamente la presencia entre la diáspora puertorriqueña, especialmente en Florida (EE. UU.).
+- Expandir el modelo de negocio hacia el mercado hispanohablante interesado en viajar a España, adaptando la propuesta de valor y la estrategia de comunicación sin perder el posicionamiento diferencial de la marca.
+
+# **6. Problemas de Negocio Identificados**
+
+problemas:
+
+- Alta dependencia de la marca personal de Álvaro como principal activo para la captación, generación de confianza y conversión de nuevos clientes.
+- Mercado objetivo relativamente limitado (Puerto Rico), lo que condiciona el crecimiento orgánico y obliga a maximizar la eficiencia de la captación o expandirse hacia nuevos mercados.
+- El valor diferencial del servicio no siempre es evidente para clientes que comparan únicamente precio o paquetes turísticos tradicionales, por lo que es necesario educar al mercado antes de vender.
+- Una parte importante del mercado potencial todavía no percibe el valor de contratar un servicio especializado para organizar un viaje a España. Muchos viajeros desconocen las ventajas de una experiencia personalizada frente a la planificación por cuenta propia, lo que hace necesario desarrollar estrategias de generación de conciencia, educación y construcción de confianza antes de la venta.
+- Escalar el negocio sin perder el nivel de personalización, cercanía y calidad de la experiencia que constituye su principal ventaja competitiva.
+- Dependencia significativa de canales digitales (especialmente redes sociales y contenido) para alimentar el embudo comercial.
+- Necesidad de diversificar progresivamente los mercados de captación hacia la diáspora puertorriqueña y otros segmentos hispanohablantes interesados en viajar a España.
+- Convertir el conocimiento, la reputación y la comunidad construidos alrededor de la marca en activos escalables (eventos, experiencias temáticas, productos digitales y programas de fidelización) que reduzcan la dependencia de la venta individual de viajes.
+
+# **7. Restricciones Conocidas**
+
+Una **restricción** no es un problema ni un objetivo, sino una condición que limita las decisiones del negocio.
+
+De la información pública y del conocimiento que tenemos del cliente…
+
+restricciones:
+
+- El negocio debe mantener un alto nivel de personalización y acompañamiento durante todo el ciclo del viaje, ya que constituye uno de sus principales elementos diferenciales.
+- La propuesta de valor está fuertemente vinculada a la marca personal de Álvaro, por lo que cualquier estrategia de crecimiento debe preservar la autenticidad y la confianza construidas alrededor de ella.
+- La expansión del negocio no debe comprometer la calidad de las experiencias ni la satisfacción del viajero, incluso si ello limita la velocidad de crecimiento.
+- La actividad depende de terceros (aerolíneas, hoteles, proveedores locales, bodegas, restaurantes y otros operadores turísticos), por lo que parte de la experiencia final queda condicionada por estos colaboradores.
+- El negocio está sujeto a la normativa aplicable a agencias de viajes y viajes combinados, incluyendo requisitos legales, seguros, condiciones de contratación y protección del viajero.
+- El mercado principal continúa siendo Puerto Rico, por lo que la comunicación, el contenido y la estrategia comercial deben adaptarse a las particularidades culturales y lingüísticas de este público mientras se desarrolla la expansión hacia otros mercados.
+
+# **8. Ecosistema Tecnológico**
+
+crm:
+
+- GIAV
+    
+    CRM propio del cliente utilizado como destino comercial para la sincronización de leads preparados desde BigQuery/CLARO.
+    
+
+erp:
+
+- 
+
+ads:
+
+- Meta Ads
+    
+    Canal principal de captación documentado actualmente, especialmente mediante formularios nativos de Meta Lead Ads.
+    
+
+analytics:
+
+- Meta Events Manager
+- Meta Dataset / Events Manager
+
+data_platform:
+
+- Google BigQuery
+- Google Cloud Platform
+- dbt / SQL models dentro de CLARO
+- Secret Manager
+
+visualizacion:
+
+- Looker Studio
+
+automatizacion:
+
+- BigQuery Scheduled Queries
+- Cloud Functions 2nd gen
+- Cloud Scheduler
+- Cloud Run / Cloud Run Job
+- Meta Conversions API
+- Webhooks / workers HTTP
+
+otros_sistemas:
+
+- Sitio web corporativo HTML
+- Formularios nativos de Meta Lead Ads
+- WhatsApp Business
+- GitHub
+- CLARO
+- FARO
+- GIAV
+- Meta CAPI Worker
+
+componentes_relevantes:
+
+- CLARO: capa de modelado, scoring, preparación de leads y control técnico en BigQuery.
+- FARO: sistema estratégico de captación, scoring inicial y activación de señales hacia Meta.
+- GIAV: CRM propio del cliente y destino comercial de los leads preparados.
+- Meta CAPI Worker: worker HTTP desplegado en Cloud Functions 2nd gen para enviar eventos `Lead` y `QualifiedLead` desde BigQuery hacia Meta Conversions API.
+- BigQuery control layer: tablas y vistas operativas para colas, estados de sincronización y control de procesamiento.
+
+# **9. Arquitectura Actual**
+
+## **Arquitectura de Negocio**
+
+Este apartado documenta exclusivamente la arquitectura correspondiente al ámbito gestionado dentro del proyecto VCA: estrategia de captación, publicidad digital, plataforma de datos, inteligencia comercial, automatización, activación y reporting.
+
+La arquitectura se organiza en cinco capas funcionales:
+
+```
+Captación
+    ↓
+FARO
+(Estrategia e Inteligencia Comercial)
+    ↓
+CLARO
+(Data Platform y Materialización Técnica)
+    ↓
+Integraciones
+    ↓
+Reporting y Analítica
+```
+
+Cada capa tiene una responsabilidad claramente definida y desacoplada del resto del ecosistema.
+
+---
+
+## **Arquitectura Tecnológica**
+
+```
+                  Meta Ads
+                      │
+              Meta Lead Forms
+                      │
+                      ▼
+                    FARO
+─────────────────────────────────────────────
+• Estrategia de captación
+• Investigación de mercado
+• Posicionamiento
+• Sistema de decisión
+• Framework de campañas
+• Sistema de scoring
+• Señales de atención
+• Señales de activación
+• Contratos lógicos
+• Dashboards funcionales
+─────────────────────────────────────────────
+                      │
+                      ▼
+                   CLARO
+─────────────────────────────────────────────
+• Google BigQuery
+• Modelos dbt / SQL
+• Procedures
+• Seeds
+• Control de pipelines
+• Materialización técnica
+• Gobierno del dato
+• Fuente única de verdad
+─────────────────────────────────────────────
+          │                    │
+          │                    │
+          ▼                    ▼
+ Meta CAPI Worker        Looker Studio
+          │
+          ▼
+ Meta Conversions API
+          │
+          ▼
+ Meta Events Manager
+
+          │
+          ▼
+GIAV CRM
+(Integración actualmente en desarrollo por el proveedor del CRM)
+```
+
+---
+
+## **Responsabilidades por plataforma**
+
+### Captación
+
+Responsable de la adquisición de nuevos leads mediante campañas digitales.
+
+Componentes actuales:
+
+- Meta Ads
+- Formularios nativos de Meta
+
+---
+
+### FARO — Estrategia e Inteligencia Comercial
+
+FARO constituye la plataforma funcional del ecosistema.
+
+Define la estrategia, la lógica comercial y los criterios de decisión que posteriormente serán materializados técnicamente.
+
+Responsabilidades:
+
+- Investigación de mercado.
+- Estrategia de captación.
+- Framework de campañas.
+- Sistema de decisión.
+- Posicionamiento.
+- Definición del scoring.
+- Definición de señales de atención.
+- Definición de señales de activación.
+- Alineación Marketing–Comercial.
+- Definición de dashboards funcionales.
+- Definición de contratos lógicos que posteriormente consume CLARO.
+
+---
+
+### CLARO — Data Platform
+
+CLARO constituye la plataforma de datos del ecosistema.
+
+Su función es materializar técnicamente la lógica definida por FARO y convertirla en modelos analíticos operativos.
+
+Responsabilidades:
+
+- Ingesta de datos.
+- Modelado mediante dbt y SQL.
+- Materialización de contratos analíticos.
+- Normalización y calidad del dato.
+- Gobierno del dato.
+- Gestión de pipelines.
+- Materialización de estructuras físicas.
+- Fuente única de verdad para captación, scoring, activación y reporting.
+
+Infraestructura principal:
+
+- Google BigQuery
+- dbt
+- Procedures SQL
+- Scheduled Queries
+- Tablas de control
+- Seeds
+
+---
+
+### Integraciones
+
+Responsable de sincronizar la información preparada por CLARO con plataformas externas.
+
+Estado actual:
+
+- Meta Conversions API mediante Meta CAPI Worker (operativo).
+
+Estado previsto:
+
+- Integración con GIAV CRM para sincronización automática de leads preparados y señales comerciales (actualmente en desarrollo por el proveedor del CRM).
+
+Principio arquitectónico:
+
+Las integraciones consumen información preparada por CLARO. No contienen lógica de negocio.
+
+---
+
+### Reporting y Analítica
+
+Responsable de proporcionar visibilidad operativa y soporte a la toma de decisiones.
+
+Componentes:
+
+- Looker Studio
+- Dashboards definidos por FARO y alimentados por CLARO
+
+---
+
+## **Principios Arquitectónicos**
+
+- FARO constituye la capa estratégica del ecosistema y define la lógica de negocio.
+- CLARO constituye la plataforma de datos y materializa técnicamente las definiciones realizadas por FARO.
+- BigQuery es la infraestructura central sobre la que opera CLARO.
+- CLARO es la fuente única de verdad para el ecosistema de captación y datos.
+- Los workers de integración únicamente sincronizan información; no implementan reglas de negocio.
+- Las plataformas externas (Meta, GIAV y futuras integraciones) consumen datos preparados por CLARO.
+- La arquitectura está desacoplada para permitir incorporar nuevos canales, CRMs o plataformas sin modificar la lógica central de FARO ni la plataforma de datos CLARO.
+
+---
+
+## **Artefactos Arquitectónicos**
+
+La arquitectura del ecosistema se documenta de forma modular. Cada uno de los siguientes artefactos constituye la fuente de verdad para un ámbito específico de la solución.
+
+- **FARO — Estrategia e Inteligencia Comercial**
+    
+    Documentación principal: `FARO/`
+    
+- **CLARO — Plataforma de Datos**
+    
+    Documentación principal: `CLARO/`
+    
+- **GIAV — Integración con el CRM**
+    
+    Documentación principal: `GIAV/`
+    
+- **Meta CAPI Worker — Integración con Meta Conversions API**
+    
+    Documentación principal: `meta-capi-worker/README.md`
+    
+
+# **10. KPIs Oficiales**
+
+Este apartado documenta los KPIs oficiales del ecosistema FARO/CLARO para captación, lectura de señal, activación comercial y toma de decisiones.
+
+Todos los dashboards, análisis, automatizaciones y agentes de IA deberán utilizar estas definiciones como referencia oficial.
+
+---
+
+## **KPIs Oficiales**
+
+### KPI 1 — CPAU v1 (Coste por Atención Útil)
+
+**Dominio:** FARO Atención
+
+**Definición**
+
+Coste medio necesario para generar una unidad de atención útil en campañas clasificadas como `ATTENTION`.
+
+**Fórmula**
+
+```
+CPAU = Spend / Atención útil
+```
+
+**Objetivo**
+
+Medir la eficiencia de las campañas de Atención para identificar qué conceptos, ángulos y creatividades generan consumo útil de contenido.
+
+---
+
+### KPI 2 — % Activación Cualificada
+
+**Dominio:** FARO Activación
+
+**Definición**
+
+Porcentaje de la audiencia impactada que genera una respuesta considerada útil dentro de la fase de Activación.
+
+**Fórmula**
+
+```
+Leads cualificados / Audiencia impactada relevante
+```
+
+**Objetivo**
+
+Evaluar la capacidad del retargeting para transformar interés previo en oportunidades útiles.
+
+---
+
+### KPI 3 — CPL Cualificado
+
+**Dominio:** FARO Comercial
+
+**Definición**
+
+Coste medio necesario para generar un lead pre-cualificado según las reglas oficiales de FARO.
+
+En la versión actual del sistema corresponde a los leads clasificados como **A + B**.
+
+**Fórmula**
+
+```
+Inversión publicitaria / Leads cualificados
+```
+
+**Objetivo**
+
+Es el KPI principal para la toma de decisiones de inversión.
+
+Tiene prioridad sobre el CPL total.
+
+---
+
+### KPI 4 — Tasa de Cualificación
+
+**Dominio:** FARO Comercial
+
+**Definición**
+
+Porcentaje de leads captados que alcanzan la categoría de lead cualificado según el sistema FARO.
+
+**Fórmula**
+
+```
+Leads cualificados / Leads totales
+```
+
+**Objetivo**
+
+Medir la calidad de la captación.
+
+---
+
+### KPI 5 — Ratio Lead Cualificado → Oportunidad
+
+**Dominio:** FARO Comercial
+
+**Definición**
+
+Porcentaje de leads cualificados que avanzan hasta convertirse en una oportunidad comercial.
+
+**Fórmula**
+
+```
+Oportunidades / Leads cualificados
+```
+
+**Objetivo**
+
+Validar la capacidad predictiva del sistema de scoring y la calidad real de los leads.
+
+---
+
+### KPI 6 — Ratio Oportunidad → Venta
+
+**Dominio:** FARO Comercial
+
+**Definición**
+
+Porcentaje de oportunidades comerciales que finalmente se convierten en venta.
+
+**Fórmula**
+
+```
+Ventas / Oportunidades
+```
+
+**Objetivo**
+
+Medir la eficacia del proceso comercial posterior a la captación.
+
+---
+
+## **Variables Estratégicas del Sistema**
+
+Las siguientes variables forman parte del modelo de decisión de FARO, pero **no constituyen KPIs**.
+
+Se utilizan para clasificar, segmentar y enriquecer la interpretación de los indicadores anteriores.
+
+- Score Inicial
+- Score Validado
+- Lead Tier (A, B, C y D)
+- campaign_signal (ATTENTION, ACTIVATION y COMMERCIAL)
+- Estados FARO (CLEAR, WEAK y NOISE, según la capa correspondiente)
+
+---
+
+## **Notas de Gobierno**
+
+- Cada capa de FARO (Atención, Activación y Comercial) posee sus propios KPIs y no deben compararse entre sí utilizando un único indicador.
+- El **CPL Total** puede utilizarse como métrica de contexto, pero nunca como KPI principal de decisión cuando exista un **CPL Cualificado**.
+- Las definiciones de los KPIs deberán mantenerse alineadas con los contratos funcionales de FARO y los contratos analíticos de CLARO.
+
+# **11. Glosario de Negocio**
+
+Este apartado constituye el glosario oficial del ecosistema FARO/CLARO.
+
+Su objetivo es establecer un lenguaje común para todos los proyectos, dashboards, automatizaciones, modelos analíticos y agentes de IA.
+
+Todas las definiciones recogidas en este documento deberán considerarse la referencia oficial del proyecto.
+
+---
+
+# Flujo conceptual del sistema
+
+```
+Lead
+   │
+   ▼
+Modelo de Scoring FARO
+   │
+   ▼
+Score Inicial
+   │
+   ▼
+Qualified Lead
+(Pre-cualificación Marketing)
+   │
+   ▼
+Evaluación Comercial
+   │
+   ▼
+Sales Qualified Lead
+(Cualificación Comercial)
+   │
+   ▼
+Oportunidad
+   │
+   ▼
+Cliente
+   │
+   ▼
+Score Validado
+   │
+   ▼
+Aprendizaje FARO
+```
+
+---
+
+## Lead
+
+Persona que ha mostrado interés en los servicios de Viaja con Álvaro mediante un formulario de captación o cualquier otro canal integrado en el ecosistema.
+
+Representa la unidad mínima de análisis del sistema FARO.
+
+---
+
+## Modelo de Scoring FARO
+
+Sistema oficial de evaluación inicial de leads desarrollado dentro del framework FARO.
+
+Su finalidad es estimar la calidad potencial de un lead antes de cualquier interacción comercial.
+
+El modelo asigna una puntuación utilizando exclusivamente la información disponible durante la fase de captación.
+
+La lógica de cálculo se basa en un conjunto de reglas de negocio definidas por FARO y podrá evolucionar con nuevas versiones sin modificar este glosario.
+
+Las reglas detalladas, ponderaciones y umbrales forman parte de la documentación funcional del Modelo de Scoring FARO.
+
+---
+
+## Score Inicial
+
+Puntuación obtenida por un lead tras aplicar el Modelo de Scoring FARO.
+
+Representa la estimación inicial de su calidad comercial antes de cualquier actuación del equipo de ventas.
+
+Su rango actual es de 0 a 100 puntos.
+
+---
+
+## Qualified Lead
+
+Lead que cumple los criterios definidos por el Modelo de Scoring FARO para ser considerado apto para activación comercial.
+
+Representa la **pre-cualificación automática** realizada por FARO y constituye la referencia utilizada para el envío del evento `QualifiedLead` mediante Meta Conversions API.
+
+La definición concreta de un Qualified Lead (umbrales, reglas o condiciones) pertenece al Modelo de Scoring FARO y podrá evolucionar sin modificar este glosario.
+
+---
+
+## Sales Qualified Lead
+
+Lead que, tras la evaluación realizada por el equipo comercial, cumple los criterios establecidos por el proceso de ventas para continuar dentro del embudo comercial.
+
+Representa la validación humana de la pre-cualificación realizada por FARO.
+
+---
+
+## Oportunidad
+
+Sales Qualified Lead que pasa a formar parte del pipeline comercial activo al existir una posibilidad real de contratación.
+
+Su definición operativa podrá evolucionar cuando la integración con GIAV esté completamente implantada.
+
+---
+
+## Cliente
+
+Persona que ha contratado uno o varios servicios comercializados por Viaja con Álvaro.
+
+Representa la conversión final del embudo comercial.
+
+---
+
+## Venta
+
+Conversión efectiva de una oportunidad comercial en un cliente.
+
+Constituye el resultado final del proceso de captación y gestión comercial.
+
+---
+
+## Score Validado
+
+Puntuación obtenida a partir del comportamiento real del lead durante el proceso comercial.
+
+Su finalidad es validar, recalibrar y mejorar progresivamente el Modelo de Scoring FARO.
+
+Constituye la base del aprendizaje continuo del sistema.
+
+---
+
+## Campaign Signal
+
+Clasificación estratégica que identifica la finalidad principal de una campaña dentro del framework FARO.
+
+Valores oficiales:
+
+- ATTENTION
+- ACTIVATION
+- COMMERCIAL
+
+Cada categoría posee objetivos, KPIs y criterios de interpretación propios.
+
+---
+
+## Señal FARO
+
+Resultado de interpretar los KPIs oficiales mediante las reglas de negocio definidas por FARO.
+
+Las señales transforman datos en decisiones de negocio.
+
+Estados oficiales:
+
+### Atención
+
+- CLEAR ATTENTION
+- WEAK ATTENTION
+- NOISE
+
+### Activación
+
+- CLEAR ACTIVATION
+- WEAK ACTIVATION
+- NOISE
+
+### Comercial
+
+- CLEAR SIGNAL
+- WEAK SIGNAL
+- NOISE
+
+---
+
+## FARO
+
+Framework estratégico de captación e inteligencia comercial.
+
+Define la arquitectura funcional del ecosistema, incluyendo:
+
+- Estrategia de captación.
+- Modelo de Scoring.
+- KPIs oficiales.
+- Sistema de Señales.
+- Framework de decisión.
+- Contratos funcionales.
+- Dashboards funcionales.
+
+FARO responde a la pregunta:
+
+> **¿Qué debe medirse, cómo debe interpretarse y qué decisiones deben tomarse?**
+> 
+
+---
+
+## CLARO
+
+Plataforma de datos del ecosistema.
+
+Materializa técnicamente las definiciones realizadas por FARO mediante contratos analíticos, modelos de datos y estructuras gobernadas.
+
+Constituye la fuente única de verdad para el ámbito de captación, activación, aprendizaje y reporting.
+
+CLARO responde a la pregunta:
+
+> **¿Cómo se implementa, gobierna y materializa técnicamente lo definido por FARO?**
+> 
+
+# **12. Proyectos Realizados**
+
+Este apartado documenta los principales proyectos desarrollados dentro del ámbito de responsabilidad del ecosistema VCA.
+
+Su objetivo es proporcionar una visión global de las iniciativas estratégicas, analíticas y tecnológicas implementadas o en desarrollo.
+
+| **Proyecto** | **Descripción** | **Estado** | **Resultado / Objetivo** |
+| --- | --- | --- | --- |
+| **FARO** | Framework estratégico de captación e inteligencia comercial. Define la estrategia de campañas, el modelo de scoring, los KPIs, las señales, los dashboards funcionales y el framework de decisión. | En evolución | Constituye el núcleo funcional del ecosistema de captación y toma de decisiones. |
+| **CLARO** | Plataforma de datos responsable de materializar técnicamente la lógica definida por FARO mediante contratos analíticos, modelos de datos y estructuras gobernadas. | En desarrollo | Consolidar una plataforma de datos gobernada, escalable y reutilizable. |
+| **Meta CAPI Worker** | Integración entre BigQuery y Meta Conversions API para el envío de los eventos `Lead` y `QualifiedLead`. | Operativo | Mejorar la medición, atribución y optimización de campañas en Meta Ads mediante señales de calidad. |
+| **Dashboard FARO Comercial** | Dashboard de lectura de señal comercial basado en el KPI principal CPL Cualificado. | Operativo | Identificar campañas, conceptos y creatividades que generan demanda rentable. |
+| **Dashboard FARO Atención** | Dashboard para la lectura de la Señal de Atención mediante el KPI CPAU v1. | En diseño | Detectar conceptos capaces de generar atención útil antes de la fase comercial. |
+| **Dashboard FARO Activación** | Dashboard para la lectura de la Señal de Activación mediante el KPI % Activación Cualificada. | En diseño | Medir la capacidad del sistema para transformar interés previo en oportunidades útiles. |
+| **Integración GIAV** | Integración entre CLARO y el CRM GIAV para la sincronización de leads preparados y señales comerciales. El desarrollo del CRM corresponde al proveedor de GIAV. | En desarrollo | Automatizar el traspaso de información entre marketing y ventas preservando la lógica definida por FARO. |
+
+## **Principios de Gobierno**
+
+- Este catálogo documenta únicamente proyectos incluidos dentro del ámbito de responsabilidad de VCA Project.
+- El estado de cada proyecto deberá mantenerse actualizado durante la evolución del ecosistema.
+- La documentación detallada de cada proyecto reside en su correspondiente artefacto del repositorio (`FARO/`, `CLARO/`, `GIAV/`, `meta-capi-worker/`).
+- Los proyectos podrán evolucionar mediante nuevas versiones sin perder la trazabilidad histórica de sus objetivos y resultados.
+
+# **13. Decisiones Relevantes**
+
+Esta sección no sustituye a la base oficial de decisiones del SO Profesional.
+
+Documenta exclusivamente las decisiones estratégicas, funcionales y arquitectónicas adoptadas dentro del ámbito de responsabilidad de VCA Project.
+
+No recoge decisiones propias del negocio de Viaja con Álvaro (operaciones, producto, pricing, organización, procesos internos o estrategia empresarial), sino únicamente aquellas que afectan al ecosistema de captación, datos, inteligencia comercial, automatización, integraciones y reporting desarrollado y mantenido por VCA Project.
+
+Toda nueva decisión que afecte a este ámbito deberá registrarse en esta sección y mantenerse alineada con los artefactos del repositorio.
+
+# **2026-03**
+
+**Decisión**
+
+El ecosistema se estructura sobre dos plataformas complementarias:
+
+- **FARO**, como framework estratégico e inteligencia comercial.
+- **CLARO**, como plataforma de datos y materialización técnica.
+
+**Motivo**
+
+Separar la lógica funcional de la implementación técnica para facilitar la evolución, el mantenimiento y la reutilización del sistema.
+
+**Impacto**
+
+Toda nueva funcionalidad deberá desarrollarse respetando esta separación de responsabilidades.
+
+# **2026-03**
+
+**Decisión**
+
+BigQuery constituye la fuente única de verdad para el ecosistema de captación, scoring, activación y reporting.
+
+**Motivo**
+
+Garantizar consistencia, trazabilidad y una única interpretación de los datos.
+
+**Impacto**
+
+Las reglas de negocio, los modelos analíticos y los dashboards deberán consumir datos preparados por CLARO.
+
+# **2026-03**
+
+**Decisión**
+
+El ecosistema adopta un modelo de lectura de señales compuesto por tres capas independientes:
+
+- Atención
+- Activación
+- Comercial
+
+Cada una posee sus propios KPIs, estados y criterios de interpretación.
+
+**Motivo**
+
+Analizar cada fase del embudo con indicadores específicos, evitando interpretar todo el sistema únicamente mediante métricas comerciales.
+
+**Impacto**
+
+Toda campaña deberá clasificarse mediante campaign_signal y evaluarse utilizando los KPIs definidos para su capa correspondiente.
+
+# **2026-05**
+
+**Decisión**
+
+La pre-cualificación automática de los leads se realiza mediante el Modelo de Scoring FARO y se representa mediante la entidad **Qualified Lead**.
+
+**Motivo**
+
+Disponer de un criterio único y gobernado para priorizar la atención comercial y alimentar las integraciones con plataformas externas.
+
+**Impacto**
+
+Todas las integraciones, dashboards y automatizaciones deberán utilizar la definición oficial de **Qualified Lead** establecida por FARO.
+
+# **14. Conocimiento del Dominio**
+
+Este apartado recoge el conocimiento de dominio necesario para interpretar correctamente el ecosistema de captación, scoring, activación y reporting desarrollado por VCA Project.
+
+No sustituye la documentación estratégica de FARO. Resume únicamente los principios de mercado y de interpretación que cualquier persona o agente de IA debe conocer antes de analizar datos o proponer cambios.
+
+---
+
+## **Estacionalidad y ciclo de decisión**
+
+consideraciones:
+
+- La contratación de viajes internacionales premium no suele ser inmediata. El ciclo de decisión puede extenderse durante semanas o meses.
+- El usuario puede encontrarse en distintos niveles de madurez: inspiración, planificación, compra de billetes, organización logística o decisión final.
+- Tener billetes comprados o estar en proceso de compra representa una señal de intención más fuerte que estar simplemente explorando.
+- Los resultados de captación deben interpretarse considerando el desfase entre atención, activación, lead, cualificación comercial, oportunidad y venta.
+
+---
+
+## **Particularidades del mercado**
+
+- El mercado trabajado en FARO se centra principalmente en viajeros puertorriqueños y diáspora puertorriqueña interesada en viajar a España.
+- Es un nicho con baja saturación específica en paid media cuando se combina turismo experiencial, viajes premium y comunicación culturalmente adaptada al público puertorriqueño.
+- El usuario valora autenticidad, exclusividad, cercanía, confianza y reducción del estrés logístico.
+- El ticket premium puede generar fricción, por lo que la comunicación debe explicar claramente el valor diferencial frente a alternativas genéricas.
+- La confianza es crítica: el usuario necesita saber quién está detrás del servicio, qué incluye la experiencia y por qué la propuesta es diferente.
+
+---
+
+## **Patrones de comportamiento del usuario**
+
+- El usuario no siempre está preparado para dejar sus datos en el primer impacto publicitario.
+- La atención previa, el consumo de contenido y la interacción con la marca son señales relevantes antes de solicitar una conversión directa.
+- El formulario debe actuar como filtro de cualificación, no solo como mecanismo de captación barata.
+- Un lead de Meta no equivale automáticamente a un lead cualificado.
+- Un CPL bajo puede ser negativo si genera leads que no responden, no tienen viaje previsto, no tienen presupuesto o no avanzan comercialmente.
+
+---
+
+## **Principios de interpretación FARO**
+
+- No todas las campañas deben evaluarse con la misma lógica.
+- Cada campaña debe interpretarse según su `campaign_signal`:
+    - `ATTENTION`
+    - `ACTIVATION`
+    - `COMMERCIAL`
+- Una campaña de Atención no debe evaluarse por leads directos.
+- Una campaña Comercial no debe evaluarse por métricas de consumo de vídeo.
+- Una campaña de Activación no debe mezclarse con tráfico frío sin separación.
+- No debe utilizarse un único KPI universal para todo el sistema.
+- La calidad del lead manda sobre el CPL total.
+- Las decisiones deben tomarse por concepto y funnel, no por anuncio aislado, métrica suelta o resultado de un único día.
+
+---
+
+## **Lectura multicapa del embudo**
+
+FARO organiza la lectura del sistema en tres capas:
+
+- **Atención:** identifica qué ideas generan atención útil y merecen seguir recibiendo inversión.
+- **Activación:** mide qué mensajes convierten interés previo en avance real.
+- **Comercial:** evalúa qué ideas generan leads útiles a coste sostenible.
+
+Esta separación evita interpretar erróneamente campañas que cumplen funciones distintas dentro del embudo.
+
+---
+
+## **Reglas de decisión y aprendizaje**
+
+- FARO separa lectura de señal y decisión operativa.
+- Una señal clara no implica escalar automáticamente; implica que el concepto puede evaluarse para escalar.
+- No se debe apagar un concepto sin evidencia suficiente.
+- Escalar debe ser progresivo.
+- El feedback comercial tiene prioridad sobre métricas de plataforma cuando ambas lecturas entran en conflicto.
+- El aprendizaje debe conectar señal publicitaria, señal de captación y señal comercial.
+
+---
+
+## **Competencia y posicionamiento**
+
+- La competencia incluye marketplaces de tours, agencias receptivas, plataformas de experiencias y propuestas de turismo premium.
+- Muchos competidores utilizan claims genéricos como “tour privado”, “experiencia exclusiva” o “guía experto”.
+- La oportunidad diferencial está en la personalización cultural, el tono cercano, la conexión con el público puertorriqueño y la promesa de acompañamiento experto.
+- Los mensajes impersonales, demasiado formales, genéricos o centrados en precio bajo pueden erosionar la percepción premium.
+
+---
+
+## **Factores externos relevantes**
+
+- El precio y disponibilidad de vuelos puede afectar directamente a la intención real de compra.
+- La situación económica del mercado objetivo puede modificar la sensibilidad al ticket premium.
+- La confianza en compras digitales desde el extranjero es un factor crítico.
+- El algoritmo de Meta puede optimizar hacia formularios baratos si no se alimenta con señales de calidad.
+- La eficiencia publicitaria debe interpretarse junto con calidad posterior, contactabilidad, cualificación comercial y avance real en ventas.
+
+**15. Aprendizajes Reales**
+
+Este apartado solo debe completarse cuando existan aprendizajes derivados de implementación real, incidencias, errores, validaciones, cambios de enfoque o decisiones corregidas por la experiencia.
+
+No debe utilizarse para repetir principios, reglas o definiciones ya documentadas en FARO, CLARO, arquitectura, KPIs, glosario o decisiones relevantes.
+
+# **16. Oportunidades Detectadas**
+
+Este apartado recoge oportunidades de mejora identificadas dentro del ámbito de actuación de VCA Project.
+
+No constituye un compromiso de ejecución ni sustituye al roadmap del proyecto. Su finalidad es mantener visibles aquellas iniciativas que podrían aportar valor al ecosistema y que deberán evaluarse en función de su impacto, viabilidad y prioridades del cliente.
+
+opportunidades:
+
+- Evolucionar el Modelo de Scoring FARO incorporando información procedente del proceso comercial para mejorar su capacidad predictiva.
+- Completar la integración con GIAV para cerrar el ciclo entre captación, cualificación comercial y aprendizaje del sistema.
+- Incorporar nuevos dashboards de ayuda a la decisión y aprendizaje definidos en FARO.
+- Ampliar las señales enviadas a Meta Conversions API conforme evolucione el Modelo de Scoring y la disponibilidad de datos comerciales.
+- Consolidar CLARO como plataforma única para la materialización de modelos analíticos, contratos de datos y procesos gobernados.
+- Incrementar el uso de datos propios (first-party data) para reducir la dependencia de las plataformas publicitarias y mejorar la capacidad de optimización.
+- Explorar nuevos modelos de IA y analítica predictiva que permitan anticipar calidad de leads, oportunidades comerciales y comportamiento futuro de la demanda.
+- Evolucionar el ecosistema FARO hacia un sistema de aprendizaje continuo basado en la comparación entre predicciones, resultados comerciales y decisiones adoptadas.
+
+# **19. Preferencias del Cliente**
+
+Este apartado documenta las preferencias de trabajo observadas durante la colaboración entre el cliente y VCA Project.
+
+Su objetivo es facilitar la continuidad del proyecto y mantener una forma de trabajo coherente entre todas las personas o agentes que participen en el ecosistema.
+
+Este apartado únicamente deberá completarse cuando existan preferencias claramente identificadas y validadas durante la relación con el cliente.
+
+# **Reporting**
+
+**Frecuencia**
+
+**Formato preferido**
+
+# **Comunicación**
+
+**Canal principal**
+
+**Frecuencia de contacto**
+
+# **Proceso de Trabajo**
+
+# **Nivel Técnico**
+
+# **Expectativas**
+
+# **20. Riesgos Actuales**
+
+Este apartado documenta los riesgos actualmente identificados dentro del ámbito de actuación de VCA Project.
+
+No recoge riesgos generales del negocio del cliente, sino aquellos que pueden afectar al correcto funcionamiento, evolución o mantenimiento del ecosistema de captación, datos, inteligencia comercial y automatización.
+
+**Riesgos identificados**
+
+- La integración con GIAV todavía se encuentra en fase de desarrollo por parte del proveedor del CRM, lo que limita temporalmente la automatización completa del ciclo comercial.
+- El ciclo de aprendizaje de FARO aún no dispone de toda la información comercial necesaria para validar y recalibrar el Modelo de Scoring de forma completamente automatizada.
+- Parte de la arquitectura funcional continúa evolucionando, por lo que algunos componentes documentados pueden sufrir cambios hasta alcanzar su versión estable.
+- La calidad de las decisiones depende de la correcta gobernanza de los datos y de mantener alineadas las definiciones funcionales entre FARO, CLARO y las distintas integraciones.
+- Este apartado deberá revisarse periódicamente para incorporar nuevos riesgos o eliminar aquellos que hayan sido mitigados.
+
+# **21. Relaciones**
+
+Este apartado documenta las relaciones externas relevantes para el ecosistema desarrollado por VCA Project cuando dichas relaciones condicionen el diseño, funcionamiento o evolución del sistema.
+
+No pretende reflejar la totalidad de proveedores, colaboradores o relaciones comerciales del cliente.
+
+> *Actualmente no disponemos de conocimiento relevante para este apartado.*
+> 
+
+# **Clientes Relacionados**
+
+# **Proveedores Relevantes**
+
+# **Partners**
+
+# **Plataformas Estratégicas**
+
+# **22. Metadatos**
+
+cliente_id:
+
+ultima_revision:
+
+proxima_revision:
+
+responsable_documento: Jordi Quiroga
+
+estado:
+
+- Borrador
+- En revisión
+- Vigente
+- Archivado
+
+version:
+
+repositorio:
+
+ruta_documento:
+
+fecha_creacion:
+
+ultima_actualizacion:
+
+ambito:
+
+Captación · Inteligencia Comercial · Analítica · Plataforma de Datos · Automatización · IA
+
+fuente_principal:
+
+Repositorio vca_project
+
+# **23. Instrucciones para IA**
+
+Antes de iniciar cualquier proyecto, análisis, propuesta, arquitectura, especificación funcional o desarrollo relacionado con este cliente:
+
+1. Consultar este CCD como fuente principal de contexto del cliente.
+2. Verificar el alcance del CCD para comprender el ámbito de actuación de VCA Project y evitar realizar suposiciones sobre áreas fuera de su responsabilidad.
+3. Revisar la sección **Decisiones Relevantes** antes de proponer cambios funcionales o arquitectónicos.
+4. Consultar las **Referencias Documentales** para localizar la fuente de verdad correspondiente al área de trabajo (FARO, CLARO, GIAV, Meta CAPI Worker, etc.).
+5. Utilizar las definiciones oficiales recogidas en el **Glosario de Negocio** y los **KPIs Oficiales**.
+6. Respetar la separación de responsabilidades entre los distintos componentes del ecosistema:
+    - FARO → Estrategia e inteligencia comercial.
+    - CLARO → Plataforma de datos y materialización técnica.
+    - GIAV → Integración CRM.
+    - Meta CAPI Worker → Integración con Meta Conversions API.
+7. No duplicar reglas de negocio ya documentadas en FARO ni lógica técnica ya implementada en CLARO.
+8. En caso de conflicto entre documentos, prevalecerá la fuente de verdad indicada en la sección **Referencias Documentales**, salvo que exista una decisión posterior registrada en este CCD.
+9. Toda decisión arquitectónica o funcional que modifique el ecosistema deberá registrarse en la sección **Decisiones Relevantes**.
+10. Toda nueva información relevante sobre el cliente deberá incorporarse al CCD para mantener actualizado el contexto del proyecto.
+11. Evitar duplicar documentación. Siempre que exista un documento específico que actúe como fuente de verdad, el CCD deberá limitarse a resumir el contexto y referenciar dicho documento.
+
+# **24. Estado del Documento**
+
+# **Naturaleza del Documento**
+
+El Client Context Document (CCD) constituye la fuente principal de contexto del cliente dentro del ámbito de actuación de VCA Project.
+
+Su objetivo es proporcionar el conocimiento necesario para comprender el cliente, el ecosistema desarrollado y las decisiones que condicionan su evolución.
+
+No sustituye la documentación funcional, metodológica o técnica del repositorio, sino que actúa como punto de entrada y contexto para acceder a ella.
+
+El CCD es un artefacto transversal al cliente. Su ciclo de vida es independiente del de los proyectos que lo consumen y deberá evolucionar conforme aumente el conocimiento del negocio, con independencia de la creación, modificación o finalización de proyectos específicos.
+
+El Client Context Document (CCD) constituye la fuente principal de contexto del cliente dentro del ámbito de actuación de VCA Project.
+
+Su objetivo es proporcionar el conocimiento necesario para comprender el cliente, el ecosistema desarrollado y las decisiones que condicionan su evolución.
+
+No sustituye la documentación funcional, metodológica o técnica de los proyectos relacionados, sino que actúa como punto de entrada y contexto para acceder a ella.
+
+**El CCD es un artefacto transversal al cliente y constituye la referencia canónica del contexto de negocio dentro de su ámbito de aplicación. Su ciclo de vida es independiente del de los proyectos que lo consumen y deberá evolucionar conforme aumente el conocimiento del negocio, con independencia de la creación, modificación o finalización de proyectos específicos. Los proyectos y agentes de IA deberán referenciar este documento como fuente de contexto cuando resulte aplicable, evitando duplicar la información aquí contenida.**
+
+# **Mantenimiento**
+
+El CCD deberá mantenerse actualizado durante toda la relación con el cliente.
+
+Toda modificación relevante en el contexto del cliente, la arquitectura del ecosistema, las decisiones estratégicas o las fuentes de conocimiento deberá reflejarse en este documento.
+
+Los cambios de implementación, especificaciones funcionales, contratos, modelos de datos o procedimientos deberán documentarse en sus respectivos artefactos y únicamente referenciarse desde el CCD cuando resulte necesario.
+
+# **Criterios de Calidad**
+
+Para preservar la utilidad y fiabilidad del CCD deberán cumplirse los siguientes principios:
+
+- Documentar únicamente información contrastada.
+- Evitar duplicar documentación existente en otras fuentes de verdad.
+- Mantener el documento centrado en el contexto y no en la implementación.
+- Referenciar siempre la documentación específica cuando exista.
+- Dejar sin completar aquellos apartados para los que todavía no exista conocimiento suficiente.
+- Revisar periódicamente el documento para asegurar su vigencia y coherencia con el ecosistema documental

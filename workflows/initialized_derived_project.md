@@ -94,7 +94,29 @@ En el caso de `docs/tasks.md`:
 
 ---
 
-## 5. Verificar coherencia
+## 5. Inicializar la Base de Conocimiento del proyecto
+
+Evaluar si el proyecto derivado requiere una Base de Conocimiento (Knowledge Base) independiente de la documentación metodológica.
+
+Una Base de Conocimiento agrupa el conocimiento persistente del dominio del proyecto y constituye el conjunto de artefactos que pueden ser utilizados por múltiples agentes, procesos o casos de uso sin depender de un análisis concreto.
+
+Cuando el proyecto requiera gestionar conocimiento reutilizable, crear la estructura inicial:
+
+knowledge/
+├── client/
+├── domain/
+├── research/
+└── reports/
+
+Esta estructura no forma parte de la documentación metodológica heredada de AIF Foundation, sino del conocimiento propio del proyecto derivado.
+
+Cuando exista conocimiento previo (por ejemplo un Client Context Document, documentación de dominio, procesos de negocio o investigación existente), incorporarlo dentro de `knowledge/` y referenciarlo posteriormente desde `docs/context_refs.md`.
+
+No crear la Base de Conocimiento cuando el proyecto no requiera mantener conocimiento persistente separado de la documentación del repositorio.
+
+---
+
+## 6. Verificar coherencia
 
 Comprueba que:
 
@@ -103,7 +125,7 @@ Comprueba que:
 * la estructura sigue siendo consistente;
 * el repositorio permanece alineado con AIF Foundation.
 
-## 5.1 Validar la naturaleza de los artefactos conservados
+## 6.1 Validar la naturaleza de los artefactos conservados
 
 Antes de conservar un documento, comprobar si su propósito es:
 
@@ -116,7 +138,7 @@ Los artefactos cuyo único propósito sea registrar la construcción de AIF Foun
 
 ---
 
-## 6. Generar informe
+## 7. Generar informe
 
 Entrega un informe indicando:
 
@@ -154,6 +176,8 @@ Este workflow se considera completado cuando:
 * los documentos específicos del proyecto han quedado identificados para su adaptación;
 * no existen referencias documentales inconsistentes;
 * el repositorio está preparado para comenzar la personalización del Project Brief.
+* cuando el proyecto lo requiera, la estructura `knowledge/` ha sido inicializada y preparada para alojar las fuentes de conocimiento del proyecto.
+* cuando el proyecto lo requiera, la Base de Conocimiento ha sido inicializada y las fuentes principales de conocimiento han quedado preparadas para ser referenciadas desde `docs/context_refs.md`.
 
 ---
 
@@ -162,3 +186,27 @@ Este workflow se considera completado cuando:
 Una vez completado este workflow, el siguiente paso es:
 
 **Adaptar el `Project Brief` al nuevo proyecto derivado a partir de AIF Foundation.**
+
+## Principios para adaptar el Project Brief
+
+Al convertir AIF Foundation en un proyecto derivado, el Project Brief debe describir exclusivamente el proyecto que se va a construir y no la Foundation de la que procede.
+
+Antes de redactarlo, aplicar las siguientes reglas:
+
+- Considerar AIF Foundation como una dependencia metodológica y no como el objeto del proyecto.
+- Describir el problema específico que resuelve el proyecto derivado.
+- Incorporar el contexto real del dominio cuando ya exista y esté documentado.
+- Distinguir claramente entre la plataforma existente y el sistema que se va a construir sobre ella.
+- Evitar reutilizar texto del Project Brief de AIF cuando describa objetivos exclusivos de la Foundation.
+- Identificar desde el inicio los principales activos existentes (plataformas, documentación, Data Providers, procesos o conocimiento reutilizable) que el proyecto consumirá.
+- Plantear el proyecto como una plataforma para múltiples casos de uso cuando ese sea su propósito, evitando orientarlo a un único análisis.
+
+### Validación del Project Brief derivado
+
+Antes de considerar completada la adaptación, comprobar que:
+
+- el Project Brief ya no describe AIF Foundation;
+- el problema pertenece al dominio del proyecto derivado;
+- el contexto de negocio sustituye al contexto fundacional;
+- AIF aparece únicamente como dependencia metodológica;
+- el sistema descrito consume los activos existentes del proyecto y no los redefine.
