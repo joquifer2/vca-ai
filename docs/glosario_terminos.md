@@ -451,25 +451,11 @@ Antes de crear un nuevo tipo de artefacto:
 
 ## 9. Precedencia documental
 
-Cuando exista conflicto entre artefactos, prevalece el de mayor nivel.
+La única referencia autorizada para resolver conflictos entre artefactos es la sección **Precedencia documental oficial** de `.github/instructions/sdd.instructions.md`.
 
-```text
-Project Brief
-↓
-SDD Instructions
-↓
-Specifications
-↓
-Gates
-↓
-Skills
-↓
-Prompts
-↓
-Documentación auxiliar
-```
+Este glosario no redefine ni replica esa jerarquía.
 
-Ningún artefacto puede contradecir a otro situado por encima en esta jerarquía.
+Si un término entra en conflicto con otro artefacto, debe aplicarse exclusivamente la precedencia oficial y corregirse la inconsistencia en la fuente afectada.
 
 ---
 

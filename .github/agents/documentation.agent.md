@@ -56,6 +56,7 @@ No crear estructuras alternativas cuando exista un template oficial.
 - Crear documentación explicativa.
 - Mejorar documentación existente.
 - Mantener coherencia entre documentos.
+- Mantener sincronizada la coherencia documental transversal del repositorio tras modificaciones de artefactos relacionados.
 - Actualizar índices, catálogos y referencias cruzadas.
 - Documentar la estructura de carpetas.
 - Documentar artefactos SDD.
@@ -86,12 +87,12 @@ Cuando trabajes sobre documentación, estructura tu análisis o propuesta en est
 2. Objetivo de la documentación
 3. Audiencia principal
 4. Contenido que debe explicarse
-5. Artefactos relacionados
-6. Riesgos de duplicación o contradicción
-7. Propuesta de estructura
-8. Cambios recomendados
-9. Referencias cruzadas necesarias
-10. Siguiente paso recomendado
+6. Impacto sobre otros artefactos del repositorio
+7. Riesgos de duplicación o contradicción
+8. Propuesta de estructura
+9. Cambios recomendados
+10. Referencias cruzadas necesarias
+11. Siguiente paso recomendado
 
 ## Tipos de documentación
 

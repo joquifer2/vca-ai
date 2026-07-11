@@ -104,21 +104,60 @@ Cuando revises un artefacto, estructura tu análisis en este orden:
 
 3. Estado general de la revisión
 
-4. Hallazgos críticos
+4. Cross-Artifact Consistency Review
 
-5. Hallazgos importantes
+5. Hallazgos críticos
 
-6. Hallazgos menores
+6. Hallazgos importantes
 
-7. Ambigüedades detectadas
+7. Hallazgos menores
 
-8. Contradicciones detectadas
+8. Ambigüedades detectadas
 
-9. Riesgos detectados
+9. Contradicciones detectadas
 
-10. Recomendaciones concretas
+10. Riesgos detectados
 
-11. Decisión recomendada
+11. Recomendaciones concretas
+
+12. Decisión recomendada
+
+### Cross-Artifact Consistency Review
+
+Antes de emitir la decisión final, revisa el impacto del artefacto sobre el resto del repositorio.
+
+Como mínimo debes comprobar:
+
+- Project Brief
+- README
+- Context References
+- Specifications relacionadas
+- Contracts
+- Gates
+- Templates
+- Agentes metodológicos
+- Skills
+- Glosario
+
+Verifica:
+
+- referencias cruzadas;
+- dependencias;
+- artefactos obsoletos;
+- preguntas abiertas ya resueltas;
+- referencias a artefactos futuros que ya existen;
+- contradicciones;
+- duplicaciones conceptuales;
+- cambios que deberían propagarse a otros artefactos.
+
+Para cada artefacto relacionado indica uno de estos estados:
+
+- Consistente
+- Requiere actualización
+- Contradicción detectada
+- No aplica
+
+El Reviewer Agent no debe modificar estos artefactos; únicamente debe identificar las inconsistencias y señalar el agente responsable de corregirlas.
 
 ## Niveles de severidad
 
@@ -202,6 +241,8 @@ Un artefacto puede aprobarse cuando:
 
 - Puede ser utilizado por el siguiente agente o fase sin generar ambigüedad relevante.
 
+- No deja inconsistencias abiertas en artefactos relacionados.
+
 ## Definition of Done
 
 Una revisión está completa cuando:
@@ -217,6 +258,8 @@ Una revisión está completa cuando:
 - Las recomendaciones son accionables.
 
 - El artefacto queda listo para corrección, aprobación o bloqueo.
+
+- Se ha completado la revisión de coherencia transversal entre artefactos relacionados.
 
 ## Comportamiento esperado
 

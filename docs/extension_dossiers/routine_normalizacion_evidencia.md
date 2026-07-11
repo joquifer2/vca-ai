@@ -48,7 +48,9 @@ La rutina amplifica la superficie de evidencia y preparación documental dentro 
 
 ### Fases compatibles
 
-Discovery, Preparación y Análisis.
+Análisis.
+
+La rutina se sitúa en la fase de Análisis, una vez que la evidencia ha sido producida por la capa analítica y antes de su consumo por razonamiento o evaluación documental.
 
 ### Impacto en la superficie del sistema
 
@@ -69,7 +71,7 @@ Facilita que distintos equipos produzcan evidencia comparable, revisable y traza
 | Categoría de la extensión | Rutina |
 | Superficie del núcleo | Evidencia y preparación documental |
 | Propósito | Normalizar evidencia observada para su consumo por evaluaciones y gates |
-| Fases compatibles | Discovery, Preparación, Análisis |
+| Fases compatibles | Análisis |
 | Contracts requeridos | Context Contract, Evidence Contract |
 | Contracts producidos | Evidence Contract |
 | Dependencias permitidas | Context refs, specs fundacionales, evaluaciones documentales |
@@ -85,7 +87,9 @@ Facilita que distintos equipos produzcan evidencia comparable, revisable y traza
 
 ### Compatibilidad con el núcleo
 
-La rutina es compatible con el núcleo cuando se limita a organizar evidencia observada y no introduce nuevas fases, decisiones automáticas ni dependencias operativas.
+La rutina es compatible con el núcleo cuando se activa en Análisis, sobre un Evidence Contract ya generado, y se limita a organizar evidencia observada sin introducir nuevas fases, decisiones automáticas ni dependencias operativas.
+
+El Context Contract sigue siendo necesario para conservar el encuadre metodológico, mientras que el Evidence Contract identifica la evidencia ya producida que la rutina normaliza y vuelve trazable.
 
 Su salida debe seguir siendo evidencia normalizada y trazable, no conocimiento interpretado ni recomendaciones.
 
@@ -109,6 +113,13 @@ Su salida debe seguir siendo evidencia normalizada y trazable, no conocimiento i
 - specs fundacionales;
 - contracts transversales;
 - evaluaciones documentales.
+
+### Secuencia de lifecycle
+
+1. Context Contract delimita el análisis.
+2. La capa analítica produce Evidence Contract.
+3. La rutina normaliza ese Evidence Contract durante Análisis.
+4. El resultado normalizado continúa hacia razonamiento o evaluación documental.
 
 ### Dependencias prohibidas
 

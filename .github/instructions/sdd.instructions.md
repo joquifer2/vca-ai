@@ -294,29 +294,11 @@ Los gates nunca sustituyen la validación humana.
 
 ### 9.5 Precedencia documental
 
-Cuando existan conflictos entre documentos, prevalece el artefacto de mayor nivel.
+La única fuente autorizada para resolver conflictos entre artefactos es la sección **Precedencia documental oficial** de este mismo documento.
 
-Orden de precedencia:
+Esta sección no redefine ninguna jerarquía ni introduce un orden alternativo.
 
-```text
-Project Brief
-↓
-SDD Instructions
-↓
-Specifications
-↓
-Gates
-↓
-Skills
-↓
-Prompts
-↓
-Documentación auxiliar
-```
-
-Ningún artefacto puede contradecir a otro situado por encima en esta jerarquía.
-
-Si se detecta una contradicción, debe resolverse actualizando el artefacto de mayor precedencia o eliminando la inconsistencia en los artefactos inferiores.
+Si se detecta una contradicción, debe aplicarse exclusivamente la precedencia publicada en la sección **Precedencia documental oficial** y corregirse la inconsistencia en el artefacto afectado.
 
 ---
 
