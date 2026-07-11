@@ -88,6 +88,10 @@ El objetivo es estandarizar el proceso de razonamiento analitico para que los in
 - [docs/templates/system_overview.template.md](docs/templates/system_overview.template.md)
 - [docs/templates/architecture_as_is.template.md](docs/templates/architecture_as_is.template.md)
 - [docs/templates/contracts.template.md](docs/templates/contracts.template.md)
+
+### Handoffs reutilizables
+
+- [docs/handoffs/specification_to_tasks_handoff.md](docs/handoffs/specification_to_tasks_handoff.md)
 - [docs/templates/data_lineage.template.md](docs/templates/data_lineage.template.md)
 - [docs/templates/extension_compatibility_dossier.template.md](docs/templates/extension_compatibility_dossier.template.md)
 - [docs/templates/retrospective_spec.template.md](docs/templates/retrospective_spec.template.md)
@@ -156,6 +160,7 @@ README.md
 docs/
 ├── glosario_terminos.md
 ├── context_refs.md
+├── tasks.md
 └── templates/
 
 specs/

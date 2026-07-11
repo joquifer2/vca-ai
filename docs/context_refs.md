@@ -96,6 +96,8 @@ No hay decisiones pendientes de validar sobre el roadmap inicial de evolucion fu
 | Project Brief Template | Template | Estructura oficial del project brief | docs/templates/project_brief.template.md |
 | Context References Template | Template | Estructura oficial de referencias de contexto | docs/templates/context_refs.template.md |
 | Extension Compatibility Dossier Template | Template | Estructura oficial para documentar compatibilidad y reutilización de extensiones | docs/templates/extension_compatibility_dossier.template.md |
+| Specification to Tasks Handoff | Handoff | Relevo documental reusable entre Specification y Tasks Planning | docs/handoffs/specification_to_tasks_handoff.md |
+| Tasks Backlog | Governance | Backlog auxiliar de trabajo trazable para la Foundation | docs/tasks.md |
 | Routine de Normalización de Evidencia | Dossier documental | Instancia ejemplo de compatibilidad y reutilización para una rutina transversal | docs/extension_dossiers/routine_normalizacion_evidencia.md |
 | Glosario SDD | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
 | SDD Harness Instructions | Instrucciones | Reglas de fase, alcance y contexto | .github/instructions/sdd.instructions.md |
