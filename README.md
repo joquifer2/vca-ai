@@ -2,6 +2,8 @@
 
 ## Foundation de Inteligencia Analitica
 
+Version estable: v1.0.0
+
 Analytical Intelligence Foundation (AIF) es una foundation reutilizable basada en SDD para definir la metodologia comun de analisis asistido por inteligencia artificial.
 
 Su proposito es transformar el razonamiento analitico experto en un marco documental, modular y trazable que pueda reutilizarse en distintos dominios sin depender de una fuente de datos, un proveedor tecnologico o un runtime concreto.
@@ -125,6 +127,8 @@ Estado vigente:
 No estamos en Development.
 
 Eso implica que este repositorio debe permanecer documental, no ejecutable, y no debe introducir implementacion prematura.
+
+La version estable v1.0.0 marca el primer corte estable documental de la Foundation sin cambiar su estado SDD.
 
 ---
 

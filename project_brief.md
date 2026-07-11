@@ -10,9 +10,13 @@ Analytical Intelligence Foundation
 
 AIF
 
+### Version
+
+v1.0.0
+
 ### Status
 
-Proposed
+Stable
 
 ### Owner
 
@@ -20,7 +24,7 @@ Foundation maintainers
 
 ### Last Updated
 
-2026-07-10
+2026-07-11
 
 ---
 
