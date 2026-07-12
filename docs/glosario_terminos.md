@@ -218,6 +218,22 @@ Transferencia controlada de un artefacto entre fases o componentes.
 
 Todo handoff debe declarar qué se entrega, quién lo produce, quién lo consume y qué precondiciones deben cumplirse.
 
+### Analysis Request
+
+Artefacto que normaliza la solicitud analitica concreta antes de su instanciacion como Execution Context.
+
+Captura objetivo, salida esperada, audiencia, restricciones y trazabilidad hacia la intencion humana.
+
+No resuelve el contexto oficial ni produce evidencia.
+
+### Execution Context
+
+Artefacto de ejecución que normaliza la solicitud operativa de una corrida concreta antes de la resolución del contexto oficial.
+
+Captura objetivo, periodo, alcance pedido, filtros, audiencia, definición operativa solicitada y trazabilidad hacia la intención humana.
+
+No produce evidencia ni reemplaza el Context Resolution ni el Context Contract.
+
 ### Artefacto canónico
 
 Documento reconocido como referencia principal para una definición o decisión concreta.

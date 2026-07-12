@@ -182,6 +182,16 @@ runtime_sources:
       uri: analytical_use_cases/meta_lead_quality_analysis.md
       version: versionada en repositorio
       estado: activo
+    - nombre: AUC-001 Execution Context
+      tipo: Handoff documental
+      uri: docs/handoffs/auc-001-execution-context.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: AUC-001 Analysis Request
+      tipo: Handoff documental
+      uri: docs/handoffs/auc-001-analysis-request.md
+      version: versionada en repositorio
+      estado: activo
     - nombre: Meta Lead Quality Analysis Skill
       tipo: Skill
       uri: .github/skills/meta-lead-quality-analysis/SKILL.md

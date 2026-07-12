@@ -4,15 +4,19 @@
 
 Asegurar que el trabajo se mantiene en la metodologia SDD y respeta el plan aprobado del proyecto.
 
-Estas instrucciones aplican a todo trabajo en repositorios basados en jqf-sdd-foundation hasta que se autorice expresamente el paso a Development.
+Estas instrucciones aplican a todo trabajo en repositorios basados en jqf-sdd-foundation. El proyecto derivado ha sido autorizado para Development mediante SPEC-008 y debe mantener trazabilidad y control metodologico durante esa fase.
 
 ## 2. Estado actual
 
 Estado vigente:
 
-- SDD -> Specification / Structure.
+- SDD -> Development.
 
-No estamos en Development.
+Autorizacion emitida por SPEC-008:
+
+- PASS WITH OBSERVATIONS.
+
+El proyecto derivado puede operar en Development manteniendo visibles las observaciones registradas en el Phase Gate.
 
 ## 3. Reglas SDD por fase
 
@@ -55,7 +59,7 @@ No permitido:
 
 Solo permitido cuando exista aprobacion explicita y checklist de salida completado.
 
-Hasta ese momento, cualquier implementacion queda fuera de alcance.
+Fuera de esas condiciones, cualquier implementacion queda fuera de alcance.
 
 ## 4. Comportamiento esperado durante Specification
 
@@ -94,10 +98,10 @@ Si una propuesta entra en implementacion, debe detenerse y volver a:
 
 Estas instrucciones se consideran cumplidas cuando:
 
-- el trabajo producido es documental;
-- respeta el plan aprobado;
-- mantiene estado Specification / Structure;
-- no introduce implementacion prematura.
+	- el trabajo producido es documental o implementable segun la fase autorizada;
+	- respeta el plan aprobado;
+	- mantiene coherencia con el estado SDD autorizado;
+	- no introduce implementacion fuera del alcance aprobado.
 
 ## 8. Backlog Governance
 

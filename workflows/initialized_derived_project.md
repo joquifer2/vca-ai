@@ -78,6 +78,8 @@ Si existe duda razonable sobre un documento, consérvalo y señala la duda en el
 
 ## 4. Preparar los documentos que deberán adaptarse
 
+Los documentos que definen la identidad del proyecto no deben adaptarse por sustitución de nombres. Deben regenerarse utilizando AIF Foundation únicamente como referencia metodológica y estructural
+
 No reescribas todavía su contenido.
 
 Prepara los siguientes documentos para su adaptación al proyecto derivado:
