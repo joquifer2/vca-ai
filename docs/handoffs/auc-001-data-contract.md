@@ -9,7 +9,7 @@
 | Contract Category | Data Contract |
 | Analytical Use Case | AUC-001 - Meta Lead Quality Analysis |
 | Related Base Contract | VCA-DATA-001 |
-| Status | Documented; provider exposure verified in T-018 |
+| Status | Documentado; exposición del proveedor verificada en T-018; acceso MCP pendiente |
 | Version | 1.0.0 |
 | Last Updated | 2026-07-12 |
 | Owner | Equipo VCA |
@@ -67,7 +67,7 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 | AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Approved analytical use case |
 | Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Approved skill |
 | Client context | [CCD](../../knowledge/client/ccd.md) | Available |
-| Data Provider reference | [docs/context_refs.md](../context_refs.md) | BigQuery provider access verified in T-018 |
+| Data Provider reference | [docs/context_refs.md](../context_refs.md) | BigQuery provider exposure verified in T-018; direct MCP access pending |
 
 ---
 
@@ -152,10 +152,10 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 | Context dependency | Pass | Context Definition is validated |
 | Provider boundary | Pass | Contract does not emit insights, conclusions or recommendations |
 | Scope alignment | Pass for requested scope | Requested scope matches Context Definition; exposed scope remains pending provider verification |
-| Source declaration | Partial | Provider is declared; dataset/table/view identifiers are PENDING |
+| Source declaration | Pass | Provider is declared; source exposure is verified and MCP access remains pending |
 | Limitation visibility | Pass | Provider mapping and access limitations are explicit |
-| No inferred schema | Pass | Logical structure is expected but exact fields remain PENDING |
-| Transition blocking | Partial | Ready for T-018 provider verification; not ready for Discovery until exposed scope is confirmed |
+| No inferred schema | Pass | Logical structure is expected but exact fields remain documented only for the verified exposure |
+| Transition blocking | Pass with limitations | Ready for T-018 provider verification; Discovery remains limited by explicitly pending MCP access and by any unresolved source mappings |
 
 ---
 
@@ -164,11 +164,11 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 | Limitation | Impact | Handling |
 |---|---|---|
 | BigQuery MCP Server documentation is PENDING in docs/context_refs.md | Data access and query mechanism are not yet verified | Validate in T-018 before evidence acquisition |
-| Dataset, table, view or model identifiers are not published in the repository | Exact source reference cannot be completed in this contract | Mark PENDING; do not infer source names |
-| Exact field names are not published | Query shape cannot be finalized here | Map fields during T-018 through provider metadata or explicit source output |
-| Exposed period is not yet confirmed by provider | Evidence completeness for June 2026 is not yet verified | Confirm during T-018 |
-| Exposed campaign/ad set/creative scope is not yet confirmed by provider | Scope alignment cannot be fully validated yet | Confirm during T-018 |
-| Lead Tier A/B field or derivation is not yet mapped | Quality calculation cannot be executed from this contract alone | Verify against FARO/CLARO data exposure during T-018 |
+| Dataset, table, view or model identifiers for the verified exposure are published in this contract | Exact source reference is documented for the current verified exposure | Do not infer additional source names beyond the published contract scope |
+| Exact field names are not fully enumerated beyond the verified exposure | Query shape can be inferred only from the documented exposure | Use the published source exposure and do not invent extra fields |
+| Exposed period is confirmed for June 2026 | Evidence completeness for June 2026 is verified for the current scope | Preserve the documented June 2026 window |
+| Exposed campaign/ad set/creative scope is confirmed for the current verified exposure | Scope alignment is verified for the current scope | Preserve the documented scope in this contract |
+| Lead Tier A/B field or derivation is mapped through `lead_tier` | Quality calculation can be executed for the current scope | Preserve the verified quality mapping documented in T-018 |
 | Direct MCP access is not yet verified | Provider boundary remains partially validated | Treat CLI verification as source exposure only until MCP is exercised |
 
 ---
@@ -177,11 +177,11 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 
 | Item | Status | Required Resolution |
 |---|---|---|
-| BigQuery provider availability | Verified | T-018 |
-| Dataset/table/view identifiers | Verified for selected marts tables | T-018 |
-| Field mapping for dimensions and metrics | Partially verified | T-018; relationship validation remains for Discovery |
+| BigQuery provider availability | Verified for source exposure; MCP validation pending | T-018 |
+| Dataset/table/view identifiers | Verified for the published marts tables | T-018 |
+| Field mapping for dimensions and metrics | Verified for the exposed June 2026 scope | T-018; relationship validation remains for Discovery |
 | Field mapping for Qualified Lead / Lead Tier A/B | Verified via `lead_tier` | T-018 |
-| Data freshness or latency | Partially observed | Source max dates recorded in T-018 |
+| Data freshness or latency | Observed for the documented June 2026 window | Source max dates recorded in T-018 |
 | Duplicates/test-record flags and valid identifier fields | Partially verified | Valid lead_id checked; duplicate/test flags remain a Discovery limitation |
 
 ---
@@ -191,7 +191,7 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 | Target | Status | Reason |
 |---|---|---|
 | T-018 - Adquisicion de evidencia desde BigQuery MCP Server | Completed with limitations | Provider availability, selected source identifiers and aggregate evidence exposure were verified in T-018. |
-| Discovery | Ready with limitations | Discovery can formalize entities, dimensions, metrics, relationships and limitations observed in T-018. |
+| Discovery | Ready with limitations | Discovery can formalize entities, dimensions, metrics, relationships and limitations observed in T-018; MCP access remains pending. |
 | Analytical preparation | Not authorized | Analytical preparation requires Discovery and confirmed data exposure. |
 
 ---
@@ -219,6 +219,6 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 
 T-017 is complete as a case-specific Data Contract for AUC-001 June 2026.
 
-The contract identifies the producer, consumer, requested scope, logical structure, required evidence families, limitations and pending provider mappings.
+The contract identifies the producer, consumer, requested scope, logical structure, required evidence families, limitations and the explicitly pending MCP access.
 
 T-018 verified provider availability and concrete source exposure with limitations. The next permitted increment is T-019, the Discovery Contract for AUC-001.

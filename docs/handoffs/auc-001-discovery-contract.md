@@ -176,7 +176,7 @@ Tables used previously as the main preparation base, especially `fct_performance
 | qualified_ab_matching_spend | 191 |
 | qualified_ab_without_commercial_spend | 35 |
 
-Normalization rule: lead-table `ad_id` values may include the `ag:` prefix. T-020 must derive `ad_id`_norm = REGEXP_REPLACE(ad_id, r'^ag:', '')` before joining to `fct_spend.ad_id`.
+Normalization rule: lead-table `ad_id` values may include the `ag:` prefix. T-020 must derive `ad_id_norm = REGEXP_REPLACE(ad_id, r'^ag:', '')` before joining to `fct_spend.ad_id`.
 ---
 
 ## Granularity Statement

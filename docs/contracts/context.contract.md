@@ -87,14 +87,14 @@ Framework.
 
 ## Traceability
 
-- [project_brief.md](../project_brief.md)
+- [project_brief.md](../../project_brief.md)
 - [docs/context_refs.md](../context_refs.md)
-- [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md)
-- [specs/spec-004-transversal-contracts.md](../specs/spec-004-transversal-contracts.md)
-- [analytical_use_cases/meta_lead_quality_analysis.md](../analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [gates/spec-008-development-entry-phase-gate.md](../gates/spec-008-development-entry-phase-gate.md)
+- [specs/spec-001-analytical-lifecycle.md](../../specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](../../specs/spec-002-component-boundaries.md)
+- [specs/spec-004-transversal-contracts.md](../../specs/spec-004-transversal-contracts.md)
+- [analytical_use_cases/meta_lead_quality_analysis.md](../../analytical_use_cases/meta_lead_quality_analysis.md)
+- [.github/skills/meta-lead-quality-analysis/SKILL.md](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [gates/spec-008-development-entry-phase-gate.md](../../gates/spec-008-development-entry-phase-gate.md)
 
 ## Unknown Handling
 
