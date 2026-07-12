@@ -8,12 +8,12 @@
 | Artifact Type | Execution Context |
 | Analytical Use Case | AUC-001 - Meta Lead Quality Analysis |
 | Related Contract | VCA-CTX-001 |
-| Status | Documented with blocking UNKNOWNs |
+| Status | Validated |
 | Version | 1.0.0 |
 | Last Updated | 2026-07-12 |
 | Owner | Equipo VCA |
 | Scope | Execution instance |
-| Backing Task | T-015 / T-016 |
+| Backing Task | T-016 |
 
 ---
 
@@ -23,13 +23,32 @@ Representar la solicitud operativa normalizada de una ejecucion concreta del ana
 
 Este artefacto registra la intencion de ejecucion, su alcance pedido y sus restricciones declaradas para que la Context Resolution pueda trabajar sobre una instancia concreta y trazable.
 
-Este artefacto actua como entrada operativa para T-015 y como habilitador documental de T-016.
-
 Este artefacto no produce evidencia.
 
 Este artefacto no interpreta datos.
 
 Este artefacto no reemplaza el AUC, la Skill, el Project Brief, el Context Resolution ni el Context Contract.
+
+---
+
+## Execution Context Record
+
+| Field | Value | Status |
+|---|---|---|
+| execution_id | VCA-AUC-001-EXEC-2026-06 |
+| source_request | [AUC-001 Analysis Request](auc-001-analysis-request.md) |
+| analysis_objective | Analizar la calidad de leads de Meta Ads para la corrida mensual de junio de 2026 dentro del caso AUC-001. | Resolved |
+| analysis_period | 2026-06-01 to 2026-06-30 | Resolved |
+| campaign_scope | Todas las campanas de Meta Lead Ads con inversion o leads durante el periodo. | Resolved |
+| ad_set_scope | Todos los conjuntos de anuncios de Meta Lead Ads con inversion o leads durante el periodo. | Resolved |
+| creative_scope | Todas las creatividades de Meta Lead Ads con inversion o leads durante el periodo. | Resolved |
+| filters | campaign_signal = COMMERCIAL; excluir registros de prueba; excluir duplicados; excluir leads sin identificador valido; sin filtro geografico adicional. | Resolved |
+| lead_quality_definition | Qualified Lead segun FARO, equivalente a Lead Tier A o B. | Resolved |
+| audience | Analista de negocio, direccion, responsable de Marketing, especialistas de Meta Ads y equipo Comercial. | Resolved |
+| official_context_sources | project_brief.md; docs/context_refs.md; knowledge/client/ccd.md; AUC-001; meta-lead-quality-analysis skill; VCA-CTX-001. | Resolved |
+| constraints | No inventar datos, segmentos, campanas, periodos ni conclusiones; mantener separacion entre contexto, evidencia, analisis, razonamiento y recomendaciones; no ampliar AUC-001 con datos de ejecucion. | Resolved |
+| assumptions | El alcance incluye todas las entidades Meta Lead Ads que cumplan inversion o leads durante el periodo; no se aplica filtro geografico adicional. | Resolved |
+| validation_status | Validated for Context Resolution and Context Definition | Resolved |
 
 ---
 
@@ -47,14 +66,6 @@ Este artefacto no reemplaza el AUC, la Skill, el Project Brief, el Context Resol
 
 ---
 
-## Responsibility
-
-El Execution Context tiene la responsabilidad de capturar, estructurar y congelar los parametros concretos solicitados para una corrida analitica de AUC-001.
-
-Su funcion es cerrar la brecha entre la intencion del usuario y la resolucion documental del contexto que consumen los agentes y contracts posteriores.
-
----
-
 ## Producer
 
 - Framework u orquestador documental de la ejecucion.
@@ -66,106 +77,57 @@ Su funcion es cerrar la brecha entre la intencion del usuario y la resolucion do
 - Context Resolution.
 - Flujo que construye el Context Definition.
 - Framework de validacion del Context Definition.
-- Data acquisition flow, indirectamente, a traves del contexto validado.
+- Data Contract del caso, como siguiente handoff documental.
 
 ---
 
-## Inputs
+## Critical Fields Validation
 
-| Input | Description | Source |
-|---|---|---|
-| User Request | Intencion expresada por la persona solicitante | Conversacion o solicitud de ejecucion |
-| Analysis Objective | Proposito concreto de la corrida | User Request; AUC-001 |
-| Analysis Period | Ventana temporal exacta de la ejecucion | User Request; aprobacion documental |
-| Campaign Scope | Campanas incluidas y excluidas | User Request; validacion documental |
-| Ad Set Scope | Conjuntos incluidos y excluidos | User Request; validacion documental |
-| Creative Scope | Creatividades incluidas y excluidas | User Request; validacion documental |
-| Filters | Filtros operativos aplicables | User Request; validacion documental |
-| Operational Lead Quality Definition | Definicion operativa de Lead de Calidad para esta corrida | User Request; contextos oficiales; Knowledge Base |
-| Audience | Destinatarios del resultado | User Request; AUC-001 |
-| Official Context References | Fuentes oficiales que deben consultarse en la resolucion | docs/context_refs.md; project_brief.md; knowledge/client/ |
-| Constraints | Restricciones metodologicas o de alcance aplicables | project_brief.md; AUC-001; Skill |
-| Assumptions | Supuestos explicitados y verificables | Solicitud de ejecucion; contexto oficial |
-
----
-
-## Outputs
-
-| Output | Description |
-|---|---|
-| Execution Context Record | Registro trazable de la corrida concreta |
-| Execution Identifier | Identificador unico de la ejecucion |
-| Operational Scope | Periodo, campañas, conjuntos, creatividades, filtros y audiencia |
-| Contextual Constraints | Restricciones y supuestos explicitados |
-| Traceability Links | Enlaces hacia User Request, AUC-001 y fuentes oficiales |
-| Readiness for Context Resolution | Indicacion de si la solicitud puede pasar a Context Resolution |
-| Blocking Unknowns | Huecos que impiden completar la solicitud operativa |
-
----
-
-## Critical Fields
-
-| Field | Required | Description |
-|---|---|---|
-| execution_id | Yes | Identificador estable de la corrida concreta |
-| analysis_objective | Yes | Objetivo concreto de la ejecucion |
-| analysis_period | Yes | Periodo exacto del analisis |
-| campaign_scope | Yes | Campanas incluidas y excluidas |
-| ad_set_scope | Yes | Conjuntos de anuncios incluidos y excluidos |
-| creative_scope | Yes | Creatividades incluidas y excluidas |
-| filters | Yes | Filtros operativos aplicables |
-| lead_quality_definition | Yes | Definicion operativa de Lead de Calidad para la ejecucion |
-| audience | Yes | Audiencia o destinatarios del resultado |
-| official_context_sources | Yes | Fuentes oficiales consultadas o requeridas |
-| constraints | Yes | Restricciones metodologicas o de contexto |
-| assumptions | Yes | Supuestos declarados y verificables |
-| traceability_links | Yes | Enlaces a User Request, AUC y artefactos relacionados |
-| validation_status | Yes | Estado de validacion de la solicitud operativa |
+| Field | Required | Status | Evidence |
+|---|---|---|---|
+| execution_id | Yes | Pass | VCA-AUC-001-EXEC-2026-06 |
+| analysis_objective | Yes | Pass | Analysis Request |
+| analysis_period | Yes | Pass | 2026-06-01 to 2026-06-30 |
+| campaign_scope | Yes | Pass | All Meta Lead Ads campaigns with investment or leads in period |
+| ad_set_scope | Yes | Pass | All Meta Lead Ads ad sets with investment or leads in period |
+| creative_scope | Yes | Pass | All Meta Lead Ads creatives with investment or leads in period |
+| filters | Yes | Pass | campaign_signal and exclusion filters declared |
+| lead_quality_definition | Yes | Pass | Qualified Lead according to FARO, Lead Tier A or B |
+| audience | Yes | Pass | AUC-001 users |
+| official_context_sources | Yes | Pass | Listed in record and traceability |
+| constraints | Yes | Pass | Declared constraints |
+| assumptions | Yes | Pass | Declared assumptions |
+| traceability_links | Yes | Pass | Traceability section |
+| validation_status | Yes | Pass | Validated for Context Resolution and Context Definition |
 
 ---
 
 ## Validation Rules
 
-| Rule | Description |
-|---|---|
-| Request before resolution | No puede iniciarse la Context Resolution sin una instancia de Execution Context |
-| No implicit scope | El periodo, el alcance y los filtros no pueden inferirse si no estan explicitados |
-| Unknown explicitness | Cualquier hueco debe declararse como UNKNOWN o bloqueante |
-| Scope preservation | El artefacto no puede ampliar ni reescribir el AUC, la Skill o el Project Brief |
-| Context containment | El artefacto no puede producir evidencia, interpretacion ni recomendaciones |
-| Traceability preservation | Toda instancia debe enlazarse a la solicitud original y a las fuentes oficiales |
-| Freeze on validation | Una vez validado, el contenido de la corrida debe quedar congelado para esa ejecucion |
+| Rule | Result | Evidence |
+|---|---|---|
+| Request before resolution | Pass | Analysis Request exists and is validated |
+| No implicit scope | Pass | Period, campaign scope, ad set scope, creative scope and filters are explicit |
+| Unknown explicitness | Pass | No blocking UNKNOWN remains at Execution Context level |
+| Scope preservation | Pass | The execution instantiates AUC-001 without modifying it |
+| Context containment | Pass | This artifact produces no evidence, interpretation or recommendations |
+| Traceability preservation | Pass | Links to request, AUC-001 and official sources are preserved |
+| Freeze on validation | Pass | Execution ID and operational scope are fixed for this corrida |
 
 ---
 
-## Lifecycle
+## Blocking Unknowns
 
-1. Se crea a partir del User Request o de una solicitud documental equivalente.
-2. Se contrasta con las fuentes oficiales y con el AUC-001.
-3. Se valida documentalmente antes de Context Resolution, Discovery o adquisicion de datos.
-4. Se congela para la ejecucion concreta.
-5. Se conserva como evidencia de trazabilidad de la corrida.
-6. Si cambia un dato material, se genera una nueva instancia.
-
----
-
-## Unknown Handling
-
-| Unknown | Handling |
-|---|---|
-| Periodo no definido | Bloquea la validacion del Execution Context |
-| Alcance de campañas, conjuntos o creatividades no definido | Bloquea la validacion del Execution Context |
-| Filtros no definidos | Bloquea o deja el contexto incompleto |
-| Definicion operativa de Lead de Calidad no definida | Bloquea la Context Resolution y la validacion del Context Definition |
-| Audiencia no definida | Marcar UNKNOWN si afecta a la salida o al encargo |
-| Fuentes oficiales insuficientes | Marcar PENDING y evaluar bloqueo |
+No blocking UNKNOWN remains for the Execution Context.
 
 ---
 
 ## Traceability
 
-- [AUC-001 Context Resolution](auc-001-context-resolution.md)
+- User request provided in conversation on 2026-07-12.
 - [AUC-001 Analysis Request](auc-001-analysis-request.md)
+- [AUC-001 Context Resolution](auc-001-context-resolution.md)
+- [AUC-001 Context Definition](auc-001-context-definition.md)
 - [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
 - [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
 - [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
@@ -178,35 +140,8 @@ Su funcion es cerrar la brecha entre la intencion del usuario y la resolucion do
 
 ---
 
-## Relationship to Existing Artifacts
+## Completion Statement
 
-| Artifact | Relationship |
-|---|---|
-| User Request | Fuente humana inicial |
-| Analysis Request | Solicitud analitica concreta previa a la ejecucion |
-| AUC-001 | Capacidad reusable y permanente |
-| Skill | Procedimiento reusable |
-| Project Brief | Limites y proposito del proyecto |
-| Context Contract | Contrato reusable que formaliza el contexto ya delimitado |
-| Context Resolution | Artefacto derivado que resuelve el contexto oficial de la ejecucion |
-| Context Definition | Instancia derivada y validada para Discovery |
-| Downstream Contracts | Consumen el contexto validado de la corrida |
+The Execution Context for AUC-001 June 2026 is complete, validated and frozen for downstream Context Resolution and Context Definition validation.
 
----
-
-## Decision Summary
-
-Este artefacto es necesario para representar la solicitud operativa concreta de una ejecucion.
-
-Se apoya en una Analysis Request previa que fija la necesidad analitica concreta antes de la normalizacion de la ejecucion.
-
-Sin este artefacto, la Context Resolution depende de informacion dispersa en la solicitud humana, el AUC, la Skill y las fuentes oficiales, lo que reproduce el bloqueo metodologico detectado en T-016.
-
-Con este artefacto, el flujo queda separable en cuatro niveles:
-
-- solicitud humana;
-- instancia operativa de ejecucion;
-- resolucion documental del contexto;
-- contexto formal validado.
-
-Eso permite mantener intactos el AUC, la Skill y el Context Contract como artefactos reutilizables, mientras se incorpora una capa documental de instancia para cada corrida concreta y una capa de resolucion para materializar el contexto oficial.
+This artifact records execution-specific parameters only. It does not extend or redefine AUC-001.

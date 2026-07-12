@@ -1,0 +1,6 @@
+.env.local
+configs/workspaces.json
+
+# OS and editor noise
+.DS_Store
+Thumbs.db

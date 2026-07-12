@@ -8,17 +8,17 @@
 | Artifact Type | Context Resolution |
 | Analytical Use Case | AUC-001 - Meta Lead Quality Analysis |
 | Related Contract | VCA-CTX-001 |
-| Status | Documented with blocking UNKNOWNs |
+| Status | Validated |
 | Version | 1.0.0 |
 | Last Updated | 2026-07-12 |
 | Owner | Equipo VCA |
-| Task | T-015 |
+| Task | T-015 / T-016 |
 
 ---
 
 ## Purpose
 
-Resolver el contexto oficial disponible para AUC-001 a partir de una instancia de Execution Context antes de iniciar validacion del Context Definition, adquisicion de datos, Discovery, preparacion, analisis o razonamiento.
+Resolver el contexto oficial disponible para AUC-001 a partir de una instancia validada de Execution Context antes de iniciar validacion del Context Definition, adquisicion de datos, Discovery, preparacion, analisis o razonamiento.
 
 Este artefacto no produce evidencia.
 
@@ -32,18 +32,19 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 | Field | Value |
 |---|---|
-| Task ID | T-015 |
-| Task | Implementar la resolucion del contexto oficial para AUC-001 |
+| Task ID | T-015 / T-016 |
+| Task | Resolucion del contexto oficial y validacion del Analysis Request y Context Definition de AUC-001 |
 | Specification | SPEC-001 Analytical Lifecycle, Phase 0 Contexto |
 | Skill | meta-lead-quality-analysis |
-| Acceptance Criterion | El flujo identifica las fuentes oficiales, el objetivo, el periodo y el alcance operativo del caso |
+| Acceptance Criterion | El flujo identifica y valida fuentes oficiales, objetivo, periodo y alcance operativo antes de adquisicion de datos |
 
-## Upstream Artifact
+## Upstream Artifacts
 
 | Field | Value |
 |---|---|
+| Analysis Request | [AUC-001 Analysis Request](auc-001-analysis-request.md) |
 | Execution Context | [AUC-001 Execution Context](auc-001-execution-context.md) |
-| Relationship | Input operativo que normaliza la solicitud antes de la resolucion oficial |
+| Relationship | Inputs operativos que normalizan la solicitud antes de la resolucion oficial |
 
 ---
 
@@ -67,16 +68,17 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 | Field | Resolved Value | Status | Source |
 |---|---|---|---|
-| analysis_objective | Generar una capacidad analitica para producir un informe ejecutivo sobre calidad de leads captados mediante Meta Ads, separando contexto, evidencia, preparacion, analisis, razonamiento, recomendaciones y construccion del informe. | Resolved | AUC-001; skill; project brief |
-| supported_decision | Apoyar la lectura ejecutiva sobre volumen de captacion, calidad de leads, eficiencia economica, rendimiento de campanas y creatividades, oportunidades de optimizacion y recomendaciones priorizadas. | Resolved | AUC-001 |
+| analysis_objective | Analizar la calidad de leads de Meta Ads para la corrida mensual de junio de 2026 dentro del caso AUC-001. | Resolved | Analysis Request; AUC-001; skill; project brief |
+| supported_decision | Apoyar la lectura ejecutiva sobre volumen de captacion, calidad de leads, eficiencia economica, rendimiento de campanas y creatividades, oportunidades de optimizacion y recomendaciones priorizadas. | Resolved | AUC-001; Analysis Request |
 | official_context_scope | VCA IA como sistema analitico corporativo de VCA que consume la plataforma de datos existente sin sustituirla. | Resolved | project brief; README; docs/context_refs.md |
 | client_context_scope | Ecosistema VCA Project: captacion, FARO, CLARO, Meta Ads, BigQuery, scoring, activacion, integraciones y reporting. | Resolved | knowledge/client/ccd.md |
 | primary_data_provider | BigQuery MCP Server. | Resolved as intended provider | AUC-001; docs/context_refs.md; skill |
-| analysis_period | UNKNOWN. No existe un periodo concreto de analisis publicado para la ejecucion de AUC-001. | Blocking UNKNOWN | AUC-001; skill; Context Contract |
-| campaign_scope | UNKNOWN. No existe delimitacion publicada de campanas, conjuntos de anuncios, creatividades, audiencias o segmentos concretos para esta ejecucion. | Blocking UNKNOWN | AUC-001; skill; Context Contract |
-| lead_quality_criterion | Parcialmente resuelto: la definicion de Qualified Lead y el Modelo de Scoring FARO existen como criterio oficial de cualificacion, pero no hay una parametrizacion ejecutable publicada para esta ejecucion de AUC-001. | Partial / Blocking UNKNOWN | knowledge/client/ccd.md; AUC-001; skill |
-| report_audience | Audiencia ejecutiva: analista de negocio, direccion, responsable de Marketing, especialistas de Meta Ads y equipo Comercial. | Resolved | AUC-001 |
-| output_type | Informe ejecutivo trazable. | Resolved | AUC-001; skill |
+| analysis_period | 2026-06-01 to 2026-06-30 | Resolved | Analysis Request; Execution Context |
+| campaign_scope | Todas las campanas, conjuntos y creatividades de Meta Lead Ads con inversion o leads durante el periodo. | Resolved | Analysis Request; Execution Context |
+| filters | campaign_signal = COMMERCIAL; excluir registros de prueba, duplicados y leads sin identificador valido; sin filtro geografico adicional. | Resolved | Analysis Request; Execution Context |
+| lead_quality_criterion | Qualified Lead segun FARO, equivalente a Lead Tier A o B. | Resolved | Analysis Request; Execution Context; knowledge/client/ccd.md |
+| report_audience | Analista de negocio, direccion, responsable de Marketing, especialistas de Meta Ads y equipo Comercial. | Resolved | AUC-001 |
+| output_type | Informe ejecutivo trazable. | Resolved | AUC-001; skill; Analysis Request |
 
 ---
 
@@ -85,13 +87,14 @@ Este artefacto no formula conclusiones ni recomendaciones.
 | Dimension | Current Resolution | Status |
 |---|---|---|
 | Channel | Meta Ads | Resolved |
-| Business object | Leads captados mediante Meta Ads | Resolved |
+| Business object | Leads captados mediante Meta Lead Ads | Resolved |
 | Analytical focus | Volumen, calidad, eficiencia economica, campanas, creatividades, segmentacion y oportunidades de optimizacion | Resolved |
 | Context framework | FARO, CLARO, KPIs oficiales y Knowledge Base del proyecto cuando esten disponibles | Resolved at context level |
 | Data platform | BigQuery via BigQuery MCP Server as intended provider | Resolved as intended provider |
-| Period | UNKNOWN | Blocking |
-| Campaign / ad set / creative scope | UNKNOWN | Blocking |
-| Executable lead-quality threshold | UNKNOWN / partial | Blocking |
+| Period | 2026-06-01 to 2026-06-30 | Resolved |
+| Campaign / ad set / creative scope | Todas las campanas, conjuntos y creatividades de Meta Lead Ads con inversion o leads durante el periodo | Resolved |
+| Filters | campaign_signal = COMMERCIAL; excluir registros de prueba, duplicados y leads sin identificador valido; sin filtro geografico adicional | Resolved |
+| Lead-quality definition | Qualified Lead segun FARO, equivalente a Lead Tier A o B | Resolved |
 
 ---
 
@@ -99,10 +102,10 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 - No se debe asumir contexto de negocio no publicado.
 - No se deben inventar datos, segmentos, campanas, periodos ni conclusiones no sustentadas.
-- BigQuery MCP Server es el Data Provider principal previsto, pero su documentacion aparece como PENDING en `docs/context_refs.md`.
+- BigQuery MCP Server es el Data Provider principal previsto, pero su documentacion aparece como PENDING en `docs/context_refs.md`; su disponibilidad tecnica debe validarse en T-017/T-018.
 - AIF Foundation debe tratarse como dependencia metodologica, no como objeto funcional del sistema.
 - La fase Contexto no puede producir evidencia, interpretacion, conclusiones ni recomendaciones.
-- Si falta periodo, alcance o criterio operativo suficiente, el flujo debe detenerse antes de Discovery o adquisicion de datos.
+- Los parametros operativos pertenecen a esta ejecucion concreta y no modifican AUC-001.
 
 ---
 
@@ -113,7 +116,8 @@ Este artefacto no formula conclusiones ni recomendaciones.
 | AUC-001 es el primer caso analitico aprobado para validar VCA IA. | Verified | project brief; AUC-001; docs/context_refs.md |
 | BigQuery MCP Server sera la fuente principal de evidencia cuando los datos esten disponibles. | Verified as intended provider | AUC-001; skill |
 | FARO y CLARO son contexto oficial del ecosistema de captacion y datos. | Verified | knowledge/client/ccd.md |
-| El periodo de analisis se definira fuera de este artefacto antes de la ejecucion. | UNKNOWN | No hay fuente publicada con periodo concreto |
+| No existe filtro geografico adicional para esta corrida. | Verified for execution | Analysis Request; Execution Context |
+| El criterio operativo de calidad para esta corrida es Qualified Lead segun FARO, equivalente a Lead Tier A o B. | Verified for execution | Analysis Request; Execution Context |
 
 ---
 
@@ -121,10 +125,7 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 | Unknown | Impact | Required Resolution Artifact |
 |---|---|---|
-| Periodo concreto de analisis | Bloquea la validacion completa del Context Definition y cualquier adquisicion de evidencia. | AUC-001 o solicitud/contexto operativo de ejecucion |
-| Alcance concreto de campanas, conjuntos, creatividades, audiencias o segmentos | Bloquea una lectura operacional cerrada y puede afectar a Discovery. | AUC-001 o solicitud/contexto operativo de ejecucion |
-| Parametrizacion ejecutable del criterio de calidad de lead para esta ejecucion | Bloquea la evaluacion completa de calidad si se requiere umbral operativo. | FARO/CLARO/Knowledge Base o Data Contract del caso |
-| Disponibilidad tecnica/documentacion del BigQuery MCP Server | No bloquea esta resolucion de contexto, pero debe evaluarse antes de adquisicion de evidencia. | docs/context_refs.md o Data Contract del caso |
+| Disponibilidad tecnica/documentacion del BigQuery MCP Server | No bloquea el Context Definition; debe evaluarse antes de adquisicion de evidencia. | Data Contract del caso; T-017 / T-018 |
 
 ---
 
@@ -132,15 +133,18 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 | Target | Status | Reason |
 |---|---|---|
-| T-016 - Validacion del Context Definition de AUC-001 | Ready for validation with blocking UNKNOWNs | Las fuentes oficiales, objetivo y alcance conceptual estan identificados, pero periodo, alcance operativo concreto y criterio ejecutable de calidad permanecen UNKNOWN. |
-| Discovery / Data acquisition | Blocked | SPEC-001, AUC-001, la skill y VCA-CTX-001 exigen periodo y alcance suficientes antes de avanzar. |
+| T-016 - Validacion del Analysis Request y Context Definition de AUC-001 | Ready / Validated | La solicitud analitica concreta, el periodo, el alcance operativo, los filtros y el criterio de calidad estan trazados. |
+| T-017 - Data Contract del caso AUC-001 | Ready | El contexto operativo esta suficientemente definido para formalizar el Data Contract del caso. |
+| Discovery / Data acquisition | Not yet authorized | Debe completarse primero T-017 Data Contract y T-018 adquisicion de evidencia. |
 
 ---
 
 ## Traceability
 
-- [T-015 in docs/tasks.md](../tasks.md)
+- [T-015 and T-016 in docs/tasks.md](../tasks.md)
+- [AUC-001 Analysis Request](auc-001-analysis-request.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
+- [AUC-001 Context Definition](auc-001-context-definition.md)
 - [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
 - [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
 - [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
@@ -155,8 +159,8 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 ## Completion Statement
 
-T-015 queda materializada como resolucion de contexto oficial para AUC-001.
+The Context Resolution for AUC-001 June 2026 is validated.
 
-La resolucion identifica las fuentes oficiales, el objetivo, el periodo y el alcance operativo del caso. El periodo y parte del alcance operativo se identifican como UNKNOWN porque no existe una fuente publicada que los concrete.
+The resolution identifies official sources, objective, supported decision, period, operational scope, filters and lead-quality criterion for this execution.
 
-No se debe continuar hacia adquisicion de datos, Discovery, analisis o razonamiento hasta resolver los UNKNOWN bloqueantes o validarlos formalmente en T-016 como bloqueo.
+This artifact does not authorize data acquisition by itself. It enables T-017, where the case-specific Data Contract must validate the Data Provider boundary before evidence acquisition.
