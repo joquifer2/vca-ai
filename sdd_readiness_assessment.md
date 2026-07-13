@@ -15,6 +15,14 @@
 
 ---
 
+## Nota de Estado
+
+Este documento refleja una instancia histórica de readiness previa al Phase Gate oficial de SPEC-008.
+
+La decisión vigente y autorizada para Development queda registrada en [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md).
+
+---
+
 ## Resumen Ejecutivo
 
 VCA IA dispone de una base documental suficiente para ser evaluada por el Specification to Development Phase Gate. El proyecto ya cuenta con Project Brief refinado, Knowledge Base, contexto trazable, AUC-001 como primer caso analítico aprobado, su skill asociada, specifications aprobadas, backlog cerrado y decisiones documentadas.
@@ -49,7 +57,7 @@ Siguiente paso recomendado:
 
 Estado seleccionado:
 
-Ready
+Partially Ready
 
 ---
 
@@ -202,6 +210,8 @@ Condiciones:
 Decisión:
 
 Partially Ready
+
+Esta selección es histórica y quedó superada por la decisión oficial PASS WITH OBSERVATIONS del Phase Gate de SPEC-008.
 
 ---
 

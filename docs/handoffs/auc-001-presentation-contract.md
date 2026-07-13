@@ -160,6 +160,10 @@ Este contract no construye el informe ejecutivo final.
 | Spend-only ratios are UNKNOWN | Evidence Contract | Must not present cost-per-lead or quality-rate statements for spend-only rows |
 | Campaign/adset values are lead-side metadata | Evidence Contract; Knowledge Contract | Must keep campaign/adset reasoning coverage-qualified |
 
+Recommendations remain documentary suggested actions only and do not constitute operational authorization by themselves.
+
+Numeric values may preserve source precision for traceability; any rounding requires a controlled formatting rule that does not alter source values.
+
 ---
 
 ## Excluded Content
@@ -216,6 +220,8 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Limitation visibility | Pass | Required limitations and UNKNOWNs are enumerated |
 | Traceability preservation | Pass | Upstream artifacts are listed below |
 | Format containment | Pass | Final narrative is deferred to T-031 |
+| Recommendation boundary | Pass | Recommendations remain documentary suggested actions and do not authorize execution |
+| Numeric precision handling | Pass | Source precision may be preserved for traceability; any rounding requires a controlled formatting rule |
 
 ---
 

@@ -32,6 +32,8 @@ Este artefacto no introduce nueva interpretacion.
 
 Este artefacto no altera prioridades ni formula recomendaciones adicionales.
 
+Las recomendaciones presentadas aqui son sugerencias documentales aprobadas; no constituyen autorizacion operativa por si mismas.
+
 ---
 
 ## Executive Summary
@@ -39,6 +41,8 @@ Este artefacto no altera prioridades ni formula recomendaciones adicionales.
 La ejecucion AUC-001 de junio de 2026 analiza calidad de leads de Meta Lead Ads con el modelo corregido `ad_quality_spend_model`, a grano `ad_id_norm` y con Qualified Lead definido como Lead Tier A o B.
 
 El modelo preparado contiene 15 referencias de anuncio, 772 leads, 226 leads cualificados A/B y 496.5600089999987 de inversion comercial. La tasa preparada de cualificacion A/B es 0.2927461139896373 y el coste preparado por lead cualificado A/B es 2.197168181415923. Estos valores pertenecen al modelo preparado y deben leerse dentro de sus limites documentados. Trazabilidad: EVD-002; CON-001.
+
+Los valores numericos se muestran con la precision recibida desde la evidencia para preservar trazabilidad. Si se requiere una presentacion redondeada, debe definirse mediante una regla de formato controlada sin alterar los valores fuente.
 
 La evidencia se organiza en tres estados de cobertura: `matched`, `lead_only` y `spend_only`. El estado `matched` contiene 8 referencias de anuncio, 680 leads, 191 leads cualificados A/B y 494.3600089999987 de inversion comercial. El estado `lead_only` contiene 5 referencias de anuncio, 92 leads y 35 leads cualificados A/B sin inversion comercial emparejada en el modelo aprobado. El estado `spend_only` contiene 2 referencias de anuncio y 2.200000000000001 de inversion comercial sin leads emparejados. Trazabilidad: EVD-001.
 
@@ -168,6 +172,8 @@ Boundary: campaign/adset values are usable where lead-side metadata exists; dire
 | P3 | REC-006 | Do not make recommendations based on impressions, clicks or CTR in the current AUC-001 output; mark them unavailable unless a future approved source expansion provides them. | PRI-004; UNC-003; CON-001; Evidence Contract limitations |
 
 These recommendations preserve the approved priority order P1, P2 and P3 from the Recommendation Contract.
+
+These recommendations are documentary suggested actions only; they do not authorize operational execution by themselves.
 
 ---
 
