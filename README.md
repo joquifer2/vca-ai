@@ -77,6 +77,7 @@ VCA IA proporciona un marco para:
 
 - T-032 a T-039 completadas con artefactos verificables.
 - T-039 registra validación MCP separada de la adquisición CLI de T-018.
+- La revisión de cierre documenta la aceptación provisional de AUC-001 y mantiene SPEC-009 en estado Draft, sin presentarlo como aprobación canónica de la Foundation.
 - Resultado de cierre de AUC-001: Pass with observations.
 - Este cierre es analítico/documental y no debe confundirse con el Phase Gate de entrada a Development.
 
@@ -103,6 +104,8 @@ El proyecto se organiza por responsabilidades funcionales y no como una única l
 ### Gates
 
 - [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md)
+- [docs/evaluations/auc-001-closure-reconciliation-review.md](docs/evaluations/auc-001-closure-reconciliation-review.md)
+- [specs/spec-009-analytical-use-case-completion-acceptance-gate.md](specs/spec-009-analytical-use-case-completion-acceptance-gate.md)
 
 ### Knowledge Base
 
@@ -133,6 +136,11 @@ La Source of Truth del proyecto se reparte entre los artefactos canónicos del r
 | [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md) | Skill asociada al caso inicial y reutilizable como capacidad analítica |
 | [docs/tasks.md](docs/tasks.md) | Backlog documental y gobernanza de trabajo del proyecto |
 | [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md) | Registro documental del Phase Gate de entrada a Development |
+| [docs/evaluations/auc-001-closure-reconciliation-review.md](docs/evaluations/auc-001-closure-reconciliation-review.md) | Cierre documental provisional de AUC-001 y reconciliacion de SPEC-009 Draft |
+| [specs/spec-009-analytical-use-case-completion-acceptance-gate.md](specs/spec-009-analytical-use-case-completion-acceptance-gate.md) | Gate de cierre reusable en estado Draft, validado provisionalmente en vca-ai |
+| [docs/evaluations/auc-001-development-entry-readiness-evidence.md](docs/evaluations/auc-001-development-entry-readiness-evidence.md) | Evidencia de readiness consolidada para Development |
+| [docs/evaluations/auc-001-end-to-end-traceability-test-report.md](docs/evaluations/auc-001-end-to-end-traceability-test-report.md) | Prueba de trazabilidad end-to-end del caso AUC-001 |
+| [docs/evaluations/auc-001-bigquery-mcp-integration-validation.md](docs/evaluations/auc-001-bigquery-mcp-integration-validation.md) | Validacion MCP del scope tecnico T-039 |
 | [knowledge/client/](knowledge/client/) | Base de conocimiento del proyecto para contexto persistente y reutilizable |
 | [README.md](README.md) | Visión general navegable del proyecto |
 | AIF Foundation | Dependencia metodológica reutilizable |
@@ -196,7 +204,12 @@ Templates de apoyo, disponibles para necesidades documentales más específicas:
 5. [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md)
 6. [docs/tasks.md](docs/tasks.md)
 7. [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md)
-8. [knowledge/client/](knowledge/client/)
+8. [docs/evaluations/auc-001-closure-reconciliation-review.md](docs/evaluations/auc-001-closure-reconciliation-review.md)
+9. [specs/spec-009-analytical-use-case-completion-acceptance-gate.md](specs/spec-009-analytical-use-case-completion-acceptance-gate.md)
+10. [docs/evaluations/auc-001-development-entry-readiness-evidence.md](docs/evaluations/auc-001-development-entry-readiness-evidence.md)
+11. [docs/evaluations/auc-001-end-to-end-traceability-test-report.md](docs/evaluations/auc-001-end-to-end-traceability-test-report.md)
+12. [docs/evaluations/auc-001-bigquery-mcp-integration-validation.md](docs/evaluations/auc-001-bigquery-mcp-integration-validation.md)
+13. [knowledge/client/](knowledge/client/)
 
 ---
 

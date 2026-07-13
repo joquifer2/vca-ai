@@ -4,7 +4,7 @@
 
 | Field | Value |
 |---|---|
-| Review ID | VCA-AUC-001-CLOSE-039 |
+| Review ID | VCA-AUC-001-CLOSURE-001 |
 | Review Name | AUC-001 Closure Reconciliation Review |
 | Review Type | Closure Review; Reconciliation; Documentary Validation |
 | Analytical Use Case | AUC-001 - Meta Lead Quality Analysis |
@@ -25,6 +25,8 @@ Esta revisión no reabre el análisis.
 Esta revisión no recalcula métricas.
 
 Esta revisión no redefine el Phase Gate de entrada a Development.
+
+Nota metodológica: SPEC-009 permanece en Draft. Esta revisión documenta una aplicación provisional de su criterio de cierre en vca-ai, no una adopción canónica en AIF Foundation.
 
 ---
 
@@ -58,7 +60,7 @@ Evidencia concreta:
 - T-032 a T-036 existen y están completos en el backlog.
 - La cadena documental desde contratos hasta salida final está cerrada.
 - Las observaciones activas son explícitas y no bloquean Development.
-- El estado real del MCP sigue siendo limitado: la ejecución directa permanece pendiente, pero la exposición de fuentes por CLI está verificada.
+- El estado real del MCP queda mejor descrito así: la integración directa está validada para el scope técnico de T-039, pero no se ha reejecutado mediante MCP el conjunto completo de adquisición de T-018.
 
 ### T-038
 
@@ -83,6 +85,8 @@ Evidencia concreta:
 - la consulta de solo lectura sobre `datamart-vca-494114.intermediate.int_faro_lead_scoring` retorna resultados;
 - la trazabilidad de MCP queda separada de T-018.
 
+Esta validación confirma el scope técnico concreto de T-039 y no sustituye la adquisición CLI histórica de T-018.
+
 ### Resultado final de AUC-001
 
 Resultado: Pass with observations.
@@ -101,7 +105,7 @@ Justificación:
 | Tarea | Estado de las observaciones | Estado de cierre | Nota concreta |
 |---|---|---|---|
 | T-032 | Resueltas / aceptadas como historial | Cerrada | La brecha de trazabilidad de enlaces quedó corregida y la consistencia de formato menor se mantiene como deuda histórica no bloqueante. |
-| T-033 | Abiertas pero no bloqueantes | Cerrada | La exposición de BigQuery por CLI está verificada; la ejecución directa de MCP permanece pendiente y explícita. |
+| T-033 | Abiertas pero no bloqueantes | Cerrada | La exposición de BigQuery por CLI está verificada; la validación MCP directa quedó cubierta posteriormente por T-039, sin reejecutar el flujo completo de T-018 por MCP. |
 | T-034 | Resueltas con observaciones preservadas | Cerrada | La corrección de Discovery quedó incorporada; la lectura histórica de bloqueos queda distinguida del estado final. |
 | T-035 | Activas, no bloqueantes | Cerrada | La separación entre recomendaciones documentales y autorización operativa quedó explícita. |
 | T-036 | Resueltas | Cerrada | La salida ejecutiva ya explicita la no-autorización operativa y la precisión numérica controlada. |
@@ -117,7 +121,9 @@ Estado concreto:
 - la alineación del source table path y el grain `ad_id` quedó consolidada en T-034 y su evidencia derivada;
 - el histórico de corrección se mantiene solo como trazabilidad documental;
 - la ambigüedad de lectura ya no bloquea el cierre;
-- el único pendiente real que permanece visible es el acceso directo al MCP, que se trata como observación no bloqueante.
+- la validación MCP directa quedó cerrada para el scope técnico de T-039;
+- no se ha reejecutado por MCP el conjunto completo de adquisición de T-018;
+- ese alcance no reejecutado permanece visible como limitación documental, no como bloqueo.
 
 Conclusión:
 
@@ -142,10 +148,10 @@ La deuda de Discovery se acepta como resuelta para el cierre de AUC-001 y no imp
 
 Estado real:
 
-- la ejecución directa de BigQuery MCP sigue pendiente;
-- la exposición de fuentes y la trazabilidad base por CLI están verificadas;
-- el pendiente no invalida el cierre de AUC-001;
-- el pendiente sí debe permanecer visible como observación activa en Development.
+- la integración MCP está validada para el scope técnico de T-039;
+- no se ha reejecutado mediante MCP el conjunto completo de adquisición original de T-018;
+- la exposición de fuentes y la trazabilidad base por CLI siguen verificadas;
+- el alcance no reejecutado no invalida el cierre de AUC-001;
 - la validación MCP quedó formalizada y completada como T-039 para evitar mezclarla con la adquisición CLI de T-018.
 
 ---
@@ -164,6 +170,8 @@ Motivo:
 - las observaciones restantes son explícitas y manejables;
 - la trazabilidad end-to-end está probada;
 - el resultado de AUC-001 no debe confundirse con el Phase Gate de entrada a Development.
+
+Esta revisión documenta el cierre de AUC-001 con una lectura provisional compatible con SPEC-009 en Draft, no con una aprobación canónica de la Foundation.
 
 ---
 

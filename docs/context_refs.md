@@ -69,7 +69,7 @@ contexto_proyecto:
 | 2026-07-11 | Definir criterios de validacion para AUC-001 | Establece criterios observables y reutilizables para validar el caso | analytical_use_cases/meta_lead_quality_analysis.md; docs/tasks.md |
 | 2026-07-11 | Cerrar el primer ciclo de tareas de AUC-001 | Registra la delimitacion, evidencia, flujo y validacion del primer caso analitico | analytical_use_cases/meta_lead_quality_analysis.md; docs/tasks.md; docs/context_refs.md |
 | 2026-07-11 | Autorizar la entrada a Development mediante SPEC-008 con PASS WITH OBSERVATIONS | Situa el proyecto en Development manteniendo visibles las observaciones activas del Phase Gate | gates/spec-008-development-entry-phase-gate.md; sdd_readiness_assessment.md |
-| 2026-07-13 | Formalizar el Analytical Use Case Completion / Acceptance Gate mediante SPEC-009 | Introduce un gate reutilizable para el cierre y aceptacion documental de un caso analitico, distinto del Phase Gate de Development | specs/spec-009-analytical-use-case-completion-acceptance-gate.md; docs/evaluations/auc-001-closure-reconciliation-review.md |
+| 2026-07-13 | Validar provisionalmente la aplicabilidad de SPEC-009 en vca-ai | Mantiene SPEC-009 como Draft mientras documenta una extension candidata validada para el cierre documental del caso analitico | specs/spec-009-analytical-use-case-completion-acceptance-gate.md; docs/evaluations/auc-001-closure-reconciliation-review.md |
 | 2026-07-13 | Validar la integracion MCP de BigQuery para AUC-001 mediante T-039 | Separa la validacion MCP de la adquisicion CLI de T-018 y deja trazabilidad tecnica del acceso directo al provider | docs/evaluations/auc-001-bigquery-mcp-integration-validation.md; docs/tasks.md |
 
 ## Decisiones pendientes de validar
@@ -108,7 +108,7 @@ No hay reuniones versionadas relevantes para la contextualizacion actual del pro
 | Phase Gate Record | Governance | Registro de la autorizacion de entrada a Development | gates/spec-008-development-entry-phase-gate.md |
 | AUC-001 Closure Reconciliation Review | Evaluation | Reconciliacion de cierre documental del caso AUC-001 | docs/evaluations/auc-001-closure-reconciliation-review.md |
 | AUC-001 BigQuery MCP Integration Validation | Evaluation | Validacion documental y tecnica del acceso MCP separada de T-018 | docs/evaluations/auc-001-bigquery-mcp-integration-validation.md |
-| SPEC-009 Analytical Use Case Completion / Acceptance Gate | Specification | Gate reusable para cierre y aceptacion de Analytical Use Cases | specs/spec-009-analytical-use-case-completion-acceptance-gate.md |
+| SPEC-009 Analytical Use Case Completion / Acceptance Gate | Specification | Gate reusable en estado Draft y validado provisionalmente en vca-ai | specs/spec-009-analytical-use-case-completion-acceptance-gate.md |
 | SDD Instructions | Instrucciones | Reglas de fase, contexto y precedencia documental | .github/instructions/sdd.instructions.md |
 | Glosario de terminos | Documentacion | Definiciones oficiales de artefactos y terminos | docs/glosario_terminos.md |
 
@@ -130,11 +130,40 @@ repositorios:
 
 ```yaml
 google_cloud:
-  proyectos: []
+  proyectos:
+    - project_id: datamart-vca-494114
+      descripcion: Proyecto BigQuery validado en T-018 y T-039 para AUC-001
   buckets_gcs: []
   bigquery:
-    datasets: []
-    tablas: []
+    datasets:
+      - project_id: datamart-vca-494114
+        dataset: intermediate
+        descripcion: Dataset validado por MCP en T-039 para el scope tecnico de int_faro_lead_scoring
+      - project_id: datamart-vca-494114
+        dataset: marts
+        descripcion: Dataset principal de exposicion CLI en T-018 para AUC-001
+
+    tablas:
+      - project_id: datamart-vca-494114
+        dataset: intermediate
+        tabla: int_faro_lead_scoring
+        descripcion: Tabla validada directamente por MCP en T-039
+      - project_id: datamart-vca-494114
+        dataset: marts
+        tabla: fct_lead_enriched
+        descripcion: Tabla de leads usada en T-018 para adquisicion CLI
+      - project_id: datamart-vca-494114
+        dataset: marts
+        tabla: fct_performance_daily
+        descripcion: Tabla de performance diaria usada en T-018 para adquisicion CLI
+      - project_id: datamart-vca-494114
+        dataset: marts
+        tabla: fct_spend
+        descripcion: Tabla de spend usada en T-018 para adquisicion CLI
+      - project_id: datamart-vca-494114
+        dataset: marts
+        tabla: dim_campaign_signal
+        descripcion: Tabla de dominio de campaign_signal usada en T-018 para adquisicion CLI
 ```
 
 ## Dashboards
@@ -148,8 +177,13 @@ dashboards: []
 ```yaml
 apis:
   - nombre: BigQuery MCP Server
-    documentacion: PENDING
-    uso_en_proyecto: Fuente principal de evidencia para el caso AUC-001 y futuros analisis trazables
+    documentacion: ACTIVE
+    validacion_tecnica: PASS_WITH_OBSERVATIONS
+    scope_validado:
+      project: datamart-vca-494114
+      dataset: intermediate
+      table: int_faro_lead_scoring
+    uso_en_proyecto: Fuente principal de evidencia para el scope tecnico validado en T-039 y para futuros analisis trazables
 ```
 
 ---

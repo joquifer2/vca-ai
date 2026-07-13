@@ -40,6 +40,8 @@ Sin embargo, la experiencia con el primer caso analitico ha mostrado una necesid
 
 Ese gate no debe confundirse con un Phase Gate. Tampoco debe reutilizar SPEC-008, porque SPEC-008 autoriza el paso a Development, mientras que este gate valida el cierre de un caso analitico ya ejecutado.
 
+Nota de uso en vca-ai: esta especificacion ha sido ejercitada provisionalmente como Candidate Foundation Extension para el cierre documental de AUC-001, pero permanece en estado Draft hasta su aprobacion canónica en la Foundation.
+
 ---
 
 ## 3. Objective
