@@ -97,6 +97,16 @@ Este backlog traduce las specifications aprobadas, AUC-001 y la skill aprobada e
 
 ---
 
+## Backlog de validacion de cierre
+
+Este backlog recoge validaciones documentadas para el cierre del caso y su trazabilidad, sin confundirlas con la adquisicion ya completada por CLI.
+
+| ID | Tarea | Tipo | Fuentes | Dependencias | Criterio de finalizacion | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-039 | Validar la integracion MCP de BigQuery para AUC-001 | Validation / Governance | docs/context_refs.md, docs/handoffs/auc-001-data-contract.md, docs/handoffs/auc-001-evidence-acquisition.md, docs/evaluations/auc-001-context-acquisition-evaluation.md, docs/evaluations/auc-001-closure-reconciliation-review.md, docs/evaluations/auc-001-bigquery-mcp-integration-validation.md | T-018, T-033, T-037 | Existe una validacion documental y tecnica del acceso directo al BigQuery MCP Server, con evidencia separada de la adquisicion CLI y trazabilidad explicita de origen | Completed |
+
+---
+
 ## Notas de uso
 
 Este backlog debe actualizarse solo cuando cambien las specifications, las decisiones publicadas o el handoff de entrada a Tasks Planning del proyecto derivado.

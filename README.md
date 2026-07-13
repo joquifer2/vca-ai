@@ -73,6 +73,13 @@ VCA IA proporciona un marco para:
 - [analytical_use_cases/meta_lead_quality_analysis.md](analytical_use_cases/meta_lead_quality_analysis.md)
 - [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md)
 
+### Cierre de AUC-001
+
+- T-032 a T-039 completadas con artefactos verificables.
+- T-039 registra validación MCP separada de la adquisición CLI de T-018.
+- Resultado de cierre de AUC-001: Pass with observations.
+- Este cierre es analítico/documental y no debe confundirse con el Phase Gate de entrada a Development.
+
 ---
 
 ## Como esta organizado el proyecto
@@ -171,6 +178,7 @@ Los templates más útiles para comprender o extender el proyecto son:
 Templates de apoyo, disponibles para necesidades documentales más específicas:
 
 - [docs/templates/retrospective_spec.template.md](docs/templates/retrospective_spec.template.md)
+- [docs/templates/closure_review.template.md](docs/templates/closure_review.template.md)
 - [docs/templates/system_overview.template.md](docs/templates/system_overview.template.md)
 - [docs/templates/architecture_as_is.template.md](docs/templates/architecture_as_is.template.md)
 - [docs/templates/copilot-instructions.template.md](docs/templates/copilot-instructions.template.md)
