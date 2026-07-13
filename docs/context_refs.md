@@ -71,6 +71,10 @@ contexto_proyecto:
 | 2026-07-11 | Autorizar la entrada a Development mediante SPEC-008 con PASS WITH OBSERVATIONS | Situa el proyecto en Development manteniendo visibles las observaciones activas del Phase Gate | gates/spec-008-development-entry-phase-gate.md; sdd_readiness_assessment.md |
 | 2026-07-13 | Validar provisionalmente la aplicabilidad de SPEC-009 en vca-ai | Mantiene SPEC-009 como Draft mientras documenta una extension candidata validada para el cierre documental del caso analitico | specs/spec-009-analytical-use-case-completion-acceptance-gate.md; docs/evaluations/auc-001-closure-reconciliation-review.md |
 | 2026-07-13 | Validar la integracion MCP de BigQuery para AUC-001 mediante T-039 | Separa la validacion MCP de la adquisicion CLI de T-018 y deja trazabilidad tecnica del acceso directo al provider | docs/evaluations/auc-001-bigquery-mcp-integration-validation.md; docs/tasks.md |
+| 2026-07-13 | Definir Execution Scope Canonicalization para AUC-001 | Establece la canonicalizacion del alcance de ejecucion como dependencia previa para seleccionar proyeccion desde un Execution Context canonicalizado | docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md; specs/spec-010-presentation-projection-selection.md |
+| 2026-07-13 | Definir la arquitectura de proyecciones de presentacion para AUC-001 | Separa la conservacion canonica de la representacion analitica y ejecutiva mediante Presentation Layer, proyeccion analitica y Executive Report como representaciones hermanas | docs/evaluations/auc-001-presentation-projection-architectural-decision.md; specs/spec-010-presentation-projection-selection.md |
+| 2026-07-13 | Autorizar el alineamiento documental de proyecciones de presentacion | Clasifica artefactos sin cambios y con cambios justificados, y limita el alineamiento a contracts, handoffs AUC-001 y context_refs sin crear nuevas salidas ni runtime | docs/evaluations/auc-001-documentary-alignment-decision.md; docs/tasks.md |
+| 2026-07-13 | Completar el alineamiento documental de contracts y artefactos AUC-001 | Actualiza los base contracts y los handoffs AUC-001 para declarar Executive Report como proyeccion seleccionada sin derivacion desde una proyeccion analitica | docs/evaluations/auc-001-base-contracts-alignment-record.md; docs/evaluations/auc-001-presentation-artifacts-alignment-record.md; docs/contracts/context.contract.md; docs/contracts/presentation.contract.md; docs/handoffs/auc-001-presentation-contract.md; docs/handoffs/auc-001-executive-report.md |
 
 ## Decisiones pendientes de validar
 
@@ -100,6 +104,12 @@ No hay reuniones versionadas relevantes para la contextualizacion actual del pro
 | Knowledge Base del proyecto | Base de conocimiento | Contexto persistente y reutilizable del proyecto | knowledge/client/ |
 | Analytical Use Case AUC-001 | Caso de uso analitico | Primer caso aprobado que valida la linea de trabajo del proyecto | analytical_use_cases/meta_lead_quality_analysis.md |
 | Meta Lead Quality Analysis Skill | Skill | Skill asociada al primer caso analitico aprobado | .github/skills/meta-lead-quality-analysis/SKILL.md |
+| SPEC-010 Presentation Projection Selection | Specification | Distincion minima validada entre proyeccion analitica y proyeccion ejecutiva en vca-ai | specs/spec-010-presentation-projection-selection.md |
+| VCA-AUC-001-ARCH-001 Execution Scope Canonicalization | Decision arquitectonica | Dependencia de canonicalizacion del Execution Context previa a la seleccion de proyeccion | docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md |
+| VCA-AUC-001-ARCH-002 Presentation Projection Architecture | Decision arquitectonica | Regla de proyecciones hermanas: proyeccion analitica y Executive Report consumen el mismo contenido validado sin derivarse entre si | docs/evaluations/auc-001-presentation-projection-architectural-decision.md |
+| AUC-001 Documentary Alignment Decision | Governance | Decision que autoriza el alineamiento documental posterior a T-040, T-041 y T-042 | docs/evaluations/auc-001-documentary-alignment-decision.md |
+| AUC-001 Base Contracts Alignment Record | Governance | Registro del alineamiento aplicado a Context Contract y Presentation Contract | docs/evaluations/auc-001-base-contracts-alignment-record.md |
+| AUC-001 Presentation Artifacts Alignment Record | Governance | Registro del alineamiento aplicado a AUC-001 Presentation Contract y Executive Report | docs/evaluations/auc-001-presentation-artifacts-alignment-record.md |
 | Project Brief | Definicion oficial del proyecto | Proposito, alcance, limites y criterios de exito | project_brief.md |
 | README | Vision general navegable del proyecto | Estructura de entrada y orientacion general | README.md |
 | Specifications del proyecto | Specifications | Lifecycle, boundaries, extensibilidad, contracts, gates y evaluaciones del proyecto | specs/ |
@@ -271,6 +281,46 @@ runtime_sources:
       uri: specs/spec-009-analytical-use-case-completion-acceptance-gate.md
       version: versionada en repositorio
       estado: activo
+    - nombre: SPEC-010 Presentation Projection Selection
+      tipo: Specification
+      uri: specs/spec-010-presentation-projection-selection.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: VCA-AUC-001-ARCH-001 Execution Scope Canonicalization
+      tipo: Decision arquitectonica
+      uri: docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: VCA-AUC-001-ARCH-002 Presentation Projection Architecture
+      tipo: Decision arquitectonica
+      uri: docs/evaluations/auc-001-presentation-projection-architectural-decision.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: AUC-001 Documentary Alignment Decision
+      tipo: Governance
+      uri: docs/evaluations/auc-001-documentary-alignment-decision.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: AUC-001 Base Contracts Alignment Record
+      tipo: Governance
+      uri: docs/evaluations/auc-001-base-contracts-alignment-record.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: AUC-001 Presentation Artifacts Alignment Record
+      tipo: Governance
+      uri: docs/evaluations/auc-001-presentation-artifacts-alignment-record.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: AUC-001 Presentation Contract
+      tipo: Handoff documental
+      uri: docs/handoffs/auc-001-presentation-contract.md
+      version: versionada en repositorio
+      estado: activo
+    - nombre: AUC-001 Executive Report
+      tipo: Handoff documental
+      uri: docs/handoffs/auc-001-executive-report.md
+      version: versionada en repositorio
+      estado: activo
 
   indices_vectoriales: []
 
@@ -316,11 +366,11 @@ No hay fuentes de contexto pendientes que bloqueen la evolucion actual del proye
 trazabilidad:
   creado_por: GitHub Copilot
   fecha_creacion: 2026-07-10
-  ultima_actualizacion: 2026-07-11
+  ultima_actualizacion: 2026-07-13
   actualizado_por: GitHub Copilot
   contexto_validado_por: Documentation Agent
-  fecha_validacion: 2026-07-11
-  version_contexto: vca-ia-contexto-oficial-development-authorized
+  fecha_validacion: 2026-07-13
+  version_contexto: vca-ia-contexto-oficial-development-authorized-presentation-projection-aligned
 ```
 
 ---

@@ -5,26 +5,29 @@
 | Field | Value |
 |---|---|
 | Artifact ID | VCA-AUC-001-OUT-001 |
-| Artifact Type | Output Artifact / Executive Report |
+| Artifact Type | Selected Presentation Projection / Executive Report |
 | Analytical Use Case | AUC-001 - Meta Lead Quality Analysis |
 | Presentation Contract ID | VCA-AUC-001-PRS-001 |
+| Presentation Mode | Executive |
+| Selected Presentation Projection | Executive Report |
 | Context Definition ID | VCA-AUC-001-CTX-DEF-2026-06 |
 | Evidence Contract ID | VCA-AUC-001-EVD-001 |
 | Knowledge Contract ID | VCA-AUC-001-KNW-001 |
 | Recommendation Contract ID | VCA-AUC-001-REC-001 |
 | Status | Documented |
-| Version | 1.0.0 |
-| Last Updated | 2026-07-12 |
+| Version | 1.1.0 |
+| Last Updated | 2026-07-13 |
 | Owner | Equipo VCA |
 | Backing Task | T-031 |
+| Alignment Task | T-045 |
 
 ---
 
 ## Purpose
 
-Presentar el resultado ejecutivo trazable de AUC-001 para la ejecucion de junio de 2026.
+Presentar el resultado ejecutivo trazable de AUC-001 para la ejecucion de junio de 2026 como Executive Report seleccionado.
 
-Este Output Artifact consume el Presentation Contract `VCA-AUC-001-PRS-001` y presenta contexto, evidencia, conocimiento, recomendaciones, limitaciones y trazabilidad ya aprobados.
+Este Executive Report consume el Presentation Contract `VCA-AUC-001-PRS-001` y presenta contexto, evidencia, conocimiento, recomendaciones, limitaciones y trazabilidad ya aprobados.
 
 Este artefacto no crea evidencia nueva.
 
@@ -32,7 +35,26 @@ Este artefacto no introduce nueva interpretacion.
 
 Este artefacto no altera prioridades ni formula recomendaciones adicionales.
 
+Este artefacto es una proyeccion ejecutiva del mismo contenido canonico aprobado por Evidence, Knowledge y Recommendation Sets.
+
+Este artefacto no deriva de una proyeccion analitica. Cualquier proyeccion analitica futura debe tratarse como representacion hermana, no como fuente previa de este Executive Report.
+
 Las recomendaciones presentadas aqui son sugerencias documentales aprobadas; no constituyen autorizacion operativa por si mismas.
+
+---
+
+## Projection Alignment
+
+| Field | Value |
+|---|---|
+| Presentation mode | Executive |
+| Selected presentation projection | Executive Report |
+| Projection source | Context Definition, Output Request and AUC-001 Presentation Contract |
+| Canonical content consumed | Evidence Set, Knowledge Set and Recommendation Set already approved for AUC-001 |
+| Relationship to analytical projection | Sibling representation; not derived from an analytical projection |
+| Boundary status | No new evidence, no new interpretation, no new recommendations and no priority rewrite |
+
+Trazabilidad: SPEC-010; VCA-AUC-001-ARCH-002; VCA-AUC-001-PRS-001.
 
 ---
 
@@ -60,6 +82,9 @@ La lectura ejecutiva aprobada es que AUC-001 permite razonar sobre calidad de le
 | Lead quality definition | Qualified Lead segun FARO, equivalente a Lead Tier A o B |
 | Audience | Analista de negocio, direccion, responsable de Marketing, especialistas de Meta Ads y equipo Comercial |
 | Output request | Informe ejecutivo trazable |
+| Presentation mode | Executive |
+| Selected presentation projection | Executive Report |
+| Projection relationship | Sibling representation from approved canonical content; not derived from analytical projection |
 
 Trazabilidad: AUC-001 Context Definition; SEC-001.
 
@@ -196,6 +221,7 @@ These recommendations are documentary suggested actions only; they do not author
 
 | Output Section | Source IDs | Source Artifacts |
 |---|---|---|
+| Projection alignment | SPEC-010; ARCH-002; VCA-AUC-001-PRS-001 | Presentation Contract; Projection Architectural Decision |
 | Context and scope | SEC-001 | Context Definition; Presentation Contract |
 | Source and model basis | SEC-002 | Analytical Contract; Evidence Contract |
 | Evidence summary | EVD-001; EVD-002; EVD-003; EVD-004 | Evidence Set; Evidence Contract |
@@ -203,6 +229,15 @@ These recommendations are documentary suggested actions only; they do not author
 | Recommendations | REC-001..REC-006 | Recommendation Set; Recommendation Contract |
 | Limitations | UNC-001..UNC-005; Evidence Contract limitations | Knowledge Contract; Recommendation Contract; Presentation Contract |
 
+---
+
+## Projection Traceability
+
+- [SPEC-010 Presentation Projection Selection](../../specs/spec-010-presentation-projection-selection.md)
+- [VCA-AUC-001-ARCH-002 Presentation Projection Decision](../evaluations/auc-001-presentation-projection-architectural-decision.md)
+- [T-043 Documentary Alignment Decision](../evaluations/auc-001-documentary-alignment-decision.md)
+- [T-044 Base Contracts Alignment Record](../evaluations/auc-001-base-contracts-alignment-record.md)
+- [AUC-001 Presentation Contract](auc-001-presentation-contract.md)
 ---
 
 ## Boundary Compliance
@@ -215,6 +250,9 @@ These recommendations are documentary suggested actions only; they do not author
 | No recommendation rewrite | Pass | Presents REC-001 through REC-006 with approved priorities |
 | Limitation visibility | Pass | Required UNKNOWNs and limitations are explicit |
 | Traceability preservation | Pass | Each section maps to upstream artifact IDs |
+| Projection selection dependency | Pass | Metadata and Projection Alignment identify Executive Report as selected projection |
+| Sibling projection preservation | Pass | Projection Alignment states that analytical projection and Executive Report are sibling representations |
+| No projection derivation | Pass | Projection Alignment states this Executive Report is not derived from an analytical projection |
 
 ---
 
@@ -222,4 +260,4 @@ These recommendations are documentary suggested actions only; they do not author
 
 T-031 is complete.
 
-This Output Artifact presents context, evidence, reasoning, recommendations and limitations for AUC-001 under the Presentation Contract, without reintroducing evidence, interpretation or recommendations.
+This Executive Report presents context, evidence, reasoning, recommendations and limitations for AUC-001 under the Presentation Contract, without reintroducing evidence, interpretation, recommendations or projection derivation from an analytical output.

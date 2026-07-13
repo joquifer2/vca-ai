@@ -107,8 +107,128 @@ Este backlog recoge validaciones documentadas para el cierre del caso y su traza
 
 ---
 
+## Backlog de alineamiento del repositorio
+
+Este backlog organiza tareas metodologicas de analisis de impacto, alineamiento arquitectonico y decision documental para introducir la capacidad minima aprobada por VCA-AUC-001-ARCH-002 y SPEC-010.
+
+Las tareas de este bloque no presuponen modificaciones documentales. Cada una debe poder cerrarse con uno de estos resultados:
+
+- no se requieren cambios en los artefactos evaluados;
+- se requieren cambios documentales justificados en uno o varios artefactos.
+
+La modificacion documental, cuando proceda, debe ser consecuencia de la tarea y no un supuesto previo.
+
+### T-040 — Base Contracts Alignment Assessment
+
+| Campo | Valor |
+|---|---|
+| Tipo | Validation / Review |
+| Objetivo | Evaluar el impacto de la nueva capacidad sobre [docs/contracts/context.contract.md](contracts/context.contract.md) y [docs/contracts/presentation.contract.md](contracts/presentation.contract.md) para determinar si requieren especializacion explicita o pueden permanecer intactos. |
+| Dependencias | SPEC-001; SPEC-002; SPEC-004; VCA-AUC-001-ARCH-001; VCA-AUC-001-ARCH-002; SPEC-010 |
+| Criterios de aceptacion | La tarea concluye con una decision trazable sobre cada contract evaluado; la decision puede ser que no se requieren cambios o que existen cambios justificados; la conclusion debe estar respaldada por evidencia documental observada. |
+| Definition of Done | Existe una evaluacion clara de impacto por contract; se identifican brechas reales o se documenta explicitamente que no hay necesidad de cambio; cualquier propuesta de modificacion queda condicionada a la decision de la tarea. |
+| Resultado | Evaluacion completada en [docs/evaluations/auc-001-base-contracts-alignment-assessment.md](evaluations/auc-001-base-contracts-alignment-assessment.md). |
+| Resultado posible | No se requieren cambios en los contracts evaluados, o se requieren cambios documentales justificados. |
+| Estado | Completed |
+
+### T-041 — AUC-001 Presentation Alignment Assessment
+
+| Campo | Valor |
+|---|---|
+| Tipo | Validation / Review |
+| Objetivo | Evaluar el impacto de la nueva capacidad sobre [docs/handoffs/auc-001-presentation-contract.md](handoffs/auc-001-presentation-contract.md) y [docs/handoffs/auc-001-executive-report.md](handoffs/auc-001-executive-report.md) para verificar si siguen alineados con la capacidad minima aprobada. |
+| Dependencias | T-040; SPEC-010; VCA-AUC-001-ARCH-002; docs/evaluations/auc-001-presentation-projection-architectural-decision.md |
+| Criterios de aceptacion | La tarea identifica si los handoffs AUC-001 conservan la terminologia y el alcance vigentes; la conclusion puede ser no cambios o cambios justificados; la evaluacion debe preservar la distincion entre contenido aprobado y contenido pendiente. |
+| Definition of Done | El estado de alineamiento de ambos handoffs queda documentado con trazabilidad suficiente; si no hay brechas, se registra explicitamente que no se requieren cambios; si las hay, se identifican con precision y sin aplicar ediciones aun. |
+| Resultado | Evaluacion completada en [docs/evaluations/auc-001-presentation-alignment-assessment.md](evaluations/auc-001-presentation-alignment-assessment.md). |
+| Resultado posible | No se requieren cambios en los handoffs evaluados, o se requieren cambios documentales justificados. |
+| Estado | Completed |
+
+### T-042 — Context And Traceability Alignment Assessment
+
+| Campo | Valor |
+|---|---|
+| Tipo | Validation / Governance |
+| Objetivo | Evaluar el impacto de la nueva capacidad sobre [docs/context_refs.md](context_refs.md) y la trazabilidad oficial del repositorio para asegurar que la terminologia vigente y las decisiones relacionadas reflejan solo la capacidad aprobada. |
+| Dependencias | T-041; SPEC-010; docs/evaluations/auc-001-presentation-projection-architectural-decision.md |
+| Criterios de aceptacion | La tarea verifica si el indice de contexto necesita ajustes o puede permanecer intacto; la conclusion debe dejar claro si la referencia a la decision y a SPEC-010 es suficiente o requiere refinamiento. |
+| Definition of Done | Existe una conclusion explicita sobre el estado del indice de contexto y de las decisiones relacionadas; la tarea puede cerrar con ausencia de cambios o con cambios justificados, pero nunca por defecto. |
+| Resultado | Evaluacion completada en [docs/evaluations/auc-001-context-traceability-alignment-assessment.md](evaluations/auc-001-context-traceability-alignment-assessment.md). |
+| Resultado posible | No se requieren cambios en context_refs.md, o se requieren cambios documentales justificados. |
+| Estado | Completed |
+
+### T-043 — Documentary Alignment Decision
+
+| Campo | Valor |
+|---|---|
+| Tipo | Review / Governance |
+| Objetivo | Consolidar los resultados de las evaluaciones previas y decidir, de forma trazable, que artefactos permanecen intactos y cuales requieren cambios documentales. |
+| Dependencias | T-040; T-041; T-042 |
+| Criterios de aceptacion | La decision debe clasificar cada artefacto revisado como sin cambios o con cambios justificados; no debe asumir modificaciones no demostradas; debe dejar evidencia suficiente para sustentar el siguiente paso. |
+| Definition of Done | Existe una decision documental de alineamiento con alcance cerrado; la salida de la tarea es una decision, no una implementacion; cualquier cambio posterior queda condicionado a esta decision. |
+| Resultado | Decision documentada en [docs/evaluations/auc-001-documentary-alignment-decision.md](evaluations/auc-001-documentary-alignment-decision.md). |
+| Resultado posible | Ningun cambio adicional, o lista justificada de artefactos a modificar. |
+| Estado | Completed |
+
+### T-044 — Align Base Contracts
+
+| Campo | Valor |
+|---|---|
+| Tipo | Documentation / Governance |
+| Objetivo | Evaluar el impacto de la nueva capacidad sobre [docs/contracts/context.contract.md](contracts/context.contract.md) y [docs/contracts/presentation.contract.md](contracts/presentation.contract.md) para determinar si requieren especializacion explicita o pueden permanecer intactos. |
+| Dependencias | T-043; SPEC-001; SPEC-002; SPEC-004; VCA-AUC-001-ARCH-001; VCA-AUC-001-ARCH-002; SPEC-010 |
+| Criterios de aceptacion | La tarea concluye con una decision trazable sobre cada contract evaluado; la decision puede ser que no se requieren cambios o que existen cambios justificados; la conclusion debe estar respaldada por evidencia documental observada. |
+| Definition of Done | Existe una evaluacion clara de impacto por contract; se identifican brechas reales o se documenta explicitamente que no hay necesidad de cambio; cualquier propuesta de modificacion queda condicionada a la decision de la tarea. |
+| Resultado | Alineamiento documentado en [docs/evaluations/auc-001-base-contracts-alignment-record.md](evaluations/auc-001-base-contracts-alignment-record.md). |
+| Resultado posible | No se requieren cambios en los contracts evaluados, o se requieren cambios documentales justificados. |
+| Estado | Completed |
+
+### T-045 — Align AUC-001 Artifacts
+
+| Campo | Valor |
+|---|---|
+| Tipo | Validation / Governance |
+| Objetivo | Evaluar el impacto de la nueva capacidad sobre [docs/handoffs/auc-001-presentation-contract.md](handoffs/auc-001-presentation-contract.md) y [docs/handoffs/auc-001-executive-report.md](handoffs/auc-001-executive-report.md) para verificar si siguen alineados con la capacidad minima aprobada. |
+| Dependencias | T-044; SPEC-010; VCA-AUC-001-ARCH-002; docs/evaluations/auc-001-presentation-projection-architectural-decision.md |
+| Criterios de aceptacion | La tarea identifica si los handoffs AUC-001 conservan la terminologia y el alcance vigentes; la conclusion puede ser no cambios o cambios justificados; la evaluacion debe preservar la distincion entre contenido aprobado y contenido pendiente. |
+| Definition of Done | El estado de alineamiento de ambos handoffs queda documentado con trazabilidad suficiente; si no hay brechas, se registra explicitamente que no se requieren cambios; si las hay, se identifican con precision y sin aplicar ediciones aun. |
+| Resultado | Alineamiento documentado en [docs/evaluations/auc-001-presentation-artifacts-alignment-record.md](evaluations/auc-001-presentation-artifacts-alignment-record.md). |
+| Resultado posible | No se requieren cambios en los handoffs evaluados, o se requieren cambios documentales justificados. |
+| Estado | Completed |
+
+### T-046 — Align Context References
+
+| Campo | Valor |
+|---|---|
+| Tipo | Validation / Governance |
+| Objetivo | Evaluar el impacto de la nueva capacidad sobre [docs/context_refs.md](context_refs.md) y la trazabilidad oficial del repositorio para asegurar que la terminologia vigente y las decisiones relacionadas reflejan solo la capacidad aprobada. |
+| Dependencias | T-045; SPEC-010; docs/evaluations/auc-001-presentation-projection-architectural-decision.md |
+| Criterios de aceptacion | La tarea verifica si el indice de contexto necesita ajustes o puede permanecer intacto; la conclusion debe dejar claro si la referencia a la decision y a SPEC-010 es suficiente o requiere refinamiento. |
+| Definition of Done | Existe una conclusion explicita sobre el estado del indice de contexto y de las decisiones relacionadas; la tarea puede cerrar con ausencia de cambios o con cambios justificados, pero nunca por defecto. |
+| Resultado | Alineamiento documentado en [docs/evaluations/auc-001-context-references-alignment-record.md](evaluations/auc-001-context-references-alignment-record.md). |
+| Resultado posible | No se requieren cambios en context_refs.md, o se requieren cambios documentales justificados. |
+| Estado | Completed |
+
+### T-047 — Presentation Projection Readiness Evaluation
+
+| Campo | Valor |
+|---|---|
+| Tipo | Validation / Governance |
+| Objetivo | Verificar que el repositorio ha quedado coherente tras la incorporacion de la capacidad, confirmando consistencia documental, consistencia metodologica y consistencia entre artefactos. |
+| Dependencias | T-044; T-045; T-046; SPEC-001; SPEC-002; SPEC-004; SPEC-010; VCA-AUC-001-ARCH-001; VCA-AUC-001-ARCH-002 |
+| Criterios de aceptacion | La evaluacion debe confirmar coherencia o señalar brechas residuales; debe comprobar la ausencia de terminologia descartada, la seleccion de proyeccion desde Execution Context y la compatibilidad con las specs fundacionales. |
+| Definition of Done | Existe una evaluation documental final de readiness que puede emitir Pass, Pass with observations, Fail o Blocked segun la evidencia; la tarea valida la coherencia del repositorio tras la incorporacion del cambio y no reabre la arquitectura. |
+| Resultado | Evaluacion completada en [docs/evaluations/auc-001-presentation-projection-readiness-evaluation.md](evaluations/auc-001-presentation-projection-readiness-evaluation.md). |
+| Resultado posible | El repositorio queda coherente tras la incorporacion de la capacidad, o se identifican observaciones o cambios residuales justificados. |
+| Estado | Completed |
+
+---
+
 ## Notas de uso
 
 Este backlog debe actualizarse solo cuando cambien las specifications, las decisiones publicadas o el handoff de entrada a Tasks Planning del proyecto derivado.
 
 Si aparece una nueva necesidad documental no cubierta por las tareas existentes, debe registrarse como revision de Specification y no como ampliacion informal del backlog.
+
+
+

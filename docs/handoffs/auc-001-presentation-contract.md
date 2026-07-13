@@ -15,18 +15,19 @@
 | Recommendation Contract ID | VCA-AUC-001-REC-001 |
 | Recommendation Set ID | VCA-AUC-001-REC-SET-001 |
 | Status | Documented |
-| Version | 1.0.0 |
-| Last Updated | 2026-07-12 |
+| Version | 1.1.0 |
+| Last Updated | 2026-07-13 |
 | Owner | Equipo VCA |
 | Backing Task | T-030 |
+| Alignment Task | T-045 |
 
 ---
 
 ## Purpose
 
-Delimitar el contenido aprobado que puede consumir la capa de presentacion para construir el Output Artifact de AUC-001.
+Delimitar el contenido aprobado que puede consumir la capa de presentacion para construir la proyeccion ejecutiva seleccionada de AUC-001.
 
-Este contract autoriza secciones, fuentes, limitaciones, conocimiento y recomendaciones ya validadas para presentacion.
+Este contract autoriza secciones, fuentes, limitaciones, conocimiento, recomendaciones y restricciones de proyeccion ya validadas para presentacion.
 
 Este contract no crea evidencia nueva.
 
@@ -36,6 +37,8 @@ Este contract no reordena prioridades ni cambia recomendaciones.
 
 Este contract no construye el informe ejecutivo final.
 
+Este contract declara que la salida seleccionada para esta ejecucion es Executive Report y que cualquier proyeccion analitica futura seria una representacion hermana del mismo contenido aprobado, no una fuente previa de este informe.
+
 ---
 
 ## Backing Task
@@ -44,10 +47,10 @@ Este contract no construye el informe ejecutivo final.
 |---|---|
 | Task ID | T-030 |
 | Task | Implementar el Presentation Contract del caso AUC-001 |
-| Specifications | SPEC-002 Component Boundaries; SPEC-004 Transversal Contracts |
+| Specifications | SPEC-002 Component Boundaries; SPEC-004 Transversal Contracts; SPEC-010 Presentation Projection Selection |
 | Skill | meta-lead-quality-analysis |
 | Acceptance Criterion | Existe un Presentation Contract que delimita el contenido aprobado para la capa de presentacion sin nueva interpretacion |
-| Implementation basis | T-029 confirmed Recommendation Set; T-028 Recommendation Contract; base Presentation Contract |
+| Implementation basis | T-029 confirmed Recommendation Set; T-028 Recommendation Contract; base Presentation Contract; T-043 documentary alignment decision; T-044 aligned base contracts |
 
 ---
 
@@ -56,9 +59,9 @@ Este contract no construye el informe ejecutivo final.
 | Role | Value |
 |---|---|
 | Producer | Framework after confirmed Recommendation Set and Recommendation Contract |
-| Consumer | Presentation Layer / T-031 executive report constructor |
+| Consumer | Presentation Layer / T-031 Executive Report projection constructor |
 | Framework role | Validate output readiness before building the final artifact |
-| Downstream artifact | T-031 Executive Output Artifact |
+| Downstream artifact | T-031 Executive Report selected projection |
 
 ---
 
@@ -73,9 +76,11 @@ Este contract no construye el informe ejecutivo final.
 | Knowledge Set | [AUC-001 Knowledge Set](auc-001-knowledge-set.md) | Confirmed |
 | Recommendation Contract | [AUC-001 Recommendation Contract](auc-001-recommendation-contract.md) | Completed |
 | Recommendation Set | [AUC-001 Recommendation Set](auc-001-recommendation-set.md) | Confirmed |
-| Base Presentation Contract | [VCA-PRS-001 Presentation Contract](../contracts/presentation.contract.md) | Documented |
+| Base Presentation Contract | [VCA-PRS-001 Presentation Contract](../contracts/presentation.contract.md) | Documented / aligned in T-044 |
 | AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Available |
 | Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
+| SPEC-010 | [Presentation Projection Selection](../../specs/spec-010-presentation-projection-selection.md) | Applicable |
+| ARCH-002 | [Presentation Projection Architectural Decision](../evaluations/auc-001-presentation-projection-architectural-decision.md) | Applicable |
 
 ---
 
@@ -90,9 +95,13 @@ Este contract no construye el informe ejecutivo final.
 | recommendation_contract_id | VCA-AUC-001-REC-001 |
 | period | 2026-06-01 to 2026-06-30 |
 | output_request | Informe ejecutivo trazable |
+| presentation_mode | Executive |
+| selected_presentation_projection | Executive Report |
+| projection_source | Context Definition and Output Request, aligned through SPEC-010 |
+| projection_relationship | Sibling representation of the approved Evidence, Knowledge and Recommendation content; not derived from an analytical projection |
 | audience | Analista de negocio, direccion, responsable de Marketing, especialistas de Meta Ads y equipo Comercial |
 | source_model | `ad_quality_spend_model` |
-| presentation_boundary | Presentation content scoping only; no final narrative, no new evidence, no new reasoning, no new recommendations |
+| presentation_boundary | Presentation content scoping only; selected executive projection only; no final narrative, no new evidence, no new reasoning, no new recommendations |
 
 ---
 
@@ -193,6 +202,10 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Limitation visibility | Required limitations and UNKNOWNs must be visible in the output, not relegated to implicit assumptions |
 | Traceability preservation | The output must reference upstream contracts and evidence/knowledge/recommendation IDs sufficiently for review |
 | Format containment | Executive wording may improve readability only if it preserves analytical meaning and boundaries |
+| Projection selection dependency | The selected projection is Executive Report and must remain traceable to the Context Definition and Output Request |
+| Single selected projection | The downstream artifact may materialize only the Executive Report for this execution |
+| Sibling projection preservation | Any future analytical projection must be a sibling representation of the same approved content, not a source artifact for the Executive Report |
+| No projection derivation | The Executive Report must not derive from an analytical projection or introduce a sequential projection chain |
 | Scope containment | The output must remain within June 2026, Meta Lead Ads, approved filters and corrected source model |
 
 ---
@@ -202,7 +215,7 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Target | Status | Reason |
 |---|---|---|
 | T-030 Presentation Contract | Completed | Presentation content scope, required sections, approved recommendations, limitations and exclusions are documented |
-| T-031 Executive Output Artifact | Completed | Output Artifact consumes this contract without adding evidence, reasoning or recommendations |
+| T-031 Executive Report selected projection | Completed | Executive Report consumes this contract without adding evidence, reasoning or recommendations and without deriving from an analytical projection |
 | New data acquisition | Not authorized | No downstream presentation need can reopen data acquisition without a new approved task/contract revision |
 
 ---
@@ -220,6 +233,9 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Limitation visibility | Pass | Required limitations and UNKNOWNs are enumerated |
 | Traceability preservation | Pass | Upstream artifacts are listed below |
 | Format containment | Pass | Final narrative is deferred to T-031 |
+| Projection selection dependency | Pass | Selected projection declared as Executive Report from Context Definition and Output Request |
+| Sibling projection preservation | Pass | Contract states that analytical projection and Executive Report are sibling representations |
+| No projection derivation | Pass | Contract prohibits deriving Executive Report from an analytical projection |
 | Recommendation boundary | Pass | Recommendations remain documentary suggested actions and do not authorize execution |
 | Numeric precision handling | Pass | Source precision may be preserved for traceability; any rounding requires a controlled formatting rule |
 
@@ -236,6 +252,10 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 - [AUC-001 Recommendation Contract](auc-001-recommendation-contract.md)
 - [AUC-001 Recommendation Set](auc-001-recommendation-set.md)
 - [VCA-PRS-001 Base Presentation Contract](../contracts/presentation.contract.md)
+- [SPEC-010 Presentation Projection Selection](../../specs/spec-010-presentation-projection-selection.md)
+- [VCA-AUC-001-ARCH-002 Presentation Projection Decision](../evaluations/auc-001-presentation-projection-architectural-decision.md)
+- [T-043 Documentary Alignment Decision](../evaluations/auc-001-documentary-alignment-decision.md)
+- [T-044 Base Contracts Alignment Record](../evaluations/auc-001-base-contracts-alignment-record.md)
 - [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
 - [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
 - [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
@@ -247,4 +267,4 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 
 T-030 is complete.
 
-The Presentation Contract delimits the approved content for the AUC-001 presentation layer. T-031 has built the executive output artifact under this contract without adding evidence, reasoning or recommendations.
+The Presentation Contract delimits the approved content for the AUC-001 Executive Report selected projection. T-031 has built the executive output artifact under this contract without adding evidence, reasoning, recommendations or projection derivation from an analytical output.
