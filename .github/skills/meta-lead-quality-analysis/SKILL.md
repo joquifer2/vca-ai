@@ -1,6 +1,6 @@
 ---
 name: meta-lead-quality-analysis
-description: Ejecuta el caso de uso analítico de calidad de leads de Meta Ads para VCA IA utilizando el lifecycle metodológico de AIF Foundation y BigQuery MCP Server como Data Provider principal.
+description: Ejecuta AUC-001 para analizar la calidad de leads de Meta Ads utilizando el contexto oficial, el workflow aprobado y BigQuery MCP Server como Data Provider autorizado.
 id: SDD-SKILL-006
 user-invocable: true
 disable-model-invocation: false
@@ -10,232 +10,240 @@ disable-model-invocation: false
 
 ## Propósito
 
-Ejecutar el caso de uso analítico AUC-001 para producir un conjunto canónico de evidencia, conocimiento y recomendaciones sobre la calidad de leads de Meta Ads.
+Ejecutar el caso de uso analítico AUC-001 para producir informes trazables sobre la calidad, evolución y eficiencia de los leads captados mediante Meta Ads.
 
-Esta skill orquesta el workflow analítico.
+Esta skill actúa como punto de entrada y orquestador del caso de uso.
 
-No define la arquitectura del sistema.
+El procedimiento detallado de ejecución se encuentra en:
 
-No sustituye las Specifications.
+- `RUNBOOK.md`
 
-No determina la estructura del informe final.
+Las referencias obligatorias del caso se encuentran en:
 
-La representación final deberá materializarse mediante las capacidades de Presentation Layer disponibles en el framework.
+- `references.md`
+
+La validación previa a la entrega se encuentra en:
+
+- `CHECKLIST.md`
+
+Esta skill no sustituye las Specifications, los contratos ni las decisiones arquitectónicas del proyecto.
 
 ---
 
 # Cuándo utilizar esta skill
 
-Utilizar esta skill cuando el objetivo sea analizar la calidad de captación de Meta Ads para VCA IA utilizando evidencia procedente de BigQuery.
+Activar esta skill cuando la solicitud esté relacionada con:
 
-Aplicarla especialmente ante solicitudes como:
+- calidad de leads de Meta Ads;
+- volumen y evolución de la captación;
+- eficiencia económica;
+- campañas, conjuntos o anuncios;
+- scoring o tiers de calidad;
+- informes analíticos de lead quality;
+- informes ejecutivos para Dirección;
+- ejecución del caso de uso AUC-001.
 
-- analiza la calidad de leads de Meta Ads;
-- genera la salida trazable de lead quality;
-- genera el informe analítico de lead quality;
-- revisa eficiencia y calidad de captación;
-- evalúa campañas, conjuntos o creatividades.
+La solicitud puede formularse en lenguaje natural.
 
----
-
-# Responsabilidades
-
-Esta skill es responsable de:
-
-- delimitar correctamente el caso de uso;
-- adquirir el contexto necesario;
-- obtener evidencia verificable;
-- construir conocimiento trazable;
-- formular recomendaciones justificadas;
-- entregar contenido canónico listo para representación.
-
-No es responsable de:
-
-- seleccionar la Presentation Projection;
-- transformar la comunicación según la audiencia;
-- redefinir la estructura narrativa del informe;
-- reinterpretar conocimiento ya aprobado.
+El usuario no necesita mencionar la skill, AUC-001, los contratos ni las Specifications aplicables.
 
 ---
 
-# Reglas
+# Instrucciones obligatorias de inicio
 
-- Tratar AIF Foundation como dependencia metodológica.
-- Utilizar BigQuery MCP Server como Data Provider principal cuando exista disponibilidad.
-- Consultar CCD, FARO, CLARO, KPIs oficiales y docs/context_refs.md antes del análisis.
-- No inventar evidencia ni completar datos ausentes mediante inferencias.
-- Separar estrictamente:
-  - Context Definition
-  - Evidence Acquisition
-  - Knowledge Generation
-  - Recommendation Generation
-  - Presentation
-- Mantener trazabilidad entre evidencia, conocimiento y recomendaciones.
-- Si falta contexto o evidencia suficiente, detener el flujo o solicitar aclaración.
-- No convertir esta skill en una Specification ni en una implementación técnica.
+Antes de analizar o consultar datos:
+
+1. Leer `RUNBOOK.md`.
+2. Leer `references.md`.
+3. Cargar los artefactos obligatorios indicados en `references.md`.
+4. Canonicalizar el Execution Context de la solicitud actual.
+5. Confirmar el Data Contract vigente.
+6. Confirmar que BigQuery MCP Server está disponible.
+7. Verificar que las fuentes necesarias están autorizadas.
+
+No iniciar la adquisición de evidencia si alguno de estos pasos no puede completarse.
 
 ---
 
-# Trazabilidad
+## Data Provider y mecanismo de acceso
 
-Esta skill implementa el caso de uso definido en:
+La evidencia deberá adquirirse exclusivamente desde las fuentes autorizadas por:
 
-analytical_use_cases/meta_lead_quality_analysis.md
+- el Data Contract vigente;
+- la configuración publicada del workspace;
+- las referencias oficiales del caso de uso.
 
-Debe permanecer alineada con:
+El Data Provider autorizado define qué proyectos, datasets, tablas y campos pueden utilizarse.
 
-- objetivo;
-- alcance;
-- criterios de éxito;
-- Specifications aprobadas;
-- decisiones arquitectónicas vigentes.
+El mecanismo técnico de acceso será resuelto por el runtime y podrá utilizar las capacidades disponibles en el entorno, siempre que preserve exactamente el alcance autorizado.
 
----
+Antes de ejecutar cualquier consulta deberá verificarse que cada fuente solicitada está incluida en el Data Contract y en la configuración del workspace.
 
-# Flujo operativo
+La disponibilidad técnica de una tabla no implica autorización metodológica.
 
-## 1. Canonicalizar el contexto de ejecución
+Queda prohibido:
 
-Determinar:
+- consultar fuentes fuera del alcance aprobado;
+- ampliar silenciosamente el conjunto de tablas;
+- utilizar un mecanismo alternativo para eludir el Data Contract;
+- continuar cuando no pueda verificarse la autorización de una fuente.
 
-- periodo;
-- alcance;
-- definición operativa de calidad;
-- audiencia;
-- objetivo del análisis.
+Si el runtime no puede acceder a las fuentes autorizadas, deberá detener la ejecución y registrar el bloqueo.
 
-Resolver ambigüedades únicamente cuando sean materiales.
+## Solicitud “desde cero”
 
----
+Interpretar “desde cero” como:
 
-## 2. Cargar contexto oficial
+- volver a adquirir la evidencia autorizada;
+- reconstruir los artefactos canónicos;
+- generar una nueva representación.
 
-Consultar cuando exista disponibilidad:
+No significa:
 
-- CCD
-- FARO
-- CLARO
-- KPIs oficiales
-- docs/context_refs.md
-- project_brief.md
-
----
-
-## 3. Identificar Data Providers
-
-Priorizar:
-
-BigQuery MCP Server.
-
-Identificar únicamente Data Providers adicionales cuando el caso de uso lo requiera.
+- ignorar la skill;
+- ignorar el contexto oficial;
+- ignorar los contratos;
+- consultar cualquier tabla disponible;
+- utilizar informes anteriores como fuente;
+- omitir el workflow metodológico.
 
 ---
 
-## 4. Adquirir evidencia
+# Workflow obligatorio
 
-Construir el Evidence Set utilizando exclusivamente fuentes verificables.
+Ejecutar el caso siguiendo este orden:
 
-Como mínimo considerar:
+1. Execution Context Canonicalization.
+2. Context Loading.
+3. Evidence Acquisition.
+4. Knowledge Generation.
+5. Recommendation Generation.
+6. Presentation.
 
-- volumen;
-- calidad;
-- eficiencia;
-- campañas;
-- creatividades;
-- segmentos;
-- evolución temporal;
-- limitaciones de cobertura.
+No redactar el informe mientras se adquiere o analiza evidencia.
 
----
-
-## 5. Generar conocimiento
-
-Transformar la evidencia en un Knowledge Set aprobado.
-
-Separar claramente:
-
-- hechos observables;
-- conocimiento derivado;
-- interpretación autorizada;
-- limitaciones;
-- incertidumbres.
+No saltar directamente desde BigQuery a la representación final.
 
 ---
 
-## 6. Generar recomendaciones
+# Artefactos canónicos
 
-Construir un Recommendation Set priorizado.
-
-Cada recomendación deberá:
-
-- estar sustentada por conocimiento aprobado;
-- conservar trazabilidad;
-- ser accionable;
-- respetar el contexto del cliente.
-
----
-
-## 7. Materializar la representación
-
-Una vez estabilizados:
+Antes de iniciar Presentation Layer deben existir y estar estabilizados:
 
 - Context Definition;
 - Evidence Set;
 - Knowledge Set;
-- Recommendation Set;
+- Recommendation Set.
 
-la representación final deberá delegarse en Presentation Layer.
+La ejecución debe seguir las instrucciones de `RUNBOOK.md` para construirlos.
 
-La representación deberá utilizar:
+El Knowledge Set debe consolidar conocimiento y no limitarse a repetir métricas o describir tablas.
 
-- la Presentation Projection previamente seleccionada;
-- el Communication Context resuelto;
-- las restricciones de representación correspondientes.
+El Recommendation Set debe derivar exclusivamente del Knowledge Set.
 
-La materialización no podrá:
-
-- crear evidencia nueva;
-- reinterpretar conocimiento;
-- modificar prioridades;
-- alterar la equivalencia semántica del contenido canónico.
+Presentation Layer no puede reconstruir estos artefactos ni volver a razonar directamente desde los datos.
 
 ---
 
-# Comandos
+# Materialización de la salida
 
-No existen comandos obligatorios.
+Presentation Layer deberá consumir únicamente los artefactos canónicos estabilizados.
 
-Cuando el entorno lo permita, utilizar las capacidades del Workspace y del Data Provider principal para adquirir evidencia.
+La salida deberá resolver:
+
+- Presentation Projection;
+- Communication Context;
+- Representation Constraints;
+- Presentation Policy aplicable, cuando exista.
+
+Para una salida analítica podrá utilizarse:
+
+- `analytical-review`
+
+Para una salida orientada a Dirección podrá utilizarse:
+
+- `executive-decision-support`
+
+Las proyecciones analítica y ejecutiva son representaciones hermanas.
+
+Ninguna representación anterior puede utilizarse como fuente de otra.
+
+---
+
+# Invariantes de presentación
+
+La representación final no podrá:
+
+- consultar nuevas fuentes;
+- crear evidencia;
+- generar nuevo conocimiento;
+- crear recomendaciones;
+- cambiar prioridades;
+- alterar coverage states;
+- ocultar limitaciones materiales;
+- modificar conclusiones aprobadas;
+- romper la equivalencia semántica.
+
+Las Presentation Policies solo pueden especializar la forma de comunicar el contenido canónico.
 
 ---
 
 # Criterios de bloqueo
 
-Detener el flujo cuando:
+Detener la ejecución cuando:
 
-- el alcance no pueda canonicalizarse;
-- no exista evidencia verificable suficiente;
-- BigQuery no esté disponible;
+- el Execution Context no pueda canonicalizarse;
 - falte contexto obligatorio;
-- el análisis requiera asumir datos inexistentes;
-- la representación exija modificar contenido canónico.
+- `references.md` no pueda resolverse;
+- el runtime no pueda acceder al Data Provider autorizado;
+- no pueda verificarse que las fuentes pertenecen al Data Contract.
+- una fuente necesaria no esté autorizada;
+- se detecte una fuente fuera del Data Contract;
+- el Evidence Set no pueda estabilizarse;
+- el Knowledge Set no aporte conocimiento consolidado;
+- el Recommendation Set no derive del Knowledge Set;
+- falte algún artefacto canónico antes de Presentation Layer;
+- la representación requiera modificar el contenido canónico;
+- no pueda garantizarse la equivalencia semántica.
+
+En caso de bloqueo:
+
+- no improvisar;
+- no ampliar silenciosamente las fuentes;
+- no completar mediante inferencias;
+- registrar la causa;
+- solicitar aclaración o revisión.
+
+---
+
+# Validación final
+
+Antes de entregar cualquier informe:
+
+1. Ejecutar `CHECKLIST.md`.
+2. Confirmar que solo se utilizó BigQuery MCP Server.
+3. Declarar las fuentes y artefactos consumidos.
+4. Identificar la Presentation Projection aplicada.
+5. Identificar la Presentation Policy aplicada, cuando exista.
+6. Confirmar que no se utilizaron informes anteriores como fuente.
+7. Confirmar que la salida conserva el contenido canónico y su trazabilidad.
 
 ---
 
 # Definition of Done
 
-La skill se considera completada cuando:
+La ejecución se considera completada cuando:
 
-- el Context Definition queda resuelto;
-- el Evidence Set queda adquirido y trazado;
-- el Knowledge Set queda estabilizado;
-- el Recommendation Set queda priorizado;
-- la representación final conserva equivalencia semántica;
-- el artefacto generado es coherente con la Presentation Projection y el Communication Context;
-- no se introducen hechos, interpretaciones ni recomendaciones no verificadas.
-
----
-
-# Complementos
-
-No existen complementos definidos actualmente.
+- el Execution Context está canonicalizado;
+- el contexto oficial ha sido consultado;
+- las fuentes utilizadas están autorizadas;
+- BigQuery MCP Server ha sido el único Data Provider;
+- Context Definition, Evidence Set, Knowledge Set y Recommendation Set están estabilizados;
+- las recomendaciones están trazadas al conocimiento;
+- Presentation Layer consume los artefactos canónicos sin volver a derivarlos;
+- la proyección y el contexto comunicativo están resueltos;
+- la política aplicada está identificada, cuando exista;
+- las limitaciones y UNKNOWNs permanecen visibles;
+- la equivalencia semántica está preservada;
+- `CHECKLIST.md` está completado;
+- no se han introducido hechos, interpretaciones ni recomendaciones no aprobados.
