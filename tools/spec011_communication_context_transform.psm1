@@ -109,14 +109,16 @@ function New-Spec011RepresentationConstraints {
         information_density = $CommunicationContext['information_density']
         traceability_visibility = $CommunicationContext['traceability_visibility']
         format_constraints = $CommunicationContext['format_constraints']
-        allowed_transformations = @('terminological', 'structural', 'abstraction', 'information_density')
+        experimental_active_dimension = 'traceability_visibility'
+        deferred_dimensions = @('abstraction_level', 'information_density', 'vocabulary', 'narrative_organization', 'terminological_transformation', 'structural_transformation', 'abstraction_transformation', 'information_density_transformation')
+        allowed_transformations = @('traceability_visibility')
         prohibited_changes = @('new_evidence', 'new_reasoning', 'new_interpretation', 'new_recommendation', 'priority_rewrite', 'coverage_change')
         material_limitations_required = $true
         canonical_artifact_id = $CanonicalContent['artifact_id']
         presentation_contract_id = $PresentationContract['contract_id']
     }
 
-    return New-Spec011Result -Status 'Ready' -WorkPackage 'WP-002' -Evidence @('Communication Context derived into Representation Constraints before transformation') -Data @{ representation_constraints = [pscustomobject]$constraints }
+    return New-Spec011Result -Status 'Ready' -WorkPackage 'WP-002' -Evidence @('Communication Context derived into Representation Constraints before transformation', 'Experimental active dimension is traceability_visibility; remaining SPEC-011 dimensions are deferred') -Data @{ representation_constraints = [pscustomobject]$constraints }
 }
 
 function New-Spec011PresentationLayerOutput {
@@ -238,7 +240,7 @@ function Invoke-Spec011CommunicationContextTransformation {
     $equivalence = Test-Spec011SemanticEquivalence -CanonicalContent $CanonicalContent -PresentationLayerOutput $output
     if ($equivalence.status -ne 'Ready') { return $equivalence }
 
-    return New-Spec011Result -Status 'Materialized' -WorkPackage 'WP-004' -Evidence @('Presentation Layer Output materialized', 'Traceability preserved', 'Boundary status preserved') -Data @{ presentation_layer_output = $equivalence.data.presentation_layer_output }
+    return New-Spec011Result -Status 'Materialized' -WorkPackage 'WP-004' -Evidence @('Presentation Layer Output materialized', 'Traceability visibility transformed experimentally', 'Boundary status preserved') -Data @{ presentation_layer_output = $equivalence.data.presentation_layer_output }
 }
 
 Export-ModuleMember -Function @(
