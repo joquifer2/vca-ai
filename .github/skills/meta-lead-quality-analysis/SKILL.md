@@ -1,152 +1,241 @@
 ---
 name: meta-lead-quality-analysis
-description: Esta skill ejecuta el caso de uso analitico de calidad de leads en Meta Ads para VCA IA, separando contexto, evidencia, analisis, razonamiento y recomendaciones.
+description: Ejecuta el caso de uso analítico de calidad de leads de Meta Ads para VCA IA utilizando el lifecycle metodológico de AIF Foundation y BigQuery MCP Server como Data Provider principal.
 id: SDD-SKILL-006
 user-invocable: true
 disable-model-invocation: false
 ---
 
-# Skill - Meta Lead Quality Analysis
+# Skill — Meta Lead Quality Analysis
 
 ## Propósito
 
-Ejecutar el primer caso de uso analítico de VCA IA para analizar la calidad de leads captados mediante Meta Ads, utilizando el lifecycle metodológico heredado de AIF Foundation y BigQuery MCP Server como Data Provider principal.
+Ejecutar el caso de uso analítico AUC-001 para producir un conjunto canónico de evidencia, conocimiento y recomendaciones sobre la calidad de leads de Meta Ads.
 
-Esta skill no define una specification ni sustituye la arquitectura analítica del proyecto. Su función es describir el procedimiento reutilizable para producir un análisis trazable y un informe ejecutivo coherente.
+Esta skill orquesta el workflow analítico.
 
-Esta skill implementa el caso de uso AUC-001 y sirve para validar la arquitectura analítica de VCA IA, el lifecycle metodológico y el uso de BigQuery MCP Server como Data Provider principal.
+No define la arquitectura del sistema.
 
-## Cuándo usar esta skill
+No sustituye las Specifications.
 
-Usar esta skill cuando el objetivo sea analizar la calidad de leads de Meta Ads en VCA y producir una salida ejecutiva trazable.
+No determina la estructura del informe final.
 
-Aplicarla especialmente cuando la solicitud sea similar a:
+La representación final deberá materializarse mediante las capacidades de Presentation Layer disponibles en el framework.
 
-- "analiza la calidad de los leads de Meta Ads";
-- "genera el informe ejecutivo de lead quality";
-- "revisa eficiencia y calidad de captación en Meta Ads";
-- "prepara el caso de uso de lead quality analysis";
-- "evalúa campañas y creatividades de Meta Ads".
+---
 
-## Reglas
+# Cuándo utilizar esta skill
 
-- Tratar AIF Foundation como dependencia metodologica, no como objeto del analisis.
-- Usar BigQuery MCP Server como fuente principal de evidencia cuando existan datos disponibles.
-- Consultar contexto relevante antes de analizar: CCD, FARO, CLARO, KPIs oficiales y docs/context_refs.md como mapa oficial de contexto.
-- No inventar datos, segmentos, campañas, periodos ni conclusiones no sustentadas.
-- Separar siempre contexto, evidencia, preparación de datos, análisis, razonamiento, recomendaciones y construcción del informe.
-- Mantener trazabilidad entre cada afirmación y su fuente o evidencia.
-- Si falta contexto o acceso a datos, marcarlo explícitamente como pendiente en lugar de asumirlo.
-- No convertir esta skill en una especificación del sistema ni en una implementación técnica.
+Utilizar esta skill cuando el objetivo sea analizar la calidad de captación de Meta Ads para VCA IA utilizando evidencia procedente de BigQuery.
 
-## Trazabilidad
+Aplicarla especialmente ante solicitudes como:
 
-Esta skill está asociada al caso de uso [analytical_use_cases/meta_lead_quality_analysis.md](../../../analytical_use_cases/meta_lead_quality_analysis.md) y debe mantenerse alineada con su objetivo, alcance y criterios de éxito.
+- analiza la calidad de leads de Meta Ads;
+- genera el informe ejecutivo de lead quality;
+- genera el informe analítico de lead quality;
+- revisa eficiencia y calidad de captación;
+- evalúa campañas, conjuntos o creatividades.
 
-## Flujo operativo
+---
 
-1. Confirmar el objetivo del análisis.
+# Responsabilidades
 
-   Verificar:
+Esta skill es responsable de:
 
-   - periodo a analizar;
-   - alcance de campañas o conjuntos de anuncios;
-   - definición operativa de lead de calidad;
-   - audiencia del informe;
-   - criterios de éxito esperados.
+- delimitar correctamente el caso de uso;
+- adquirir el contexto necesario;
+- obtener evidencia verificable;
+- construir conocimiento trazable;
+- formular recomendaciones justificadas;
+- entregar contenido canónico listo para representación.
 
-   Confirmar también que el análisis se usará para validar la arquitectura analítica, el lifecycle y el uso de BigQuery MCP Server definidos por el caso de uso AUC-001.
+No es responsable de:
 
-2. Cargar contexto oficial.
+- seleccionar la Presentation Projection;
+- transformar la comunicación según la audiencia;
+- redefinir la estructura narrativa del informe;
+- reinterpretar conocimiento ya aprobado.
 
-   Revisar, cuando exista disponibilidad:
+---
 
-   - Client Context Document (CCD);
-   - FARO;
-   - CLARO;
-   - KPIs oficiales;
-   - docs/context_refs.md;
-   - project_brief.md.
+# Reglas
 
-3. Identificar Data Providers.
+- Tratar AIF Foundation como dependencia metodológica.
+- Utilizar BigQuery MCP Server como Data Provider principal cuando exista disponibilidad.
+- Consultar CCD, FARO, CLARO, KPIs oficiales y docs/context_refs.md antes del análisis.
+- No inventar evidencia ni completar datos ausentes mediante inferencias.
+- Separar estrictamente:
+  - Context Definition
+  - Evidence Acquisition
+  - Knowledge Generation
+  - Recommendation Generation
+  - Presentation
+- Mantener trazabilidad entre evidencia, conocimiento y recomendaciones.
+- Si falta contexto o evidencia suficiente, detener el flujo o solicitar aclaración.
+- No convertir esta skill en una Specification ni en una implementación técnica.
 
-   Priorizar BigQuery MCP Server como fuente principal de evidencia.
+---
 
-   Si el caso lo requiere, identificar Data Providers complementarios compatibles con el análisis.
+# Trazabilidad
 
-4. Preparar la evidencia.
+Esta skill implementa el caso de uso definido en:
 
-   Reunir y estructurar, como minimo:
+analytical_use_cases/meta_lead_quality_analysis.md
 
-   - volumen de captación;
-   - conversiones y tasas relevantes;
-   - coste y eficiencia económica;
-   - campañas y creatividades de mejor rendimiento;
-   - señales de calidad del lead;
-   - hallazgos por segmento o periodo si aplican.
+Debe permanecer alineada con:
 
-5. Analizar la información.
+- objetivo;
+- alcance;
+- criterios de éxito;
+- Specifications aprobadas;
+- decisiones arquitectónicas vigentes.
 
-   Separar claramente:
+---
 
-   - hechos observables;
-   - evidencia derivada;
-   - interpretaciones;
-   - conclusiones;
-   - limitaciones del análisis.
+# Flujo operativo
 
-6. Construir el razonamiento.
+## 1. Canonicalizar el contexto de ejecución
 
-   Explicar por qué la evidencia conduce a cada conclusión.
+Determinar:
 
-   Evitar saltos lógicos y distinguir correlación de interpretación.
+- periodo;
+- alcance;
+- definición operativa de calidad;
+- audiencia;
+- objetivo del análisis.
 
-7. Formular recomendaciones.
+Resolver ambigüedades únicamente cuando sean materiales.
 
-   Priorizar acciones concretas, justificadas y alineadas con el contexto de negocio de VCA.
+---
 
-   Las recomendaciones deben poder ejecutarse o validarse en ciclos posteriores.
+## 2. Cargar contexto oficial
 
-8. Redactar el informe ejecutivo.
+Consultar cuando exista disponibilidad:
 
-   El informe debe incluir, como mínimo:
+- CCD
+- FARO
+- CLARO
+- KPIs oficiales
+- docs/context_refs.md
+- project_brief.md
 
-   - contexto del análisis;
-   - fuentes de evidencia utilizadas;
-   - preparación de datos;
-   - análisis;
-   - razonamiento;
-   - recomendaciones priorizadas;
-   - limitaciones y pendientes.
+---
 
-## Comandos base
+## 3. Identificar Data Providers
 
-No aplica ejecución de comandos fija.
+Priorizar:
 
-Cuando el entorno lo permita, utilizar las capacidades disponibles del workspace y del Data Provider principal para recuperar evidencia y preparar el análisis.
+BigQuery MCP Server.
 
-## Criterios de bloqueo
+Identificar únicamente Data Providers adicionales cuando el caso de uso lo requiera.
 
-Detener el flujo si:
+---
 
-- no existe definición suficiente del periodo o alcance;
-- no hay acceso a evidencia mínima verificable;
-- la fuente de datos principal no está disponible;
-- faltan referencias contextuales obligatorias;
-- el análisis exigiría asumir datos no publicados;
-- la salida pretendida mezcla análisis con implementación.
+## 4. Adquirir evidencia
 
-## Definition of Done
+Construir el Evidence Set utilizando exclusivamente fuentes verificables.
 
-La skill se considera completa cuando:
+Como mínimo considerar:
 
-- el caso de uso queda delimitado;
-- el contexto relevante queda identificado;
-- la evidencia queda trazada hasta la fuente principal;
-- el análisis separa hechos, interpretación y recomendación;
-- el informe ejecutivo resultante es reutilizable y auditable;
-- no se introducen supuestos no verificados.
+- volumen;
+- calidad;
+- eficiencia;
+- campañas;
+- creatividades;
+- segmentos;
+- evolución temporal;
+- limitaciones de cobertura.
 
-## Complementos
+---
 
-Esta skill no tiene complementos definidos actualmente.
+## 5. Generar conocimiento
+
+Transformar la evidencia en un Knowledge Set aprobado.
+
+Separar claramente:
+
+- hechos observables;
+- conocimiento derivado;
+- interpretación autorizada;
+- limitaciones;
+- incertidumbres.
+
+---
+
+## 6. Generar recomendaciones
+
+Construir un Recommendation Set priorizado.
+
+Cada recomendación deberá:
+
+- estar sustentada por conocimiento aprobado;
+- conservar trazabilidad;
+- ser accionable;
+- respetar el contexto del cliente.
+
+---
+
+## 7. Materializar la representación
+
+Una vez estabilizados:
+
+- Context Definition;
+- Evidence Set;
+- Knowledge Set;
+- Recommendation Set;
+
+la representación final deberá delegarse en Presentation Layer.
+
+La representación deberá utilizar:
+
+- la Presentation Projection previamente seleccionada;
+- el Communication Context resuelto;
+- las restricciones de representación correspondientes.
+
+La materialización no podrá:
+
+- crear evidencia nueva;
+- reinterpretar conocimiento;
+- modificar prioridades;
+- alterar la equivalencia semántica del contenido canónico.
+
+---
+
+# Comandos
+
+No existen comandos obligatorios.
+
+Cuando el entorno lo permita, utilizar las capacidades del Workspace y del Data Provider principal para adquirir evidencia.
+
+---
+
+# Criterios de bloqueo
+
+Detener el flujo cuando:
+
+- el alcance no pueda canonicalizarse;
+- no exista evidencia verificable suficiente;
+- BigQuery no esté disponible;
+- falte contexto obligatorio;
+- el análisis requiera asumir datos inexistentes;
+- la representación exija modificar contenido canónico.
+
+---
+
+# Definition of Done
+
+La skill se considera completada cuando:
+
+- el Context Definition queda resuelto;
+- el Evidence Set queda adquirido y trazado;
+- el Knowledge Set queda estabilizado;
+- el Recommendation Set queda priorizado;
+- la representación final conserva equivalencia semántica;
+- el artefacto generado es coherente con la Presentation Projection y el Communication Context;
+- no se introducen hechos, interpretaciones ni recomendaciones no verificadas.
+
+---
+
+# Complementos
+
+No existen complementos definidos actualmente.
