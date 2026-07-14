@@ -955,6 +955,20 @@ Disponer de un criterio único y gobernado para priorizar la atención comercial
 
 Todas las integraciones, dashboards y automatizaciones deberán utilizar la definición oficial de **Qualified Lead** establecida por FARO.
 
+# **2026-07-07**
+
+**Decisión**
+
+Optimizar las campañas de Meta por el evento **LeadQualified**, en lugar de mantener la optimización principal por formularios recibidos, como prueba controlada de aprendizaje.
+
+**Motivo**
+
+Dilucidar la hipótesis de si alimentar a Meta con una señal de calidad comercial permite obtener más leads cualificados **A/B** que continuar optimizando únicamente por volumen de formularios recibidos.
+
+**Impacto**
+
+La lectura de resultados deberá comparar la evolución de leads cualificados **A/B**, coste por lead cualificado y calidad comercial frente al escenario previo de optimización por formularios. La decisión no implica considerar los formularios recibidos como KPI principal de éxito cuando exista señal suficiente de **LeadQualified**.
+
 # **14. Conocimiento del Dominio**
 
 Este apartado recoge el conocimiento de dominio necesario para interpretar correctamente el ecosistema de captación, scoring, activación y reporting desarrollado por VCA Project.
