@@ -24,7 +24,7 @@ Aunque el proceso produce resultados satisfactorios, concentra en una única eje
 
 # Objetivo del caso de uso
 
-Construir una capacidad analítica que permita generar un informe ejecutivo sobre la calidad de los leads captados mediante Meta Ads, separando claramente:
+Construir una capacidad analítica que permita producir contenido analítico canónico estabilizado sobre la calidad de los leads captados mediante Meta Ads, separando claramente:
 
 - contexto;
 - obtención de evidencia;
@@ -32,7 +32,9 @@ Construir una capacidad analítica que permita generar un informe ejecutivo sobr
 - análisis;
 - razonamiento;
 - recomendaciones;
-- construcción del informe.
+- contenido canónico estabilizado.
+
+La materialización posterior del contenido canónico aprobado corresponde a Presentation Layer y se rige por SPEC-010 y SPEC-011.
 
 ---
 
@@ -43,8 +45,8 @@ Construir una capacidad analítica que permita generar un informe ejecutivo sobr
 - análisis de calidad de leads procedentes de Meta Ads;
 - revisión de volumen, coste, calidad y eficiencia de inversión;
 - consolidación de contexto y evidencia desde las fuentes oficiales del proyecto;
-- síntesis ejecutiva con conclusiones y recomendaciones priorizadas;
-- trazabilidad entre contexto, evidencia, razonamiento y resultado final.
+- síntesis analítica con conclusiones y recomendaciones priorizadas;
+- trazabilidad entre contexto, evidencia, razonamiento y contenido canónico estabilizado.
 
 ## No incluye
 
@@ -108,11 +110,14 @@ La capacidad analítica deberá utilizar, cuando resulte necesario:
 - una fuente principal de evidencia verificable;
 - un criterio operativo para distinguir calidad de lead;
 - un periodo de analisis definido;
-- un resultado ejecutivo con trazabilidad completa.
+- un contenido analitico canonico estabilizado con trazabilidad completa;
+
 
 ---
 
 # Flujo de analisis
+
+## Pipeline analitico
 
 ## Secuencia base
 
@@ -123,7 +128,6 @@ La capacidad analítica deberá utilizar, cuando resulte necesario:
 5. Separar hechos observables, evidencia derivada e interpretaciones.
 6. Construir el razonamiento que conecta evidencia con conclusiones.
 7. Formular recomendaciones priorizadas y accionables.
-8. Redactar el informe ejecutivo con limitaciones y pendientes.
 
 ## Salidas esperadas por etapa
 
@@ -135,7 +139,24 @@ La capacidad analítica deberá utilizar, cuando resulte necesario:
 | Analisis | Hallazgos observables y derivados |
 | Razonamiento | Justificacion explicita de conclusiones |
 | Recomendaciones | Acciones priorizadas |
-| Informe | Documento ejecutivo final |
+| Contenido canonico | Contenido analitico estabilizado y trazable |
+
+## Pipeline de representacion
+
+### Secuencia base
+
+8. Delegar la seleccion de la proyeccion de presentacion a Presentation Layer a partir del contexto canonicalizado, conforme a SPEC-010.
+9. Delegar la transformacion de la representacion a Presentation Layer segun el Communication Context correspondiente, conforme a SPEC-011.
+10. Materializar la salida final sin alterar el contenido canonico aprobado.
+
+## Salidas esperadas por etapa
+
+| Etapa | Salida esperada |
+| --- | --- |
+| Proyeccion | Presentation Projection Selection resuelta |
+| Contexto de comunicacion | Communication Context aplicado |
+| Representacion | Presentation Output trazable |
+| Salida | Documento final alineado con la proyeccion seleccionada |
 
 ---
 
@@ -149,15 +170,19 @@ El caso AUC-001 quedara listo para validacion cuando cumpla, como minimo, con es
 4. El analisis separa hechos observables, evidencia derivada, interpretaciones y recomendaciones.
 5. Las conclusiones pueden rastrearse hasta la evidencia usada.
 6. Las recomendaciones son accionables y priorizadas.
-7. Las limitaciones y pendientes quedan explicitados en el informe final.
-8. No se introducen supuestos no verificados.
+7. El contenido analitico queda estabilizado antes de cualquier materializacion de presentacion.
+8. La proyeccion de presentacion queda determinada por el contexto canonicalizado.
+9. Las limitaciones y pendientes quedan explicitados en la salida final.
+10. No se introducen supuestos no verificados.
 
 ## Señales de validacion exitosa
 
-- el informe final reproduce una lectura coherente del rendimiento de leads;
+- el contenido analitico canónico reproduce una lectura coherente del rendimiento de leads;
+- la representacion final conserva la equivalencia semantica del contenido canónico aprobado;
 - el proceso puede repetirse con la misma estructura sin perder trazabilidad;
 - la skill meta-lead-quality-analysis puede operar sin redefinir el alcance del caso;
-- la salida resultante es util para analisis ejecutivo y para futura revision documental.
+- el contenido analitico puede materializarse en una salida final coherente con la proyeccion seleccionada;
+- la salida resultante es util para revision documental y para consumo ejecutivo.
 
 ---
 
@@ -173,7 +198,7 @@ Podrán incorporarse otros Data Providers compatibles cuando resulte necesario.
 
 # Resultado esperado
 
-El resultado del análisis será un informe ejecutivo que permita comprender:
+El resultado del análisis será un contenido analítico canonico estabilizado, apto para su posterior materializacion en una salida final que permita comprender:
 
 - volumen de captación;
 - calidad de los leads;
@@ -182,11 +207,17 @@ El resultado del análisis será un informe ejecutivo que permita comprender:
 - oportunidades de optimización;
 - recomendaciones priorizadas.
 
+El contenido canónico constituye el unico origen autorizado para cualquier representacion posterior.
+
+La salida final debera conservar equivalencia semantica con el contenido canonico aprobado y ajustarse a la proyeccion de presentacion seleccionada.
+
 ---
 
 # Criterios de éxito
 
-El caso de uso se considerará validado cuando la skill meta-lead-quality-analysis sea capaz de producir un informe equivalente o superior al proceso actual, manteniendo la trazabilidad entre contexto, evidencia, razonamiento y recomendaciones.
+El caso de uso se considerará validado cuando la skill meta-lead-quality-analysis sea capaz de producir un contenido analitico canonico equivalente o superior al proceso actual, manteniendo la trazabilidad entre contexto, evidencia, razonamiento y recomendaciones, y permitiendo su posterior materializacion conforme a la proyeccion seleccionada.
+
+El contenido canónico podrá materializarse mediante multiples representaciones preservando la equivalencia semantica.
 
 ---
 

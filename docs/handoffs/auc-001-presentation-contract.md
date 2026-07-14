@@ -25,9 +25,11 @@
 
 ## Purpose
 
-Delimitar el contenido aprobado que puede consumir la capa de presentacion para construir la proyeccion ejecutiva seleccionada de AUC-001.
+Delimitar el contenido aprobado que puede consumir la capa de presentacion para construir la salida seleccionada de AUC-001.
 
-Este contract autoriza secciones, fuentes, limitaciones, conocimiento, recomendaciones y restricciones de proyeccion ya validadas para presentacion.
+Este contract autoriza el contenido canónico, las fuentes, las limitaciones, el conocimiento y las recomendaciones ya validados para presentacion.
+
+La organizacion narrativa, la densidad informativa, el vocabulario, el nivel de abstraccion y la forma concreta del artefacto final pertenecen al Communication Context y a la transformacion de representacion.
 
 Este contract no crea evidencia nueva.
 
@@ -35,9 +37,9 @@ Este contract no introduce interpretaciones nuevas.
 
 Este contract no reordena prioridades ni cambia recomendaciones.
 
-Este contract no construye el informe ejecutivo final.
+Este contract no construye la narrativa final.
 
-Este contract declara que la salida seleccionada para esta ejecucion es Executive Report y que cualquier proyeccion analitica futura seria una representacion hermana del mismo contenido aprobado, no una fuente previa de este informe.
+Este contract no define la forma concreta del Executive Report ni de futuras representaciones hermanas.
 
 ---
 
@@ -47,9 +49,9 @@ Este contract declara que la salida seleccionada para esta ejecucion es Executiv
 |---|---|
 | Task ID | T-030 |
 | Task | Implementar el Presentation Contract del caso AUC-001 |
-| Specifications | SPEC-002 Component Boundaries; SPEC-004 Transversal Contracts; SPEC-010 Presentation Projection Selection |
+| Specifications | SPEC-002 Component Boundaries; SPEC-004 Transversal Contracts; SPEC-010 Presentation Projection Selection; SPEC-011 Communication Context Representation Transformation |
 | Skill | meta-lead-quality-analysis |
-| Acceptance Criterion | Existe un Presentation Contract que delimita el contenido aprobado para la capa de presentacion sin nueva interpretacion |
+| Acceptance Criterion | Existe un Presentation Contract que delimita invariantes de representacion sin fijar narrativa |
 | Implementation basis | T-029 confirmed Recommendation Set; T-028 Recommendation Contract; base Presentation Contract; T-043 documentary alignment decision; T-044 aligned base contracts |
 
 ---
@@ -58,10 +60,10 @@ Este contract declara que la salida seleccionada para esta ejecucion es Executiv
 
 | Role | Value |
 |---|---|
-| Producer | Framework after confirmed Recommendation Set and Recommendation Contract |
-| Consumer | Presentation Layer / T-031 Executive Report projection constructor |
-| Framework role | Validate output readiness before building the final artifact |
-| Downstream artifact | T-031 Executive Report selected projection |
+| Producer | Canonical Analytical Pipeline after confirmed Recommendation Set and Recommendation Contract |
+| Consumer | Presentation Layer |
+| Framework role | Validate output readiness before building the selected presentation output |
+| Downstream artifact | Selected presentation output |
 
 ---
 
@@ -95,13 +97,10 @@ Este contract declara que la salida seleccionada para esta ejecucion es Executiv
 | recommendation_contract_id | VCA-AUC-001-REC-001 |
 | period | 2026-06-01 to 2026-06-30 |
 | output_request | Informe ejecutivo trazable |
-| presentation_mode | Executive |
-| selected_presentation_projection | Executive Report |
-| projection_source | Context Definition and Output Request, aligned through SPEC-010 |
-| projection_relationship | Sibling representation of the approved Evidence, Knowledge and Recommendation content; not derived from an analytical projection |
-| audience | Analista de negocio, direccion, responsable de Marketing, especialistas de Meta Ads y equipo Comercial |
 | source_model | `ad_quality_spend_model` |
-| presentation_boundary | Presentation content scoping only; selected executive projection only; no final narrative, no new evidence, no new reasoning, no new recommendations |
+| presentation_boundary | Presentation content scoping only; no final narrative, no new evidence, no new reasoning, no new recommendations |
+
+La seleccion de proyeccion, la audiencia y el Communication Context no se fijan en esta seccion; se determinan por el contexto canonicalizado y por SPEC-010 y SPEC-011.
 
 ---
 
@@ -109,9 +108,9 @@ Este contract declara que la salida seleccionada para esta ejecucion es Executiv
 
 | Section ID | Required Section | Approved Content Source | Presentation Rule |
 |---|---|---|---|
-| SEC-001 | Context and scope | Context Definition | Present objective, period, operational scope, filters, lead quality definition, audience and output request without expanding scope |
+| SEC-001 | Context and scope | Context Definition | Present objective, period, operational scope, filters, lead quality definition and output request without expanding scope |
 | SEC-002 | Source and model basis | Evidence Contract; Analytical Contract | Present approved source tables, model grain, quality rule and spend filter without introducing new data sources |
-| SEC-003 | Evidence summary | Evidence Set; Evidence Contract | Present EVD-001 through EVD-004 as observable evidence with limitations visible |
+| SEC-003 | Evidence summary | Evidence Set; Evidence Contract | Present EVD-001 through EVD-004 as approved evidence with limitations visible |
 | SEC-004 | Knowledge summary | Knowledge Set; Knowledge Contract | Present contracted insights, hypotheses, conclusions, priorities, risks and uncertainties without reinterpreting them |
 | SEC-005 | Recommendations | Recommendation Set; Recommendation Contract | Present REC-001 through REC-006 with approved priority, justification and constraints |
 | SEC-006 | Limitations and UNKNOWNs | Evidence Contract; Knowledge Contract; Recommendation Contract | Keep material limitations, risks and uncertainties visible in the final output |
@@ -127,6 +126,8 @@ Este contract declara que la salida seleccionada para esta ejecucion es Executiv
 | EVD-002 | Prepared model totals | Must present as prepared-model totals, not as complete business universe beyond approved scope |
 | EVD-003 | Ad reference evidence by `ad_id_norm` and `ad_name` | Must remain ad-reference level; no creative asset interpretation |
 | EVD-004 | Campaign/adset evidence where lead-side metadata exists | Must remain coverage-qualified; no unsupported campaign/adset spend attribution |
+
+Este bloque gobierna exclusivamente evidencia autorizada, limites del contenido permitido y restricciones sobre el contenido canónico.
 
 ---
 
@@ -173,6 +174,8 @@ Recommendations remain documentary suggested actions only and do not constitute 
 
 Numeric values may preserve source precision for traceability; any rounding requires a controlled formatting rule that does not alter source values.
 
+Estas limitaciones preservan limitaciones materiales, UNKNOWNs y restricciones obligatorias; la ubicacion concreta y la prominencia narrativa pertenecen al Communication Context.
+
 ---
 
 ## Excluded Content
@@ -202,11 +205,13 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Limitation visibility | Required limitations and UNKNOWNs must be visible in the output, not relegated to implicit assumptions |
 | Traceability preservation | The output must reference upstream contracts and evidence/knowledge/recommendation IDs sufficiently for review |
 | Format containment | Executive wording may improve readability only if it preserves analytical meaning and boundaries |
-| Projection selection dependency | The selected projection is Executive Report and must remain traceable to the Context Definition and Output Request |
-| Single selected projection | The downstream artifact may materialize only the Executive Report for this execution |
-| Sibling projection preservation | Any future analytical projection must be a sibling representation of the same approved content, not a source artifact for the Executive Report |
-| No projection derivation | The Executive Report must not derive from an analytical projection or introduce a sequential projection chain |
+| Projection selection dependency | The selected projection must remain traceable to the Context Definition and Output Request and be determined through SPEC-010 |
+| Single selected projection | The downstream artifact may materialize only the projection selected for this execution |
+| Sibling projection preservation | Any future analytical projection must be a sibling representation of the same approved content, not a source artifact for the selected output |
+| No projection derivation | The selected output must not derive from an analytical projection or introduce a sequential projection chain |
 | Scope containment | The output must remain within June 2026, Meta Lead Ads, approved filters and corrected source model |
+
+Este bloque establece restricciones de representacion; la narrativa concreta y la estructura documental pertenecen al Communication Context.
 
 ---
 
@@ -215,7 +220,7 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Target | Status | Reason |
 |---|---|---|
 | T-030 Presentation Contract | Completed | Presentation content scope, required sections, approved recommendations, limitations and exclusions are documented |
-| T-031 Executive Report selected projection | Completed | Executive Report consumes this contract without adding evidence, reasoning or recommendations and without deriving from an analytical projection |
+| T-031 Selected presentation output | Completed | The selected output consumes this contract without adding evidence, reasoning or recommendations and without deriving from an analytical projection |
 | New data acquisition | Not authorized | No downstream presentation need can reopen data acquisition without a new approved task/contract revision |
 
 ---
@@ -233,11 +238,13 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 | Limitation visibility | Pass | Required limitations and UNKNOWNs are enumerated |
 | Traceability preservation | Pass | Upstream artifacts are listed below |
 | Format containment | Pass | Final narrative is deferred to T-031 |
-| Projection selection dependency | Pass | Selected projection declared as Executive Report from Context Definition and Output Request |
-| Sibling projection preservation | Pass | Contract states that analytical projection and Executive Report are sibling representations |
-| No projection derivation | Pass | Contract prohibits deriving Executive Report from an analytical projection |
+| Projection selection dependency | Pass | Selected projection is traceable to Context Definition and Output Request and governed by SPEC-010 |
+| Sibling projection preservation | Pass | Contract states that analytical projection and selected output are sibling representations |
+| No projection derivation | Pass | Contract prohibits deriving the selected output from an analytical projection |
 | Recommendation boundary | Pass | Recommendations remain documentary suggested actions and do not authorize execution |
 | Numeric precision handling | Pass | Source precision may be preserved for traceability; any rounding requires a controlled formatting rule |
+
+Esta seccion verifica reglas de invariantes de representacion, no narrativa concreta.
 
 ---
 
@@ -265,6 +272,4 @@ The following content is not authorized for the T-031 Output Artifact unless a f
 
 ## Completion Statement
 
-T-030 is complete.
-
-The Presentation Contract delimits the approved content for the AUC-001 Executive Report selected projection. T-031 has built the executive output artifact under this contract without adding evidence, reasoning, recommendations or projection derivation from an analytical output.
+This contract defines the representation invariants governing any presentation output derived from the approved canonical content.

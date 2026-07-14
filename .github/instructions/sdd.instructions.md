@@ -74,6 +74,11 @@ Reglas de simplificacion documental:
 - antes de crear un nuevo tipo de artefacto, comprobar si puede resolverse como seccion de una spec existente;
 - no crear contracts separados salvo que sean transversales a varias capacidades o a todo el repositorio.
 
+Regla de alcance para Analytical Use Cases:
+
+- un Analytical Use Case describe el flujo funcional completo desde la solicitud del usuario hasta la entrega del artefacto final;
+- cuando parte de ese flujo pertenece a capacidades transversales del framework, el AUC debe referenciarlas y declarar explicitamente la delegacion de responsabilidades, sin redefinir ni reimplementar dichas capacidades.
+
 ## 5. Restricciones actuales obligatorias
 
 No hacer todavia:
@@ -196,6 +201,13 @@ Principios fundamentales:
 - Evolución controlada.
 - Source of Truth funcional del proyecto.
 - Separación entre diseño e implementación.
+
+Principio metodológico de Presentation Contracts:
+
+- Presentation Contracts define representation invariants, not narrative.
+- Preservan contenido canónico, equivalencia semántica, prioridades, limitaciones y trazabilidad.
+- Definen restricciones de representación y cobertura autorizada, pero no gobiernan el orden narrativo, la estructura documental, el vocabulario, la densidad, el nivel de abstracción ni la forma concreta del artefacto final.
+- La organización narrativa, la densidad informativa, el vocabulario y la forma concreta de la salida pertenecen al Communication Context y a la transformación de representación, dentro de los límites de las invariantes aprobadas.
 
 ---
 

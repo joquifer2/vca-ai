@@ -1,6 +1,9 @@
 .env.local
 configs/workspaces.json
 
+# Temporary draft artifacts
+/Borradores/
+
 # OS and editor noise
 .DS_Store
 Thumbs.db

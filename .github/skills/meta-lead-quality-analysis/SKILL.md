@@ -31,7 +31,7 @@ Utilizar esta skill cuando el objetivo sea analizar la calidad de captación de 
 Aplicarla especialmente ante solicitudes como:
 
 - analiza la calidad de leads de Meta Ads;
-- genera el informe ejecutivo de lead quality;
+- genera la salida trazable de lead quality;
 - genera el informe analítico de lead quality;
 - revisa eficiencia y calidad de captación;
 - evalúa campañas, conjuntos o creatividades.
