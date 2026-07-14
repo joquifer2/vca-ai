@@ -224,6 +224,20 @@ La modificacion documental, cuando proceda, debe ser consecuencia de la tarea y 
 
 ---
 
+## Backlog de planificacion SPEC-011
+
+Este backlog traduce la SPEC-011 aprobada y VCA-AUC-001-ARCH-003 en trabajo trazable para iniciar la planificacion de implementacion sin ampliar el alcance de la capacidad.
+
+Las tareas de este bloque no introducen nuevas responsabilidades; solo preparan el desglose, la validacion y el alineamiento diferido necesarios para una implementacion robusta.
+
+| ID | Tarea | Tipo | Fuentes | Dependencias | Criterio de finalizacion | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-048 | Desglosar el trabajo de SPEC-011 en paquetes trazables | Planning / Documentation | specs/spec-011-communication-context-representation-transformation.md, docs/evaluations/auc-001-communication-context-representation-transformation-architectural-decision.md, specs/spec-010-presentation-projection-selection.md, docs/contracts/context.contract.md, docs/contracts/presentation.contract.md | T-047 | Queda definido el desglose minimo de trabajo, el orden recomendado, las dependencias y los puntos de validacion para la capacidad sin añadir nuevas responsabilidades | Not started |
+| T-049 | Definir el plan de validacion de equivalencia semantica y failure path | Validation / Review | specs/spec-011-communication-context-representation-transformation.md, docs/evaluations/auc-001-communication-context-representation-transformation-architectural-decision.md, specs/spec-010-presentation-projection-selection.md | T-048 | Quedan descritos los casos de exito y bloqueo de representacion, incluyendo la solicitud de clarificacion cuando la equivalencia semantica no pueda garantizarse | Not started |
+| T-050 | Establecer el plan de alineamiento diferido de artefactos consumidores | Governance / Review | specs/spec-011-communication-context-representation-transformation.md, docs/evaluations/auc-001-communication-context-representation-transformation-architectural-decision.md, .github/skills/meta-lead-quality-analysis/SKILL.md, docs/handoffs/auc-001-presentation-contract.md, docs/handoffs/auc-001-executive-report.md | T-049 | Queda explicitado que los artefactos consumidores y la skill asociada se mantienen intactos hasta la validacion experimental, y que cualquier reevaluacion queda condicionada a evidencia posterior | Not started |
+
+---
+
 ## Notas de uso
 
 Este backlog debe actualizarse solo cuando cambien las specifications, las decisiones publicadas o el handoff de entrada a Tasks Planning del proyecto derivado.
