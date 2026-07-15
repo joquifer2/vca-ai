@@ -44,7 +44,9 @@ Output:
 
 Gate:
 
-- no continuar si el modo requiere evidencia nueva y BigQuery MCP Server esta prohibido o no disponible.
+- no continuar si el modo solicitado es incompatible con una ejecucion completa;
+- no continuar si el usuario prohibe el Data Provider obligatorio para el modo solicitado;
+- la disponibilidad tecnica del BigQuery MCP Server se valida exclusivamente en la Fase 05.
 
 Definition of Done:
 

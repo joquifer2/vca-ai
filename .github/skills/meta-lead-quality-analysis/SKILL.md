@@ -55,16 +55,15 @@ No iniciar la ejecucion mediante una busqueda global del repositorio.
 
 No utilizar `rg`, busquedas globales ni exploracion abierta del repositorio para descubrir fuentes analiticas, salvo que `references.md` contenga una ruta rota que deba localizarse.
 
-Antes de adquirir evidencia o redactar una salida:
+Antes de adquirir evidencia o materializar una salida:
 
-- leer `RUNBOOK.md`;
-- leer `references.md`;
-- cargar los artefactos obligatorios indicados en `references.md`;
-- resolver el modo de ejecucion;
-- seguir el orden operativo definido exclusivamente en `RUNBOOK.md`;
-- confirmar el Data Contract vigente;
-- confirmar que BigQuery MCP Server esta disponible cuando el modo requiera evidencia nueva;
-- verificar que las fuentes necesarias estan autorizadas.
+1. Leer `RUNBOOK.md`.
+2. Resolver el modo de ejecucion conforme a la Fase 01 del Runbook.
+3. Leer `references.md` y cargar los artefactos obligatorios cuando lo indique el orden operativo.
+4. Seguir exclusivamente la secuencia definida en `RUNBOOK.md`.
+5. Confirmar el Data Contract vigente.
+6. Verificar la autorizacion de las fuentes.
+7. Confirmar BigQuery MCP Server cuando el modo requiera evidencia nueva y se alcance la fase de Data Provider Validation.
 
 No iniciar la adquisicion de evidencia si alguno de estos pasos no puede completarse.
 
