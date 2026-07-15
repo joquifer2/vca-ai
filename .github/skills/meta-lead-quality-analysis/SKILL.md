@@ -51,6 +51,10 @@ El usuario no necesita mencionar la skill, AUC-001, los contratos ni las Specifi
 
 # Instrucciones obligatorias de inicio
 
+No iniciar la ejecución mediante una búsqueda global del repositorio.
+
+No utilizar `rg`, búsquedas globales ni exploración abierta del repositorio para descubrir fuentes analíticas, salvo que `references.md` contenga una ruta rota que deba localizarse.
+
 Antes de analizar o consultar datos:
 
 1. Leer `RUNBOOK.md`.
@@ -73,22 +77,27 @@ La evidencia deberá adquirirse exclusivamente desde las fuentes autorizadas por
 - la configuración publicada del workspace;
 - las referencias oficiales del caso de uso.
 
-El Data Provider autorizado define qué proyectos, datasets, tablas y campos pueden utilizarse.
+El Data Provider se resolverá desde:
 
-El mecanismo técnico de acceso será resuelto por el runtime y podrá utilizar las capacidades disponibles en el entorno, siempre que preserve exactamente el alcance autorizado.
+- `configs/workspaces.json`
 
-Antes de ejecutar cualquier consulta deberá verificarse que cada fuente solicitada está incluida en el Data Contract y en la configuración del workspace.
+Este archivo define el workspace que debe utilizarse, el proyecto autorizado, los recursos permitidos y el mecanismo de acceso.
+
+Una vez resuelto el workspace, la adquisición de evidencia deberá realizarse utilizando el BigQuery MCP Server asociado.
+
+Antes de ejecutar cualquier consulta deberá verificarse que las fuentes necesarias pertenecen al Data Contract y al workspace seleccionado.
 
 La disponibilidad técnica de una tabla no implica autorización metodológica.
+
+Si el workspace no puede resolverse o el BigQuery MCP Server no está disponible, la ejecución deberá detenerse y registrar el bloqueo.
 
 Queda prohibido:
 
 - consultar fuentes fuera del alcance aprobado;
 - ampliar silenciosamente el conjunto de tablas;
-- utilizar un mecanismo alternativo para eludir el Data Contract;
+- utilizar un mecanismo distinto al definido por el workspace;
 - continuar cuando no pueda verificarse la autorización de una fuente.
 
-Si el runtime no puede acceder a las fuentes autorizadas, deberá detener la ejecución y registrar el bloqueo.
 
 ## Solicitud “desde cero”
 
@@ -143,6 +152,42 @@ El Recommendation Set debe derivar exclusivamente del Knowledge Set.
 
 Presentation Layer no puede reconstruir estos artefactos ni volver a razonar directamente desde los datos.
 
+La cadena canonica obligatoria es: Context Definition -> Evidence Set -> Knowledge Set -> Recommendation Set -> Presentation.
+
+Coverage states, limitaciones, UNKNOWNs, prioridades y trazabilidad deben preservarse durante toda la ejecucion. Ninguna fase posterior puede reconstruir evidencia, alterar coverage states, modificar limitaciones, resolver UNKNOWNs por inferencia o cambiar prioridades estabilizadas.
+
+---
+
+## Aislamiento entre ejecuciones
+
+Los artefactos persistidos documentan ejecuciones anteriores. No representan el estado lógico de la ejecución actual ni sustituyen el workflow.
+
+Pueden utilizarse solo para recuperar contexto funcional, comparar resultados entre ejecuciones, validar consistencia, auditoría y trazabilidad. No pueden sustituir la adquisición de nueva evidencia, el Evidence Set, el Knowledge Set, el Recommendation Set ni construir directamente la Presentation Layer.
+
+Solo pueden ser la base principal cuando el usuario solicite explícitamente trabajar sobre una ejecución anterior ya estabilizada o comparar resultados históricos.
+
+Los artefactos canónicos requeridos por este workflow deben construirse o estabilizarse dentro de la ejecución actual.
+
+Los artefactos persistentes procedentes de ejecuciones anteriores no pueden utilizarse como fuente para construir una nueva ejecución.
+
+Queda prohibido utilizar como input analítico de una nueva ejecución:
+
+- Knowledge Sets anteriores;
+- Recommendation Sets anteriores;
+- Presentations o informes anteriores;
+- conclusiones, hipótesis o recomendaciones de ejecuciones históricas.
+
+Un Evidence Set anterior solo podrá reutilizarse cuando:
+
+- el usuario solicite explícitamente trabajar sobre evidencia ya adquirida;
+- coincidan Execution Context, periodo, alcance y versión contractual;
+- quede registrada expresamente su reutilización;
+- no se presente como evidencia adquirida de nuevo.
+
+Un Knowledge Set o Recommendation Set anterior solo podrá reutilizarse cuando la solicitud consista exclusivamente en volver a representar el mismo contenido canónico mediante otra Presentation Projection o Presentation Policy.
+
+Para una nueva solicitud analítica, Knowledge y Recommendations deben generarse de nuevo desde la evidencia autorizada de la ejecución actual.
+
 ---
 
 # Materialización de la salida
@@ -190,13 +235,36 @@ Las Presentation Policies solo pueden especializar la forma de comunicar el cont
 
 # Criterios de bloqueo
 
+AUC-001 admite dos modos de ejecución:
+
+**1. Ejecución completa (modo normal)**
+
+Construye un nuevo Context Definition, adquiere evidencia desde BigQuery MCP Server y genera un nuevo Evidence Set, Knowledge Set, Recommendation Set y Presentation.
+
+Este modo requiere obligatoriamente acceso a BigQuery MCP Server.
+
+**2. Representación de un Evidence Set existente**
+
+El usuario solicita trabajar sobre un Evidence Set previamente estabilizado y autorizado, sin adquirir ni actualizar evidencia.
+
+En este modo:
+
+- no se consulta BigQuery MCP Server;
+- no se adquiere nueva evidencia;
+- se reutiliza únicamente el Evidence Set indicado;
+- se reconstruyen el Knowledge Set, el Recommendation Set y la Presentation para la solicitud actual.
+
+Fuera de este modo, BigQuery MCP Server es obligatorio.
+
+---
+
 Detener la ejecución cuando:
 
 - el Execution Context no pueda canonicalizarse;
 - falte contexto obligatorio;
 - `references.md` no pueda resolverse;
-- el runtime no pueda acceder al Data Provider autorizado;
-- no pueda verificarse que las fuentes pertenecen al Data Contract.
+- el runtime no pueda acceder a BigQuery MCP Server durante una ejecución completa;
+- no pueda verificarse que las fuentes pertenecen al Data Contract;
 - una fuente necesaria no esté autorizada;
 - se detecte una fuente fuera del Data Contract;
 - el Evidence Set no pueda estabilizarse;
@@ -206,13 +274,17 @@ Detener la ejecución cuando:
 - la representación requiera modificar el contenido canónico;
 - no pueda garantizarse la equivalencia semántica.
 
+---
+
 En caso de bloqueo:
 
 - no improvisar;
 - no ampliar silenciosamente las fuentes;
+- no sustituir BigQuery MCP Server por handoffs, Knowledge Sets, Recommendation Sets, informes o evaluaciones anteriores;
+- no utilizar artefactos de ejecuciones previas como fuente para construir una nueva ejecución;
 - no completar mediante inferencias;
-- registrar la causa;
-- solicitar aclaración o revisión.
+- registrar la causa exacta del bloqueo;
+- solicitar aclaración o revisión cuando corresponda.
 
 ---
 

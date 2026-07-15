@@ -61,6 +61,7 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 # 5. Knowledge Set
 
 - [ ] Existe un Knowledge Set estabilizado.
+- [ ] Se ha aplicado `docs/experiments/knowledge-construction-profile-v0.2.md` como guia interna solo durante Knowledge Generation.
 - [ ] El conocimiento deriva de la evidencia.
 - [ ] No se limita a repetir métricas.
 - [ ] Los riesgos están identificados.

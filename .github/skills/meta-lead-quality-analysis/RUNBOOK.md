@@ -1,109 +1,56 @@
-# RUNBOOK — Meta Lead Quality Analysis
+# RUNBOOK - Meta Lead Quality Analysis
 
-## Propósito
-
-Este documento describe el procedimiento operativo para ejecutar AUC-001.
-
-Debe utilizarse únicamente después de que la skill haya sido activada.
-
-No define arquitectura.
-
-No sustituye Specifications.
-
-No redefine contratos.
-
-Su responsabilidad consiste únicamente en ejecutar correctamente el caso de uso.
+## Proposito
+Ejecutar AUC-001 despues de activar la skill.
 
 ---
 
 # Workflow
-
 1. Resolver Execution Context
 2. Cargar contexto oficial
 3. Validar Data Provider
 4. Adquirir Evidence Set
 5. Construir Knowledge Set
 6. Construir Recommendation Set
-7. Validar contenido canónico
+7. Validar contenido canonico
 8. Entregar a Presentation Layer
 
 ---
 
 # 1. Resolver Execution Context
-
-Objetivo:
-
 Materializar un Context Definition estable antes de acceder a los datos.
 
-Debe resolverse:
+Resolver: objetivo, periodo, fecha de corte, alcance, definicion de calidad, audiencia, tipo de salida y restricciones.
 
-- objetivo;
-- periodo;
-- fecha de corte;
-- alcance;
-- definición de calidad;
-- audiencia;
-- tipo de salida;
-- restricciones.
-
-No reutilizar automáticamente contexto de ejecuciones anteriores.
-
-Cuando la solicitud utilice la forma `hasta [fecha]` y no incluya una fecha inicial:
-
+Cuando la solicitud use `hasta [fecha]` sin fecha inicial:
 - interpretar la fecha indicada como fecha de corte;
-- resolver el inicio como la primera evidencia disponible dentro de las fuentes autorizadas;
+- resolver el inicio como la primera evidencia disponible en las fuentes autorizadas;
 - no sustituir el periodo por el mes natural de la fecha de corte;
-- no reutilizar el periodo de una ejecución histórica anterior.
+- no reutilizar el periodo de una ejecucion historica anterior.
 
-Solo podrá utilizarse un mes natural cuando:
+Usar un mes natural solo cuando el usuario solicite explicitamente `mes`, `mensual`, `junio`, `durante junio` o equivalente, o cuando exista una restriccion contractual aplicable.
 
-- el usuario solicite explícitamente `mes`, `mensual`, `junio`, `durante junio` o una formulación equivalente; o
-- exista una restricción contractual aplicable que obligue a ello.
+Si una restriccion contractual cambia el alcance solicitado, registrar la divergencia, justificarla y solicitar aclaracion si modifica materialmente la peticion.
 
-Cuando exista una restricción contractual que cambie el alcance solicitado:
-
-- registrar la divergencia;
-- justificarla explícitamente;
-- solicitar aclaración si modifica materialmente el significado de la petición.
-
-Si la primera fecha disponible todavía no se conoce durante Context Resolution:
-
+Si la primera fecha disponible no se conoce durante Context Resolution:
 - registrar temporalmente `PENDING_START_FROM_PROVIDER_COVERAGE`;
 - resolverla al validar la cobertura temporal del Data Provider;
 - cerrar el periodo antes de construir el Evidence Set.
 
-Solicitar aclaración únicamente cuando cambie materialmente la ejecución.
+Solicitar aclaracion unicamente cuando cambie materialmente la ejecucion.
 
 Definition of Done
 
-Existe un Context Definition explícito y estable.
+Existe un Context Definition explicito y estable.
 
-Deben quedar registrados:
-
-- solicitud original;
-- patrón temporal detectado;
-- fecha de corte;
-- fecha inicial resuelta;
-- regla aplicada;
-- justificación de cualquier divergencia.
+Deben quedar registrados: solicitud original, patron temporal detectado, fecha de corte, fecha inicial resuelta, regla aplicada y justificacion de cualquier divergencia.
 
 ---
 
 # 2. Cargar contexto oficial
+Cargar las fuentes oficiales aplicables: docs/context_refs.md, Analytical Use Case, Data Contract, Presentation Contract, CCD, FARO, CLARO, KPIs oficiales y project_brief.md cuando aplique.
 
-Consultar:
-
-- docs/context_refs.md
-- Analytical Use Case
-- Data Contract
-- Presentation Contract
-- CCD
-- FARO
-- CLARO
-- KPIs oficiales
-- project_brief.md (cuando aplique)
-
-Las definiciones oficiales prevalecen sobre inferencias realizadas desde el modelo de datos.
+Aplicar las definiciones oficiales por encima de inferencias realizadas desde el modelo de datos.
 
 Definition of Done
 
@@ -112,20 +59,11 @@ Las fuentes obligatorias han sido cargadas.
 ---
 
 # 3. Validar Data Provider
-
 Confirmar que el runtime puede acceder al Data Provider autorizado por el Data Contract.
 
-Verificar:
+Verificar proyecto, datasets, tablas, campos y cobertura temporal.
 
-- proyecto;
-- datasets;
-- tablas;
-- campos;
-- cobertura temporal.
-
-Antes de ejecutar cualquier consulta deberá comprobarse que todas las fuentes pertenecen al Data Contract vigente.
-
-Si una fuente no puede verificarse, detener la ejecución.
+Antes de ejecutar cualquier consulta, comprobar que todas las fuentes pertenecen al Data Contract vigente. Si una fuente no puede verificarse, detener la ejecucion.
 
 Definition of Done
 
@@ -134,83 +72,52 @@ Todas las fuentes consultadas pertenecen al Data Contract.
 ---
 
 # 4. Construir Evidence Set
+Adquirir unicamente evidencia verificable.
 
-Adquirir únicamente evidencia verificable.
+Separar hechos, metricas derivadas, coverage states, limitaciones y UNKNOWNs.
 
-Separar:
+Mantener en cada elemento: fuente, periodo, alcance y referencia contractual.
 
-- hechos;
-- métricas derivadas;
-- coverage states;
-- limitaciones;
-- UNKNOWNs.
-
-Cada elemento debe mantener:
-
-- fuente;
-- periodo;
-- alcance;
-- referencia contractual.
-
-No interpretar todavía.
+No interpretar todavia.
 
 Definition of Done
 
 Existe un Evidence Set trazable.
 
-Debe poder demostrarse que Evidence quedó estabilizada antes de iniciar Presentation Layer, con limitaciones, UNKNOWNs y coverage states preservados.
+Debe poder demostrarse que Evidence quedo estabilizada antes de iniciar Presentation Layer, con limitaciones, UNKNOWNs y coverage states preservados.
 
 ---
 
 # 5. Construir Knowledge Set
+Construir el Knowledge Set exclusivamente desde el Evidence Set estabilizado durante la ejecucion actual.
 
-Transformar la evidencia en conocimiento.
+Durante esta fase:
+1. Aplicar `analytical_profile.md`.
+2. Aplicar `knowledge-construction-profile.md`.
+3. Construir el Knowledge Set.
 
-El objetivo no es repetir cifras.
+Transformar evidencia estabilizada en conocimiento util para la toma de decisiones, sin limitarse a repetir metricas o describir tablas.
 
-Debe responder preguntas como:
+Explicar patrones, relaciones relevantes, factores que explican el comportamiento observado, anomalias, oportunidades, riesgos e incertidumbres abiertas.
 
-- ¿Qué patrones aparecen?
-- ¿Qué está cambiando?
-- ¿Qué explica mejor el rendimiento?
-- ¿Qué anomalías existen?
-- ¿Qué riesgos aparecen?
-- ¿Qué incertidumbres permanecen?
+Conservar por cada elemento: evidencia utilizada, interpretacion autorizada, limitaciones y grado de incertidumbre cuando corresponda.
 
-Para cada insight indicar:
-
-- evidencia utilizada;
-- interpretación autorizada;
-- limitaciones.
-
-No formular todavía recomendaciones.
-
-Knowledge debe derivar exclusivamente de Evidence y no puede reconstruir evidencia ni modificar coverage states, limitaciones o UNKNOWNs.
+No formular todavia recomendaciones.
 
 Definition of Done
 
 Existe un Knowledge Set consolidado que explica el comportamiento observado.
 
-Debe poder demostrarse que Knowledge quedó estabilizado antes de iniciar Presentation Layer y que deriva exclusivamente de Evidence.
+Debe poder demostrarse que: el Analytical Profile fue utilizado durante la construccion del analisis; el Knowledge Construction Profile fue aplicado durante la construccion del conocimiento; ambos artefactos se utilizaron unicamente dentro de esta fase; el Knowledge Set deriva exclusivamente del Evidence Set; el Knowledge quedo estabilizado antes de iniciar Recommendation Generation.
 
 ---
 
 # 6. Construir Recommendation Set
+Construir el Recommendation Set exclusivamente desde el Knowledge Set generado durante la ejecucion actual.
 
-Cada recomendación debe derivar del Knowledge Set.
-
-Para cada recomendación registrar:
-
-- prioridad;
-- acción;
-- justificación;
-- conocimiento asociado;
-- riesgo;
-- criterio posterior de validación.
+Registrar por cada recomendacion: prioridad, accion, justificacion, conocimiento asociado, riesgo y criterio posterior de validacion.
 
 No introducir recomendaciones nuevas durante Presentation Layer.
-
-Recommendations deben derivar exclusivamente de Knowledge y preservar sus limitaciones, UNKNOWNs y coverage states.
 
 Definition of Done
 
@@ -220,68 +127,24 @@ Debe poder demostrarse que Recommendations quedaron estabilizadas antes de inici
 
 ---
 
-# 7. Validar contenido canónico
+# 7. Validar contenido canonico
+Comprobar Context Definition, Evidence Set, Knowledge Set y Recommendation Set antes de Presentation.
 
-Antes de Presentation comprobar:
+Verificar consistencia, trazabilidad, prioridades, coverage states, limitaciones y equivalencia semantica.
 
-- Context Definition;
-- Evidence Set;
-- Knowledge Set;
-- Recommendation Set.
+Confirmar que la evidencia esta cerrada y no contiene interpretacion; el conocimiento esta cerrado y deriva unicamente de la evidencia; las recomendaciones estan cerradas y derivan unicamente del conocimiento; ninguno de estos estados sera reconstruido durante la representacion.
 
-Verificar:
-
-- consistencia;
-- trazabilidad;
-- prioridades;
-- coverage states;
-- limitaciones;
-- equivalencia semántica.
-
-Antes de iniciar Presentation Layer deberá poder verificarse que:
-
-1. la evidencia está cerrada y no contiene interpretación;
-2. el conocimiento está cerrado y deriva únicamente de la evidencia;
-3. las recomendaciones están cerradas y derivan únicamente del conocimiento;
-4. ninguno de estos estados será reconstruido durante la representación.
-
-No basta con que Evidence, Knowledge y Recommendations aparezcan mezclados por primera vez dentro del informe final.
-
-Este requisito exige la existencia y cierre verificable de los estados lógicos, independientemente de su implementación. No exige archivos físicos separados, IDs físicos, rutas concretas ni formatos concretos.
+No corregir inconsistencias durante esta fase. Si la validacion falla, detener la ejecucion.
 
 Definition of Done
 
-Los cuatro conjuntos están estabilizados como estados lógicos verificables.
+Los cuatro conjuntos estan estabilizados como estados logicos verificables.
 
 ---
 
 # 8. Entregar a Presentation Layer
-
-Presentation Layer recibe únicamente:
-
-- Context Definition;
-- Evidence Set;
-- Knowledge Set;
-- Recommendation Set.
-
-Presentation Layer podrá modificar únicamente:
-
-- organización;
-- densidad;
-- vocabulario;
-- abstracción;
-- narrativa;
-- precisión de presentación.
-
-Nunca podrá:
-
-- consultar datos;
-- reconstruir conocimiento;
-- generar recomendaciones;
-- alterar prioridades;
-- modificar cobertura;
-- cambiar el contenido canónico.
+Entregar a Presentation Layer el contenido canonico estabilizado.
 
 Definition of Done
 
-El contenido canónico queda preparado para cualquier Presentation Policy compatible.
+El contenido canonico queda preparado para cualquier Presentation Policy compatible.
