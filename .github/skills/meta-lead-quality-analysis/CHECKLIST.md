@@ -45,6 +45,11 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] Todas las tablas consultadas pertenecen al Data Contract.
 - [ ] Todas las fuentes consultadas han podido verificarse.
 - [ ] No se ha utilizado ninguna fuente fuera del alcance autorizado.
+- [ ] Las consultas BigQuery MCP no usan `AS rows` como alias.
+- [ ] Las consultas BigQuery MCP no reutilizan nombres de CTE como aliases de columna.
+- [ ] Las consultas BigQuery MCP no usan joins implicitos con coma.
+- [ ] El `dataset_id` enviado en `execution_context` corresponde al alcance principal de cada consulta.
+- [ ] Cualquier `ERR_DRY_RUN_FAILED` se ha tratado como evidencia no utilizable hasta revisar sintaxis, tipos, aliases y ambiguedades.
 
 ---
 

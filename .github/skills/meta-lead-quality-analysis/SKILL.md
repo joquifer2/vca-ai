@@ -6,106 +6,124 @@ user-invocable: true
 disable-model-invocation: false
 ---
 
-# Skill — Meta Lead Quality Analysis
+# Skill - Meta Lead Quality Analysis
 
-## Propósito
+## Proposito
 
-Ejecutar el caso de uso analítico AUC-001 para producir informes trazables sobre la calidad, evolución y eficiencia de los leads captados mediante Meta Ads.
+Ejecutar el caso de uso analitico AUC-001 para producir informes trazables sobre la calidad, evolucion y eficiencia de los leads captados mediante Meta Ads.
 
-Esta skill actúa como punto de entrada y orquestador del caso de uso.
+Esta skill actua como punto de activacion y orquestador. No implementa el procedimiento operativo fase a fase.
 
-El procedimiento detallado de ejecución se encuentra en:
+El orden operativo canonico se define exclusivamente en `RUNBOOK.md`.
 
-- `RUNBOOK.md`
+Referencias de ejecucion:
 
-Las referencias obligatorias del caso se encuentran en:
+- `RUNBOOK.md` define el procedimiento operativo.
+- `references.md` define las fuentes obligatorias del caso.
+- `CHECKLIST.md` valida la entrega.
 
-- `references.md`
+Esta skill no sustituye las Specifications, los contratos ni las decisiones arquitectonicas del proyecto.
 
-La validación previa a la entrega se encuentra en:
+## Cuándo utilizar esta skill
 
-- `CHECKLIST.md`
-
-Esta skill no sustituye las Specifications, los contratos ni las decisiones arquitectónicas del proyecto.
-
----
-
-# Cuándo utilizar esta skill
-
-Activar esta skill cuando la solicitud esté relacionada con:
+Activar esta skill cuando la solicitud este relacionada con:
 
 - calidad de leads de Meta Ads;
-- volumen y evolución de la captación;
-- eficiencia económica;
-- campañas, conjuntos o anuncios;
+- volumen y evolucion de la captacion;
+- eficiencia economica;
+- campanas, conjuntos o anuncios;
 - scoring o tiers de calidad;
-- informes analíticos de lead quality;
-- informes ejecutivos para Dirección;
-- ejecución del caso de uso AUC-001.
+- informes analiticos de lead quality;
+- informes ejecutivos para Direccion;
+- ejecucion del caso de uso AUC-001.
 
-La solicitud puede formularse en lenguaje natural.
+La solicitud puede formularse en lenguaje natural. El usuario no necesita mencionar la skill, AUC-001, los contratos ni las Specifications aplicables.
 
-El usuario no necesita mencionar la skill, AUC-001, los contratos ni las Specifications aplicables.
+## Precedencia documental
 
----
+- Los contratos prevalecen sobre esta skill, el Runbook, el Checklist y los perfiles.
+- `SKILL.md` define activacion, alcance, modos e invariantes.
+- `RUNBOOK.md` define el orden operativo.
+- `CHECKLIST.md` valida la entrega.
+- Los perfiles especializan fases concretas.
 
-# Instrucciones obligatorias de inicio
+Si aparece una contradiccion entre activacion e implementacion operativa, usar `RUNBOOK.md` para el orden de ejecucion y los contratos para el alcance.
 
-No iniciar la ejecución mediante una búsqueda global del repositorio.
+## Instrucciones obligatorias de inicio
 
-No utilizar `rg`, búsquedas globales ni exploración abierta del repositorio para descubrir fuentes analíticas, salvo que `references.md` contenga una ruta rota que deba localizarse.
+No iniciar la ejecucion mediante una busqueda global del repositorio.
 
-Antes de analizar o consultar datos:
+No utilizar `rg`, busquedas globales ni exploracion abierta del repositorio para descubrir fuentes analiticas, salvo que `references.md` contenga una ruta rota que deba localizarse.
 
-1. Leer `RUNBOOK.md`.
-2. Leer `references.md`.
-3. Cargar los artefactos obligatorios indicados en `references.md`.
-4. Canonicalizar el Execution Context de la solicitud actual.
-5. Confirmar el Data Contract vigente.
-6. Confirmar que BigQuery MCP Server está disponible.
-7. Verificar que las fuentes necesarias están autorizadas.
+Antes de adquirir evidencia o redactar una salida:
 
-No iniciar la adquisición de evidencia si alguno de estos pasos no puede completarse.
+- leer `RUNBOOK.md`;
+- leer `references.md`;
+- cargar los artefactos obligatorios indicados en `references.md`;
+- resolver el modo de ejecucion;
+- seguir el orden operativo definido exclusivamente en `RUNBOOK.md`;
+- confirmar el Data Contract vigente;
+- confirmar que BigQuery MCP Server esta disponible cuando el modo requiera evidencia nueva;
+- verificar que las fuentes necesarias estan autorizadas.
 
----
+No iniciar la adquisicion de evidencia si alguno de estos pasos no puede completarse.
 
 ## Data Provider y mecanismo de acceso
 
-La evidencia deberá adquirirse exclusivamente desde las fuentes autorizadas por:
+La evidencia debera adquirirse exclusivamente desde las fuentes autorizadas por:
 
 - el Data Contract vigente;
-- la configuración publicada del workspace;
+- la configuracion publicada del workspace;
 - las referencias oficiales del caso de uso.
 
-El Data Provider se resolverá desde:
+El Data Provider se resolvera desde `configs/workspaces.json`.
 
-- `configs/workspaces.json`
+Ese archivo define el workspace que debe utilizarse, el proyecto autorizado, los recursos permitidos y el mecanismo de acceso.
 
-Este archivo define el workspace que debe utilizarse, el proyecto autorizado, los recursos permitidos y el mecanismo de acceso.
+Una vez resuelto el workspace, la adquisicion de evidencia debera realizarse utilizando el BigQuery MCP Server asociado.
 
-Una vez resuelto el workspace, la adquisición de evidencia deberá realizarse utilizando el BigQuery MCP Server asociado.
+Antes de ejecutar cualquier consulta debera verificarse que las fuentes necesarias pertenecen al Data Contract y al workspace seleccionado.
 
-Antes de ejecutar cualquier consulta deberá verificarse que las fuentes necesarias pertenecen al Data Contract y al workspace seleccionado.
-
-La disponibilidad técnica de una tabla no implica autorización metodológica.
-
-Si el workspace no puede resolverse o el BigQuery MCP Server no está disponible, la ejecución deberá detenerse y registrar el bloqueo.
+La disponibilidad tecnica de una tabla no implica autorizacion metodologica.
 
 Queda prohibido:
 
 - consultar fuentes fuera del alcance aprobado;
 - ampliar silenciosamente el conjunto de tablas;
 - utilizar un mecanismo distinto al definido por el workspace;
-- continuar cuando no pueda verificarse la autorización de una fuente.
+- introducir acceso directo a BigQuery cuando el workspace exige MCP;
+- continuar cuando no pueda verificarse la autorizacion de una fuente.
 
+## Modos de ejecucion
 
-## Solicitud “desde cero”
+AUC-001 admite dos modos.
 
-Interpretar “desde cero” como:
+**Ejecucion completa**
+
+Construye una nueva ejecucion desde contexto oficial, valida el Data Provider, adquiere evidencia desde BigQuery MCP Server y estabiliza Context Definition, Evidence Set, Knowledge Set, Recommendation Set y Presentation.
+
+Este modo requiere obligatoriamente acceso a BigQuery MCP Server.
+
+**Representacion de un Evidence Set existente**
+
+Se usa solo cuando el usuario solicita trabajar sobre un Evidence Set previamente estabilizado y autorizado, sin adquirir ni actualizar evidencia.
+
+En este modo:
+
+- no se consulta BigQuery MCP Server;
+- no se adquiere nueva evidencia;
+- se reutiliza unicamente el Evidence Set indicado;
+- se reconstruyen Knowledge Set, Recommendation Set y Presentation para la solicitud actual si el alcance lo permite.
+
+Fuera de este modo, BigQuery MCP Server es obligatorio.
+
+## Solicitud "desde cero"
+
+Interpretar "desde cero" como:
 
 - volver a adquirir la evidencia autorizada;
-- reconstruir los artefactos canónicos;
-- generar una nueva representación.
+- reconstruir los artefactos canonicos;
+- generar una nueva representacion.
 
 No significa:
 
@@ -114,208 +132,112 @@ No significa:
 - ignorar los contratos;
 - consultar cualquier tabla disponible;
 - utilizar informes anteriores como fuente;
-- omitir el workflow metodológico.
+- omitir el workflow metodologico.
 
----
+## Cadena canonica conceptual
 
-# Workflow obligatorio
+La ejecucion preserva esta cadena conceptual:
 
-Ejecutar el caso siguiendo este orden:
+```text
+Context -> Evidence -> Knowledge -> Recommendations -> Presentation
+```
 
-1. Execution Context Canonicalization.
-2. Context Loading.
-3. Evidence Acquisition.
-4. Knowledge Generation.
-5. Recommendation Generation.
-6. Presentation.
+La secuencia operativa detallada de esa cadena vive solo en `RUNBOOK.md`.
 
-No redactar el informe mientras se adquiere o analiza evidencia.
-
-No saltar directamente desde BigQuery a la representación final.
-
----
-
-# Artefactos canónicos
-
-Antes de iniciar Presentation Layer deben existir y estar estabilizados:
+Antes de iniciar Presentation deben existir y estar estabilizados:
 
 - Context Definition;
 - Evidence Set;
 - Knowledge Set;
 - Recommendation Set.
 
-La ejecución debe seguir las instrucciones de `RUNBOOK.md` para construirlos.
-
-El Knowledge Set debe consolidar conocimiento y no limitarse a repetir métricas o describir tablas.
-
-El Recommendation Set debe derivar exclusivamente del Knowledge Set.
-
 Presentation Layer no puede reconstruir estos artefactos ni volver a razonar directamente desde los datos.
 
-La cadena canonica obligatoria es: Context Definition -> Evidence Set -> Knowledge Set -> Recommendation Set -> Presentation.
-
-Coverage states, limitaciones, UNKNOWNs, prioridades y trazabilidad deben preservarse durante toda la ejecucion. Ninguna fase posterior puede reconstruir evidencia, alterar coverage states, modificar limitaciones, resolver UNKNOWNs por inferencia o cambiar prioridades estabilizadas.
-
----
+Coverage states, limitaciones, UNKNOWNs, prioridades y trazabilidad deben preservarse durante toda la ejecucion.
 
 ## Aislamiento entre ejecuciones
 
-Los artefactos persistidos documentan ejecuciones anteriores. No representan el estado lógico de la ejecución actual ni sustituyen el workflow.
+Los artefactos persistidos documentan ejecuciones anteriores. No representan el estado logico de la ejecucion actual ni sustituyen el workflow.
 
-Pueden utilizarse solo para recuperar contexto funcional, comparar resultados entre ejecuciones, validar consistencia, auditoría y trazabilidad. No pueden sustituir la adquisición de nueva evidencia, el Evidence Set, el Knowledge Set, el Recommendation Set ni construir directamente la Presentation Layer.
+Pueden utilizarse solo para recuperar contexto funcional, comparar resultados entre ejecuciones, validar consistencia, auditoria y trazabilidad. No pueden sustituir la adquisicion de nueva evidencia, el Evidence Set, el Knowledge Set, el Recommendation Set ni construir directamente la Presentation Layer.
 
-Solo pueden ser la base principal cuando el usuario solicite explícitamente trabajar sobre una ejecución anterior ya estabilizada o comparar resultados históricos.
+Solo pueden ser la base principal cuando el usuario solicite explicitamente trabajar sobre una ejecucion anterior ya estabilizada o comparar resultados historicos.
 
-Los artefactos canónicos requeridos por este workflow deben construirse o estabilizarse dentro de la ejecución actual.
+Los artefactos canonicos requeridos por este workflow deben construirse o estabilizarse dentro de la ejecucion actual.
 
-Los artefactos persistentes procedentes de ejecuciones anteriores no pueden utilizarse como fuente para construir una nueva ejecución.
-
-Queda prohibido utilizar como input analítico de una nueva ejecución:
+Queda prohibido utilizar como input analitico de una nueva ejecucion:
 
 - Knowledge Sets anteriores;
 - Recommendation Sets anteriores;
 - Presentations o informes anteriores;
-- conclusiones, hipótesis o recomendaciones de ejecuciones históricas.
+- conclusiones, hipotesis o recomendaciones de ejecuciones historicas.
 
-Un Evidence Set anterior solo podrá reutilizarse cuando:
+Un Evidence Set anterior solo podra reutilizarse cuando:
 
-- el usuario solicite explícitamente trabajar sobre evidencia ya adquirida;
-- coincidan Execution Context, periodo, alcance y versión contractual;
-- quede registrada expresamente su reutilización;
+- el usuario solicite explicitamente trabajar sobre evidencia ya adquirida;
+- coincidan Execution Context, periodo, alcance y version contractual;
+- quede registrada expresamente su reutilizacion;
 - no se presente como evidencia adquirida de nuevo.
 
-Un Knowledge Set o Recommendation Set anterior solo podrá reutilizarse cuando la solicitud consista exclusivamente en volver a representar el mismo contenido canónico mediante otra Presentation Projection o Presentation Policy.
+Un Knowledge Set o Recommendation Set anterior solo podra reutilizarse cuando la solicitud consista exclusivamente en volver a representar el mismo contenido canonico mediante otra Presentation Projection o Presentation Policy.
 
-Para una nueva solicitud analítica, Knowledge y Recommendations deben generarse de nuevo desde la evidencia autorizada de la ejecución actual.
+Para una nueva solicitud analitica, Knowledge y Recommendations deben generarse de nuevo desde la evidencia autorizada de la ejecucion actual.
 
----
+## Invariantes globales
 
-# Materialización de la salida
+La ejecucion no podra:
 
-Presentation Layer deberá consumir únicamente los artefactos canónicos estabilizados.
+- consultar fuentes fuera del Data Contract o del workspace autorizado;
+- usar mecanismos no autorizados por el workspace;
+- generar evidencia desde informes anteriores;
+- mezclar Evidence, Knowledge y Recommendations;
+- introducir recomendaciones no derivadas del Knowledge Set;
+- ocultar limitaciones materiales o UNKNOWNs;
+- alterar coverage states durante Presentation;
+- romper la equivalencia semantica entre artefactos canonicos y representacion.
 
-La salida deberá resolver:
+## Criterios de bloqueo
 
-- Presentation Projection;
-- Communication Context;
-- Representation Constraints;
-- Presentation Policy aplicable, cuando exista.
+Detener la ejecucion cuando:
 
-Para una salida analítica podrá utilizarse:
-
-- `analytical-review`
-
-Para una salida orientada a Dirección podrá utilizarse:
-
-- `executive-decision-support`
-
-Las proyecciones analítica y ejecutiva son representaciones hermanas.
-
-Ninguna representación anterior puede utilizarse como fuente de otra.
-
----
-
-# Invariantes de presentación
-
-La representación final no podrá:
-
-- consultar nuevas fuentes;
-- crear evidencia;
-- generar nuevo conocimiento;
-- crear recomendaciones;
-- cambiar prioridades;
-- alterar coverage states;
-- ocultar limitaciones materiales;
-- modificar conclusiones aprobadas;
-- romper la equivalencia semántica.
-
-Las Presentation Policies solo pueden especializar la forma de comunicar el contenido canónico.
-
----
-
-# Criterios de bloqueo
-
-AUC-001 admite dos modos de ejecución:
-
-**1. Ejecución completa (modo normal)**
-
-Construye un nuevo Context Definition, adquiere evidencia desde BigQuery MCP Server y genera un nuevo Evidence Set, Knowledge Set, Recommendation Set y Presentation.
-
-Este modo requiere obligatoriamente acceso a BigQuery MCP Server.
-
-**2. Representación de un Evidence Set existente**
-
-El usuario solicita trabajar sobre un Evidence Set previamente estabilizado y autorizado, sin adquirir ni actualizar evidencia.
-
-En este modo:
-
-- no se consulta BigQuery MCP Server;
-- no se adquiere nueva evidencia;
-- se reutiliza únicamente el Evidence Set indicado;
-- se reconstruyen el Knowledge Set, el Recommendation Set y la Presentation para la solicitud actual.
-
-Fuera de este modo, BigQuery MCP Server es obligatorio.
-
----
-
-Detener la ejecución cuando:
-
-- el Execution Context no pueda canonicalizarse;
+- el modo de ejecucion no pueda resolverse;
 - falte contexto obligatorio;
 - `references.md` no pueda resolverse;
-- el runtime no pueda acceder a BigQuery MCP Server durante una ejecución completa;
+- el Data Contract no pueda identificarse;
+- el runtime no pueda acceder a BigQuery MCP Server durante una ejecucion completa;
 - no pueda verificarse que las fuentes pertenecen al Data Contract;
-- una fuente necesaria no esté autorizada;
+- una fuente necesaria no este autorizada;
 - se detecte una fuente fuera del Data Contract;
-- el Evidence Set no pueda estabilizarse;
-- el Knowledge Set no aporte conocimiento consolidado;
-- el Recommendation Set no derive del Knowledge Set;
-- falte algún artefacto canónico antes de Presentation Layer;
-- la representación requiera modificar el contenido canónico;
-- no pueda garantizarse la equivalencia semántica.
-
----
+- el Context Definition, Evidence Set, Knowledge Set o Recommendation Set no pueda estabilizarse;
+- falte algun artefacto canonico antes de Presentation Layer;
+- la representacion requiera modificar el contenido canonico;
+- no pueda garantizarse la equivalencia semantica.
 
 En caso de bloqueo:
 
 - no improvisar;
 - no ampliar silenciosamente las fuentes;
 - no sustituir BigQuery MCP Server por handoffs, Knowledge Sets, Recommendation Sets, informes o evaluaciones anteriores;
-- no utilizar artefactos de ejecuciones previas como fuente para construir una nueva ejecución;
 - no completar mediante inferencias;
 - registrar la causa exacta del bloqueo;
-- solicitar aclaración o revisión cuando corresponda.
+- solicitar aclaracion o revision cuando corresponda.
 
----
+## Definition of Done
 
-# Validación final
+La ejecucion se considera completada cuando:
 
-Antes de entregar cualquier informe:
-
-1. Ejecutar `CHECKLIST.md`.
-2. Confirmar que solo se utilizó BigQuery MCP Server.
-3. Declarar las fuentes y artefactos consumidos.
-4. Identificar la Presentation Projection aplicada.
-5. Identificar la Presentation Policy aplicada, cuando exista.
-6. Confirmar que no se utilizaron informes anteriores como fuente.
-7. Confirmar que la salida conserva el contenido canónico y su trazabilidad.
-
----
-
-# Definition of Done
-
-La ejecución se considera completada cuando:
-
-- el Execution Context está canonicalizado;
+- el modo de ejecucion esta resuelto;
+- el orden operativo de `RUNBOOK.md` ha sido seguido;
 - el contexto oficial ha sido consultado;
-- las fuentes utilizadas están autorizadas;
-- BigQuery MCP Server ha sido el único Data Provider;
-- Context Definition, Evidence Set, Knowledge Set y Recommendation Set están estabilizados;
-- las recomendaciones están trazadas al conocimiento;
-- Presentation Layer consume los artefactos canónicos sin volver a derivarlos;
-- la proyección y el contexto comunicativo están resueltos;
-- la política aplicada está identificada, cuando exista;
+- el Data Contract vigente se ha aplicado;
+- las fuentes utilizadas estan autorizadas;
+- BigQuery MCP Server ha sido el unico Data Provider cuando se adquirio evidencia nueva;
+- Context Definition, Evidence Set, Knowledge Set y Recommendation Set estan estabilizados;
+- las recomendaciones estan trazadas al conocimiento;
+- Presentation Layer consume los artefactos canonicos sin volver a derivarlos;
+- la proyeccion y el contexto comunicativo estan resueltos;
+- la politica aplicada esta identificada, cuando exista;
 - las limitaciones y UNKNOWNs permanecen visibles;
-- la equivalencia semántica está preservada;
-- `CHECKLIST.md` está completado;
+- la equivalencia semantica esta preservada;
+- `CHECKLIST.md` esta completado;
 - no se han introducido hechos, interpretaciones ni recomendaciones no aprobados.

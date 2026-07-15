@@ -1,150 +1,435 @@
 # RUNBOOK - Meta Lead Quality Analysis
 
 ## Proposito
-Ejecutar AUC-001 despues de activar la skill.
 
----
+Definir el unico orden operativo canonico para ejecutar AUC-001 despues de activar la skill `meta-lead-quality-analysis`.
 
-# Workflow
-1. Resolver Execution Context
-2. Cargar contexto oficial
-3. Validar Data Provider
-4. Adquirir Evidence Set
-5. Construir Knowledge Set
-6. Construir Recommendation Set
-7. Validar contenido canonico
-8. Entregar a Presentation Layer
+`SKILL.md` define activacion, alcance, modos e invariantes. Este Runbook define fases, inputs, acciones, outputs, gates, criterios de estabilizacion y manejo de bloqueos operativos.
 
----
+## Workflow canonico
 
-# 1. Resolver Execution Context
-Materializar un Context Definition estable antes de acceder a los datos.
+1. Skill Activation and Execution Mode Resolution.
+2. Preliminary Request Resolution.
+3. Official Context Loading.
+4. Execution Context Canonicalization.
+5. Data Provider Validation.
+6. Context Definition Stabilization.
+7. Evidence Acquisition.
+8. Evidence Set Construction and Stabilization.
+9. Knowledge Generation and Stabilization.
+10. Recommendation Generation and Stabilization.
+11. Canonical Content Validation Gate.
+12. Presentation Materialization.
+13. Final Checklist and Delivery.
 
-Resolver: objetivo, periodo, fecha de corte, alcance, definicion de calidad, audiencia, tipo de salida y restricciones.
+## Fase 01 - Skill Activation and Execution Mode Resolution
 
-Cuando la solicitud use `hasta [fecha]` sin fecha inicial:
-- interpretar la fecha indicada como fecha de corte;
-- resolver el inicio como la primera evidencia disponible en las fuentes autorizadas;
-- no sustituir el periodo por el mes natural de la fecha de corte;
-- no reutilizar el periodo de una ejecucion historica anterior.
+Input:
 
-Usar un mes natural solo cuando el usuario solicite explicitamente `mes`, `mensual`, `junio`, `durante junio` o equivalente, o cuando exista una restriccion contractual aplicable.
+- solicitud del usuario;
+- `SKILL.md`;
+- restricciones explicitas de la conversacion.
 
-Si una restriccion contractual cambia el alcance solicitado, registrar la divergencia, justificarla y solicitar aclaracion si modifica materialmente la peticion.
+Acciones:
 
-Si la primera fecha disponible no se conoce durante Context Resolution:
-- registrar temporalmente `PENDING_START_FROM_PROVIDER_COVERAGE`;
-- resolverla al validar la cobertura temporal del Data Provider;
-- cerrar el periodo antes de construir el Evidence Set.
+- confirmar que la solicitud pertenece a AUC-001 o a Meta lead quality analysis;
+- resolver si la ejecucion es completa o representacion de un Evidence Set existente;
+- registrar restricciones explicitamente indicadas por el usuario;
+- detener si el modo no puede resolverse sin cambiar materialmente la peticion.
 
-Solicitar aclaracion unicamente cuando cambie materialmente la ejecucion.
+Output:
 
-Definition of Done
+- modo de ejecucion resuelto;
+- restricciones operativas iniciales.
 
-Existe un Context Definition explicito y estable.
+Gate:
 
-Deben quedar registrados: solicitud original, patron temporal detectado, fecha de corte, fecha inicial resuelta, regla aplicada y justificacion de cualquier divergencia.
+- no continuar si el modo requiere evidencia nueva y BigQuery MCP Server esta prohibido o no disponible.
 
----
+Definition of Done:
 
-# 2. Cargar contexto oficial
-Cargar las fuentes oficiales aplicables: docs/context_refs.md, Analytical Use Case, Data Contract, Presentation Contract, CCD, FARO, CLARO, KPIs oficiales y project_brief.md cuando aplique.
+- el modo esta resuelto y no contradice la solicitud del usuario.
 
-Aplicar las definiciones oficiales por encima de inferencias realizadas desde el modelo de datos.
+## Fase 02 - Preliminary Request Resolution
 
-Definition of Done
+Input:
 
-Las fuentes obligatorias han sido cargadas.
+- solicitud original;
+- modo de ejecucion;
+- restricciones iniciales.
 
----
+Acciones:
 
-# 3. Validar Data Provider
-Confirmar que el runtime puede acceder al Data Provider autorizado por el Data Contract.
+- identificar objetivo, audiencia, tipo de salida, fecha de corte expresada, alcance aparente y restricciones;
+- crear un Provisional Context Definition;
+- si la solicitud usa `hasta [fecha]` sin fecha inicial, registrar la fecha indicada como cutoff y dejar el inicio como `PENDING_START_FROM_PROVIDER_COVERAGE`;
+- no llamar estable al Context Definition en esta fase.
 
-Verificar proyecto, datasets, tablas, campos y cobertura temporal.
+Output:
 
-Antes de ejecutar cualquier consulta, comprobar que todas las fuentes pertenecen al Data Contract vigente. Si una fuente no puede verificarse, detener la ejecucion.
+- Provisional Context Definition.
 
-Definition of Done
+Gate:
 
-Todas las fuentes consultadas pertenecen al Data Contract.
+- solicitar aclaracion solo si una ambiguedad cambia materialmente la ejecucion.
 
----
+Definition of Done:
 
-# 4. Construir Evidence Set
-Adquirir unicamente evidencia verificable.
+- existe un contexto provisional explicito con campos pendientes marcados, no inferidos.
 
-Separar hechos, metricas derivadas, coverage states, limitaciones y UNKNOWNs.
+## Fase 03 - Official Context Loading
 
-Mantener en cada elemento: fuente, periodo, alcance y referencia contractual.
+Input:
 
-No interpretar todavia.
+- Provisional Context Definition;
+- `references.md`.
 
-Definition of Done
+Acciones:
 
-Existe un Evidence Set trazable.
+- leer las fuentes oficiales aplicables: `docs/context_refs.md`, Analytical Use Case, Data Contract, Presentation Contract, CCD, FARO, CLARO, KPIs oficiales y `project_brief.md` cuando aplique;
+- aplicar las definiciones oficiales por encima de inferencias del modelo de datos;
+- registrar referencias ausentes o rutas rotas como limitaciones o bloqueos segun impacto.
 
-Debe poder demostrarse que Evidence quedo estabilizada antes de iniciar Presentation Layer, con limitaciones, UNKNOWNs y coverage states preservados.
+Output:
 
----
+- contexto oficial cargado;
+- definiciones aplicables identificadas.
 
-# 5. Construir Knowledge Set
-Construir el Knowledge Set exclusivamente desde el Evidence Set estabilizado durante la ejecucion actual.
+Gate:
 
-Durante esta fase:
-1. Aplicar `analytical_profile.md`.
-2. Aplicar `knowledge-construction-profile.md`.
-3. Construir el Knowledge Set.
+- detener si falta una fuente obligatoria sin la cual no pueda verificarse el alcance.
 
-Transformar evidencia estabilizada en conocimiento util para la toma de decisiones, sin limitarse a repetir metricas o describir tablas.
+Definition of Done:
 
-Explicar patrones, relaciones relevantes, factores que explican el comportamiento observado, anomalias, oportunidades, riesgos e incertidumbres abiertas.
+- las fuentes obligatorias han sido cargadas o su ausencia queda registrada con decision de continuar o bloquear.
 
-Conservar por cada elemento: evidencia utilizada, interpretacion autorizada, limitaciones y grado de incertidumbre cuando corresponda.
+## Fase 04 - Execution Context Canonicalization
 
-No formular todavia recomendaciones.
+Input:
 
-Definition of Done
+- Provisional Context Definition;
+- contexto oficial cargado;
+- contratos;
+- CCD y definiciones oficiales;
+- restricciones del caso y alcance solicitado.
 
-Existe un Knowledge Set consolidado que explica el comportamiento observado.
+Acciones:
 
-Debe poder demostrarse que: el Analytical Profile fue utilizado durante la construccion del analisis; el Knowledge Construction Profile fue aplicado durante la construccion del conocimiento; ambos artefactos se utilizaron unicamente dentro de esta fase; el Knowledge Set deriva exclusivamente del Evidence Set; el Knowledge quedo estabilizado antes de iniciar Recommendation Generation.
+- canonicalizar objetivo, periodo, fecha de corte, alcance, definicion de calidad, audiencia, tipo de salida y restricciones;
+- aplicar contratos, CCD, definiciones oficiales, restricciones del caso y alcance solicitado;
+- mantener como pendientes los campos que dependan del proveedor, como fecha inicial real o cobertura temporal;
+- cuando la solicitud use `hasta [fecha]` sin fecha inicial, no sustituir automaticamente por el mes natural;
+- usar mes natural solo si el usuario lo solicita explicitamente o existe restriccion contractual aplicable;
+- registrar divergencias entre solicitud y alcance contractual.
 
----
+Output:
 
-# 6. Construir Recommendation Set
-Construir el Recommendation Set exclusivamente desde el Knowledge Set generado durante la ejecucion actual.
+- Execution Context canonicalizado con posibles campos dependientes del proveedor aun pendientes.
 
-Registrar por cada recomendacion: prioridad, accion, justificacion, conocimiento asociado, riesgo y criterio posterior de validacion.
+Gate:
 
-No introducir recomendaciones nuevas durante Presentation Layer.
+- detener si el alcance contractual contradice materialmente la peticion y requiere aclaracion.
 
-Definition of Done
+Definition of Done:
 
-Existe un Recommendation Set priorizado y trazable.
+- el Execution Context esta canonicalizado y los campos pendientes estan nombrados explicitamente.
 
-Debe poder demostrarse que Recommendations quedaron estabilizadas antes de iniciar Presentation Layer y que derivan exclusivamente de Knowledge.
+## Fase 05 - Data Provider Validation
 
----
+Input:
 
-# 7. Validar contenido canonico
-Comprobar Context Definition, Evidence Set, Knowledge Set y Recommendation Set antes de Presentation.
+- Execution Context canonicalizado;
+- Data Contract;
+- `configs/workspaces.json`;
+- BigQuery MCP Server.
 
-Verificar consistencia, trazabilidad, prioridades, coverage states, limitaciones y equivalencia semantica.
+Acciones:
 
-Confirmar que la evidencia esta cerrada y no contiene interpretacion; el conocimiento esta cerrado y deriva unicamente de la evidencia; las recomendaciones estan cerradas y derivan unicamente del conocimiento; ninguno de estos estados sera reconstruido durante la representacion.
+- resolver workspace;
+- verificar mecanismo de acceso;
+- confirmar MCP disponible;
+- verificar proyecto, datasets, tablas, allowlist y Data Contract;
+- descubrir esquemas necesarios mediante MCP cuando aplique;
+- verificar cobertura temporal;
+- resolver campos dependientes del proveedor, incluido el inicio real si estaba en `PENDING_START_FROM_PROVIDER_COVERAGE`;
+- confirmar que cada tabla pertenece al Data Contract y al workspace seleccionado.
 
-No corregir inconsistencias durante esta fase. Si la validacion falla, detener la ejecucion.
+Output:
 
-Definition of Done
+- Data Provider validado;
+- fuentes autorizadas;
+- cobertura temporal y campos dependientes del proveedor resueltos o bloqueados.
 
-Los cuatro conjuntos estan estabilizados como estados logicos verificables.
+Gate:
 
----
+- detener si el workspace no resuelve, MCP no esta disponible, una fuente necesaria no esta autorizada o una tabla no pertenece al Data Contract.
 
-# 8. Entregar a Presentation Layer
-Entregar a Presentation Layer el contenido canonico estabilizado.
+### Convenciones SQL seguras para BigQuery MCP
 
-Definition of Done
+Antes de enviar una consulta mediante `query_read_only`, revisar la SQL contra estas convenciones locales, derivadas del diagnostico AUC-001 v2:
 
-El contenido canonico queda preparado para cualquier Presentation Policy compatible.
+- No usar `rows` como alias de columna.
+  - Incorrecto: `COUNT(*) AS rows`
+  - Correcto: `COUNT(*) AS row_count`
+  - Tambien validos: `lead_count`, `spend_row_count`, `qualified_lead_count`.
+- No reutilizar nombres dentro de una misma consulta.
+  - Un nombre de CTE no debe reutilizarse como alias de columna.
+  - Los aliases de columnas agregadas deben ser explicitos y unicos.
+- No usar joins implicitos con coma.
+  - Incorrecto: `FROM table_a, table_b`
+  - Correcto: `FROM table_a CROSS JOIN table_b`
+  - Preferir `JOIN ... ON`, `JOIN ... USING` o consultas separadas cuando sea mas claro.
+- Antes de enviar la consulta MCP, comprobar aliases reservados, colisiones entre CTEs y columnas, referencias ambiguas, joins con coma y que el `dataset_id` del `execution_context` corresponde al alcance principal de la consulta.
+- Ante `ERR_DRY_RUN_FAILED`, no repetir la misma forma con cambios irrelevantes; simplificar la consulta, revisar sintaxis y tipos, usar aliases explicitos y registrar la consulta rechazada como evidencia no utilizable.
+
+Definition of Done:
+
+- todas las fuentes que se consultaran estan autorizadas, verificadas y tienen cobertura conocida o limitacion explicita.
+
+## Fase 06 - Context Definition Stabilization
+
+Input:
+
+- Execution Context canonicalizado;
+- cobertura temporal validada;
+- fuentes autorizadas;
+- campos dependientes del proveedor resueltos.
+
+Acciones:
+
+- cerrar el Stabilized Context Definition;
+- sustituir `PENDING_START_FROM_PROVIDER_COVERAGE` por la fecha inicial real o declarar bloqueo;
+- registrar solicitud original, regla temporal aplicada, periodo final, scope, calidad, audience, restricciones, fuentes y divergencias.
+
+Output:
+
+- Stabilized Context Definition.
+
+Gate:
+
+- no construir Evidence Set si el Context Definition conserva pendientes materiales.
+
+Definition of Done:
+
+- existe un Context Definition estabilizado, explicito y trazable.
+
+## Fase 07 - Evidence Acquisition
+
+Input:
+
+- Stabilized Context Definition;
+- Data Provider validado;
+- convenciones SQL BigQuery MCP.
+
+Acciones:
+
+- ejecutar consultas mediante BigQuery MCP Server cuando se requiera evidencia nueva;
+- registrar SQL, request_id, execution_context, tablas, periodo, filtros, granularidad, dry run, coste estimado, bytes procesados, resultado, policy decision, trace ID y coverage;
+- registrar consultas rechazadas y su causa publica;
+- no usar consultas rechazadas como evidencia;
+- no usar fallback, CLI ni clientes directos cuando el modo exige MCP.
+
+Output:
+
+- Evidence Acquisition Record con consultas exitosas y rechazadas separadas.
+
+Gate:
+
+- detener si no hay evidencia suficiente para construir el Evidence Set sin inferir.
+
+Definition of Done:
+
+- toda metrica candidata procede de una consulta autorizada y exitosa, o queda descartada como no utilizable.
+
+## Fase 08 - Evidence Set Construction and Stabilization
+
+Input:
+
+- Evidence Acquisition Record;
+- Stabilized Context Definition;
+- Data Contract.
+
+Acciones:
+
+- construir hechos, metricas derivadas, coverage states, limitaciones, UNKNOWNs y trazabilidad;
+- preservar `matched`, `lead_only`, `spend_only` y `UNKNOWN` cuando apliquen;
+- excluir outputs rechazados o no verificables;
+- separar hechos de interpretacion;
+- no generar findings ni recomendaciones.
+
+Output:
+
+- Evidence Set estabilizado.
+
+Gate:
+
+- detener si la evidencia mezcla universos, granularidades o periodos sin declararlo.
+
+Definition of Done:
+
+- existe un Evidence Set trazable, cerrado y libre de interpretacion.
+
+## Fase 09 - Knowledge Generation and Stabilization
+
+Input:
+
+- Evidence Set estabilizado;
+- `ANALYTICAL_PROFILE.md`;
+- `knowledge-construction-profile.md`.
+
+Acciones:
+
+- derivar conocimiento exclusivamente desde el Evidence Set estabilizado;
+- aplicar los perfiles analiticos correspondientes;
+- construir findings mediante comparacion, segmentacion, evolucion temporal, descomposicion, contraste volumen-calidad, contraste calidad-coste, analisis de cobertura y anomalias;
+- conservar limitaciones e incertidumbre;
+- no formular recomendaciones.
+
+Output:
+
+- Knowledge Set estabilizado.
+
+Gate:
+
+- detener si el Knowledge Set solo repite metricas o introduce hechos no presentes en Evidence.
+
+Definition of Done:
+
+- existe un Knowledge Set consolidado, explicativo y derivado exclusivamente del Evidence Set.
+
+## Fase 10 - Recommendation Generation and Stabilization
+
+Input:
+
+- Knowledge Set estabilizado;
+- restricciones del caso;
+- prioridades y riesgos identificados.
+
+Acciones:
+
+- derivar recomendaciones exclusivamente del Knowledge Set;
+- incluir prioridad, accion, soporte, riesgo, impacto esperado y validacion posterior;
+- no introducir recomendaciones sin finding de soporte;
+- estabilizar el Recommendation Set antes de Presentation.
+
+Output:
+
+- Recommendation Set estabilizado.
+
+Gate:
+
+- detener si existen recomendaciones no trazadas a Knowledge.
+
+Definition of Done:
+
+- todas las recomendaciones son trazables, priorizadas y derivadas del Knowledge Set.
+
+## Fase 11 - Canonical Content Validation Gate
+
+Input:
+
+- Stabilized Context Definition;
+- Evidence Set estabilizado;
+- Knowledge Set estabilizado;
+- Recommendation Set estabilizado.
+
+Acciones:
+
+- comprobar consistencia, trazabilidad, separacion Evidence/Knowledge/Recommendations, coverage states, UNKNOWNs, limitaciones, prioridades y equivalencia semantica;
+- confirmar que Evidence no contiene interpretacion;
+- confirmar que Knowledge no introduce evidencia nueva;
+- confirmar que Recommendations derivan de Knowledge;
+- no corregir inconsistencias dentro de Presentation.
+
+Output:
+
+- Canonical Content Validation result.
+
+Gate:
+
+- si falla la validacion, detener la ejecucion antes de Presentation.
+
+Definition of Done:
+
+- los cuatro artefactos canonicos estan listos para representarse sin reconstruccion.
+
+## Fase 12 - Presentation Materialization
+
+Input:
+
+- artefactos canonicos estabilizados;
+- Presentation Contract;
+- Presentation Projection;
+- Communication Context;
+- Representation Constraints;
+- Presentation Policy aplicable, cuando exista.
+
+Acciones:
+
+- resolver Presentation Projection;
+- resolver Communication Context;
+- resolver Representation Constraints;
+- aplicar Presentation Policy cuando exista;
+- consumir solo artefactos estabilizados;
+- no consultar datos;
+- no generar evidencia;
+- no generar nuevo conocimiento;
+- no generar nuevas recomendaciones;
+- preservar equivalencia semantica, coverage states, UNKNOWNs, limitaciones y prioridades.
+
+Output:
+
+- Presentation materializada.
+
+Gate:
+
+- detener si la representacion requiere modificar contenido canonico o inventar informacion.
+
+Definition of Done:
+
+- la Presentation comunica el contenido canonico sin alterarlo ni reconstruirlo.
+
+## Fase 13 - Final Checklist and Delivery
+
+Input:
+
+- Presentation materializada;
+- artefactos canonicos estabilizados;
+- `CHECKLIST.md`.
+
+Acciones:
+
+- ejecutar `CHECKLIST.md`;
+- confirmar fuentes;
+- confirmar MCP-only cuando aplique;
+- declarar artefactos consumidos;
+- declarar proyeccion;
+- declarar policy aplicada, cuando exista;
+- confirmar aislamiento historico;
+- confirmar trazabilidad;
+- confirmar preservacion de limitaciones y UNKNOWNs.
+
+Output:
+
+- entrega final;
+- resultado de checklist;
+- limitaciones y desviaciones declaradas.
+
+Gate:
+
+- no entregar como completado si el checklist falla.
+
+Definition of Done:
+
+- la entrega final es trazable, declara fuentes y artefactos, preserva el contenido canonico y cumple el checklist.
+
+## Manejo operativo de bloqueos
+
+Cuando una fase falle:
+
+- detener la ejecucion en la fase donde ocurre el fallo;
+- registrar causa exacta, impacto y fase afectada;
+- no saltar fases;
+- no completar mediante inferencias;
+- no sustituir MCP por otro mecanismo;
+- solicitar aclaracion o correccion solo cuando sea necesaria para continuar.
