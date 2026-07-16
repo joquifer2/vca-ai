@@ -78,11 +78,11 @@ Este contract no define la forma concreta del Executive Report ni de futuras rep
 | Knowledge Set | [AUC-001 Knowledge Set](auc-001-knowledge-set.md) | Confirmed |
 | Recommendation Contract | [AUC-001 Recommendation Contract](auc-001-recommendation-contract.md) | Completed |
 | Recommendation Set | [AUC-001 Recommendation Set](auc-001-recommendation-set.md) | Confirmed |
-| Base Presentation Contract | [VCA-PRS-001 Presentation Contract](../contracts/presentation.contract.md) | Documented / aligned in T-044 |
-| AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Available |
-| Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
-| SPEC-010 | [Presentation Projection Selection](../../specs/spec-010-presentation-projection-selection.md) | Applicable |
-| ARCH-002 | [Presentation Projection Architectural Decision](../evaluations/auc-001-presentation-projection-architectural-decision.md) | Applicable |
+| Base Presentation Contract | [VCA-PRS-001 Presentation Contract](/docs/contracts/presentation.contract.md) | Documented / aligned in T-044 |
+| AUC-001 | [Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md) | Available |
+| Skill | [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
+| SPEC-010 | [Presentation Projection Selection](/specs/spec-010-presentation-projection-selection.md) | Applicable |
+| ARCH-002 | [Presentation Projection Architectural Decision](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md) | Applicable |
 
 ---
 
@@ -250,7 +250,7 @@ Esta seccion verifica reglas de invariantes de representacion, no narrativa conc
 
 ## Traceability
 
-- [T-030 in docs/tasks.md](../tasks.md)
+- [T-030 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Evidence Contract](auc-001-evidence-contract.md)
 - [AUC-001 Evidence Set](auc-001-evidence-set.md)
@@ -258,15 +258,15 @@ Esta seccion verifica reglas de invariantes de representacion, no narrativa conc
 - [AUC-001 Knowledge Set](auc-001-knowledge-set.md)
 - [AUC-001 Recommendation Contract](auc-001-recommendation-contract.md)
 - [AUC-001 Recommendation Set](auc-001-recommendation-set.md)
-- [VCA-PRS-001 Base Presentation Contract](../contracts/presentation.contract.md)
-- [SPEC-010 Presentation Projection Selection](../../specs/spec-010-presentation-projection-selection.md)
-- [VCA-AUC-001-ARCH-002 Presentation Projection Decision](../evaluations/auc-001-presentation-projection-architectural-decision.md)
-- [T-043 Documentary Alignment Decision](../evaluations/auc-001-documentary-alignment-decision.md)
-- [T-044 Base Contracts Alignment Record](../evaluations/auc-001-base-contracts-alignment-record.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-PRS-001 Base Presentation Contract](/docs/contracts/presentation.contract.md)
+- [SPEC-010 Presentation Projection Selection](/specs/spec-010-presentation-projection-selection.md)
+- [VCA-AUC-001-ARCH-002 Presentation Projection Decision](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md)
+- [T-043 Documentary Alignment Decision](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md)
+- [T-044 Base Contracts Alignment Record](/docs/evaluations/auc-001/validations/auc-001-base-contracts-alignment-record.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

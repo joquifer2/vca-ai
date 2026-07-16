@@ -63,11 +63,11 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 |---|---|---|
 | Context Definition | [AUC-001 Context Definition](auc-001-context-definition.md) | Validated |
 | Execution Context | [AUC-001 Execution Context](auc-001-execution-context.md) | Validated |
-| Base Data Contract | [VCA-DATA-001](../contracts/data.contract.md) | Documented |
-| AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Approved analytical use case |
-| Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Approved skill |
-| Client context | [CCD](../../knowledge/client/ccd.md) | Available |
-| Data Provider reference | [docs/context_refs.md](../context_refs.md) | BigQuery provider exposure verified in T-018; direct MCP access pending |
+| Base Data Contract | [VCA-DATA-001](/docs/contracts/data.contract.md) | Documented |
+| AUC-001 | [Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md) | Approved analytical use case |
+| Skill | [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Approved skill |
+| Client context | [CCD](/knowledge/client/ccd.md) | Available |
+| Data Provider reference | [docs/context_refs.md](/docs/context_refs.md) | BigQuery provider exposure verified in T-018; direct MCP access pending |
 
 ---
 
@@ -198,20 +198,20 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 
 ## Traceability
 
-- [T-017 in docs/tasks.md](../tasks.md)
+- [T-017 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
 - [AUC-001 Context Resolution](auc-001-context-resolution.md)
-- [VCA-DATA-001 Base Data Contract](../contracts/data.contract.md)
-- [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [Project Brief](../../project_brief.md)
-- [Context References](../context_refs.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Client CCD](../../knowledge/client/ccd.md)
+- [VCA-DATA-001 Base Data Contract](/docs/contracts/data.contract.md)
+- [VCA-CTX-001 Context Contract](/docs/contracts/context.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [Project Brief](/project_brief.md)
+- [Context References](/docs/context_refs.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [Client CCD](/knowledge/client/ccd.md)
 
 ---
 

@@ -254,7 +254,7 @@ These values are model validation totals. They are not Evidence Set findings and
 
 ## Traceability
 
-- [T-021 in docs/tasks.md](../tasks.md)
+- [T-021 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Analysis Request](auc-001-analysis-request.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
@@ -263,12 +263,12 @@ These values are model validation totals. They are not Evidence Set findings and
 - [AUC-001 Source Table Review](auc-001-source-table-review.md)
 - [AUC-001 Discovery Contract](auc-001-discovery-contract.md)
 - [AUC-001 Analytical Preparation](auc-001-analytical-preparation.md)
-- [VCA-ANL-001 Base Analytical Contract](../contracts/analytical.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-ANL-001 Base Analytical Contract](/docs/contracts/analytical.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

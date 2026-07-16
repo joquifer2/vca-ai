@@ -198,16 +198,16 @@ The following are explicitly outside T-022:
 
 ## Traceability
 
-- [T-022 in docs/tasks.md](../tasks.md)
+- [T-022 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Analytical Contract](auc-001-analytical-contract.md)
 - [AUC-001 Analytical Preparation](auc-001-analytical-preparation.md)
 - [AUC-001 Discovery Contract](auc-001-discovery-contract.md)
 - [AUC-001 Data Contract](auc-001-data-contract.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

@@ -48,7 +48,7 @@ Entre los principales activos existentes se encuentran la documentación de cont
 
 El proyecto debe organizar y aprovechar ese entorno para convertirlo en un sistema analítico corporativo coherente, con trazabilidad entre contexto, evidencia, razonamiento y salida.
 
-AUC-001 y la skill [meta-lead-quality-analysis](.github/skills/meta-lead-quality-analysis/SKILL.md) ya forman parte del marco aprobado de Specification y sirven como primer ciclo validado del sistema analítico.
+AUC-001 y la skill [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) ya forman parte del marco aprobado de Specification y sirven como primer ciclo validado del sistema analítico.
 
 AIF Foundation actua como dependencia metodologica del proyecto, no como objeto del sistema. Su papel es aportar la base SDD, la gobernanza documental y el marco comun de analisis que VCA IA reutilizara sin modificar su naturaleza.
 

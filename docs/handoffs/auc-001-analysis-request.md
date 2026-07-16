@@ -120,16 +120,16 @@ No blocking UNKNOWN remains for the Analysis Request.
 - User request provided in conversation on 2026-07-12.
 - [AUC-001 Execution Context](auc-001-execution-context.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
-- [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Project Brief](../../project_brief.md)
-- [Context References](../context_refs.md)
-- [docs/tasks.md](../tasks.md)
-- [README](../../README.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [docs/glosario_terminos.md](../glosario_terminos.md)
+- [VCA-CTX-001 Context Contract](/docs/contracts/context.contract.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [Project Brief](/project_brief.md)
+- [Context References](/docs/context_refs.md)
+- [docs/tasks.md](/docs/tasks.md)
+- [README](/README.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [docs/glosario_terminos.md](/docs/glosario_terminos.md)
 
 ---
 

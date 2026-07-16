@@ -14,7 +14,7 @@
 
 ## Gate evaluado
 
-Este gate valida el bloque base formado por [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md), [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md) y [specs/spec-003-extensibility-model.md](../specs/spec-003-extensibility-model.md).
+Este gate valida el bloque base formado por [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md), [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md) y [specs/spec-003-extensibility-model.md](/specs/spec-003-extensibility-model.md).
 
 ## Propósito
 
@@ -22,22 +22,22 @@ Confirmar que el lifecycle analítico, los límites entre componentes y el model
 
 ## Artefactos requeridos
 
-- [README.md](../README.md)
-- [project_brief.md](../project_brief.md)
-- [docs/context_refs.md](../docs/context_refs.md)
-- [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md)
-- [specs/spec-003-extensibility-model.md](../specs/spec-003-extensibility-model.md)
-- [.github/agents/specification.agent.md](../.github/agents/specification.agent.md)
-- [.github/agents/qa-gate.agent.md](../.github/agents/qa-gate.agent.md)
+- [README.md](/README.md)
+- [project_brief.md](/project_brief.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
+- [specs/spec-003-extensibility-model.md](/specs/spec-003-extensibility-model.md)
+- [.github/agents/specification.agent.md](/.github/agents/specification.agent.md)
+- [.github/agents/qa-gate.agent.md](/.github/agents/qa-gate.agent.md)
 
 ## Evidencias encontradas
 
-- [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md) define un ciclo analítico secuencial con fases y criterios de progresión claros.
-- [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md) separa responsabilidades y handoffs entre componentes sin acoplamiento impropio.
-- [specs/spec-003-extensibility-model.md](../specs/spec-003-extensibility-model.md) preserva el núcleo metodológico y define criterios de compatibilidad y reutilización.
-- [project_brief.md](../project_brief.md) mantiene el alcance fundacional documental y reutilizable.
-- [docs/context_refs.md](../docs/context_refs.md) preserva la trazabilidad del roadmap y la secuencia correcta de decisiones.
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md) define un ciclo analítico secuencial con fases y criterios de progresión claros.
+- [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md) separa responsabilidades y handoffs entre componentes sin acoplamiento impropio.
+- [specs/spec-003-extensibility-model.md](/specs/spec-003-extensibility-model.md) preserva el núcleo metodológico y define criterios de compatibilidad y reutilización.
+- [project_brief.md](/project_brief.md) mantiene el alcance fundacional documental y reutilizable.
+- [docs/context_refs.md](/docs/context_refs.md) preserva la trazabilidad del roadmap y la secuencia correcta de decisiones.
 
 ## Criterios cumplidos
 
@@ -69,14 +69,14 @@ Confirmar que el lifecycle analítico, los límites entre componentes y el model
 
 ## Trazabilidad
 
-- [README.md](../README.md)
-- [docs/context_refs.md](../docs/context_refs.md)
-- [project_brief.md](../project_brief.md)
-- [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md)
-- [specs/spec-003-extensibility-model.md](../specs/spec-003-extensibility-model.md)
-- [.github/agents/specification.agent.md](../.github/agents/specification.agent.md)
-- [.github/agents/qa-gate.agent.md](../.github/agents/qa-gate.agent.md)
+- [README.md](/README.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [project_brief.md](/project_brief.md)
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
+- [specs/spec-003-extensibility-model.md](/specs/spec-003-extensibility-model.md)
+- [.github/agents/specification.agent.md](/.github/agents/specification.agent.md)
+- [.github/agents/qa-gate.agent.md](/.github/agents/qa-gate.agent.md)
 
 ## Decisión
 

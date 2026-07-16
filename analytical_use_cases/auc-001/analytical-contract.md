@@ -9,7 +9,7 @@
 | Status | Active |
 | Scope | What AUC-001 must be able to answer and what it needs to do so |
 
-El caso de uso base permanece registrado como Proposed en [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md); este contrato fija la articulacion operativa vigente del caso de uso.
+El caso de uso base permanece activo y validado en [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md); este contrato fija la articulacion operativa vigente del caso de uso.
 
 ## 1. Propósito
 
@@ -152,9 +152,9 @@ El contrato de AUC-001 acepta como limites actuales:
 
 Este contrato consolida conocimiento validado en:
 
-- [docs/evaluations/auc-001-knowledge-construction-comparative-analysis.md](../../docs/evaluations/auc-001-knowledge-construction-comparative-analysis.md)
-- [docs/evaluations/auc-001-analytical-investigation-analysis.md](../../docs/evaluations/auc-001-analytical-investigation-analysis.md)
-- [docs/evaluations/auc-001-knowledge-depth-recovery-validation.md](../../docs/evaluations/auc-001-knowledge-depth-recovery-validation.md)
-- [docs/evaluations/auc-001-minimum-evidence-contract-analysis.md](../../docs/evaluations/auc-001-minimum-evidence-contract-analysis.md)
+- [docs/evaluations/auc-001/investigations/auc-001-knowledge-construction-comparative-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-knowledge-construction-comparative-analysis.md)
+- [docs/evaluations/auc-001/investigations/auc-001-analytical-investigation-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-analytical-investigation-analysis.md)
+- [docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md](/docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md)
+- [docs/evaluations/auc-001/investigations/auc-001-minimum-evidence-contract-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-minimum-evidence-contract-analysis.md)
 
 La lectura del contrato debe hacerse junto con [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md) como documento base del caso de uso.

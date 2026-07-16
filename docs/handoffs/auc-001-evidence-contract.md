@@ -66,8 +66,8 @@ Este contract no produce insights, hipotesis, conclusiones ni recomendaciones.
 | Discovery Contract | [AUC-001 Discovery Contract](auc-001-discovery-contract.md) | Completed after source-table correction |
 | Analytical Contract | [AUC-001 Analytical Contract](auc-001-analytical-contract.md) | Completed |
 | Evidence Set | [AUC-001 Evidence Set](auc-001-evidence-set.md) | Completed |
-| AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Available |
-| Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
+| AUC-001 | [Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md) | Available |
+| Skill | [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
 
 ---
 
@@ -241,19 +241,19 @@ The following are excluded from this Evidence Contract and reserved for later ph
 
 ## Traceability
 
-- [T-023 in docs/tasks.md](../tasks.md)
+- [T-023 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Evidence Set](auc-001-evidence-set.md)
 - [AUC-001 Analytical Contract](auc-001-analytical-contract.md)
 - [AUC-001 Analytical Preparation](auc-001-analytical-preparation.md)
 - [AUC-001 Discovery Contract](auc-001-discovery-contract.md)
 - [AUC-001 Data Contract](auc-001-data-contract.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
-- [VCA-EVD-001 Base Evidence Contract](../contracts/evidence.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-EVD-001 Base Evidence Contract](/docs/contracts/evidence.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

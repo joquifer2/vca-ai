@@ -19,7 +19,7 @@
 
 Este documento refleja una instancia histórica de readiness previa al Phase Gate oficial de SPEC-008.
 
-La decisión vigente y autorizada para Development queda registrada en [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md).
+La decisión vigente y autorizada para Development queda registrada en [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md).
 
 ---
 

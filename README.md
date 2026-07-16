@@ -1,364 +1,104 @@
 # VCA IA
 
-## Plataforma Analítica basada en IA
+## Plataforma Analitica basada en IA
 
 Version estable: v1.0.0
 
 Estado del proyecto: Development Authorized.
 
-VCA IA es la plataforma de análisis asistido por IA de VCA para transformar contexto, datos y conocimiento del negocio en análisis trazables, conclusiones fundamentadas y recomendaciones reutilizables.
+VCA IA es la plataforma de analisis asistido por IA de VCA para transformar contexto, datos y conocimiento del negocio en analisis trazables, conclusiones fundamentadas y recomendaciones reutilizables.
 
-El marco documental ya incluye capacidades de selección de proyeccion y transformacion de representacion guiadas por contexto canonico y contexto comunicativo, reflejadas en SPEC-010 y SPEC-011.
-
-El proyecto se apoya en AIF Foundation como dependencia metodológica reutilizable, pero su objeto es VCA IA y no la Foundation.
+El proyecto se apoya en AIF Foundation como dependencia metodologica reutilizable. El objeto funcional de este repositorio es VCA IA.
 
 ---
 
-## Proposito del repositorio
+## Proposito
 
-El repositorio existe para gobernar y documentar la Plataforma Analítica basada en IA de VCA.
+El repositorio gobierna y documenta la Plataforma Analitica basada en IA de VCA.
 
-Su propósito es proporcionar una base documental clara para:
+Su funcion principal es mantener trazabilidad entre:
 
-- estructurar el trabajo analítico de VCA;
-- conservar trazabilidad entre contexto, evidencia, razonamiento y salida;
-- reutilizar capacidades analíticas sobre múltiples casos de uso;
-- mantener separadas las responsabilidades entre datos, análisis, interpretación y recomendación;
-- coordinar la evolución del proyecto mediante artefactos SDD oficiales.
+- contexto;
+- evidencia;
+- conocimiento;
+- recomendaciones;
+- outputs;
+- decisiones y gates documentales.
 
-El objetivo no es automatizar informes.
-El objetivo es sostener un sistema analítico coherente, auditable y reutilizable para VCA.
-
----
-
-## Que problema resuelve
-
-VCA IA resuelve la fragmentación de los procesos analíticos cuando dependen de instrucciones ad hoc, decisiones implícitas y artefactos aislados que no conservan trazabilidad entre contexto, evidencia, razonamiento y resultado.
-
-El proyecto busca reducir:
-
-- la dispersión del contexto entre documentos y conversaciones;
-- la variación del razonamiento entre ejecuciones o responsables;
-- la mezcla entre evidencia e interpretación;
-- la pérdida de trazabilidad entre fuentes y conclusiones;
-- la dependencia de conocimiento tácito para evolucionar el sistema.
+El objetivo no es automatizar informes aislados, sino sostener un sistema analitico coherente, auditable y reutilizable.
 
 ---
 
-## Que objetivo persigue
+## Estado actual
 
-El objetivo de VCA IA es sostener un sistema analítico corporativo capaz de trabajar desde el contexto inicial hasta las conclusiones y recomendaciones, con trazabilidad documental suficiente para revisar decisiones y reutilizar criterios.
-
-Sabremos que el proyecto ha tenido exito cuando VCA disponga de un sistema que:
-
-- permita estructurar analisis repetibles con entradas, procesos y salidas definidos;
-- conserve la separacion entre hechos, evidencia, interpretacion y recomendacion;
-- haga visibles los criterios utilizados en cada analisis;
-- pueda evolucionar sin perder coherencia documental;
-- reutilice la metodología de AIF Foundation sin depender de ella como resultado funcional.
+- Fase SDD: Development Authorized.
+- Phase Gate: [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md).
+- Primer caso analitico: [AUC-001 - Meta Lead Quality Analysis](/analytical_use_cases/auc-001/README.md).
+- Cierre experimental AUC-001: [gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md), decision `READY FOR CLOSURE`.
+- Producto analitico validado: [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md).
 
 ---
 
-## Que capacidades proporciona
+## Capacidades principales
 
-VCA IA proporciona un marco para:
-
-- definir y ejecutar casos de uso analíticos de forma trazable;
-- incorporar nuevas capacidades analíticas sin rehacer el núcleo metodológico;
-- separar contexto, evidencia, análisis, razonamiento y recomendaciones;
-- validar el avance del proyecto mediante gates documentales;
-- sostener la evolución del sistema con una base de conocimiento reutilizable;
-- usar AIF Foundation como base metodológica, no como resultado funcional.
-
-### Capacidad inicial aprobada
-
-- [analytical_use_cases/meta_lead_quality_analysis.md](analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md)
-
-### Cierre de AUC-001
-
-- T-032 a T-039 completadas con artefactos verificables.
-- T-039 registra validación MCP separada de la adquisición CLI de T-018.
-- La revisión de cierre documenta la aceptación provisional de AUC-001 y mantiene SPEC-009 en estado Draft, sin presentarlo como aprobación canónica de la Foundation.
-- El Final Quality Gate de AUC-001 declara `READY FOR CLOSURE` y aprueba el producto final como salida integrada y trazable.
-- Resultado de cierre de AUC-001: READY FOR CLOSURE.
-- Este cierre es analítico/documental y no debe confundirse con el Phase Gate de entrada a Development.
-
----
-
-## Como esta organizado el proyecto
-
-### Vista funcional
-
-El proyecto se organiza por responsabilidades funcionales y no como una única lista documental.
-
-### Casos de uso analiticos
-
-- [analytical_use_cases/meta_lead_quality_analysis.md](analytical_use_cases/meta_lead_quality_analysis.md)
-
-### Skills
-
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md)
-
-### Planificacion
-
-- [docs/tasks.md](docs/tasks.md)
-
-### Gates
-
-- [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md)
-- [docs/evaluations/auc-001-closure-reconciliation-review.md](docs/evaluations/auc-001-closure-reconciliation-review.md)
-- [gates/auc-001-final-quality-gate.md](gates/auc-001-final-quality-gate.md)
-- [specs/spec-009-analytical-use-case-completion-acceptance-gate.md](specs/spec-009-analytical-use-case-completion-acceptance-gate.md)
-
-### Knowledge Base
-
-- [knowledge/client/](knowledge/client/)
-
-### Otros artefactos relevantes
-
-- [project_brief.md](project_brief.md)
-- [docs/context_refs.md](docs/context_refs.md)
-- [docs/glosario_terminos.md](docs/glosario_terminos.md)
-- [sdd_readiness_assessment.md](sdd_readiness_assessment.md)
-- [specs/](specs/)
-- [.github/instructions/sdd.instructions.md](.github/instructions/sdd.instructions.md)
-- [.github/copilot-instructions.md](.github/copilot-instructions.md)
-
----
-
-## Source of Truth
-
-La Source of Truth del proyecto se reparte entre los artefactos canónicos del repositorio:
-
-| Fuente | Propósito |
-| --- | --- |
-| [project_brief.md](project_brief.md) | Definición del proyecto, propósito, alcance, límites y criterios de éxito |
-| [docs/context_refs.md](docs/context_refs.md) | Índice oficial de contexto, decisiones y trazabilidad |
-| [specs/](specs/) | Definición del lifecycle, boundaries, extensibilidad, contracts, gates y evaluaciones |
-| [analytical_use_cases/meta_lead_quality_analysis.md](analytical_use_cases/meta_lead_quality_analysis.md) | Primer caso de uso analítico aprobado |
-| [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md) | Skill asociada al caso inicial y reutilizable como capacidad analítica |
-| [docs/tasks.md](docs/tasks.md) | Backlog documental y gobernanza de trabajo del proyecto |
-| [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md) | Registro documental del Phase Gate de entrada a Development |
-| [docs/evaluations/auc-001-closure-reconciliation-review.md](docs/evaluations/auc-001-closure-reconciliation-review.md) | Cierre documental provisional de AUC-001 y reconciliacion de SPEC-009 Draft |
-| [gates/auc-001-final-quality-gate.md](gates/auc-001-final-quality-gate.md) | Gate final de cierre experimental de AUC-001 con veredicto READY FOR CLOSURE |
-| [specs/spec-009-analytical-use-case-completion-acceptance-gate.md](specs/spec-009-analytical-use-case-completion-acceptance-gate.md) | Gate de cierre reusable en estado Draft, validado provisionalmente en vca-ai |
-| [docs/evaluations/auc-001-development-entry-readiness-evidence.md](docs/evaluations/auc-001-development-entry-readiness-evidence.md) | Evidencia de readiness consolidada para Development |
-| [docs/evaluations/auc-001-end-to-end-traceability-test-report.md](docs/evaluations/auc-001-end-to-end-traceability-test-report.md) | Prueba de trazabilidad end-to-end del caso AUC-001 |
-| [docs/evaluations/auc-001-bigquery-mcp-integration-validation.md](docs/evaluations/auc-001-bigquery-mcp-integration-validation.md) | Validacion MCP del scope tecnico T-039 |
-| [specs/spec-010-presentation-projection-selection.md](specs/spec-010-presentation-projection-selection.md) | Selección de proyección de presentacion desde un Execution Context canonicalizado |
-| [specs/spec-011-communication-context-representation-transformation.md](specs/spec-011-communication-context-representation-transformation.md) | Transformacion de representacion a partir de un Communication Context compuesto |
-| [docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md](docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md) | Canonicalizacion del alcance de ejecucion previa a la seleccion de proyeccion |
-| [docs/evaluations/auc-001-presentation-projection-architectural-decision.md](docs/evaluations/auc-001-presentation-projection-architectural-decision.md) | Proyecciones analitica y ejecutiva como representaciones hermanas |
-| [docs/evaluations/auc-001-communication-context-representation-transformation-architectural-decision.md](docs/evaluations/auc-001-communication-context-representation-transformation-architectural-decision.md) | Transformacion de representacion guiada por Communication Context |
-| [knowledge/client/](knowledge/client/) | Base de conocimiento del proyecto para contexto persistente y reutilizable |
-| [README.md](README.md) | Visión general navegable del proyecto |
-| AIF Foundation | Dependencia metodológica reutilizable |
-
----
-
-## Arquitectura conceptual
-
-VCA IA puede entenderse como un sistema organizado en cuatro niveles conceptuales:
-
-```mermaid
-flowchart LR
-  C[Contexto y gobernanza] --> P[Definición del proyecto]
-  P --> U[Casos de uso y skills]
-  U --> O[Ejecución analítica y validación]
-  O --> R[Resultados trazables]
-  K[Knowledge Base] --> U
-  K --> O
-  S[Specs, tasks y gates] --> U
-  S --> O
-```
-
-- Contexto y gobernanza: [docs/context_refs.md](docs/context_refs.md), [.github/instructions/sdd.instructions.md](.github/instructions/sdd.instructions.md), [.github/copilot-instructions.md](.github/copilot-instructions.md).
-- Definición del proyecto: [project_brief.md](project_brief.md).
-- Capas analíticas: casos de uso, skills y Knowledge Base.
-- Control documental: specs, tasks, gates y readiness assessment.
-
-AIF Foundation permanece fuera del sistema como dependencia metodológica reutilizable.
-
----
-
-## Templates reutilizables
-
-Los templates más útiles para comprender o extender el proyecto son:
-
-- [docs/templates/project_brief.template.md](docs/templates/project_brief.template.md)
-- [docs/templates/context_refs.template.md](docs/templates/context_refs.template.md)
-- [docs/templates/sdd_readiness_assessment.template.md](docs/templates/sdd_readiness_assessment.template.md)
-- [docs/templates/contracts.template.md](docs/templates/contracts.template.md)
-- [docs/templates/data_lineage.template.md](docs/templates/data_lineage.template.md)
-- [docs/templates/extension_compatibility_dossier.template.md](docs/templates/extension_compatibility_dossier.template.md)
-
-Templates de apoyo, disponibles para necesidades documentales más específicas:
-
-- [docs/templates/retrospective_spec.template.md](docs/templates/retrospective_spec.template.md)
-- [docs/templates/closure_review.template.md](docs/templates/closure_review.template.md)
-- [docs/templates/system_overview.template.md](docs/templates/system_overview.template.md)
-- [docs/templates/architecture_as_is.template.md](docs/templates/architecture_as_is.template.md)
-- [docs/templates/copilot-instructions.template.md](docs/templates/copilot-instructions.template.md)
-- [docs/templates/copilot-instructions-project.template.md](docs/templates/copilot-instructions-project.template.md)
-- [docs/templates/AGENTS.template.md](docs/templates/AGENTS.template.md)
-
----
-
-## Que artefactos constituyen la Source of Truth
-
-1. [docs/context_refs.md](docs/context_refs.md)
-2. [project_brief.md](project_brief.md)
-3. [specs/](specs/)
-4. [analytical_use_cases/meta_lead_quality_analysis.md](analytical_use_cases/meta_lead_quality_analysis.md)
-5. [.github/skills/meta-lead-quality-analysis/SKILL.md](.github/skills/meta-lead-quality-analysis/SKILL.md)
-6. [docs/tasks.md](docs/tasks.md)
-7. [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md)
-8. [docs/evaluations/auc-001-closure-reconciliation-review.md](docs/evaluations/auc-001-closure-reconciliation-review.md)
-9. [specs/spec-009-analytical-use-case-completion-acceptance-gate.md](specs/spec-009-analytical-use-case-completion-acceptance-gate.md)
-10. [docs/evaluations/auc-001-development-entry-readiness-evidence.md](docs/evaluations/auc-001-development-entry-readiness-evidence.md)
-11. [docs/evaluations/auc-001-end-to-end-traceability-test-report.md](docs/evaluations/auc-001-end-to-end-traceability-test-report.md)
-12. [docs/evaluations/auc-001-bigquery-mcp-integration-validation.md](docs/evaluations/auc-001-bigquery-mcp-integration-validation.md)
-13. [knowledge/client/](knowledge/client/)
-
----
-
-## Fase SDD actual
-
-Estado vigente:
-
-- SDD -> Development.
-
-Autorizacion emitida mediante SPEC-008:
-
-- PASS WITH OBSERVATIONS.
-
-El proyecto puede avanzar en Development manteniendo visibles las observaciones activas registradas en el Phase Gate.
-
-La fase documental previa ya quedó consolidada; a partir de aquí, la evolución debe seguir el control metodológico publicado y la trazabilidad entre artefactos.
-
----
-
-## Como debe evolucionar el proyecto
-
-La evolución de VCA IA debe seguir este orden general:
-
-1. Consolidar contexto y definición del proyecto.
-2. Formalizar o ampliar Specifications cuando aparezcan nuevas capacidades.
-3. Mantener actualizados los casos de uso, skills y la Knowledge Base.
-4. Planificar el trabajo en [docs/tasks.md](docs/tasks.md).
-5. Validar la entrada a nuevas fases mediante gates documentales.
-6. Desarrollar capacidades manteniendo trazabilidad entre evidencia, análisis y resultados.
-7. Revisar y extender el sistema sin romper el núcleo analítico.
-
----
-
-## Flujo recomendado
-
-```text
-Context References
-↓
-Project Brief
-↓
-Knowledge Base
-↓
-Specifications
-↓
-Casos de uso y Skills
-↓
-Tasks
-↓
-Development
-↓
-Validation
-```
+- Definir y ejecutar casos de uso analiticos trazables.
+- Separar contexto, evidencia, conocimiento, recomendaciones y presentacion.
+- Validar avance mediante gates documentales.
+- Mantener decisiones y evaluaciones separadas.
+- Reutilizar capacidades analiticas sin acoplar el sistema a una ejecucion puntual.
 
 ---
 
 ## Estructura del repositorio
 
-```text
-AGENTS.md
-README.md
+| Area | Proposito |
+|---|---|
+| [project_brief.md](/project_brief.md) | Definicion del proyecto, alcance y criterios de exito |
+| [docs/context_refs.md](/docs/context_refs.md) | Indice detallado de contexto, trazabilidad y fuentes |
+| [specs/](/specs/) | Specifications del marco analitico |
+| [analytical_use_cases/](/analytical_use_cases/) | Casos de uso analiticos e indices por caso |
+| [.github/skills/](/.github/skills/) | Skills operativas asociadas a casos de uso |
+| [docs/contracts/](/docs/contracts/) | Contratos transversales |
+| [docs/decisions/](/docs/decisions/) | Decisiones estabilizadas |
+| [docs/evaluations/](/docs/evaluations/) | Investigaciones, experimentos, validaciones y diagnosticos |
+| [docs/corpus/](/docs/corpus/) | Corpus historico usado como referencia experimental |
+| [outputs/](/outputs/) | Productos analiticos validados por ejecucion |
+| [gates/](/gates/) | Phase, QA y closure gates |
+| [docs/tasks.md](/docs/tasks.md) | Backlog documental y gobernanza de trabajo |
 
-.github/
-├── agents/
-├── instructions/
-├── prompts/
-├── copilot-instructions.md
-└── skills/
+---
 
-analytical_use_cases/
-└── meta_lead_quality_analysis.md
+## Source of Truth minima
 
-docs/
-├── glosario_terminos.md
-├── context_refs.md
-├── tasks.md
-├── handoffs/
-└── extension_dossiers/
+| Fuente | Proposito |
+|---|---|
+| [project_brief.md](/project_brief.md) | Proposito y alcance del proyecto |
+| [docs/context_refs.md](/docs/context_refs.md) | Trazabilidad detallada y contexto oficial |
+| [specs/](/specs/) | Lifecycle, boundaries, extensibilidad y gates |
+| [analytical_use_cases/](/analytical_use_cases/) | Casos analiticos y estado por caso |
+| [.github/skills/](/.github/skills/) | Ejecucion operativa de skills |
+| [docs/contracts/](/docs/contracts/) | Contratos metodologicos y documentales |
+| [gates/](/gates/) | Decisiones de avance y cierre |
+| [docs/tasks.md](/docs/tasks.md) | Trabajo aprobado y trazable |
 
-knowledge/
-└── client/
+---
 
-docs/templates/
-├── project_brief.template.md
-├── context_refs.template.md
-├── sdd_readiness_assessment.template.md
-├── contracts.template.md
-├── data_lineage.template.md
-├── extension_compatibility_dossier.template.md
-├── retrospective_spec.template.md
-├── system_overview.template.md
-├── architecture_as_is.template.md
-├── copilot-instructions.template.md
-├── copilot-instructions-project.template.md
-└── AGENTS.template.md
+## Punto de entrada AUC-001
 
-specs/
-├── spec-001-analytical-lifecycle.md
-├── spec-002-component-boundaries.md
-├── spec-003-extensibility-model.md
-├── spec-004-transversal-contracts.md
-├── spec-005-readiness-gates.md
-├── spec-006-documentary-evaluations.md
-├── spec-007-extension-compatibility-reusability.md
-├── spec-008-development-entry-phase-gate.md
-└── templates/
+Para comprender AUC-001, leer primero:
 
-gates/
-├── spec-008-development-entry-phase-gate.md
-memory/
-tests/
-tools/
-workflows/
-```
+1. [analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md)
+2. [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
+3. [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+4. [gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md)
+5. [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md)
 
 ---
 
 ## Forma de trabajo esperada
 
-- Mantener separacion entre metodología, gobernanza y ejecución futura.
-- Crear artefactos reutilizables, no instancias especificas de cliente.
-- Marcar ausencias de contexto como PENDING cuando corresponda.
-- Evitar duplicar contenido ya cubierto por otro artefacto canonico.
-- Priorizar claridad, trazabilidad y coherencia documental.
-- Tratar AIF Foundation solo como dependencia metodologica reutilizable.
-
----
-
-## Criterios de exito
-
-VCA IA sera util cuando:
-
-- el proyecto pueda explicarse sin conocer previamente AIF Foundation;
-- el primer caso analitico aprobado pueda ejecutarse de forma trazable;
-- nuevas capacidades puedan incorporarse sin romper el marco comun;
-- la evidencia y la interpretacion permanezcan separadas;
-- el repositorio sirva como base comun para evolucionar el sistema analitico de VCA.
-
----
-
-## Siguiente paso recomendado
-
-Proceder con la evolución del proyecto siguiendo el Phase Gate aprobado y las observaciones activas registradas en [gates/spec-008-development-entry-phase-gate.md](gates/spec-008-development-entry-phase-gate.md).
+- Mantener separacion entre metodologia, gobernanza, evaluacion y outputs.
+- No convertir evaluaciones historicas en fuentes canonicas.
+- No duplicar decisiones estabilizadas dentro de evaluations.
+- Registrar nuevas rutas relevantes en [docs/context_refs.md](/docs/context_refs.md).
+- Tratar AIF Foundation como dependencia metodologica reutilizable, no como producto funcional del repositorio.

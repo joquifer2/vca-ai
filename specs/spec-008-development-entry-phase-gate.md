@@ -302,13 +302,13 @@ La specification incluye riesgos, artefactos relacionados y Definition of Done v
 
 ## 14. Dependencies
 
-- [specs/spec-001-analytical-lifecycle.md](specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-005-readiness-gates.md](specs/spec-005-readiness-gates.md)
-- [specs/spec-006-documentary-evaluations.md](specs/spec-006-documentary-evaluations.md)
-- [gates/specification_phase_close.md](gates/specification_phase_close.md)
-- [.github/instructions/sdd.instructions.md](.github/instructions/sdd.instructions.md)
-- [docs/context_refs.md](docs/context_refs.md)
-- [docs/glosario_terminos.md](docs/glosario_terminos.md)
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-005-readiness-gates.md](/specs/spec-005-readiness-gates.md)
+- [specs/spec-006-documentary-evaluations.md](/specs/spec-006-documentary-evaluations.md)
+- [gates/specification_phase_close.md](/gates/spec-008-development-entry-phase-gate.md)
+- [.github/instructions/sdd.instructions.md](/.github/instructions/sdd.instructions.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [docs/glosario_terminos.md](/docs/glosario_terminos.md)
 
 ---
 

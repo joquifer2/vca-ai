@@ -11,7 +11,7 @@
 | Version | 1.0.0 |
 | Last Updated | 2026-07-12 |
 | Owner | Equipo VCA |
-| Source Index | [docs/contracts.md](../contracts.md) |
+| Source Index | [docs/contracts.md](/docs/contracts.md) |
 
 ---
 
@@ -93,19 +93,19 @@ Analytical Layer / fase Analisis.
 
 ## Traceability
 
-- [project_brief.md](../../project_brief.md)
-- [docs/context_refs.md](../context_refs.md)
-- [docs/contracts.md](../contracts.md)
+- [project_brief.md](/project_brief.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [docs/contracts.md](/docs/contracts.md)
 - [docs/contracts/context.contract.md](context.contract.md)
 - [docs/contracts/data.contract.md](data.contract.md)
 - [docs/contracts/discovery.contract.md](discovery.contract.md)
 - [docs/contracts/analytical.contract.md](analytical.contract.md)
-- [specs/spec-001-analytical-lifecycle.md](../../specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-002-component-boundaries.md](../../specs/spec-002-component-boundaries.md)
-- [specs/spec-004-transversal-contracts.md](../../specs/spec-004-transversal-contracts.md)
-- [analytical_use_cases/meta_lead_quality_analysis.md](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [gates/spec-008-development-entry-phase-gate.md](../../gates/spec-008-development-entry-phase-gate.md)
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
+- [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
+- [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
 ## Unknown Handling
 

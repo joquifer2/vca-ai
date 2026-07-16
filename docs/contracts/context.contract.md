@@ -11,7 +11,7 @@
 | Version | 1.1.0 |
 | Last Updated | 2026-07-13 |
 | Owner | Equipo VCA |
-| Source Index | [docs/contracts.md](../contracts.md) |
+| Source Index | [docs/contracts.md](/docs/contracts.md) |
 
 ---
 
@@ -102,18 +102,18 @@ Framework.
 
 ## Traceability
 
-- [project_brief.md](../../project_brief.md)
-- [docs/context_refs.md](../context_refs.md)
-- [specs/spec-001-analytical-lifecycle.md](../../specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-002-component-boundaries.md](../../specs/spec-002-component-boundaries.md)
-- [specs/spec-004-transversal-contracts.md](../../specs/spec-004-transversal-contracts.md)
-- [specs/spec-010-presentation-projection-selection.md](../../specs/spec-010-presentation-projection-selection.md)
-- [docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md](../evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md)
-- [docs/evaluations/auc-001-presentation-projection-architectural-decision.md](../evaluations/auc-001-presentation-projection-architectural-decision.md)
-- [docs/evaluations/auc-001-documentary-alignment-decision.md](../evaluations/auc-001-documentary-alignment-decision.md)
-- [analytical_use_cases/meta_lead_quality_analysis.md](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [gates/spec-008-development-entry-phase-gate.md](../../gates/spec-008-development-entry-phase-gate.md)
+- [project_brief.md](/project_brief.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
+- [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
+- [specs/spec-010-presentation-projection-selection.md](/specs/spec-010-presentation-projection-selection.md)
+- [docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md](/docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md)
+- [docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md)
+- [docs/decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md)
+- [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
 ## Unknown Handling
 

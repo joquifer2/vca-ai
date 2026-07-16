@@ -49,7 +49,7 @@ Este artefacto no formula conclusiones ni recomendaciones.
 | [AUC-001 Analysis Request](auc-001-analysis-request.md) | Solicitud analitica concreta validada |
 | [AUC-001 Execution Context](auc-001-execution-context.md) | Parametros operativos normalizados y congelados |
 | [AUC-001 Context Resolution](auc-001-context-resolution.md) | Resolucion de fuentes oficiales y contexto aplicable |
-| [VCA-CTX-001 Context Contract](../contracts/context.contract.md) | Contract reusable que define campos criticos y reglas de validacion |
+| [VCA-CTX-001 Context Contract](/docs/contracts/context.contract.md) | Contract reusable que define campos criticos y reglas de validacion |
 
 ---
 
@@ -124,16 +124,16 @@ Este artefacto no formula conclusiones ni recomendaciones.
 - [AUC-001 Analysis Request](auc-001-analysis-request.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
 - [AUC-001 Context Resolution](auc-001-context-resolution.md)
-- [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [Project Brief](../../project_brief.md)
-- [Context References](../context_refs.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Client CCD](../../knowledge/client/ccd.md)
-- [docs/tasks.md](../tasks.md)
+- [VCA-CTX-001 Context Contract](/docs/contracts/context.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [Project Brief](/project_brief.md)
+- [Context References](/docs/context_refs.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [Client CCD](/knowledge/client/ccd.md)
+- [docs/tasks.md](/docs/tasks.md)
 
 ---
 

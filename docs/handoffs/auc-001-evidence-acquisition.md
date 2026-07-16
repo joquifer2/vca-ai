@@ -49,9 +49,9 @@ Este artefacto no formula hallazgos, conclusiones ni recomendaciones.
 |---|---|---|
 | [AUC-001 Context Definition](auc-001-context-definition.md) | Scope and period | Validated |
 | [AUC-001 Data Contract](auc-001-data-contract.md) | Requested data contract | Documented |
-| [VCA-DATA-001 Base Data Contract](../contracts/data.contract.md) | Contract rules | Documented |
-| [AUC-001](../../analytical_use_cases/meta_lead_quality_analysis.md) | Analytical use case | Available |
-| [meta-lead-quality-analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Execution rules | Available |
+| [VCA-DATA-001 Base Data Contract](/docs/contracts/data.contract.md) | Contract rules | Documented |
+| [AUC-001](/analytical_use_cases/meta_lead_quality_analysis.md) | Analytical use case | Available |
+| [meta-lead-quality-analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Execution rules | Available |
 
 ---
 
@@ -313,15 +313,15 @@ GROUP BY campaign_signal;
 
 ## Traceability
 
-- [T-018 in docs/tasks.md](../tasks.md)
+- [T-018 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Data Contract](auc-001-data-contract.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Context References](../context_refs.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [Context References](/docs/context_refs.md)
 
 ---
 
