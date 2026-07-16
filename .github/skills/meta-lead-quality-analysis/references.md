@@ -94,6 +94,23 @@ Debe asumirlas como capacidades disponibles del framework.
 
 ---
 
+## Perfiles de Knowledge Generation
+
+Durante la Fase 09 del Runbook deben consultarse:
+
+- `.github/skills/meta-lead-quality-analysis/ANALYTICAL_PROFILE.md`
+- `.github/skills/meta-lead-quality-analysis/knowledge-construction-profile.md`
+
+Estos perfiles guian el programa interno de investigacion analitica y la consolidacion del Knowledge Set.
+
+No sustituyen el Evidence Set.
+
+No introducen evidencia nueva.
+
+No autorizan recomendaciones dentro de Knowledge Generation.
+
+---
+
 ## Presentation Policies
 
 Cuando corresponda a la solicitud:
@@ -146,6 +163,21 @@ El runtime resolverá el mecanismo de acceso utilizando las capacidades disponib
 Todas las consultas deberán limitarse a las fuentes publicadas por el Data Contract.
 
 La disponibilidad técnica de una fuente no implica autorización metodológica.
+
+Para llamadas `query_read_only` del BigQuery MCP Server, `execution_context` es un contrato cerrado y no un contenedor de trazabilidad. Debe construirse solo con:
+
+```yaml
+execution_context:
+  project_id: <authorized_project_id>
+  dataset_id: <authorized_dataset_id>
+  max_bytes_billed: <workspace_cost_limit_bytes>
+```
+
+En el workspace `vca`, `project_id` debe ser `datamart-vca-494114` y `max_bytes_billed` debe ser `1073741824`.
+
+El `dataset_id` debe ser `intermediate` para consultas sobre `datamart-vca-494114.intermediate.*` y `marts` para consultas sobre `datamart-vca-494114.marts.*`.
+
+No incluir dentro de `execution_context`: `workspace_id`, `table_id`, `purpose`, `request_id`, `resource_selector`, `location`, `auth_mode` ni ningun otro campo descriptivo o no soportado. `request_id` debe permanecer en el nivel superior de la llamada; la SQL debe permanecer en `sql_query`; la trazabilidad adicional debe documentarse en artefactos de ejecucion o auditoria.
 
 ---
 

@@ -154,6 +154,48 @@ Presentation Layer no puede reconstruir estos artefactos ni volver a razonar dir
 
 Coverage states, limitaciones, UNKNOWNs, prioridades y trazabilidad deben preservarse durante toda la ejecucion.
 
+## Profundidad analitica del Knowledge Set
+
+La calidad de AUC-001 depende de que Knowledge Generation ejecute un programa explicito de investigacion analitica antes de estabilizar conocimiento.
+
+Ese programa no crea una nueva fase metodologica, no modifica los contratos y no sustituye el lifecycle canonico. Opera dentro de Knowledge Generation como disciplina interna de razonamiento.
+
+Antes de producir el Knowledge Set, la ejecucion debe:
+
+- recorrer la evidencia mediante preguntas de negocio adaptadas a la cobertura disponible;
+- aplicar operaciones analiticas como segmentacion, comparacion, ranking multicriterio, analisis temporal, analisis relacional, concentracion, trade-offs, robustez y contraste de explicaciones alternativas cuando la evidencia lo permita;
+- construir findings intermedios trazables, con observacion, soporte, importancia, incertidumbre y relacion con otros findings;
+- descartar observaciones que solo repitan metricas o que no cambien la comprension del problema;
+- consolidar los findings relacionados en insights, hipotesis, conclusiones, prioridades, riesgos e incertidumbres;
+- mantener Recommendations fuera del Knowledge Set.
+
+El objetivo no es aumentar la longitud del informe ni reproducir prompts historicos. El objetivo es recuperar el comportamiento analitico: descubrir patrones, relaciones, tensiones, anomalias y limites de interpretacion antes de sintetizar conocimiento.
+
+Si la evidencia disponible no permite ejecutar alguna operacion esperada, debe registrarse la limitacion y no sustituirse por inferencia.
+
+## Analytical Narrative / Strategic Interpretation
+
+AUC-001 debe producir una lectura integrada del fenomeno observado, no solo un conjunto de insights independientes.
+
+La Analytical Narrative es una operacion experimental de sintesis dentro del cierre de Knowledge Generation. No introduce una nueva fase arquitectonica, no modifica los contratos y no sustituye Presentation Layer.
+
+Su funcion es transformar el Knowledge Set ya estabilizado en una explicacion breve, densa y trazable del fenomeno principal. Debe integrar varios elementos del Knowledge Set para responder:
+
+- cual es el fenomeno principal que explica la mayor parte de la evidencia;
+- que elementos del Knowledge Set estan relacionados entre si;
+- que findings son estructurales y cuales son secundarios;
+- que trade-off principal aparece;
+- que riesgo o limitacion condiciona mas la lectura;
+- que implicacion estrategica emerge del conjunto;
+- que idea deberia recordar el lector una semana despues.
+
+La Analytical Narrative solo puede usar Context Definition, Knowledge Set estabilizado, limitaciones, UNKNOWNs, coverage states y niveles de confianza ya registrados.
+
+No puede consultar BigQuery, Evidence Set bruto, tablas, outputs historicos, Recommendation Set ni informes anteriores.
+
+No puede producir nuevos findings, nuevo Knowledge, recomendaciones encubiertas ni adaptacion comunicativa propia de Presentation.
+
+Su salida debe construir una tesis integrada, no repetir una lista de insights.
 ## Aislamiento entre ejecuciones
 
 Los artefactos persistidos documentan ejecuciones anteriores. No representan el estado logico de la ejecucion actual ni sustituyen el workflow.

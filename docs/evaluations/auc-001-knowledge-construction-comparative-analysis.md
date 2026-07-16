@@ -1,5 +1,19 @@
 # AUC-001 Knowledge Construction Comparative Analysis
 
+## Metadata
+
+| Field | Value |
+|---|---|
+| Evaluation ID | VCA-AUC-001-EVAL-KCA-001 |
+| Evaluation Name | AUC-001 Knowledge Construction Comparative Analysis |
+| Evaluation Type | Methodological Investigation; Comparative Analysis |
+| Analytical Use Case | AUC-001 - Meta Lead Quality Analysis |
+| Status | Documented |
+| Version | 1.0.0 |
+| Last Updated | 2026-07-16 |
+| Owner | Equipo VCA |
+| Scope | Comparative reconstruction of Evidence Set to Knowledge Set transformation in AUC-001 |
+
 ## 1. Propósito
 
 Investigar comparativamente cómo se construye actualmente el Knowledge Set de AUC-001 a partir de un Evidence Set y qué operaciones analíticas estaban presentes en el proceso histórico de mayor calidad.
@@ -33,7 +47,13 @@ No se ejecutaron consultas nuevas sobre BigQuery. No se modificó ningún artefa
 
 - `.github/prompts/lead_quality_analytical_report.md`
 
-  Permite ver qué instrucciones probablemente activaban la profundidad analítica: variables, campañas, creatividades, señales combinadas, riesgos y recomendación ejecutiva.
+  Archivo versionado en el repositorio. El historial actual del repo muestra como primer commit conocido `59441c9bea876471bf4630a3115b225d1bcd3f8e` (`2026-07-13T16:50:52+02:00`), por lo que esta copia sirve como referencia archivada del prompt histórico monolítico.
+
+  La contradicción se resuelve así: la ejecución histórica original pudo usar un prompt adjunto a la tarea y no versionado en ese momento; la copia que hoy vive en el repositorio sí está versionada y permite reproducibilidad documental, pero no prueba por sí sola la versión exacta usada en aquella ejecución original.
+
+  Esta copia actual permite ver qué instrucciones activaban la profundidad analítica: variables, campañas, creatividades, señales combinadas, riesgos y recomendación ejecutiva.
+
+  El texto completo del prompt histórico se conserva también como anexo de este documento para facilitar la comparación metodológica.
 
 ### Skill, runbook y checklist actuales
 
@@ -60,6 +80,14 @@ No se ejecutaron consultas nuevas sobre BigQuery. No se modificó ningún artefa
 - `docs/evaluations/auc-001-regression-containment-review.md`
 
   Se usan como evidencia documental del estado actual: separación correcta de capas, trazabilidad preservada y regresión explicada como pérdida de scaffolding analítico, no como fallo de presentación.
+
+### Knowledge Set actual
+
+- `docs/handoffs/auc-001-knowledge-set.md`
+
+  Se leyó de forma directa y se comparó contra el informe histórico y contra el corpus documental del workflow actual. La comparación no depende solo de evaluaciones previas; parte de la evidencia base es la lectura del artefacto actual.
+
+  Lo que no se reconstruyó fue el origen fuente línea por línea del Knowledge Set en su ejecución productiva, porque ese proceso no está disponible como traza completa dentro del repositorio.
 
 ### Caso de uso vigente
 
@@ -186,12 +214,12 @@ La diferencia clave con el workflow actual es que hoy esas preguntas no están e
 | ID | Pregunta | Evidencia | Operación | Finding intermedio | Knowledge generado | Confianza | Implicación |
 |---|---|---|---|---|---|---|---|
 | R-01 | ¿Cuánto volumen y calidad genera el canal? | 1.339 leads, 396 qualified, 65 high quality, 29,6% y 4,9% | Descriptivo + síntesis | Hay volumen suficiente, pero la calidad es minoritaria | El canal compra volumen barato, no calidad homogénea | Alta | No optimizar solo por CPL |
-| R-02 | ¿Dónde se concentra el valor? | Dos creatividades explican gran parte de los cualificados | Concentración + comparativo | Pocas piezas concentran la mayor parte del resultado | El valor está concentrado y es dependiente de activos críticos | Alta | Proteger activos de aprendizaje |
-| R-03 | ¿Qué variable explica mejor la calidad? | Tabla de billetes de avión | Relacional + comparativo | Tener billetes eleva drásticamente la calidad | La intención avanzada es el mejor predictor observado | Alta | Priorizar esta señal en CAPI y scoring |
+| R-02 | ¿Dónde se concentra el valor? | [Informe histórico](corpus/informe_calidad_leads_scoring_20260701.md) y EVD-003 | Concentración + comparativo | Las piezas ViajeSinEstres_AlivioEmocional y ViajaComoInvitado_Identidad concentran la mayor parte del volumen y de los cualificados observados | El valor aparece concentrado en pocas piezas de mayor volumen | Alta | Proteger activos de aprendizaje |
+| R-03 | ¿Qué variable se asocia con mayor diferencia de calidad? | [Informe histórico](corpus/informe_calidad_leads_scoring_20260701.md) y tabla de billetes de avión | Relacional + comparativo | Tener billetes o estar en proceso de compra se asocia con una diferencia marcada de calidad frente a estar solo mirando | La disponibilidad de billetes es la señal observada con mayor diferencia de calidad entre categorías | Alta | Priorizar esta señal como referencia para CAPI y scoring |
 | R-04 | ¿Qué papel juega la fecha? | Tabla de fecha prevista de viaje | Relacional + comparativo | Cuanto más cercana la fecha, más calidad | La proximidad temporal es una señal fuerte de decisión | Alta | Priorizar leads con horizonte cercano |
 | R-05 | ¿Qué experiencia genera más valor? | Tabla por tipo de experiencia | Comparativo + descriptivo | La experiencia personalizada destaca | La personalización aumenta la probabilidad de calidad | Media-alta | Reforzar mensajes de valor añadido |
 | R-06 | ¿Influye el tamaño del grupo? | Tabla por número de personas | Descriptivo + comparativo | Los grupos más grandes tienen algo más de calidad, pero poco volumen | El tamaño del grupo es una señal secundaria | Media | Usarla como segmentación auxiliar |
-| R-07 | ¿Cómo se combinan las señales? | Cruce de billetes, fecha y experiencia | Relacional + síntesis | Las señales se acumulan y refuerzan mutuamente | La calidad emerge de la acumulación de intención, no de una sola variable | Alta | Buscar combinaciones, no variables aisladas |
+| R-07 | ¿Cómo se combinan las señales? | Cruce de billetes, fecha y experiencia | Relacional + síntesis | Las señales se acumulan y refuerzan mutuamente | La combinación de señales presenta una asociación más fuerte con la calidad que las variables aisladas | Alta | Las decisiones basadas en una sola variable podrían perder información relevante |
 | R-08 | ¿Qué campaña funciona mejor? | Comparación CAPTACIÓN vs RTG | Comparativo + trade-off | Una campaña es mejor para volumen eficiente y otra para calidad relativa | Las campañas tienen roles distintos en la cartera | Alta | Separar lógica de presupuesto y objetivo |
 | R-09 | ¿Qué creatividades rinden mejor? | Ranking por creatividades y costes | Comparativo + ranking | Algunas piezas son mejores en volumen, otras en calidad | La creatividad debe evaluarse por eficiencia de calidad, no solo por CPL | Media-alta | Hacer lectura por CPQL y CPHQL |
 | R-10 | ¿Qué tan robustas son las conclusiones? | Limitaciones y ausencia de ventas/ingresos | Robustez + interpretación | Hay señales útiles, pero no prueba de rentabilidad final | El análisis es direccional, no definitivo | Alta | No sobreinterpretar correlación como causalidad |
@@ -249,6 +277,12 @@ La diferencia clave con el workflow actual es que hoy esas preguntas no están e
 - qué segmentos o creatividades concentran el valor;
 - qué conclusiones son sólidas frente a cuáles dependen de cobertura parcial.
 
+### Frontera entre Knowledge e implicación
+
+- Knowledge debe formular asociaciones, diferencias observadas y patrones descriptivos.
+- La implicación debe traducir esos hallazgos en consecuencias de negocio, todavía sin prescribir una acción concreta.
+- Recommendation debe convertir la implicación en una decisión o línea de acción explícita.
+
 ## 11. Operaciones genéricas y específicas
 
 | Operación | Clasificación | Motivo |
@@ -257,12 +291,13 @@ La diferencia clave con el workflow actual es que hoy esas preguntas no están e
 | Evaluar robustez por tamaño muestral | Potencialmente genérica | Es una operación metodológica transversal |
 | Analizar concentración del valor | Potencialmente genérica | Útil en varios dominios de performance |
 | Identificar relaciones entre señales | Potencialmente genérica | Es una operación analítica reusable |
-| Ranking de campañas y creatividades | Específica de marketing | Requiere activos de paid media |
+| Ranking multicriterio | Potencialmente genérica | Es una operación reusable de ordenación y priorización |
+| Ranking de campañas y creatividades por CPL, CPQL y CPHQL | Específica de AUC-001 / marketing | Las entidades y métricas pertenecen al caso de paid media |
 | Lectura CPL, CPQL y CPHQL | Específica de marketing | Métricas propias de adquisición/performance |
 | Uso de billetes, fecha prevista y tipo de experiencia | Dependiente del dataset | Son variables concretas del caso de viaje |
 | Lectura de Meta Lead Ads, Tier A/B/C/D y QualifiedLead | Específica de AUC-001 | Depende del vocabulario y del scoring del caso |
 | Separar lead_only, matched y spend_only | Específica de AUC-001 | Es una convención de cobertura del modelo del caso |
-| Evaluar implicaciones comerciales de señales declaradas | Específica de marketing | Mezcla negocio y adquisición |
+| Evaluar implicaciones de negocio | Potencialmente genérica | Es una operación reusable de síntesis; la especialización comercial depende del dominio |
 
 Conclusión: existe un núcleo reusable de operaciones analíticas, pero su selección y parametrización deben seguir siendo específicas del caso de uso.
 
@@ -382,14 +417,16 @@ Evaluación: la hipótesis mejor soportada.
 4. Parte del valor histórico era reusable; parte era específico del caso y del prompt monolítico.
 5. Presentation Policies mejoran la representación, pero no sustituyen el scaffolding de Knowledge.
 6. El prompt histórico mezclaba contenido útil y sobreprescripción; no debe copiarse sin análisis.
+7. La frontera entre Knowledge, implicación y Recommendation debe quedar explícita para evitar que el razonamiento se convierta prematuramente en acción.
 
 ## 15. Incertidumbres y evidencia pendiente
 
 - No se revisaron logs exactos de invocación del workflow que produjo los outputs más recientes.
-- No se reconstruyó aquí el Knowledge Set actual a nivel de artefacto fuente línea por línea; la comparación se apoya en evaluaciones documentales y en la descripción del workflow actual.
+- No se reconstruyó aquí el Knowledge Set actual a nivel de artefacto fuente línea por línea; sí se leyó directamente el artefacto vigente y se comparó documentalmente, pero no existe una traza completa del proceso fuente que lo generó.
 - No se ejecutó BigQuery de nuevo; eso es intencional y consistente con el encargo.
 - No se aisló experimentalmente cuánto de la riqueza histórica dependía del prompt y cuánto de la skill previa.
 - No se validó todavía un scaffold alternativo con el mismo Evidence Set para medir recuperación de profundidad.
+- El prompt histórico sí está versionado hoy en `.github/prompts/lead_quality_analytical_report.md`, pero la ejecución histórica original no puede atribuirse de forma exacta a esa copia sin una evidencia temporal adicional.
 
 ## 16. Conclusión experimental
 
@@ -414,8 +451,17 @@ El experimento debería medir únicamente:
 
 - profundidad y diversidad de operaciones analíticas;
 - trazabilidad entre evidencia y conocimiento;
+- separación formal entre Knowledge, implicación y Recommendation;
 - capacidad de distinguir findings, knowledge y recomendaciones;
 - cobertura de riesgos, robustez e implicaciones de negocio;
 - presencia de sobreinterpretación o de ruido prescriptivo.
 
 No debería usarse todavía para proponer una nueva Specification ni para elevar una nueva capacidad a Foundation.
+
+## Anexo A. Prompt histórico monolítico
+
+Fuente de referencia: [prompt_historico_monolitico.md](corpus/prompt_historico_monolitico.md)
+
+Este anexo conserva el prompt histórico completo que se utilizó como evidencia comparativa en la investigación.
+
+Se incluye como material de trazabilidad metodológica, no como plantilla normativa del workflow actual.

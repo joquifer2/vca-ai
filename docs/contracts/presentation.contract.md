@@ -133,7 +133,7 @@ Framework, tras validar el contenido generado por Reasoning Layer y Recommendati
 | Unknown | Handling |
 |---|---|
 | Recomendacion no aprobada | Excluir de presentacion o marcar como no disponible |
-| Limitacion material ausente | Bloquear construccion del Output Artifact hasta incorporarla |
+| Limitacion material ausente | Bloquear construccion de la salida de presentacion seleccionada hasta incorporarla |
 | Fuente de evidencia no trazable | Bloquear o marcar insuficiencia explicita |
 | Audiencia o formato no definido | Marcar PENDING; no alterar contenido para compensarlo |
 | Proyeccion de presentacion no definida | Bloquear o solicitar aclaracion antes de construir la salida |
@@ -143,7 +143,7 @@ Framework, tras validar el contenido generado por Reasoning Layer y Recommendati
 
 ## Idempotency Rules
 
-Este contract es documental y no construye el Output Artifact por si mismo.
+Este contract es documental y no construye la salida de presentacion seleccionada por si mismo.
 
 Una instancia concreta del Presentation Contract debe autorizar el mismo contenido cuando consume el mismo Context Contract, Knowledge Contract, Recommendation Contract y Output Request declarado.
 

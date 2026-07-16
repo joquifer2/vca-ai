@@ -48,6 +48,8 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] Las consultas BigQuery MCP no usan `AS rows` como alias.
 - [ ] Las consultas BigQuery MCP no reutilizan nombres de CTE como aliases de columna.
 - [ ] Las consultas BigQuery MCP no usan joins implicitos con coma.
+- [ ] Cada `query_read_only.execution_context` contiene exactamente `project_id`, `dataset_id` y `max_bytes_billed`.
+- [ ] No se incluyen campos descriptivos o no soportados dentro de `execution_context`.
 - [ ] El `dataset_id` enviado en `execution_context` corresponde al alcance principal de cada consulta.
 - [ ] Cualquier `ERR_DRY_RUN_FAILED` se ha tratado como evidencia no utilizable hasta revisar sintaxis, tipos, aliases y ambiguedades.
 
@@ -66,11 +68,25 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 # 5. Knowledge Set
 
 - [ ] Existe un Knowledge Set estabilizado.
-- [ ] Se ha aplicado `docs/experiments/knowledge-construction-profile-v0.2.md` como guia interna solo durante Knowledge Generation.
-- [ ] El conocimiento deriva de la evidencia.
-- [ ] No se limita a repetir métricas.
-- [ ] Los riesgos están identificados.
-- [ ] Las incertidumbres permanecen explícitas.
+- [ ] Se ha aplicado `.github/skills/meta-lead-quality-analysis/ANALYTICAL_PROFILE.md` como guia de preguntas y criterios de calidad analitica.
+- [ ] Se ha aplicado `.github/skills/meta-lead-quality-analysis/knowledge-construction-profile.md` como guia interna solo durante Knowledge Generation.
+- [ ] Existe un Analytical Investigation Record interno previo al Knowledge Set.
+- [ ] Los findings intermedios estan trazados al Evidence Set.
+- [ ] Cada finding intermedio declara observacion, soporte, importancia e incertidumbre.
+- [ ] Se han aplicado operaciones analiticas relevantes segun la evidencia disponible: segmentacion, comparacion, ranking multicriterio, temporalidad, relaciones, combinaciones, cobertura, robustez, trade-offs o contraste de explicaciones alternativas.
+- [ ] Las observaciones sin materialidad, robustez o utilidad para decision fueron descartadas o marcadas como limitadas.
+- [ ] El conocimiento deriva de la evidencia y de la consolidacion de findings intermedios.
+- [ ] No se limita a repetir metricas, rankings o tablas.
+- [ ] Distingue insights, hipotesis observacionales, conclusiones, prioridades, riesgos e incertidumbres.
+- [ ] Los riesgos estan identificados.
+- [ ] Las incertidumbres permanecen explicitas.
+- [ ] Existe una Analytical Narrative / Strategic Interpretation estabilizada antes de Recommendation Generation.
+- [ ] La Analytical Narrative conecta varios Knowledge items y no se limita a repetir insights.
+- [ ] La Analytical Narrative identifica fenomeno principal, trade-off, riesgo o limitacion dominante e implicacion estrategica.
+- [ ] La Analytical Narrative diferencia hallazgos estructurales de hallazgos secundarios.
+- [ ] La Analytical Narrative declara una idea central memorable para el lector.
+- [ ] La Analytical Narrative puede rastrearse completamente al Knowledge Set estabilizado.
+- [ ] La Analytical Narrative no introduce evidencia nueva, Knowledge nuevo ni recomendaciones.
 
 ---
 
@@ -88,14 +104,14 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] Los cuatro artefactos canónicos existen antes de Presentation Layer.
 - [ ] Puede demostrarse que Evidence quedó estabilizada antes de Presentation Layer.
 - [ ] Puede demostrarse que Knowledge deriva exclusivamente de Evidence.
-- [ ] Puede demostrarse que Recommendations derivan exclusivamente de Knowledge.
+- [ ] Puede demostrarse que Recommendations derivan exclusivamente de Knowledge y de la priorizacion ya contenida en el Knowledge Set, sin usar la Analytical Narrative como fuente de recomendaciones nuevas.
 - [ ] Evidence, Knowledge y Recommendations no aparecen por primera vez dentro del informe final.
 - [ ] Presentation Layer consume esos estados cerrados y no los reconstruye.
 - [ ] Las limitaciones, UNKNOWNs y coverage states fueron preservados antes de representar.
 - [ ] La Presentation Projection está resuelta.
 - [ ] El Communication Context está resuelto.
 - [ ] La Presentation Policy está identificada, cuando corresponda.
-- [ ] Presentation Layer no ha reconstruido conocimiento.
+- [ ] Presentation Layer no ha reconstruido conocimiento ni ha creado una Analytical Narrative nueva.
 - [ ] Presentation Layer no ha generado recomendaciones nuevas.
 
 ---

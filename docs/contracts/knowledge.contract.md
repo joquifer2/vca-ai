@@ -118,7 +118,7 @@ Reasoning Layer / fase Razonamiento.
 | Conclusion no soportada | Bloquear avance a Recomendaciones para esa conclusion |
 | Prioridad sin criterio trazable | Marcar PENDING y no usar como base de recomendacion |
 | Causalidad no demostrada | Declarar correlacion, asociacion o lectura tentativa segun corresponda |
-| Incertidumbre material | Propagar a Recommendation Contract y Output Artifact |
+| Incertidumbre material | Propagar a Recommendation Contract y salida final |
 
 ## Idempotency Rules
 

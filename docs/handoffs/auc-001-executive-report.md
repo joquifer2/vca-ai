@@ -1,4 +1,4 @@
-# AUC-001 Executive Output Artifact
+# AUC-001 Executive Report
 
 ## Metadata
 

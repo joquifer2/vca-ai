@@ -166,7 +166,7 @@ Cualquier cambio de vocabulario debe preservar exactamente la interpretacion aut
 
 ### FR-001
 
-La Foundation debe definir una capacidad reusable para adaptar la representacion de una salida ya seleccionada a un Communication Context compuesto.
+La capacidad debe definir una capacidad reusable para adaptar la representacion de una salida ya seleccionada a un Communication Context compuesto.
 
 ### FR-002
 

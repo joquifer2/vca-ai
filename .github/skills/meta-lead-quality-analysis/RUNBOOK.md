@@ -170,6 +170,42 @@ Gate:
 
 Antes de enviar una consulta mediante `query_read_only`, revisar la SQL contra estas convenciones locales, derivadas del diagnostico AUC-001 v2:
 
+- Construir `execution_context` como contrato cerrado. Debe contener exactamente estos campos:
+
+```yaml
+execution_context:
+  project_id: <authorized_project_id>
+  dataset_id: <authorized_dataset_id>
+  max_bytes_billed: <workspace_cost_limit_bytes>
+```
+
+- Para el workspace `vca`, usar:
+
+```yaml
+execution_context:
+  project_id: datamart-vca-494114
+  dataset_id: intermediate|marts
+  max_bytes_billed: 1073741824
+```
+
+- El `dataset_id` debe coincidir con el dataset de cada tabla consultada:
+  - `intermediate` para consultas sobre `datamart-vca-494114.intermediate.*`.
+  - `marts` para consultas sobre `datamart-vca-494114.marts.*`.
+- No incluir dentro de `execution_context` campos descriptivos o no soportados, incluidos:
+  - `workspace_id`;
+  - `table_id`;
+  - `purpose`;
+  - `request_id`;
+  - `resource_selector`;
+  - `location`;
+  - `auth_mode`;
+  - cualquier otro campo no enumerado en el contrato cerrado.
+- Mantener la separacion de responsabilidades de la llamada MCP:
+  - `request_id` va en el nivel superior de la llamada;
+  - la SQL va en `sql_query`;
+  - la trazabilidad adicional va en artefactos de ejecucion o auditoria;
+  - nada de lo anterior debe incorporarse dentro de `execution_context`.
+
 - No usar `rows` como alias de columna.
   - Incorrecto: `COUNT(*) AS rows`
   - Correcto: `COUNT(*) AS row_count`
@@ -181,7 +217,7 @@ Antes de enviar una consulta mediante `query_read_only`, revisar la SQL contra e
   - Incorrecto: `FROM table_a, table_b`
   - Correcto: `FROM table_a CROSS JOIN table_b`
   - Preferir `JOIN ... ON`, `JOIN ... USING` o consultas separadas cuando sea mas claro.
-- Antes de enviar la consulta MCP, comprobar aliases reservados, colisiones entre CTEs y columnas, referencias ambiguas, joins con coma y que el `dataset_id` del `execution_context` corresponde al alcance principal de la consulta.
+- Antes de enviar la consulta MCP, comprobar aliases reservados, colisiones entre CTEs y columnas, referencias ambiguas, joins con coma y que el `execution_context` contiene exactamente `project_id`, `dataset_id` y `max_bytes_billed`.
 - Ante `ERR_DRY_RUN_FAILED`, no repetir la misma forma con cambios irrelevantes; simplificar la consulta, revisar sintaxis y tipos, usar aliases explicitos y registrar la consulta rechazada como evidencia no utilizable.
 
 Definition of Done:
@@ -283,21 +319,48 @@ Acciones:
 
 - derivar conocimiento exclusivamente desde el Evidence Set estabilizado;
 - aplicar los perfiles analiticos correspondientes;
-- construir findings mediante comparacion, segmentacion, evolucion temporal, descomposicion, contraste volumen-calidad, contraste calidad-coste, analisis de cobertura y anomalias;
-- conservar limitaciones e incertidumbre;
+- ejecutar un programa de investigacion analitica antes de estabilizar el Knowledge Set;
+- seleccionar preguntas de negocio adaptadas a la evidencia disponible, incluyendo volumen, calidad, eficiencia, variables explicativas, equilibrio volumen-calidad-coste, trade-offs, patrones, anomalias, robustez y limitaciones cuando apliquen;
+- aplicar operaciones analiticas compuestas, no solo lectura de tablas: segmentacion, comparacion, ranking multicriterio, analisis temporal, analisis relacional, combinaciones de variables, concentracion, cobertura, materialidad, robustez y contraste entre explicaciones alternativas;
+- construir un Analytical Investigation Record interno con findings intermedios trazados al Evidence Set;
+- para cada finding intermedio, registrar que se observa, que evidencia lo soporta, por que importa, que incertidumbre permanece y con que otros findings se relaciona;
+- descartar observaciones que no superen el umbral de materialidad, robustez o utilidad para decision;
+- consolidar findings relacionados en Knowledge: insights, hipotesis, conclusiones, prioridades, riesgos e incertidumbres;
+- distinguir afirmaciones solidas, hipotesis observacionales y UNKNOWNs;
+- conservar limitaciones, coverage states e incertidumbre;
+- estabilizar el Knowledge Set antes de cualquier recomendacion;
+- ejecutar una operacion explicita de Knowledge Synthesis / Analytical Narrative despues de estabilizar el Knowledge Set y antes de Recommendation Generation;
+- construir la Analytical Narrative unicamente desde Context Definition, Knowledge Set estabilizado, limitaciones, UNKNOWNs, coverage states y niveles de confianza ya registrados;
+- responder obligatoriamente en la Analytical Narrative: fenomeno principal, relaciones entre Knowledge items, findings estructurales y secundarios, trade-off principal, riesgo o limitacion dominante, implicacion estrategica e idea central memorable;
+- mantener la Analytical Narrative breve y densa, como tesis integrada, no como lista adicional de insights;
+- prohibir que la Analytical Narrative consulte BigQuery, Evidence Set bruto, tablas, outputs historicos, Recommendation Set o informes anteriores;
+- prohibir que la Analytical Narrative genere nuevos findings, nuevo Knowledge, recomendaciones encubiertas o transformacion propia de Presentation Layer;
 - no formular recomendaciones.
 
 Output:
 
-- Knowledge Set estabilizado.
+- Analytical Investigation Record interno;
+- Knowledge Set estabilizado;
+- Analytical Narrative / Strategic Interpretation estabilizada.
 
 Gate:
 
-- detener si el Knowledge Set solo repite metricas o introduce hechos no presentes en Evidence.
+- detener si no existe investigacion analitica previa al Knowledge Set;
+- detener si los findings intermedios no estan trazados al Evidence Set;
+- detener si el Knowledge Set solo repite metricas, rankings o tablas sin explicar significado, trade-offs, patrones, relaciones o limites;
+- detener si el Knowledge Set introduce hechos no presentes en Evidence o recomendaciones prematuras;
+- detener si la Analytical Narrative no deriva exclusivamente del Knowledge Set estabilizado;
+- detener si la Analytical Narrative introduce recomendaciones, nueva evidencia, nuevo Knowledge o adaptacion de Presentation;
+- detener si la Analytical Narrative se limita a repetir insights sin construir una tesis integrada.
 
 Definition of Done:
 
-- existe un Knowledge Set consolidado, explicativo y derivado exclusivamente del Evidence Set.
+- existe un Analytical Investigation Record trazable, usado como puente interno entre Evidence y Knowledge;
+- existe un Knowledge Set consolidado, explicativo y derivado exclusivamente del Evidence Set;
+- el Knowledge Set responde a las principales preguntas de negocio soportadas por la evidencia y declara explicitamente lo que no puede concluirse;
+- existe una Analytical Narrative breve, trazable y derivada exclusivamente del Knowledge Set estabilizado;
+- la Analytical Narrative identifica fenomeno principal, relaciones entre Knowledge items, hallazgos estructurales y secundarios, trade-off, riesgo dominante, implicacion estrategica e idea central memorable;
+- la Analytical Narrative no introduce recomendaciones ni contenido no aprobado.
 
 ## Fase 10 - Recommendation Generation and Stabilization
 
