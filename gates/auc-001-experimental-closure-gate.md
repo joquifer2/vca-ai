@@ -41,13 +41,13 @@ Este gate no evalua perfeccion futura. Evalua suficiencia metodologica y operati
 
 ### Artefactos canónicos de la ejecución final
 
-- Context Definition en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
-- Evidence Set en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
-- Analytical Investigation Record en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
-- Knowledge Set en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
-- Analytical Narrative en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
-- Recommendation Set en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
-- Informe analítico final en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Context Definition validado en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Evidence Set validado en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Analytical Investigation Record validado en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Knowledge Set validado en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Analytical Narrative validada en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Recommendation Set validado en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- Producto analítico final validado en [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md)
 
 ### Evaluaciones principales
 
@@ -61,8 +61,8 @@ Este gate no evalua perfeccion futura. Evalua suficiencia metodologica y operati
 ### Corpus de referencia
 
 - informe histórico de alta calidad en [docs/corpus/auc-001/informe_calidad_leads_scoring_20260701.md](/docs/corpus/auc-001/informe_calidad_leads_scoring_20260701.md)
-- informe previo a la recuperación en [docs/handoffs/auc-001-analytical-report-2026-06-30.md](/outputs/auc-001/2026-06-30/analytical-report.md)
-- informe final con Analytical Narrative en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- producto analitico validado en [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md)
+- validacion de Analytical Narrative en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
 
 ## 3. Estado real de AUC-001
 

@@ -24,7 +24,7 @@
 | `docs/evaluations/` root clean | PASS | Only `docs/evaluations/README.md` remains at root. |
 | AUC-001 status coherent | PASS | AUC frontmatter is `Active`, `Validated`, `Closed`. |
 | Single canonical analytical report | PASS | Canonical analytical report is `outputs/auc-001/2026-06-30/analytical-report.md`. |
-| Markdown links valid | PASS | Local Markdown link checker returned `BROKEN_COUNT=0`. |
+| Markdown links valid | PASS | Local Markdown link checker returned `BROKEN_COUNT=0` after the residual corrections. |
 | README coherent | PASS | README points to AUC-001 index, closure gate and canonical output, not an exhaustive inventory. |
 | `context_refs.md` coherent | PASS | Context refs separates Required, Supporting and Historical and points to new routes. |
 | No methodological behavior changed | PASS | No SPEC-010, SPEC-011, Skill, Runbook, Checklist or Presentation Policy behavior was changed; only links/routing text affected where needed. |
@@ -47,6 +47,15 @@ A new agent can reach from README to:
 - `outputs/evaluations/` contains prior experimental outputs outside the approved scope; missing historical links to non-existing output files were converted to non-link code references rather than recreated.
 - `.github/agents/QA.agent.md` was already deleted before this migration and was not touched by this task.
 
+
+## Residual correction check
+
+| Check | Result | Evidence |
+|---|---|---|
+| AUC-001 README evaluation index link corrected | PASS | Visible link now uses `../../docs/evaluations/README.md`. |
+| Gate declares canonical analytical output | PASS | `gates/auc-001-experimental-closure-gate.md` points to `outputs/auc-001/2026-06-30/analytical-report.md` as final validated analytical product. |
+| Analytical Narrative validation role preserved | PASS | `auc-001-analytical-narrative-validation.md` remains evidence of validation, not canonical report location. |
+| Old handoff analytical report route removed from visible gate text | PASS | No visible `docs/handoffs/auc-001-analytical-report-2026-06-30.md` remains in the gate. |
 ## Verdict
 
 PASS.

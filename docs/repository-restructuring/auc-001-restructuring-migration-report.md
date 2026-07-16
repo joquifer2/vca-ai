@@ -130,3 +130,11 @@ El informe ejecutivo permanece como handoff documentado en `docs/handoffs/auc-00
 ## 9. Notas sobre Git
 
 Los movimientos se realizaron mediante operaciones de filesystem dentro del workspace. Git deberia detectar renombrados por similitud en `git diff --find-renames`; los cambios no han sido staged.
+## 10. Correcciones residuales posteriores a revision independiente
+
+Tras la revision independiente se aplicaron correcciones puntuales sin cambiar metodologia, veredicto ni estructura:
+
+- corregido en `analytical_use_cases/auc-001/README.md` el enlace visible `../../docs/docs/evaluations/README.md` a `../../docs/evaluations/README.md`;
+- actualizado `gates/auc-001-experimental-closure-gate.md` para declarar `outputs/auc-001/2026-06-30/analytical-report.md` como producto analitico final validado;
+- mantenido `docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md` como evidencia de validacion, no como ubicacion canonica del informe final;
+- eliminada del texto visible del gate la antigua ruta `docs/handoffs/auc-001-analytical-report-2026-06-30.md`.

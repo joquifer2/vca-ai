@@ -44,7 +44,7 @@
 
 ## Evidencia historica
 
-- Indice de evaluaciones: [../../docs/docs/evaluations/README.md](/docs/evaluations/README.md)
+- Indice de evaluaciones: [../../docs/evaluations/README.md](/docs/evaluations/README.md)
 - Corpus historico: [../../docs/corpus/auc-001/](/docs/corpus/auc-001/)
 - Inventario completo de reestructuracion: [../../docs/repository-restructuring/auc-001-document-inventory.md](/docs/repository-restructuring/auc-001-document-inventory.md)
 
