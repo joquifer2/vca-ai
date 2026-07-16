@@ -44,8 +44,8 @@ Esta evaluation no propone implementacion.
 |---|---|---|
 | [SPEC-011 Executive Representation Discrimination Plan](/docs/evaluations/spec-011/historical/spec-011-executive-representation-discrimination-plan.md) | Defines the hypothesis, controlled variables and falsification criteria | Reviewed |
 | [SPEC-011 Executive Representation Discrimination Experimental Record](/docs/evaluations/spec-011/experiments/spec-011-executive-representation-discrimination-experimental-record.md) | Records the executed protocol and equivalence controls | Reviewed |
-| [Control Output](`/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md`) | Baseline executive representation | Reviewed |
-| [Treatment Output](`/outputs/evaluations/spec-011-executive-representation-treatment-output-2026-07-14.md`) | Representation under experimental treatment | Reviewed |
+| Control Output: `/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md` | Baseline executive representation | Reviewed |
+| Treatment Output: `/outputs/evaluations/spec-011-executive-representation-treatment-output-2026-07-14.md` | Representation under experimental treatment | Reviewed |
 | Independent evaluation of the Treatment Output | Confirms residual executive insufficiency despite material improvement | Reviewed as part of this cycle |
 
 ---

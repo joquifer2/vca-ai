@@ -1,8 +1,8 @@
 # Context References
 
-Este documento es el indice detallado de trazabilidad y contexto oficial de `vca-ai`.
+Este documento es el índice detallado de trazabilidad y contexto oficial de `vca-ai`.
 
-No sustituye a `README.md`, `project_brief.md`, las Specifications, los contratos, los gates ni los indices especificos de cada caso de uso.
+No sustituye a `README.md`, `project_brief.md`, las Specifications, los contratos, los gates ni los índices específicos de cada caso de uso.
 
 Estado del proyecto: Development Authorized.
 
@@ -14,7 +14,7 @@ Estado del proyecto: Development Authorized.
 proyecto:
   nombre: VCA IA
   id_proyecto: VCA-IA
-  tipo_proyecto: Proyecto derivado SDD para un sistema analitico trazable de VCA
+  tipo_proyecto: Proyecto derivado SDD para un sistema analítico trazable de VCA
   estado: Development Authorized
   version: v1.0.0
   fecha_creacion: 2026-07-10
@@ -30,7 +30,7 @@ cliente:
 
 ## 2. Contexto requerido
 
-| Clasificacion | Recurso | Fuente |
+| Clasificación | Recurso | Fuente |
 |---|---|---|
 | Required | Project Brief | [../project_brief.md](/project_brief.md) |
 | Required | README | [../README.md](/README.md) |
@@ -44,16 +44,16 @@ cliente:
 
 ## 3. AUC-001 Source of Truth
 
-| Clasificacion | Recurso | Fuente |
+| Clasificación | Recurso | Fuente |
 |---|---|---|
-| Required | Indice AUC-001 | [../analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md) |
-| Required | Definicion AUC-001 | [../analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md) |
+| Required | Índice AUC-001 | [../analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md) |
+| Required | Definición AUC-001 | [../analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md) |
 | Required | Analytical Contract AUC-001 | [../analytical_use_cases/auc-001/analytical-contract.md](/analytical_use_cases/auc-001/analytical-contract.md) |
 | Required | Skill Meta Lead Quality Analysis | [../.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) |
 | Required | Runbook | [../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Required | Checklist | [../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
 | Required | Closure Gate | [../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
-| Required | Producto analitico validado | [../outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md) |
+| Required | Producto analítico validado | [../outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md) |
 | Supporting | Executive Report Handoff | [handoffs/auc-001-executive-report.md](/docs/handoffs/auc-001-executive-report.md) |
 | Historical | Corpus AUC-001 | [corpus/auc-001/](/docs/corpus/auc-001/) |
 
@@ -63,12 +63,12 @@ cliente:
 
 | Fecha | Decision | Impacto | Fuente |
 |---|---|---|---|
-| 2026-07-11 | Adoptar AIF Foundation como dependencia metodologica reutilizable | Permite reutilizar la base SDD sin convertir la Foundation en objeto funcional | [../README.md](/README.md); [../project_brief.md](/project_brief.md) |
-| 2026-07-11 | Validar AUC-001 y la skill como primer ciclo analitico trazable | Define la primera capacidad analitica aprobada | [../analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md) |
-| 2026-07-11 | Autorizar entrada a Development mediante SPEC-008 | Situa el proyecto en Development | [../gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md) |
-| 2026-07-13 | Execution Scope Canonicalization | Canonicaliza el alcance antes de seleccionar proyeccion | [decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md](/docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md) |
-| 2026-07-13 | Presentation Projection Architecture | Define proyecciones hermanas analitica y ejecutiva | [decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md) |
-| 2026-07-14 | Communication Context Representation Transformation | Transforma representacion preservando equivalencia semantica | [decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md](/docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md) |
+| 2026-07-11 | Adoptar AIF Foundation como dependencia metodológica reutilizable | Permite reutilizar la base SDD sin convertir la Foundation en objeto funcional | [../README.md](/README.md); [../project_brief.md](/project_brief.md) |
+| 2026-07-11 | Validar AUC-001 y la skill como primer ciclo analítico trazable | Define la primera capacidad analítica aprobada | [../analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md) |
+| 2026-07-11 | Autorizar entrada a Development mediante SPEC-008 | Sitúa el proyecto en Development | [../gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md) |
+| 2026-07-13 | Execution Scope Canonicalization | Canonicaliza el alcance antes de seleccionar proyección | [decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md](/docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md) |
+| 2026-07-13 | Presentation Projection Architecture | Define proyecciones hermanas analítica y ejecutiva | [decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md) |
+| 2026-07-14 | Communication Context Representation Transformation | Transforma representación preservando equivalencia semántica | [decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md](/docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md) |
 | 2026-07-13 | Documentary Alignment Decision | Autoriza alineamiento documental posterior a T-040/T-041/T-042 | [decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md) |
 | 2026-07-16 | Cerrar experimentalmente AUC-001 | Declara `READY FOR CLOSURE` | [../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
 
@@ -76,7 +76,7 @@ cliente:
 
 ## 5. Evaluaciones principales
 
-| Clasificacion | Recurso | Fuente |
+| Clasificación | Recurso | Fuente |
 |---|---|---|
 | Supporting | BigQuery MCP Integration Validation | [evaluations/auc-001/validations/auc-001-bigquery-mcp-integration-validation.md](/docs/evaluations/auc-001/validations/auc-001-bigquery-mcp-integration-validation.md) |
 | Supporting | End-to-End Traceability Test Report | [evaluations/auc-001/validations/auc-001-end-to-end-traceability-test-report.md](/docs/evaluations/auc-001/validations/auc-001-end-to-end-traceability-test-report.md) |
@@ -84,6 +84,7 @@ cliente:
 | Supporting | Knowledge Depth Recovery Validation | [evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md](/docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md) |
 | Supporting | Analytical Narrative Validation | [evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md) |
 | Historical | Closure Reconciliation Review | [evaluations/auc-001/historical/auc-001-closure-reconciliation-review.md](/docs/evaluations/auc-001/historical/auc-001-closure-reconciliation-review.md) |
+| Historical | SDD Readiness Assessment | [evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md) |
 
 El inventario completo de documentos reestructurados vive en [repository-restructuring/auc-001-document-inventory.md](repository-restructuring/auc-001-document-inventory.md).
 
@@ -103,7 +104,7 @@ google_cloud:
 
 apis:
   - nombre: BigQuery MCP Server
-    uso_en_proyecto: Data Provider autorizado para adquisicion de evidencia AUC-001 cuando se ejecuta el workflow completo
+    uso_en_proyecto: Data Provider autorizado para adquisición de evidencia AUC-001 cuando se ejecuta el workflow completo
 ```
 
 ---
@@ -112,8 +113,8 @@ apis:
 
 1. Leer `README.md`, `project_brief.md` y este archivo para contexto general.
 2. Para AUC-001, entrar por [../analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md).
-3. No usar documentos en `historical/` como contexto obligatorio salvo que la tarea sea auditoria, comparacion o recuperacion historica.
-4. No tratar corpus historico como evidencia actual.
+3. No usar documentos en `historical/` como contexto obligatorio salvo que la tarea sea auditoría, comparación o recuperación histórica.
+4. No tratar corpus histórico como evidencia actual.
 5. Respetar la precedencia documental definida por las instrucciones SDD y los contratos.
 
 ---
@@ -123,6 +124,6 @@ apis:
 ```yaml
 ultima_actualizacion: 2026-07-16
 actualizado_por: Documentation Agent
-motivo: Reestructuracion documental AUC-001
+motivo: Reestructuración documental AUC-001
 version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-closed
 ```

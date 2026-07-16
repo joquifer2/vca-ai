@@ -56,6 +56,18 @@ A new agent can reach from README to:
 | Gate declares canonical analytical output | PASS | `gates/auc-001-experimental-closure-gate.md` points to `outputs/auc-001/2026-06-30/analytical-report.md` as final validated analytical product. |
 | Analytical Narrative validation role preserved | PASS | `auc-001-analytical-narrative-validation.md` remains evidence of validation, not canonical report location. |
 | Old handoff analytical report route removed from visible gate text | PASS | No visible `docs/handoffs/auc-001-analytical-report-2026-06-30.md` remains in the gate. |
+
+## Final pre-merge correction check
+
+| Check | Result | Evidence |
+|---|---|---|
+| Editorial normalization applied | PASS | Main restructuring documents, README, AUC-001 index, context refs, gate and project brief were reviewed for visible Spanish orthography. |
+| README version wording precise | PASS | `Version estable: v1.0.0` changed to `Versión documental: v1.0.0` without adding a new versioning policy. |
+| Project brief reflects current project state | PASS | `project_brief.md` describes `Development Authorized` and no longer presents SPEC-008 or readiness assessment as the next pending step. |
+| Historical readiness assessment remains accessible | PASS | The historical assessment is referenced at `docs/evaluations/transversal/historical/sdd_readiness_assessment.md`. |
+| Markdown links valid after final corrections | PASS | Local Markdown link checker returned `BROKEN_COUNT=0` after final pre-merge corrections. |
+| No methodological behavior changed | PASS | Corrections were editorial, documentary and reference-level only. |
+
 ## Verdict
 
 PASS.

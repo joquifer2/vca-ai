@@ -44,7 +44,7 @@ Este plan solo produce la evidencia necesaria para decidir si la arquitectura vi
 
 Baseline output reference:
 
-- [Current executive report without history](`/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md`)
+- Current executive report without history: `/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md`
 
 Observed issues in the baseline output:
 
@@ -280,7 +280,7 @@ If all necessary transformations are explainable by the current architecture, no
 - [AUC-001 Presentation Contract](/docs/handoffs/auc-001-presentation-contract.md)
 - [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
 - [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Current executive report without history](`/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md`)
+- Current executive report without history: `/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md`
 
 ---
 

@@ -35,8 +35,8 @@ Esta evaluación no diseña nuevos artefactos.
 | [SPEC-011 Executive Representation Discrimination Experimental Record](/docs/evaluations/spec-011/experiments/spec-011-executive-representation-discrimination-experimental-record.md) | Registra la ejecución del experimento y los controles de equivalencia | Revisado |
 | [SPEC-011 Executive Representation Architectural Residual Evaluation](/docs/evaluations/spec-011/investigations/spec-011-executive-representation-architectural-residual-evaluation.md) | Delimita el residuo observable y su atribución abierta | Revisado |
 | [Executive Communication Residual Investigation](/docs/evaluations/spec-011/investigations/executive-communication-residual-investigation.md) | Caracteriza el residuo y evalúa la apertura de un nuevo ciclo SDD | Revisado |
-| [Control Output](`/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md`) | Representación base del caso | Revisado |
-| [Treatment Output](`/outputs/evaluations/spec-011-executive-representation-treatment-output-2026-07-14.md`) | Representación experimental comparada | Revisado |
+| Control Output: `/outputs/evaluations/auc-001-executive-lead-quality-report-to-2026-06-30-no-history-2026-07-14.md` | Representación base del caso | Revisado |
+| Treatment Output: `/outputs/evaluations/spec-011-executive-representation-treatment-output-2026-07-14.md` | Representación experimental comparada | Revisado |
 
 ---
 

@@ -16,7 +16,7 @@
 
 Determinar si existe evidencia suficiente para declarar AUC-001 metodológicamente validado, aprobar su producto final y cerrar formalmente su ciclo experimental.
 
-Este gate no evalua perfeccion futura. Evalua suficiencia metodologica y operativa para cierre.
+Este gate no evalúa perfección futura. Evalúa suficiencia metodológica y operativa para cierre.
 
 ## 2. Alcance y artefactos revisados
 
@@ -61,14 +61,14 @@ Este gate no evalua perfeccion futura. Evalua suficiencia metodologica y operati
 ### Corpus de referencia
 
 - informe histórico de alta calidad en [docs/corpus/auc-001/informe_calidad_leads_scoring_20260701.md](/docs/corpus/auc-001/informe_calidad_leads_scoring_20260701.md)
-- producto analitico validado en [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md)
-- validacion de Analytical Narrative en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
+- producto analítico validado en [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md)
+- validación de Analytical Narrative en [docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md](/docs/evaluations/auc-001/validations/auc-001-analytical-narrative-validation.md)
 
 ## 3. Estado real de AUC-001
 
 ### Cumplimiento del propósito original
 
-AUC-001 cumple su propósito original de producir una lectura analitica trazable y util sobre volumen, calidad, eficiencia disponible, campañas y conjuntos, anuncios o referencias, señales de calidad, concentracion, trade-offs, limitaciones y oportunidades de optimizacion.
+AUC-001 cumple su propósito original de producir una lectura analítica trazable y útil sobre volumen, calidad, eficiencia disponible, campañas y conjuntos, anuncios o referencias, señales de calidad, concentración, trade-offs, limitaciones y oportunidades de optimización.
 
 ### Cobertura por tipo de capacidad
 
@@ -79,19 +79,19 @@ AUC-001 cumple su propósito original de producir una lectura analitica trazable
 | Eficiencia disponible | Parcialmente cubierta | EVD-006, limitacion CPQL UNKNOWN y narrativa final |
 | Campañas y conjuntos | Plenamente cubierta | EVD-004 y Analytical Investigation Record |
 | Anuncios o referencias | Plenamente cubierta | EVD-005 y Knowledge Set |
-| Senales de calidad | Plenamente cubierta | EVD-007 y FND-004 |
-| Concentracion | Plenamente cubierta | EVD-005, INS-002 y narrativa final |
+| Señales de calidad | Plenamente cubierta | EVD-007 y FND-004 |
+| Concentración | Plenamente cubierta | EVD-005, INS-002 y narrativa final |
 | Trade-offs | Plenamente cubierta | Analytical Narrative estabilizada |
 | Limitaciones | Plenamente cubierta | UNKNOWN-001, UNKNOWN-002, UNKNOWN-003 y narrativa final |
-| Oportunidades de optimizacion | Plenamente cubierta | PRI-004, REC-004, REC-005 y narrativa final |
+| Oportunidades de optimización | Plenamente cubierta | PRI-004, REC-004, REC-005 y narrativa final |
 
 ### Capacidades parcialmente cubiertas por el Evidence Set
 
-- eficiencia economica emparejada a nivel anuncio/campaña;
+- eficiencia económica emparejada a nivel anuncio/campaña;
 - lectura post-lead en CRM y ventas;
 - metadata creativa completa;
 - clicks, impresiones y CTR;
-- comparacion de RTG/diáspora a mayor escala.
+- comparación de RTG/diáspora a mayor escala.
 
 ### Capacidades explicitamente fuera de alcance o UNKNOWN
 
@@ -99,7 +99,7 @@ AUC-001 cumple su propósito original de producir una lectura analitica trazable
 - outcomes CRM, ventas e ingresos posteriores;
 - metadata creativa completa;
 - clicks, impresiones y CTR;
-- causalidad validada entre concentacion y superioridad creativa.
+- causalidad validada entre concentración y superioridad creativa.
 
 ## 4. Validación del lifecycle
 
@@ -170,24 +170,24 @@ La equivalencia absoluta con el histórico no es exigible porque el histórico u
 | Capacidad | Estado | Evidencia de validación | Riesgo pendiente |
 |---|---|---|---|
 | Execution Scope Canonicalization | VALIDATED | El periodo se resuelve como rango completo y no como mes aislado | Ninguno bloqueante |
-| Presentation Projection Selection | VALIDATED | La capa de presentacion se separa del contenido canonico | Ninguno bloqueante |
-| Communication Context Representation Transformation | VALIDATED | La salida conserva equivalencia semantica entre narrativas y presentacion | Ninguno bloqueante |
-| Knowledge Depth Recovery | VALIDATED WITH CONDITIONS | QA documental aprobada con PASS WITH CONDITIONS; la diferencia residual se explica por cobertura de evidencia | Cobertura de evidencia incompleta frente al historico |
+| Presentation Projection Selection | VALIDATED | La capa de presentación se separa del contenido canónico | Ninguno bloqueante |
+| Communication Context Representation Transformation | VALIDATED | La salida conserva equivalencia semántica entre narrativas y presentación | Ninguno bloqueante |
+| Knowledge Depth Recovery | VALIDATED WITH CONDITIONS | QA documental aprobada con PASS WITH CONDITIONS; la diferencia residual se explica por cobertura de evidencia | Cobertura de evidencia incompleta frente al histórico |
 | Analytical Investigation / Findings | VALIDATED | El Analytical Investigation Record contiene preguntas, operaciones, findings y materialidad | Ninguno bloqueante |
-| Analytical Narrative | VALIDATED WITH CONDITIONS | La narrativa integra conocimiento sin introducir nuevo analisis ni recomendaciones; validacion experimental aprobada con observaciones | Numero limitado de ejecuciones validatorias |
-| Analytical Contract de AUC-001 | VALIDATED | El contrato consolidado separa necesidades analiticas, coverage y representacion contingente | Ambiguedad documental menor entre Proposed y Active, no bloqueante |
+| Analytical Narrative | VALIDATED WITH CONDITIONS | La narrativa integra conocimiento sin introducir nuevo análisis ni recomendaciones; validación experimental aprobada con observaciones | Número limitado de ejecuciones validatorias |
+| Analytical Contract de AUC-001 | VALIDATED | El contrato consolidado separa necesidades analíticas, coverage y representación contingente | Ambigüedad documental menor entre Proposed y Active, no bloqueante |
 
 ## 8. Gobernanza documental
 
-- El estado de AUC-001 y el estado del contrato analitico son coherentes en la practica operativa: el contrato vigente es [analytical_use_cases/auc-001/analytical-contract.md](/analytical_use_cases/auc-001/analytical-contract.md).
-- `Active`, `Validated` y `Closed` se usan de forma legible: el caso base permanece Active, su validacion experimental esta Validated, el ciclo experimental esta Closed, el contrato operativo esta Active, y las evaluaciones estan Documented o Validated segun corresponda.
-- Las evaluaciones permanecen como evidencia historica.
-- El conocimiento operativo consolidado no depende unicamente de `docs/evaluations/`; tambien queda materializado en el contrato analitico y en la salida final validada.
+- El estado de AUC-001 y el estado del contrato analítico son coherentes en la practica operativa: el contrato vigente es [analytical_use_cases/auc-001/analytical-contract.md](/analytical_use_cases/auc-001/analytical-contract.md).
+- `Active`, `Validated` y `Closed` se usan de forma legible: el caso base permanece Active, su validación experimental está Validated, el ciclo experimental esta Closed, el contrato operativo esta Active, y las evaluaciones están Documented o Validated según corresponda.
+- Las evaluaciones permanecen como evidencia histórica.
+- El conocimiento operativo consolidado no depende únicamente de `docs/evaluations/`; también queda materializado en el contrato analítico y en la salida final validada.
 - Los documentos enlazan correctamente las fuentes de soporte.
 
-### Observacion documental menor
+### Observación documental menor
 
-La ambiguedad de estado entre el caso base y el contrato analitico queda resuelta durante la reestructuracion documental: el caso base queda Active, la validacion experimental Validated y el ciclo experimental Closed.
+La ambigüedad de estado entre el caso base y el contrato analítico queda resuelta durante la reestructuración documental: el caso base queda Active, la validación experimental Validated y el ciclo experimental Closed.
 
 ## 9. Riesgos bloqueantes
 
@@ -200,30 +200,30 @@ No se identifican riesgos bloqueantes para el cierre.
 - Metadata creativa incompleta.
 - Clicks, impresiones y CTR no disponibles.
 - Menor volumen en RTG/diáspora.
-- Analytical Narrative validada en un numero limitado de ejecuciones.
+- Analytical Narrative validada en un número limitado de ejecuciones.
 - Estado documental alineado: `Active`, `Validated` y `Closed`.
 
 ## 11. Condiciones de cierre
 
 No existen condiciones de cierre pendientes que impidan la clausura formal.
 
-La ambiguedad documental menor sobre estado sera alineada en el cierre documental, pero no requiere resolucion previa para cerrar el ciclo experimental.
+La ambigüedad documental menor sobre estado será alineada en el cierre documental, pero no requiere resolución previa para cerrar el ciclo experimental.
 
 ## 12. Veredicto final
 
 **READY FOR CLOSURE**
 
-Justificacion:
+Justificación:
 
-- AUC-001 cumple su objetivo metodologico y operativo.
-- El producto final esta aprobado como salida integrada y trazable.
+- AUC-001 cumple su objetivo metodológico y operativo.
+- El producto final está aprobado como salida integrada y trazable.
 - No existen riesgos bloqueantes.
 - Las limitaciones remanentes son no bloqueantes y quedan correctamente declaradas como UNKNOWN o coverage gaps.
 
 ## 13. Acciones posteriores autorizadas
 
-- Archivar las evaluaciones como evidencia historica.
-- Mantener el contrato analitico como documento operativo vigente.
-- Mantener la taxonomia documental alineada entre estado operativo, validacion y cierre experimental.
-- Permitir mejoras futuras solo como evolucion posterior, sin reabrir el cierre experimental.
-- Si se decide evolucionar, hacerlo como nueva iteracion documental o metodologica separada, no como continuacion del mismo experimento cerrado.
+- Archivar las evaluaciones como evidencia histórica.
+- Mantener el contrato analítico como documento operativo vigente.
+- Mantener la taxonomía documental alineada entre estado operativo, validación y cierre experimental.
+- Permitir mejoras futuras solo como evolución posterior, sin reabrir el cierre experimental.
+- Si se decide evolucionar, hacerlo como nueva iteración documental o metodológica separada, no como continuación del mismo experimento cerrado.

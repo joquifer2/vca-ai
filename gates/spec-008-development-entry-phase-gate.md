@@ -14,7 +14,7 @@
 
 ## Evidencias utilizadas
 
-- [sdd_readiness_assessment.md](../sdd_readiness_assessment.md)
+- [docs/evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md)
 - [project_brief.md](/project_brief.md)
 - [README.md](/README.md)
 - [docs/context_refs.md](/docs/context_refs.md)
@@ -42,7 +42,7 @@
 
 - [README.md](/README.md)
 - [project_brief.md](/project_brief.md)
-- [sdd_readiness_assessment.md](../sdd_readiness_assessment.md)
+- [docs/evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md)
 - [docs/context_refs.md](/docs/context_refs.md)
 - [docs/tasks.md](/docs/tasks.md)
 - [specs/spec-008-development-entry-phase-gate.md](/specs/spec-008-development-entry-phase-gate.md)
