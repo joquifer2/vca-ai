@@ -1,4 +1,5 @@
 # AUC-001 BigQuery MCP Integration Validation
+> Supersession note (2026-07-17): this validation records the legacy `discover_metadata` selector contract used during the original AUC-001 integration validation. It is retained as historical evidence only. Current AUC-001 executions must use `docs/contracts/bigquery-mcp-discover-metadata.contract.md` and the Phase 05 procedure in `.github/skills/meta-lead-quality-analysis/RUNBOOK.md`.
 
 ## Metadata
 
@@ -71,9 +72,9 @@ Esta validacion no formula conclusiones ni recomendaciones analiticas.
 
 | Request ID | Operation | Selector / Query Scope | Status | Policy | Cost | Trace |
 |---|---|---|---|---|---|---|
-| T039-DISCOVER-DATASETS-001 | `discover_metadata` datasets | `datamart-vca-494114` | success | allow | within_limit | `trc-2d164b4489d54c2889dd13f3233d9226` |
-| T039-DISCOVER-TABLES-INTERMEDIATE-001 | `discover_metadata` tables | `datamart-vca-494114.intermediate` | success; table exposed as `int_faro_lead_scoring` | allow | within_limit | `trc-d385b77746af435f8057e1e913190327` |
-| T039-DISCOVER-SCHEMA-INT-FARO-002 | `discover_metadata` schema | `datamart-vca-494114.intermediate.int_faro_lead_scoring` | success; schema exposed | allow | within_limit | `trc-04399d0662384aabbe4d621347776cc8` |
+| Legacy `discover_metadata` validation record | Selector details intentionally omitted from current guidance | Historical only; superseded by `docs/contracts/bigquery-mcp-discover-metadata.contract.md` | not applicable | not applicable | not applicable | see original history |
+| Legacy `discover_metadata` validation record | Selector details intentionally omitted from current guidance | Historical only; superseded by `docs/contracts/bigquery-mcp-discover-metadata.contract.md` | not applicable | not applicable | not applicable | see original history |
+| Legacy `discover_metadata` validation record | Selector details intentionally omitted from current guidance | Historical only; superseded by `docs/contracts/bigquery-mcp-discover-metadata.contract.md` | not applicable | not applicable | not applicable | see original history |
 | T039-QUERY-INT-FARO-002 | `query_read_only` | `SELECT COUNT(1)` over `datamart-vca-494114.intermediate.int_faro_lead_scoring` | success; `row_count = 1457` | allow | within_limit | `trc-c684ee0522bf41c8971acf065a973ad1` |
 
 ---

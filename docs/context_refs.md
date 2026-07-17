@@ -36,6 +36,7 @@ cliente:
 | Required | README | [../README.md](/README.md) |
 | Required | Specifications | [../specs/](/specs/) |
 | Required | Contracts | [contracts/](/docs/contracts/) |
+| Required | BigQuery MCP discover_metadata Contract Reference | [contracts/bigquery-mcp-discover-metadata.contract.md](/docs/contracts/bigquery-mcp-discover-metadata.contract.md) |
 | Required | Tasks Backlog | [tasks.md](/docs/tasks.md) |
 | Supporting | Knowledge Base | [../knowledge/client/](/knowledge/client/) |
 | Supporting | Glosario | [glosario_terminos.md](/docs/glosario_terminos.md) |
@@ -105,6 +106,7 @@ google_cloud:
 apis:
   - nombre: BigQuery MCP Server
     uso_en_proyecto: Data Provider autorizado para adquisición de evidencia AUC-001 cuando se ejecuta el workflow completo
+    discover_metadata_contract: docs/contracts/bigquery-mcp-discover-metadata.contract.md
 ```
 
 ---
@@ -122,8 +124,8 @@ apis:
 ## 8. Trazabilidad
 
 ```yaml
-ultima_actualizacion: 2026-07-16
+ultima_actualizacion: 2026-07-17
 actualizado_por: Documentation Agent
-motivo: Reestructuración documental AUC-001
-version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-closed
+motivo: Actualizacion del contrato canonico de discover_metadata para AUC-001
+version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-discover-metadata-contract
 ```

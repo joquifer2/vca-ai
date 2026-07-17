@@ -62,6 +62,14 @@ Determina:
 - invariantes de presentación;
 - límites de Presentation Layer.
 
+### BigQuery MCP discover_metadata Contract Reference
+
+- `docs/contracts/bigquery-mcp-discover-metadata.contract.md`
+
+Registra el schema real observado del servidor MCP para `discover_metadata`, sus selectores canonicos, ejemplos validos e invalidos, codigos de error y estados de salida de la Fase 05.
+
+Esta referencia no redefine el contrato del servidor. Debe refrescarse desde `tools/list` cuando el BigQuery MCP Server cambie su schema.
+
 ---
 
 ## Contexto de negocio
@@ -163,6 +171,8 @@ El runtime resolverá el mecanismo de acceso utilizando las capacidades disponib
 Todas las consultas deberán limitarse a las fuentes publicadas por el Data Contract.
 
 La disponibilidad técnica de una fuente no implica autorización metodológica.
+
+Para `discover_metadata`, AUC-001 debe utilizar exclusivamente el contrato canonico documentado en `docs/contracts/bigquery-mcp-discover-metadata.contract.md`. No se permiten selectores con prefijo de proyecto, valores legacy plurales de `scope_request`, nombres logicos inferidos ni pruebas sucesivas de formatos.
 
 Para llamadas `query_read_only` del BigQuery MCP Server, `execution_context` es un contrato cerrado y no un contenedor de trazabilidad. Debe construirse solo con:
 

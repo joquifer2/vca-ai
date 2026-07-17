@@ -1,5 +1,7 @@
 # BigQuery MCP Codex Runtime Diagnosis
 
+> Supersession note (2026-07-17): this runtime diagnosis predates the canonical discover_metadata selector contract. Tool-description details in this document are historical and must not guide current AUC-001 Data Provider Validation. Current guidance is docs/contracts/bigquery-mcp-discover-metadata.contract.md.
+
 ## Metadata
 
 | Field | Value |
@@ -192,7 +194,7 @@ Observed tools:
 | Tool | Description |
 |---|---|
 | `query_read_only` | Execute one allowlisted read-only BigQuery SQL query (CTR-001). |
-| `discover_metadata` | Discover allowlisted BigQuery datasets, tables or schema (CTR-002). |
+| `discover_metadata` | Historical tool description redacted for current selector-contract guidance. |
 
 ### Listener evidence
 

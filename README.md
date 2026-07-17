@@ -1,104 +1,178 @@
 # VCA IA
 
-## Plataforma Analítica basada en IA
+## Sistema Analítico basado en Inteligencia Artificial
 
-Versión documental: v1.0.0
-
-Estado del proyecto: Development Authorized.
-
-VCA IA es la plataforma de análisis asistido por IA de VCA para transformar contexto, datos y conocimiento del negocio en análisis trazables, conclusiones fundamentadas y recomendaciones reutilizables.
-
-El proyecto se apoya en AIF Foundation como dependencia metodológica reutilizable. El objeto funcional de este repositorio es VCA IA.
+**Versión documental:** v1.0.0
+**Estado:** Development Authorized
 
 ---
 
-## Propósito
+# ¿Qué es VCA IA?
 
-El repositorio gobierna y documenta la Plataforma Analítica basada en IA de VCA.
+VCA IA es el sistema analítico para VCA.
 
-Su función principal es mantener trazabilidad entre:
+Su objetivo es ayudar a transformar datos, contexto de negocio y conocimiento experto en análisis trazables, conclusiones fundamentadas y recomendaciones útiles para la toma de decisiones.
 
-- contexto;
-- evidencia;
-- conocimiento;
-- recomendaciones;
-- outputs;
-- decisiones y gates documentales.
+No pretende sustituir el criterio humano ni generar informes automáticamente. Su propósito es construir un proceso analítico consistente, repetible y auditable que permita comprender cómo se ha llegado a cada conclusión.
 
-El objetivo no es automatizar informes aislados, sino sostener un sistema analítico coherente, auditable y reutilizable.
+Este repositorio contiene la definición del sistema, sus reglas metodológicas, los casos de uso analíticos, las decisiones adoptadas y la documentación necesaria para hacerlo evolucionar de forma controlada.
 
 ---
 
-## Estado actual
+# ¿Qué problema resuelve?
 
-- Fase SDD: Development Authorized.
-- Phase Gate: [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md).
-- Primer caso analítico: [AUC-001 - Meta Lead Quality Analysis](/analytical_use_cases/auc-001/README.md).
-- Cierre experimental AUC-001: [gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md), decisión `READY FOR CLOSURE`.
-- Producto analítico validado: [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md).
+En cualquier organización, la información necesaria para analizar un problema suele encontrarse repartida entre múltiples fuentes:
 
----
+* bases de datos;
+* documentación interna;
+* conocimiento de negocio;
+* experiencia de los equipos;
+* informes anteriores.
 
-## Capacidades principales
+Cuando ese conocimiento no está organizado es frecuente que:
 
-- Definir y ejecutar casos de uso analíticos trazables.
-- Separar contexto, evidencia, conocimiento, recomendaciones y presentación.
-- Validar avance mediante gates documentales.
-- Mantener decisiones y evaluaciones separadas.
-- Reutilizar capacidades analíticas sin acoplar el sistema a una ejecución puntual.
+* distintos análisis lleguen a conclusiones diferentes;
+* se mezclen hechos con interpretaciones;
+* no quede claro por qué se recomienda una determinada acción;
+* el contexto se pierda con el tiempo;
+* o cada nuevo análisis tenga que comenzar prácticamente desde cero.
 
----
-
-## Estructura del repositorio
-
-| Área | Propósito |
-|---|---|
-| [project_brief.md](/project_brief.md) | Definición del proyecto, alcance y criterios de éxito |
-| [docs/context_refs.md](/docs/context_refs.md) | Índice detallado de contexto, trazabilidad y fuentes |
-| [specs/](/specs/) | Specifications del marco analítico |
-| [analytical_use_cases/](/analytical_use_cases/) | Casos de uso analíticos e índices por caso |
-| [.github/skills/](/.github/skills/) | Skills operativas asociadas a casos de uso |
-| [docs/contracts/](/docs/contracts/) | Contratos transversales |
-| [docs/decisions/](/docs/decisions/) | Decisiones estabilizadas |
-| [docs/evaluations/](/docs/evaluations/) | Investigaciones, experimentos, validaciones y diagnósticos |
-| [docs/corpus/](/docs/corpus/) | Corpus histórico usado como referencia experimental |
-| [outputs/](/outputs/) | Productos analíticos validados por ejecución |
-| [gates/](/gates/) | Phase, QA y closure gates |
-| [docs/tasks.md](/docs/tasks.md) | Backlog documental y gobernanza de trabajo |
+VCA IA nace para evitar esa situación mediante un sistema común que conecte contexto, evidencia, conocimiento y recomendaciones dentro de un mismo proceso analítico.
 
 ---
 
-## Source of Truth mínima
+# ¿Cómo funciona?
 
-| Fuente | Propósito |
-|---|---|
-| [project_brief.md](/project_brief.md) | Propósito y alcance del proyecto |
-| [docs/context_refs.md](/docs/context_refs.md) | Trazabilidad detallada y contexto oficial |
-| [specs/](/specs/) | Lifecycle, boundaries, extensibilidad y gates |
-| [analytical_use_cases/](/analytical_use_cases/) | Casos analíticos y estado por caso |
-| [.github/skills/](/.github/skills/) | Ejecución operativa de skills |
-| [docs/contracts/](/docs/contracts/) | Contratos metodológicos y documentales |
-| [gates/](/gates/) | Decisiones de avance y cierre |
-| [docs/tasks.md](/docs/tasks.md) | Trabajo aprobado y trazable |
+VCA IA organiza el trabajo en cinco capas claramente diferenciadas.
 
----
+| Capa                | Finalidad                                                                      |
+| ------------------- | ------------------------------------------------------------------------------ |
+| **Contexto**        | Define qué se quiere analizar, con qué objetivo y bajo qué alcance.            |
+| **Evidencia**       | Recoge únicamente los datos y hechos disponibles en las fuentes autorizadas.   |
+| **Conocimiento**    | Convierte la evidencia en hallazgos e interpretaciones útiles para el negocio. |
+| **Recomendaciones** | Propone acciones justificadas por la evidencia obtenida.                       |
+| **Presentación**    | Adapta el resultado al destinatario sin alterar el significado del análisis.   |
 
-## Punto de entrada AUC-001
-
-Para comprender AUC-001, leer primero:
-
-1. [analytical_use_cases/auc-001/README.md](/analytical_use_cases/auc-001/README.md)
-2. [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
-3. [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
-4. [gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md)
-5. [outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md)
+Esta separación permite mantener la trazabilidad del razonamiento y facilita revisar cualquier análisis incluso mucho tiempo después de haber sido realizado.
 
 ---
 
-## Forma de trabajo esperada
+# Principios del sistema
 
-- Mantener separación entre metodología, gobernanza, evaluación y outputs.
-- No convertir evaluaciones históricas en fuentes canónicas.
-- No duplicar decisiones estabilizadas dentro de evaluations.
-- Registrar nuevas rutas relevantes en [docs/context_refs.md](/docs/context_refs.md).
-- Tratar AIF Foundation como dependencia metodológica reutilizable, no como producto funcional del repositorio.
+Todo análisis realizado mediante VCA IA debe respetar una serie de principios básicos:
+
+* separar siempre hechos e interpretaciones;
+* mantener la trazabilidad entre evidencia y conclusiones;
+* reconocer explícitamente las incertidumbres y limitaciones;
+* justificar las recomendaciones mediante conocimiento construido;
+* reutilizar capacidades ya validadas;
+* conservar la posibilidad de revisión humana en todo momento.
+
+Estos principios son independientes del dominio de negocio y permiten que el sistema pueda crecer incorporando nuevos casos de uso.
+
+---
+
+# Estado actual
+
+El proyecto ha completado su fase de definición y dispone de autorización para continuar el desarrollo.
+
+Actualmente cuenta con:
+
+* una arquitectura metodológica estable;
+* un primer caso de uso analítico completamente operativo;
+* capacidades documentadas para construir conocimiento analítico;
+* mecanismos formales de validación mediante gates;
+* y un primer ciclo experimental finalizado.
+
+## Primer caso de uso
+
+**AUC-001 — Meta Lead Quality Analysis**
+
+Este caso de uso analiza la calidad de los leads captados mediante Meta Ads y ha servido para validar experimentalmente varias capacidades reutilizables del sistema, entre ellas:
+
+* resolución automática del alcance de ejecución;
+* separación entre análisis y presentación;
+* adaptación del conocimiento al destinatario;
+* construcción de narrativas analíticas trazables.
+
+Su cierre experimental ha sido aprobado con decisión:
+
+**READY FOR CLOSURE**
+
+---
+
+# Relación con AIF Foundation
+
+VCA IA utiliza **AIF Foundation** como dependencia metodológica.
+
+AIF Foundation proporciona el marco común de trabajo (SDD, gobernanza documental y capacidades analíticas reutilizables).
+
+Sin embargo, el producto desarrollado en este repositorio es **VCA IA**.
+
+La evolución metodológica sigue una regla sencilla:
+
+> Ninguna capacidad pasa directamente a AIF Foundation.
+>
+> Primero debe descubrirse y validarse experimentalmente dentro de VCA IA.
+> Solo después puede proponerse como capacidad reutilizable del framework.
+
+---
+
+# Organización del repositorio
+
+| Área                    | Contenido                                                  |
+| ----------------------- | ---------------------------------------------------------- |
+| `project_brief.md`      | Propósito, alcance y objetivos del proyecto.               |
+| `docs/context_refs.md`  | Índice oficial de contexto y trazabilidad documental.      |
+| `specs/`                | Capacidades y reglas metodológicas del sistema.            |
+| `analytical_use_cases/` | Casos de uso analíticos y estado de cada uno.              |
+| `.github/skills/`       | Skills operativas para ejecutar los casos de uso.          |
+| `docs/contracts/`       | Contratos metodológicos y documentales.                    |
+| `docs/decisions/`       | Decisiones estabilizadas del proyecto.                     |
+| `docs/evaluations/`     | Investigaciones, experimentos y validaciones.              |
+| `docs/corpus/`          | Material histórico utilizado como referencia experimental. |
+| `outputs/`              | Productos analíticos generados y validados.                |
+| `gates/`                | Gates de avance, QA y cierre.                              |
+| `docs/tasks.md`         | Backlog documental del proyecto.                           |
+
+---
+
+# ¿Dónde empezar?
+
+## Si quieres comprender el proyecto
+
+1. `project_brief.md`
+2. `docs/context_refs.md`
+
+## Si quieres comprender la metodología
+
+1. `specs/`
+2. `docs/contracts/`
+3. `gates/`
+
+## Si quieres comprender el primer caso de uso
+
+1. `analytical_use_cases/auc-001/README.md`
+2. `analytical_use_cases/meta_lead_quality_analysis.md`
+3. `.github/skills/meta-lead-quality-analysis/SKILL.md`
+4. `gates/auc-001-experimental-closure-gate.md`
+5. `outputs/auc-001/2026-06-30/analytical-report.md`
+
+---
+
+# Filosofía de evolución
+
+VCA IA se desarrolla mediante **Specification Driven Development (SDD)**.
+
+Las mejoras no se incorporan porque parezcan buenas ideas.
+
+Cada nueva capacidad debe:
+
+1. surgir de una necesidad real;
+2. implementarse dentro de un caso de uso;
+3. validarse experimentalmente;
+4. documentarse;
+5. y únicamente entonces proponerse como capacidad reutilizable.
+
+Este enfoque permite que el sistema evolucione de forma controlada, manteniendo la coherencia entre metodología, implementación y conocimiento acumulado.
+

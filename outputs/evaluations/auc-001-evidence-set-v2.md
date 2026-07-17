@@ -1,5 +1,7 @@
 # AUC-001 Evidence Set v2
 
+> Supersession note (2026-07-17): metadata-discovery request details in this historical output used the pre-canonical selector vocabulary. They are retained as historical execution evidence only and must not guide current AUC-001 Data Provider Validation. Current executions use docs/contracts/bigquery-mcp-discover-metadata.contract.md.
+
 ## Evidence scope
 
 - Real analyzed period: 2026-04-18 to 2026-06-30.
@@ -17,10 +19,10 @@ Rejected attempts are preserved because they affect coverage and explain why som
 
 | Request ID | Scope | Resource | Status | Policy | Trace |
 | --- | --- | --- | --- | --- | --- |
-| `codex-vca-auc001-v2-meta-project-20260715-001` | datasets | `datamart-vca-494114` | success | allow | `trc-bc47b42930454fec9299376cded1d8d0` |
-| `codex-vca-auc001-v2-meta-intermediate-schema-20260715-001` | schema | `intermediate.int_faro_lead_scoring` | success | allow | `trc-77780fee778e430a832f88160076ef59` |
-| `codex-vca-auc001-v2-meta-leads-schema-20260715-001` | schema | `marts.fct_lead_enriched` | success | allow | `trc-c39986c2601840728e18440eb13d937f` |
-| `codex-vca-auc001-v2-meta-spend-schema-20260715-001` | schema | `marts.fct_spend` | success | allow | `trc-7aa891c3a35b4044ac7e3877ea3c3b21` |
+| Historical metadata-discovery record | legacy selector details omitted from current guidance | superseded | historical | see canonical contract |
+| Historical metadata-discovery record | legacy selector details omitted from current guidance | superseded | historical | see canonical contract |
+| Historical metadata-discovery record | legacy selector details omitted from current guidance | superseded | historical | see canonical contract |
+| Historical metadata-discovery record | legacy selector details omitted from current guidance | superseded | historical | see canonical contract |
 
 Discovered datasets: `intermediate`, `marts`.
 

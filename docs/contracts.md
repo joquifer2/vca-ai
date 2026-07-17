@@ -46,6 +46,7 @@ docs/
     recommendation.contract.md
     presentation.contract.md
     extension.contract.md
+    bigquery-mcp-discover-metadata.contract.md
 ```
 
 ---
@@ -63,6 +64,7 @@ docs/
 | VCA-REC-001 | Recommendation Contract | Recommendation Contract | [docs/contracts/recommendation.contract.md](/docs/contracts/recommendation.contract.md) | Documented |
 | VCA-PRS-001 | Presentation Contract | Presentation Contract | [docs/contracts/presentation.contract.md](/docs/contracts/presentation.contract.md) | Documented |
 | VCA-EXT-001 | Extension Contract | Extension Contract | [docs/contracts/extension.contract.md](/docs/contracts/extension.contract.md) | Documented |
+| BQ-MCP-DISCOVER-REF | BigQuery MCP discover_metadata Contract Reference | External Tool Contract Reference | [docs/contracts/bigquery-mcp-discover-metadata.contract.md](/docs/contracts/bigquery-mcp-discover-metadata.contract.md) | Observed |
 
 ---
 
@@ -72,6 +74,7 @@ docs/
 |---|---|---|
 | VCA-CTX-001 | High | Delimits objective, scope, restrictions and official sources before Discovery |
 | VCA-DATA-001 | High | Defines the data exposure boundary before Discovery and preparation |
+| BQ-MCP-DISCOVER-REF | High | Records the external `discover_metadata` selector schema consumed during AUC-001 Data Provider Validation |
 
 ---
 

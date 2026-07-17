@@ -83,13 +83,15 @@ Este ecosistema se articula principalmente sobre el framework estratégico **FAR
 
 # **Situación Actual**
 
-El ecosistema se encuentra en una fase de consolidación y evolución.
+Actualmente dispone de una arquitectura funcional que diferencia las capas de Atención, Activación y Comercial, un modelo de pre-cualificación inicial de leads, una plataforma de datos centralizada en BigQuery y una integración operativa con Meta Conversions API mediante el envío del evento `QualifiedLead`. 
 
-Actualmente dispone de una arquitectura funcional que diferencia las capas de Atención, Activación y Comercial, un modelo inicial de scoring para la pre-cualificación automática de leads, una plataforma de datos centralizada en BigQuery y una primera integración operativa con Meta Conversions API mediante el envío de eventos QualifiedLead.
+El alcance actualmente implementado del modelo se limita a la información declarada durante la captación mediante formularios nativos de Meta.
 
-Paralelamente, continúa la evolución de CLARO como plataforma de datos gobernada y la futura integración con GIAV para cerrar el ciclo completo entre captación, cualificación comercial, aprendizaje y optimización continua del sistema.
+El sistema calcula un Score Inicial, clasifica los leads en los tiers A, B, C y D e identifica como Qualified Lead aquellos que cumplen los criterios vigentes. 
 
-El objetivo no es únicamente mejorar la eficiencia publicitaria, sino construir un sistema capaz de transformar datos en decisiones, aprender del comportamiento real de los leads y optimizar progresivamente la calidad de la captación.
+La integración con GIAV, la incorporación sistemática de información comercial, la validación de oportunidades y el aprendizaje basado en resultados forman parte de la evolución prevista del ecosistema y todavía no están implementados de forma completa y gobernada. 
+
+El objetivo de esta evolución es cerrar progresivamente el ciclo entre captación, pre-cualificación, resultado comercial y optimización, manteniendo siempre diferenciadas las capacidades disponibles de las capacidades previstas.
 
 # **Alcance del CCD**
 
@@ -590,57 +592,70 @@ Medir la calidad de la captación.
 
 ---
 
-### KPI 5 — Ratio Lead Cualificado → Oportunidad
+### KPI previsto — Ratio Lead Cualificado → Oportunidad
 
 **Dominio:** FARO Comercial
 
-**Definición**
+**Estado:** No implementado actualmente
 
-Porcentaje de leads cualificados que avanzan hasta convertirse en una oportunidad comercial.
+**Definición prevista**
 
-**Fórmula**
+Porcentaje de leads pre-cualificados por FARO que, tras la evaluación comercial, avanzan hasta convertirse en una oportunidad.
 
-```
+**Fórmula prevista**
+
 Oportunidades / Leads cualificados
-```
 
-**Objetivo**
+**Objetivo previsto**
 
-Validar la capacidad predictiva del sistema de scoring y la calidad real de los leads.
+Contrastar la estimación inicial realizada durante la captación con el avance comercial real de los leads.
+
+Este indicador requiere una definición gobernada de oportunidad y la integración sistemática de información procedente del proceso comercial.
+
+Actualmente no debe utilizarse como KPI oficial disponible del sistema.
 
 ---
 
-### KPI 6 — Ratio Oportunidad → Venta
+### KPI previsto — Ratio Oportunidad → Venta
 
-**Dominio:** FARO Comercial
+**Dominio:** Proceso comercial
 
-**Definición**
+**Estado:** No implementado actualmente
+
+**Definición prevista**
 
 Porcentaje de oportunidades comerciales que finalmente se convierten en venta.
 
-**Fórmula**
+**Fórmula prevista**
 
-```
+
+
 Ventas / Oportunidades
-```
 
-**Objetivo**
+
+**Objetivo previsto**
 
 Medir la eficacia del proceso comercial posterior a la captación.
+
+Este indicador depende de la integración gobernada con GIAV y de la disponibilidad de estados comerciales consistentes.
+
+Actualmente no debe utilizarse como KPI oficial disponible de FARO/CLARO.
 
 ---
 
 ## **Variables Estratégicas del Sistema**
 
-Las siguientes variables forman parte del modelo de decisión de FARO, pero **no constituyen KPIs**.
+Las siguientes variables forman parte del modelo de decisión actualmente implementado en FARO, pero **no constituyen KPIs**. 
 
-Se utilizan para clasificar, segmentar y enriquecer la interpretación de los indicadores anteriores.
+Se utilizan para clasificar, segmentar y enriquecer la interpretación de los indicadores anteriores. 
 
-- Score Inicial
-- Score Validado
-- Lead Tier (A, B, C y D)
-- campaign_signal (ATTENTION, ACTIVATION y COMMERCIAL)
-- Estados FARO (CLEAR, WEAK y NOISE, según la capa correspondiente)
+- Score Inicial. 
+- Lead Tier (A, B, C y D). 
+- Qualified Lead. 
+- `campaign_signal` (`ATTENTION`, `ACTIVATION` y `COMMERCIAL`). 
+- Estados FARO (`CLEAR`, `WEAK` y `NOISE`, según la capa correspondiente). 
+
+La validación comercial, un posible Score Validado y el aprendizaje basado en resultados forman parte de la evolución prevista del ecosistema y no deben considerarse variables actualmente disponibles.
 
 ---
 
@@ -662,38 +677,52 @@ Todas las definiciones recogidas en este documento deberán considerarse la refe
 
 # Flujo conceptual del sistema
 
+El flujo debe diferenciar entre las capacidades actualmente implementadas y la evolución prevista del ecosistema. ## Estado actualmente implementado
+
 ```
 Lead
-   │
-   ▼
-Modelo de Scoring FARO
-   │
-   ▼
+│
+▼
+Modelo de Pre-cualificación Inicial FARO
+│
+▼
 Score Inicial
-   │
-   ▼
+│
+▼
+Lead Tier
+(A, B, C o D)
+│
+▼
 Qualified Lead
-(Pre-cualificación Marketing)
-   │
-   ▼
-Evaluación Comercial
-   │
-   ▼
-Sales Qualified Lead
-(Cualificación Comercial)
-   │
-   ▼
-Oportunidad
-   │
-   ▼
-Cliente
-   │
-   ▼
-Score Validado
-   │
-   ▼
-Aprendizaje FARO
+(Pre-cualificación de marketing)
+│
+▼
+Evento QualifiedLead
+(Meta Conversions API)
+
 ```
+## Evolución prevista
+
+```
+Qualified Lead
+│
+▼
+Evaluación Comercial
+│
+▼
+Cualificación Comercial
+│
+▼
+Oportunidad
+│
+▼
+Cliente
+│
+▼
+Aprendizaje y recalibración
+
+```
+La integración sistemática de información comercial, la validación de oportunidades, la recalibración del scoring y el aprendizaje basado en resultados todavía no forman parte de la versión actualmente implementada.
 
 ---
 
@@ -705,53 +734,67 @@ Representa la unidad mínima de análisis del sistema FARO.
 
 ---
 
-## Modelo de Scoring FARO
+## Modelo de Pre-cualificación Inicial FARO 
 
-Sistema oficial de evaluación inicial de leads desarrollado dentro del framework FARO.
+Modelo oficial utilizado por FARO para interpretar la calidad inicial de los leads captados mediante formularios nativos de Meta Ads. Su finalidad es estimar, antes de cualquier interacción comercial, el grado inicial de intención y afinidad del lead con la propuesta de valor de Viaja con Álvaro. 
 
-Su finalidad es estimar la calidad potencial de un lead antes de cualquier interacción comercial.
+El modelo utiliza exclusivamente información declarada durante la captación. Actualmente: 
+- calcula un Score Inicial; 
+- clasifica los leads mediante los tiers A, B, C y D; 
+- identifica los leads considerados Qualified Lead; 
+- permite generar el evento `QualifiedLead` para Meta Conversions API. 
 
-El modelo asigna una puntuación utilizando exclusivamente la información disponible durante la fase de captación.
+El modelo no incorpora actualmente información procedente del CRM, evaluación comercial, oportunidades, ventas ni aprendizaje basado en resultados comerciales. La interpretación funcional del modelo se documenta en: `knowledge/scoring/initial-lead-qualification-model.md` 
 
-La lógica de cálculo se basa en un conjunto de reglas de negocio definidas por FARO y podrá evolucionar con nuevas versiones sin modificar este glosario.
-
-Las reglas detalladas, ponderaciones y umbrales forman parte de la documentación funcional del Modelo de Scoring FARO.
+Las reglas de cálculo, ponderaciones y umbrales concretos pertenecen a la implementación funcional y técnica de FARO/CLARO.
 
 ---
 
 ## Score Inicial
 
-Puntuación obtenida por un lead tras aplicar el Modelo de Scoring FARO.
+Puntuación obtenida por un lead tras aplicar el Modelo de Pre-cualificación Inicial FARO.
 
-Representa la estimación inicial de su calidad comercial antes de cualquier actuación del equipo de ventas.
+Representa una estimación de la calidad declarada del lead utilizando exclusivamente la información disponible durante la captación. 
+
+No representa una validación comercial, una probabilidad de venta ni una estimación del valor económico del cliente. 
 
 Su rango actual es de 0 a 100 puntos.
-
 ---
 
 ## Qualified Lead
 
-Lead que cumple los criterios definidos por el Modelo de Scoring FARO para ser considerado apto para activación comercial.
+Lead que cumple los criterios definidos por el Modelo de Pre-cualificación Inicial FARO. 
 
-Representa la **pre-cualificación automática** realizada por FARO y constituye la referencia utilizada para el envío del evento `QualifiedLead` mediante Meta Conversions API.
+Representa la pre-cualificación automática realizada a partir de la información declarada durante la captación. 
 
-La definición concreta de un Qualified Lead (umbrales, reglas o condiciones) pertenece al Modelo de Scoring FARO y podrá evolucionar sin modificar este glosario.
+En la versión actualmente implementada, esta entidad: 
+- corresponde a los leads clasificados en los tiers A o B; 
+- se utiliza como referencia para el análisis de calidad de captación; 
+- permite generar el evento `QualifiedLead` mediante Meta Conversions API. 
+
+Un Qualified Lead no constituye una validación comercial y no garantiza que exista una oportunidad o una venta. La definición funcional se documenta en: `knowledge/scoring/initial-lead-qualification-model.md` Las reglas concretas de cálculo, ponderaciones y umbrales pertenecen a la implementación de FARO/CLARO.
 
 ---
 
-## Sales Qualified Lead
+## Cualificación Comercial 
 
-Lead que, tras la evaluación realizada por el equipo comercial, cumple los criterios establecidos por el proceso de ventas para continuar dentro del embudo comercial.
+Evaluación realizada por el equipo comercial para determinar si un lead presenta interés real, encaje y viabilidad suficientes para continuar dentro del proceso de ventas. 
 
-Representa la validación humana de la pre-cualificación realizada por FARO.
+Esta capacidad forma parte de la arquitectura objetivo del ecosistema, pero todavía no se encuentra integrada de forma gobernada en FARO/CLARO. 
+
+Actualmente no existe una entidad oficial denominada Sales Qualified Lead materializada y disponible como parte del sistema analítico.
 
 ---
 
 ## Oportunidad
 
-Sales Qualified Lead que pasa a formar parte del pipeline comercial activo al existir una posibilidad real de contratación.
+Lead que, después de la evaluación comercial, pasa a formar parte del pipeline activo al existir una posibilidad real de contratación. 
 
-Su definición operativa podrá evolucionar cuando la integración con GIAV esté completamente implantada.
+La oportunidad pertenece al dominio comercial. 
+
+Su definición operativa y su integración gobernada con FARO/CLARO todavía están pendientes de la evolución de la integración con GIAV. 
+
+Por tanto, no debe considerarse una entidad actualmente disponible para el cálculo del Modelo de Pre-cualificación Inicial FARO.
 
 ---
 
@@ -771,13 +814,17 @@ Constituye el resultado final del proceso de captación y gestión comercial.
 
 ---
 
-## Score Validado
+## Validación y aprendizaje comercial previstos 
 
-Puntuación obtenida a partir del comportamiento real del lead durante el proceso comercial.
+La arquitectura objetivo de FARO contempla la posibilidad de contrastar, en el futuro, la estimación inicial del lead con los resultados observados durante el proceso comercial. 
 
-Su finalidad es validar, recalibrar y mejorar progresivamente el Modelo de Scoring FARO.
+Esta evolución podría permitir: - validar la capacidad del modelo para identificar leads de calidad; 
 
-Constituye la base del aprendizaje continuo del sistema.
+- analizar diferencias entre la estimación inicial y el resultado real; 
+- revisar reglas, pesos y umbrales; 
+- mejorar progresivamente las señales enviadas a las plataformas publicitarias. 
+
+Esta capacidad todavía no está implementada. No existe actualmente un Score Validado gobernado ni un proceso automático de aprendizaje o recalibración dentro de FARO/CLARO.
 
 ---
 
@@ -967,7 +1014,11 @@ Dilucidar la hipótesis de si alimentar a Meta con una señal de calidad comerci
 
 **Impacto**
 
-La lectura de resultados deberá comparar la evolución de leads cualificados **A/B**, coste por lead cualificado y calidad comercial frente al escenario previo de optimización por formularios. La decisión no implica considerar los formularios recibidos como KPI principal de éxito cuando exista señal suficiente de **QualifiedLeadQ**.
+La lectura de resultados deberá comparar la evolución de los leads cualificados **A/B**, la tasa de cualificación y el coste por lead cualificado frente al escenario previo de optimización por formularios. 
+
+Cuando exista información comercial suficiente y comparable, podrá utilizarse como evidencia complementaria, pero no forma parte actualmente del criterio principal de evaluación del experimento. 
+
+La decisión no implica considerar los formularios recibidos como KPI principal de éxito cuando exista una señal suficiente y estable del evento `QualifiedLead`.
 
 # **14. Conocimiento del Dominio**
 
@@ -985,6 +1036,50 @@ consideraciones:
 - El usuario puede encontrarse en distintos niveles de madurez: inspiración, planificación, compra de billetes, organización logística o decisión final.
 - Tener billetes comprados o estar en proceso de compra representa una señal de intención más fuerte que estar simplemente explorando.
 - Los resultados de captación deben interpretarse considerando el desfase entre atención, activación, lead, cualificación comercial, oportunidad y venta.
+
+
+
+---
+
+## **Señales declaradas de cualificación inicial**
+
+Los formularios nativos de Meta utilizados por Viaja con Álvaro no tienen únicamente la función de recoger datos de contacto.
+
+También recogen información declarada por el usuario que permite obtener una primera lectura sobre su intención de viajar y su afinidad con la propuesta de valor.
+
+Actualmente, las principales dimensiones observadas durante la captación son:
+
+* **Compromiso con el viaje:** situación declarada respecto a la compra de los billetes de avión.
+* **Madurez temporal:** ventana prevista para realizar el viaje.
+* **Encaje con la propuesta de valor:** tipo de experiencia o nivel de acompañamiento buscado.
+* **Contexto del viaje:** número de personas que participarían en el desplazamiento.
+
+Estas dimensiones deben interpretarse de forma conjunta.
+
+Ninguna respuesta aislada determina por sí sola la calidad del lead. Su combinación aporta una estimación inicial que posteriormente utiliza el Modelo de Pre-cualificación Inicial FARO.
+
+La información recogida durante la captación:
+
+* representa intención declarada;
+* permite diferenciar distintos niveles iniciales de madurez y encaje;
+* sirve como base para la clasificación inicial de los leads;
+* no constituye una validación comercial;
+* no garantiza que exista una oportunidad o una venta.
+
+La interpretación gobernada de estas señales se documenta en:
+
+`knowledge/scoring/initial-lead-qualification-model.md`
+
+---
+
+## **Señales declaradas de cualificación inicial** 
+
+Los formularios nativos de Meta utilizados por Viaja con Álvaro no tienen únicamente la función de recoger datos de contacto. También recogen información declarada por el usuario que permite obtener una primera lectura sobre su intención de viajar y su afinidad con la propuesta de valor. Actualmente, las principales dimensiones observadas durante la captación son: 
+
+- **Compromiso con el viaje:** situación declarada respecto a la compra de los billetes de avión. 
+- **Madurez temporal:** ventana prevista para realizar el viaje. 
+- **Encaje con la propuesta de valor:** tipo de experiencia o nivel de acompañamiento buscado. 
+- **Contexto del viaje:** número de personas que participarían en el desplazamiento. Estas dimensiones deben interpretarse de forma conjunta. Ninguna respuesta aislada determina por sí sola la calidad del lead. Su combinación aporta una estimación inicial que posteriormente utiliza el Modelo de Pre-cualificación Inicial FARO. La información recogida durante la captación: - representa intención declarada; - permite diferenciar distintos niveles iniciales de madurez y encaje; - sirve como base para la clasificación inicial de los leads; - no constituye una validación comercial; - no garantiza que exista una oportunidad o una venta. La interpretación gobernada de estas señales se documenta en: `knowledge/scoring/initial-lead-qualification-model.md`
 
 ---
 
@@ -1038,12 +1133,13 @@ Esta separación evita interpretar erróneamente campañas que cumplen funciones
 
 ## **Reglas de decisión y aprendizaje**
 
-- FARO separa lectura de señal y decisión operativa.
-- Una señal clara no implica escalar automáticamente; implica que el concepto puede evaluarse para escalar.
-- No se debe apagar un concepto sin evidencia suficiente.
-- Escalar debe ser progresivo.
-- El feedback comercial tiene prioridad sobre métricas de plataforma cuando ambas lecturas entran en conflicto.
-- El aprendizaje debe conectar señal publicitaria, señal de captación y señal comercial.
+- FARO separa la lectura de señal de la decisión operativa. 
+- Una señal clara no implica escalar automáticamente; indica que el concepto puede evaluarse para escalar. 
+- No debe detenerse un concepto sin evidencia suficiente. 
+- El escalado debe realizarse de forma progresiva. 
+- En la versión actualmente implementada, las decisiones se apoyan principalmente en señales publicitarias y en la calidad inicial observada durante la captación. 
+- El feedback comercial puede utilizarse como evidencia adicional cuando esté disponible, pero todavía no se encuentra integrado de forma sistemática y gobernada en FARO/CLARO. 
+- La conexión automática entre señal publicitaria, señal de captación y señal comercial forma parte de la evolución prevista del ecosistema.
 
 ---
 

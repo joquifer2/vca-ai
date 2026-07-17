@@ -42,6 +42,13 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 # 3. Data Provider
 
 - [ ] El Data Provider utilizado corresponde al autorizado por el Data Contract.
+- [ ] Se ha consultado `docs/contracts/bigquery-mcp-discover-metadata.contract.md`.
+- [ ] `discover_metadata` se ejecuto con selector canonico antes de adquirir evidencia.
+- [ ] No se ejecutaron reintentos exploratorios de selector.
+- [ ] No se usaron selectores con prefijo de proyecto, valores legacy plurales de `scope_request` ni nombres logicos inferidos como selector de discovery.
+- [ ] El resultado de Fase 05 esta registrado como `PASS`, `PASS WITH OBSERVATION` o `FAIL`.
+- [ ] `ERR_AUTH_REQUIRED`, `ERR_SELECTOR_INVALID`, `ERR_SCOPE_TOO_BROAD` y `ERR_RESOURCE_NOT_ALLOWLISTED` se interpretaron segun el contrato canonico.
+- [ ] La validacion alternativa con `query_read_only`, si existio, se uso solo ante un codigo funcional explicito publicado por el servidor; actualmente no hay codigo oficial observado que active esa ruta.
 - [ ] Todas las tablas consultadas pertenecen al Data Contract.
 - [ ] Todas las fuentes consultadas han podido verificarse.
 - [ ] No se ha utilizado ninguna fuente fuera del alcance autorizado.
@@ -52,7 +59,6 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] No se incluyen campos descriptivos o no soportados dentro de `execution_context`.
 - [ ] El `dataset_id` enviado en `execution_context` corresponde al alcance principal de cada consulta.
 - [ ] Cualquier `ERR_DRY_RUN_FAILED` se ha tratado como evidencia no utilizable hasta revisar sintaxis, tipos, aliases y ambiguedades.
-
 ---
 
 # 4. Evidence Set
