@@ -54,6 +54,11 @@ cliente:
 | Required | Runbook | [../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Required | Checklist | [../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
 | Required | Closure Gate | [../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
+| Post-closure | SPEC-012 Canonical Cost-Quality Model | [../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md) |
+| Post-closure | ARCH-004 Canonical Cost-Quality Model Decision | [decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md](/docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md) |
+| Post-closure | AUC-001-PCI-001 Entry Gate | [../gates/auc-001-pci-001-entry-gate.md](/gates/auc-001-pci-001-entry-gate.md) |
+| Post-closure | AUC-001-PCI-001 Exit Gate | [../gates/auc-001-pci-001-exit-gate.md](/gates/auc-001-pci-001-exit-gate.md) |
+| Post-closure | AUC-001-PCI-001 Output Namespace | `outputs/auc-001/pci-001/2026-06-30/` |
 | Required | Producto analítico validado | [../outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md) |
 | Supporting | Executive Report Handoff | [handoffs/auc-001-executive-report.md](/docs/handoffs/auc-001-executive-report.md) |
 | Historical | Corpus AUC-001 | [corpus/auc-001/](/docs/corpus/auc-001/) |
@@ -71,7 +76,8 @@ cliente:
 | 2026-07-13 | Presentation Projection Architecture | Define proyecciones hermanas analítica y ejecutiva | [decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md) |
 | 2026-07-14 | Communication Context Representation Transformation | Transforma representación preservando equivalencia semántica | [decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md](/docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md) |
 | 2026-07-13 | Documentary Alignment Decision | Autoriza alineamiento documental posterior a T-040/T-041/T-042 | [decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md) |
-| 2026-07-16 | Cerrar experimentalmente AUC-001 | Declara `READY FOR CLOSURE` | [../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
+| 2026-07-16 | Cerrar experimentalmente AUC-001 | Declara `READY FOR CLOSURE`; el ciclo original queda cerrado | [../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
+| 2026-07-18 | Definir evolucion post-cierre del modelo coste-calidad canonico | Crea `AUC-001-PCI-001` como iteracion separada; no reabre el ciclo cerrado ni promueve a Foundation; instancia Entry Gate y Exit Gate propios; fija `outputs/auc-001/pci-001/2026-06-30/` como namespace oficial de primera iteracion post-cierre | [../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md); [decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md](/docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md); [../gates/auc-001-pci-001-entry-gate.md](/gates/auc-001-pci-001-entry-gate.md); [../gates/auc-001-pci-001-exit-gate.md](/gates/auc-001-pci-001-exit-gate.md) |
 
 ---
 
@@ -124,8 +130,8 @@ apis:
 ## 8. Trazabilidad
 
 ```yaml
-ultima_actualizacion: 2026-07-17
+ultima_actualizacion: 2026-07-18
 actualizado_por: Documentation Agent
-motivo: Actualizacion del contrato canonico de discover_metadata para AUC-001
+motivo: Registro de gates normativos y namespace oficial de outputs de AUC-001-PCI-001 como evolucion post-cierre de AUC-001
 version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-discover-metadata-contract
 ```

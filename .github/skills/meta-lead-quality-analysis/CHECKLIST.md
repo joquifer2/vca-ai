@@ -71,6 +71,23 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 
 ---
 
+## 4.1 AUC-001-PCI-001 Canonical Cost-Quality Model
+
+- [ ] Si la ejecucion pertenece a `AUC-001-PCI-001`, el modelo usado esta identificado como `auc_001_canonical_cost_quality_model`.
+- [ ] La adquisicion lead-side y spend-side se ha mantenido separada antes de la construccion del Evidence Set.
+- [ ] `marts.fct_lead_enriched` se usa como fuente lead canonica y `intermediate.int_faro_lead_scoring` solo como validacion/fallback controlado por decision explicita.
+- [ ] `ad_id_norm` se calcula removiendo solo el prefijo inicial `ag:` en lead-side.
+- [ ] `ad_name` no se ha usado como clave de join, ranking o fallback.
+- [ ] `matched`, `lead_only`, `spend_only` y `UNKNOWN` permanecen visibles.
+- [ ] `lead_only` no se interpreta como captacion gratuita.
+- [ ] `spend_only` no se interpreta como anuncio con cero leads reales.
+- [ ] Las metricas economicas declaran universo, senal y coverage; no se publica `CPQL` ambiguo.
+- [ ] Denominadores cero producen `NULL`, nunca 0.
+- [ ] Los umbrales de ranking estan registrados en `thresholds_config`.
+- [ ] No se han usado outputs historicos, incluido `outputs/auc-001/2026-06-30/`, como expected values.
+
+---
+
 # 5. Knowledge Set
 
 - [ ] Existe un Knowledge Set estabilizado.

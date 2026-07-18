@@ -166,3 +166,23 @@ Este contract cumple T-009 cuando:
 3. Declara dependencia explicita de Context, Data y Discovery Contracts.
 4. Preserva la separacion entre Preparacion, Analisis y Razonamiento.
 5. Propaga UNKNOWN y limitaciones sin producir evidencia ni interpretacion.
+
+## AUC-001 Post-Closure Cost-Quality Analytical Model Rules
+
+Estas reglas aplican solo a la evolucion post-cierre `AUC-001-PCI-001` definida por SPEC-012. No reabren el ciclo experimental original de AUC-001, no promueven una capacidad reusable a AIF Foundation y no autorizan una ejecucion analitica.
+
+| Elemento | Regla contractual |
+|---|---|
+| Canonical model | El modelo local se denomina `auc_001_canonical_cost_quality_model`. |
+| Runtime boundary | Evidence Acquisition adquiere agregados separados; Analytical Preparation normaliza y valida cada fuente; Evidence Set Construction ejecuta el full outer join determinista. |
+| Lead source | `marts.fct_lead_enriched` es la fuente canonica lead-side. |
+| Validation source | `intermediate.int_faro_lead_scoring` valida conteos/calidad; no se suma a la fuente canonica ni sustituye automaticamente. |
+| Spend source | `marts.fct_spend` es la fuente canonica spend-side. |
+| Integration key | `ad_id_norm`, removiendo solo el prefijo inicial `ag:` en lead-side. |
+| Labels | `ad_name`, campaign/adset labels y nombres equivalentes son descriptivos; no pueden usarse como clave ni fallback. |
+| Coverage states | `matched`, `lead_only`, `spend_only` y `UNKNOWN` deben preservarse antes de Evidence y Presentation. |
+| Canonical metrics | `cpl_commercial_matched`, `qualified_rate_ab_matched`, `cost_per_ab_commercial_matched` y `cost_per_tier_a_commercial_matched` solo se calculan sobre coverage `matched` con denominador mayor que cero. |
+| Diagnostic metrics | `commercial_spend_per_matched_lead_observed` es diagnostica y no puede gobernar recomendaciones de inversion como KPI principal. |
+| Prohibited terminology | `CPL`, `CPQL` o `CPHQL` sin universo, senal y coverage explicitos quedan bloqueados. |
+| Zero denominator | Las metricas afectadas deben ser `NULL`, nunca 0. |
+| Historical outputs | Cifras historicas y outputs anteriores no son expected values del runtime ni fuentes de validacion numerica. |

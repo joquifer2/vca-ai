@@ -2,7 +2,7 @@
 
 ## Propósito
 
-Este directorio contiene agentes metodológicos de `jqf-sdd-foundation`.
+Este directorio contiene el catalogo metodologico activo de `vca-ai`.
 
 Los agentes metodológicos gobiernan el proceso SDD. No son agentes operativos de negocio, no ejecutan procesos productivos y no sustituyen la validación humana.
 
@@ -17,8 +17,6 @@ Los agentes metodológicos gobiernan el proceso SDD. No son agentes operativos d
 | `SDD-AGENT-005` | Documentation Agent | Mantiene documentación clara, coherente, navegable y alineada con los artefactos existentes. |
 | `SDD-AGENT-006` | QA Gate Agent | Evalúa gates SDD y determina si una fase puede avanzar según criterios y evidencias. |
 | `SDD-AGENT-007` | Implementation Agent | Ejecuta cambios únicamente cuando existen specification, arquitectura, tareas y gates suficientes. |
-| `SDD-AGENT-008` | Legacy to SDD Agent | Incorpora proyectos existentes al ciclo SDD mediante discovery mínimo, artefactos As-Is y readiness assessment. |
-| `SDD-AGENT-009` | GitHub Workflow Agent | Gestiona trazabilidad entre documentación, issues, ramas, commits y repositorio. |
 
 ## Flujo recomendado para proyectos nuevos
 
@@ -35,32 +33,6 @@ Reviewer Agent
 Documentation Agent
 ↓
 QA Gate Agent
-↓
-Implementation Agent
-
-## Flujo recomendado para proyectos legacy
-
-Legacy to SDD Agent
-↓
-Legacy to SDD Skill
-↓
-Discovery Skills según evidencia
-↓
-Artefactos As-Is
-↓
-sdd_readiness_assessment.md
-↓
-Reviewer Agent
-↓
-Documentation Agent
-↓
-QA Gate Agent
-↓
-Specification Agent
-↓
-Architect Agent
-↓
-Tasks Planner Agent
 ↓
 Implementation Agent
 

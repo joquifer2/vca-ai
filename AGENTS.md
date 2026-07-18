@@ -46,14 +46,6 @@ Responsables de transformar contexto y necesidades en artefactos estructurados.
 
 ---
 
-### Agentes de descubrimiento
-
-Responsables de recuperar contexto minimo en proyectos existentes para habilitar evolucion controlada bajo SDD.
-
-* Legacy to SDD Agent
-
----
-
 ### Agentes de planificación
 
 Responsables de transformar definiciones en trabajo estructurado.
@@ -87,19 +79,10 @@ Responsables de supervisar el paso desde Structure hacia Development.
 
 ---
 
-### Agentes de gobernanza GitHub
-
-Responsables de mantener trazabilidad entre documentación y repositorio.
-
-* GitHub Workflow Agent
-
----
-
 ## Catálogo de agentes
 
 | Agente                | Responsabilidad principal                                        |
 | --------------------- | ---------------------------------------------------------------- |
-| Legacy to SDD Agent   | Recuperar contexto minimo As-Is para incorporar proyectos existentes al ciclo SDD |
 | Specification Agent   | Crear y revisar specifications                                   |
 | Architect Agent       | Diseñar estructura documental y arquitectura conceptual          |
 | Tasks Planner Agent   | Transformar specifications en tareas trazables                   |
@@ -107,7 +90,6 @@ Responsables de mantener trazabilidad entre documentación y repositorio.
 | Documentation Agent   | Mantener documentación consistente y actualizada, distinguiendo entre Foundation y Proyecto Derivado para evitar crear instancias reales dentro de repositorios Foundation. |
 | QA Gate Agent         | Validar readiness y cumplimiento de criterios de fase            |
 | Implementation Agent  | Supervisar la transición controlada hacia Development            |
-| GitHub Workflow Agent | Gestionar trazabilidad entre documentación, issues y repositorio |
 
 ---
 
@@ -135,25 +117,6 @@ La secuencia puede variar según el proyecto.
 
 El objetivo es garantizar que la implementación nunca preceda a la definición.
 
-### Flujo para proyectos existentes
-
-```text
-Proyecto existente
-        ↓
-Legacy to SDD Agent
-        ↓
-Reviewer Agent
-        ↓
-Specification Agent
-        ↓
-Architect Agent
-        ↓
-Tasks Planner Agent
-```
-
-Este flujo se aplica cuando el proyecto ya existe y requiere reconstruccion minima de contexto antes de continuar bajo SDD.
-
----
 
 ## Routing obligatorio para AUC-001
 

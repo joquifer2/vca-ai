@@ -224,7 +224,6 @@ Actualmente existen:
 - Documentation Agent
 - QA Gate Agent
 - Implementation Agent
-- GitHub Workflow Agent
 
 Estos agentes no representan capacidades funcionales de negocio.
 

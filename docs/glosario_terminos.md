@@ -306,7 +306,7 @@ Agente metodológico responsable de implementar cambios técnicos únicamente cu
 
 ### GitHub Workflow Agent
 
-Agente metodológico responsable de gestionar operaciones controladas de versionado, ramas, commits y pull requests.
+Agente metodologico retirado del catalogo activo de `vca-ai`. GitHub se conserva como herramienta de soporte y trazabilidad bajo autorizacion humana cuando proceda, no como fase metodologica independiente.
 
 ### Agente operativo
 

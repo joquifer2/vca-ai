@@ -227,3 +227,27 @@ Justificación:
 - Mantener la taxonomía documental alineada entre estado operativo, validación y cierre experimental.
 - Permitir mejoras futuras solo como evolución posterior, sin reabrir el cierre experimental.
 - Si se decide evolucionar, hacerlo como nueva iteración documental o metodológica separada, no como continuación del mismo experimento cerrado.
+
+## 14. Evolucion post-cierre
+
+El cierre experimental original permanece aprobado con decision `READY FOR CLOSURE` y no se modifica retrospectivamente.
+
+La decision `VCA-AUC-001-ARCH-004` y `SPEC-012 - AUC-001 Canonical Cost-Quality Model` definen una evolucion post-cierre separada denominada:
+
+```text
+AUC-001 Post-Closure Iteration 1
+Iteration ID: AUC-001-PCI-001
+```
+
+Esta evolucion:
+
+- no reabre el ciclo experimental cerrado;
+- no invalida el producto final validado;
+- no sobrescribe outputs historicos;
+- no trata las evaluaciones anteriores como incorrectas retrospectivamente;
+- requiere [entry gate](/gates/auc-001-pci-001-entry-gate.md) y [exit gate](/gates/auc-001-pci-001-exit-gate.md) propios;
+- debe persistir outputs nuevos bajo `outputs/auc-001/pci-001/2026-06-30/` para `AUC-001-PCI-001`, o bajo `outputs/auc-001/pci-00N/<execution-date>/` para futuras iteraciones;
+- permanece pendiente de ejecucion analitica, validacion de outputs y Exit Gate propio;
+- no promueve ninguna capacidad a AIF Foundation.
+
+El gate anterior conserva su resultado original. Cualquier validacion futura del modelo coste-calidad canonico debe auditarse como iteracion post-cierre separada.

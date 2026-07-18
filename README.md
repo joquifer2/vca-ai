@@ -99,6 +99,24 @@ Su cierre experimental ha sido aprobado con decisión:
 
 **READY FOR CLOSURE**
 
+### Evolucion post-cierre de AUC-001
+
+El ciclo experimental original de AUC-001 permanece cerrado y su producto validado no se modifica retrospectivamente.
+
+La mejora definida por `SPEC-012 - AUC-001 Canonical Cost-Quality Model` se clasifica como una evolucion post-cierre. Su validacion debe ejecutarse como `AUC-001 Post-Closure Iteration 1` (`AUC-001-PCI-001`), con [Entry Gate](/gates/auc-001-pci-001-entry-gate.md), [Exit Gate](/gates/auc-001-pci-001-exit-gate.md) y outputs propios bajo `outputs/auc-001/pci-001/2026-06-30/`, sin sobrescribir `outputs/auc-001/2026-06-30/` ni promover la capacidad a AIF Foundation.
+
+Estado de la evolucion: implementacion local validada pre-ejecucion con namespace oficial definido; pendiente de ejecucion analitica y Exit Gate.
+
+### Namespace de outputs post-cierre
+
+El namespace oficial para la primera iteracion post-cierre es `outputs/auc-001/pci-001/2026-06-30/`.
+
+La jerarquia `outputs/auc-001/` conserva la continuidad del caso de uso. `pci-001` identifica la iteracion metodologica y `2026-06-30` identifica la ejecucion. Futuras iteraciones usaran el patron `outputs/auc-001/pci-00N/<execution-date>/`.
+
+Dentro del namespace se documenta esta estructura canonica: `execution/`, `evidence/`, `knowledge/`, `recommendations/`, `presentation/`, `analytical-report/` y `executive-report/`.
+
+Los outputs historicos de `outputs/auc-001/2026-06-30/` son inmutables. No pueden usarse como expected values, ni como fuente de Knowledge o Recommendations, ni mezclarse con nuevas versiones de informes.
+
 ---
 
 # Relación con AIF Foundation
@@ -156,7 +174,8 @@ La evolución metodológica sigue una regla sencilla:
 2. `analytical_use_cases/meta_lead_quality_analysis.md`
 3. `.github/skills/meta-lead-quality-analysis/SKILL.md`
 4. `gates/auc-001-experimental-closure-gate.md`
-5. `outputs/auc-001/2026-06-30/analytical-report.md`
+5. `gates/auc-001-pci-001-entry-gate.md` y `gates/auc-001-pci-001-exit-gate.md`
+6. `outputs/auc-001/2026-06-30/analytical-report.md`
 
 ---
 

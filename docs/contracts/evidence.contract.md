@@ -164,3 +164,64 @@ Este contract cumple T-010 cuando:
 3. Mantiene evidencia separada de interpretacion, conocimiento y recomendaciones.
 4. Declara trazabilidad entre evidencia y modelo analitico.
 5. Propaga UNKNOWN, limitaciones e incertidumbre antes de Razonamiento.
+
+## AUC-001 Post-Closure Cost-Quality Evidence Rules
+
+Estas reglas aplican solo a la evolucion post-cierre `AUC-001-PCI-001` definida por SPEC-012. No reabren el ciclo experimental original ni modifican outputs historicos.
+
+### Runtime Boundary
+
+| Fase | Responsabilidad |
+|---|---|
+| Evidence Acquisition | Adquirir agregados lead-side y spend-side mediante BigQuery MCP, sin unir fuentes ni interpretar. |
+| Analytical Preparation | Normalizar, limpiar, validar y agregar cada fuente de forma independiente. |
+| Evidence Set Construction | Ejecutar full outer join determinista, asignar coverage states, reconciliar totales, calcular invariantes y construir el Evidence Set coste-calidad. |
+
+### Canonical Model vs Executed Evidence Set
+
+| Elemento | Regla |
+|---|---|
+| Canonical model | Reglas estables de fuentes, normalizacion, universos, metricas, invariantes y blockers. |
+| Executed Evidence Set | Instancia para un periodo, execution_id, datos, resultados, limitaciones y trazabilidad especificos. |
+| Historical outputs | Permanecen inmutables y no pueden sobrescribirse ni usarse como expected values. |
+| Post-closure outputs | Para `AUC-001-PCI-001` deben declarar la iteracion y persistirse bajo `outputs/auc-001/pci-001/2026-06-30/`; futuras iteraciones usaran `outputs/auc-001/pci-00N/<execution-date>/`. |
+
+### Coverage States
+
+| Estado | Regla |
+|---|---|
+| `matched` | Lead-side valido y spend `COMMERCIAL` valido para el mismo `ad_id_norm`. |
+| `lead_only` | Lead-side valido sin spend `COMMERCIAL` emparejado; no soporta CPL/CPQL. |
+| `spend_only` | Spend `COMMERCIAL` valido sin lead-side emparejado; no implica cero leads reales ni ineficiencia automatica. |
+| `UNKNOWN` | Clasificacion no fiable por ID invalido, colision, duplicidad, periodo incompatible, señal invalida, fuente no validada o estructura incompleta. |
+
+### Economic Universes And Metrics
+
+El Evidence Set post-cierre debe distinguir `total_spend_all_signals`, `commercial_spend`, `matched_commercial_spend`, `spend_only_commercial_spend`, `total_leads`, `matched_leads`, `lead_only_leads`, `total_ab_leads`, `matched_ab_leads`, `lead_only_ab_leads`, Tier A total/matched y Tier B total/matched.
+
+Metricas permitidas: `cpl_commercial_matched`, `qualified_rate_ab_global`, `qualified_rate_ab_matched`, `cost_per_ab_commercial_matched`, `cost_per_tier_a_commercial_matched`, `spend_share_by_signal`, `spend_share_matched`, `lead_share_matched`, `ab_share_matched`, `commercial_spend_per_matched_lead_observed`.
+
+Metricas prohibidas: `CPL` sin universo, `CPQL` sin universo/señal/coverage, CPL/CPQL sobre `lead_only`, CPL/CPQL sobre `spend_only`, coste-calidad mezclando señales, rankings por `ad_name`, ratios con denominador cero convertido a cero y metricas que usen historicos como expected values.
+
+### Invariants And Precision
+
+```text
+commercial_spend = matched_spend + spend_only_spend
+lead_total = matched_leads + lead_only_leads
+ab_total = matched_ab_leads + lead_only_ab_leads
+tier_a_total = matched_tier_a + lead_only_tier_a
+tier_b_total = matched_tier_b + lead_only_tier_b
+prepared_ad_count = matched_ad_count + lead_only_ad_count + spend_only_ad_count
+```
+
+Moneda EUR, tipo recomendado `NUMERIC`, sin redondeo intermedio, presentacion monetaria a 2 decimales, tolerancia monetaria 0.01 EUR por fila y agregado, denominador cero como `NULL`, desconocidos como `NULL` o `UNKNOWN` explicito.
+
+### Publication Controls
+
+| Condicion | Clasificacion |
+|---|---|
+| Invariantes incumplidas, colisiones de `ad_id_norm`, periodos incompatibles, señal invalida, mezcla de señales, ausencia de trazabilidad MCP o fuente canonica no validada | Blocking error |
+| `spend_only` interpretado como cero leads reales sin sustentar recomendacion | Warning |
+| Muestra insuficiente para ranking o recomendacion | Presentation limitation |
+
+Todo blocking error debe detener la publicacion del Evidence Set completo, bloque afectado o metrica concreta segun el alcance definido en SPEC-012.

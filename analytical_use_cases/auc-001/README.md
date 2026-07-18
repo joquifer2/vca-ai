@@ -42,6 +42,29 @@
 | Communication Context Representation Transformation | [../../docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md](/docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md) |
 | Documentary Alignment Decision | [../../docs/decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md) |
 
+
+## Evolucion post-cierre
+
+| Campo | Valor |
+|---|---|
+| Clasificacion | Evolucion post-cierre |
+| Specification | [../../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md) |
+| Decision arquitectonica | [../../docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md](/docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md) |
+| Entry Gate | [../../gates/auc-001-pci-001-entry-gate.md](/gates/auc-001-pci-001-entry-gate.md) |
+| Exit Gate | [../../gates/auc-001-pci-001-exit-gate.md](/gates/auc-001-pci-001-exit-gate.md) |
+| Iteracion | AUC-001 Post-Closure Iteration 1 |
+| Iteration ID | AUC-001-PCI-001 |
+| Estado | Implemented locally; QA pre-execution validation passed with namespace condition defined |
+| Relacion con ciclo original | Sucesora separada; no reabre el ciclo experimental cerrado |
+| Output namespace | `outputs/auc-001/pci-001/2026-06-30/` |
+| Output policy | Nuevos outputs post-cierre bajo `outputs/auc-001/pci-001/2026-06-30/`; nunca bajo `outputs/auc-001-pci-001/` ni sobrescribiendo el producto historico cerrado |
+
+El ciclo experimental original sigue `Closed`. La evolucion post-cierre no modifica, invalida ni sobrescribe los outputs historicos. La fecha identifica la ejecucion; `pci-001` identifica la iteracion metodologica.
+
+Estructura canonica del namespace `outputs/auc-001/pci-001/2026-06-30/`: `execution/`, `evidence/`, `knowledge/`, `recommendations/`, `presentation/`, `analytical-report/` y `executive-report/`. La fecha identifica la ejecucion; `pci-001` identifica la iteracion metodologica. Futuras iteraciones usaran `outputs/auc-001/pci-00N/<execution-date>/`.
+
+Politica de lectura: los outputs historicos pueden usarse solo como referencia documental cuando el contexto lo permita expresamente. No pueden usarse como expected values, fuente Knowledge, fuente Recommendations ni material para regenerar informes mezclando versiones.
+
 ## Evidencia histórica
 
 - Índice de evaluaciones: [../../docs/evaluations/README.md](/docs/evaluations/README.md)
