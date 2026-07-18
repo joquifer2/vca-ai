@@ -143,28 +143,93 @@ Input:
 - Execution Context canonicalizado;
 - Data Contract;
 - `configs/workspaces.json`;
-- BigQuery MCP Server.
+- BigQuery MCP Server;
+- contrato canonico observado de `discover_metadata`: `docs/contracts/bigquery-mcp-discover-metadata.contract.md`.
 
 Acciones:
 
 - resolver workspace;
 - verificar mecanismo de acceso;
 - confirmar MCP disponible;
-- verificar proyecto, datasets, tablas, allowlist y Data Contract;
-- descubrir esquemas necesarios mediante MCP cuando aplique;
+- ejecutar `discover_metadata` usando exclusivamente el selector canonico publicado en `docs/contracts/bigquery-mcp-discover-metadata.contract.md`;
+- verificar proyecto, datasets, tablas, allowlist y Data Contract a partir de los recursos autorizados necesarios para AUC-001;
+- descubrir esquemas necesarios mediante MCP usando una unica forma canonica por recurso;
 - verificar cobertura temporal;
 - resolver campos dependientes del proveedor, incluido el inicio real si estaba en `PENDING_START_FROM_PROVIDER_COVERAGE`;
-- confirmar que cada tabla pertenece al Data Contract y al workspace seleccionado.
+- confirmar que cada tabla pertenece al Data Contract y al workspace seleccionado;
+- no probar formatos alternativos, FQN con proyecto, nombres logicos inferidos ni secuencias exploratorias durante una ejecucion analitica normal.
 
 Output:
 
 - Data Provider validado;
 - fuentes autorizadas;
-- cobertura temporal y campos dependientes del proveedor resueltos o bloqueados.
+- cobertura temporal y campos dependientes del proveedor resueltos o bloqueados;
+- resultado de fase: `PASS`, `PASS WITH OBSERVATION` o `FAIL`.
 
 Gate:
 
-- detener si el workspace no resuelve, MCP no esta disponible, una fuente necesaria no esta autorizada o una tabla no pertenece al Data Contract.
+- detener si el workspace no resuelve, MCP no esta disponible, una fuente necesaria no esta autorizada o una tabla no pertenece al Data Contract;
+- detener si `discover_metadata` devuelve `ERR_AUTH_REQUIRED`, `ERR_SELECTOR_INVALID`, `ERR_RESOURCE_NOT_ALLOWLISTED`, un alcance no corregible o una respuesta no interpretable de forma segura.
+
+### Contrato canonico de discover_metadata
+
+El contrato real del servidor no se redefine en este Runbook. La referencia canonica para AUC-001 es:
+
+```text
+docs/contracts/bigquery-mcp-discover-metadata.contract.md
+```
+
+La Fase 05 debe construir sus llamadas desde esa referencia antes de iniciar la ejecucion. Para el workspace `vca`, las formas canonicas vigentes son:
+
+```text
+scope_request=workspace, resource_selector=workspace:vca
+scope_request=dataset, resource_selector=dataset:intermediate
+scope_request=dataset, resource_selector=dataset:marts
+scope_request=table, resource_selector=table:intermediate.int_faro_lead_scoring
+scope_request=table, resource_selector=table:marts.fct_spend
+scope_request=table, resource_selector=table:marts.fct_lead_enriched
+scope_request=table, resource_selector=table:marts.dim_campaign_signal
+```
+
+No estan permitidos los selectores con prefijo de proyecto, valores legacy plurales de `scope_request`, nombres de tabla sin dataset, comodines ni formatos no publicados por el schema actual del servidor.
+
+### Interpretacion de errores de discover_metadata
+
+| Error | Interpretacion | Comportamiento obligatorio |
+|---|---|---|
+| `ERR_AUTH_REQUIRED` | Credenciales ausentes, invalidas, identidad efectiva no aceptada o imposibilidad de validar la identidad read-only. | Detener. No probar otros selectores. No ejecutar consultas analiticas. Solicitar intervencion solo si hace falta renovar ADC, reiniciar servidor u otra accion local. |
+| `ERR_SELECTOR_INVALID` | Tipo, campo, estructura o formato de selector incompatible con el contrato del servidor. | Detener la validacion. Registrar contrato esperado y selector enviado. Tratar como incompatibilidad entre `vca-ai` y servidor. |
+| `ERR_SCOPE_TOO_BROAD` | Selector valido, pero alcance superior al permitido para la operacion. | Aplicar como maximo una reduccion determinista documentada antes de la ejecucion. No explorar recursos adicionales. |
+| `ERR_RESOURCE_NOT_ALLOWLISTED` | Selector valido, pero recurso fuera del allowlist autorizado. | Detener para ese recurso. No buscar fuentes alternativas, no usar CLI, no usar historico y no modificar allowlist durante la ejecucion analitica. |
+
+El schema observado actualmente no publica ningun codigo especifico de indisponibilidad funcional de `discover_metadata`. Por tanto, la ruta `PASS WITH OBSERVATION` no esta activa para ejecuciones actuales. Si el servidor publica en el futuro un codigo especifico de indisponibilidad funcional que no afecte a autenticacion, selector, alcance ni allowlist, la Fase 05 podra validar alternativamente mediante `query_read_only` solo cuando:
+
+- la identidad MCP ya este validada;
+- el selector enviado sea conforme al contrato canonico;
+- la tabla este incluida en el allowlist;
+- la consulta MCP sea minima y confirme acceso, existencia, esquema o cobertura minima;
+- no se adquiera todavia evidencia analitica completa.
+
+En ese caso el resultado debe registrarse como:
+
+```text
+Data Provider Validation: PASS WITH OBSERVATION
+Provider: BigQuery MCP Server
+Identity: validated
+Metadata discovery: functionally unavailable
+Access validation: query_read_only successful
+Fallback outside MCP: not used
+```
+
+`query_read_only` no cambia y no es fallback externo. BigQuery CLI, credenciales alternativas, claves JSON, informes historicos y tablas fuera del allowlist permanecen prohibidos.
+
+### Estados de salida de Fase 05
+
+| Estado | Criterio |
+|---|---|
+| `PASS` | `discover_metadata` funciona, identidad valida, recursos autorizados confirmados y esquemas disponibles. |
+| `PASS WITH OBSERVATION` | Reservado para un codigo funcional explicito publicado por el servidor en el futuro; actualmente no hay codigo oficial observado que active esta ruta. |
+| `FAIL` | Autenticacion invalida, incompatibilidad de contrato, recurso fuera del allowlist, alcance no corregible, acceso denegado o respuesta MCP no interpretable con seguridad. |
 
 ### Convenciones SQL seguras para BigQuery MCP
 
@@ -223,7 +288,6 @@ execution_context:
 Definition of Done:
 
 - todas las fuentes que se consultaran estan autorizadas, verificadas y tienen cobertura conocida o limitacion explicita.
-
 ## Fase 06 - Context Definition Stabilization
 
 Input:

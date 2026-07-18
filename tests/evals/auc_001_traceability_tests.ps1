@@ -5,6 +5,14 @@ Set-Location $RepoRoot
 
 $Results = New-Object System.Collections.Generic.List[object]
 
+$Auc001ValidationDir = 'docs/evaluations/auc-001/validations'
+$TransversalContractsEvaluation = Join-Path $Auc001ValidationDir 'auc-001-transversal-contracts-evaluation.md'
+$ContextAcquisitionEvaluation = Join-Path $Auc001ValidationDir 'auc-001-context-acquisition-evaluation.md'
+$PreparationEvidenceEvaluation = Join-Path $Auc001ValidationDir 'auc-001-preparation-evidence-evaluation.md'
+$ReasoningRecommendationsEvaluation = Join-Path $Auc001ValidationDir 'auc-001-reasoning-recommendations-evaluation.md'
+$PresentationOutputEvaluation = Join-Path $Auc001ValidationDir 'auc-001-presentation-output-evaluation.md'
+$DevelopmentEntryReadinessEvidence = Join-Path $Auc001ValidationDir 'auc-001-development-entry-readiness-evidence.md'
+
 function Add-Result {
     param(
         [string]$Name,
@@ -66,6 +74,25 @@ function Assert-PathsExist {
     }
 }
 
+function Resolve-RepoMarkdownTarget {
+    param(
+        [string]$SourcePath,
+        [string]$Target
+    )
+    $targetWithoutAnchor = ($Target -split '#', 2)[0]
+    if ([string]::IsNullOrWhiteSpace($targetWithoutAnchor)) {
+        return $null
+    }
+    if ($targetWithoutAnchor -match '^(https?:|mailto:)') {
+        return $null
+    }
+    if ($targetWithoutAnchor.StartsWith('/')) {
+        return Join-Path $RepoRoot ($targetWithoutAnchor.TrimStart('/'))
+    }
+    $base = Split-Path $SourcePath
+    return Join-Path $base $targetWithoutAnchor
+}
+
 function Assert-MarkdownLinksResolve {
     param(
         [string]$Name,
@@ -73,13 +100,12 @@ function Assert-MarkdownLinksResolve {
     )
     $missing = @()
     foreach ($path in $Paths) {
-        $base = Split-Path $path
         $text = Read-Doc $path
         $matches = [regex]::Matches($text, '\]\(([^)]+)\)')
         foreach ($match in $matches) {
             $target = $match.Groups[1].Value
-            if ($target -match '^(https?:|#)') { continue }
-            $resolved = Join-Path $base $target
+            $resolved = Resolve-RepoMarkdownTarget $path $target
+            if ($null -eq $resolved) { continue }
             if (-not (Test-Path -LiteralPath $resolved)) {
                 $missing += "$path -> $target"
             }
@@ -106,12 +132,12 @@ $requiredArtifacts = @(
     'docs/handoffs/auc-001-recommendation-contract.md',
     'docs/handoffs/auc-001-presentation-contract.md',
     'docs/handoffs/auc-001-executive-report.md',
-    'docs/evaluations/auc-001-transversal-contracts-evaluation.md',
-    'docs/evaluations/auc-001-context-acquisition-evaluation.md',
-    'docs/evaluations/auc-001-preparation-evidence-evaluation.md',
-    'docs/evaluations/auc-001-reasoning-recommendations-evaluation.md',
-    'docs/evaluations/auc-001-presentation-output-evaluation.md',
-    'docs/evaluations/auc-001-development-entry-readiness-evidence.md'
+    $TransversalContractsEvaluation,
+    $ContextAcquisitionEvaluation,
+    $PreparationEvidenceEvaluation,
+    $ReasoningRecommendationsEvaluation,
+    $PresentationOutputEvaluation,
+    $DevelopmentEntryReadinessEvidence
 )
 
 Assert-PathsExist 'Required AUC-001 traceability artifacts exist' $requiredArtifacts
@@ -180,16 +206,25 @@ Assert-ContainsAll 'Presentation layer does not add evidence, interpretation or 
     'do not authorize operational execution by themselves'
 )
 
-Assert-ContainsAll 'Readiness evidence carries active observations into T-038' 'docs/evaluations/auc-001-development-entry-readiness-evidence.md' @(
+Assert-ContainsAll -Name 'Readiness evidence carries active observations into T-038' -Path $DevelopmentEntryReadinessEvidence -Patterns @(
     'PASS WITH OBSERVATIONS',
     'ACT-OBS-001', 'ACT-OBS-002', 'ACT-OBS-003', 'ACT-OBS-004', 'ACT-OBS-005', 'ACT-OBS-006', 'ACT-OBS-007',
     'Keep active observations visible during T-038'
 )
 
-Assert-MarkdownLinksResolve 'Evaluation artifact local links resolve' @(
-    'docs/evaluations/auc-001-reasoning-recommendations-evaluation.md',
-    'docs/evaluations/auc-001-presentation-output-evaluation.md',
-    'docs/evaluations/auc-001-development-entry-readiness-evidence.md'
+Assert-ContainsAll -Name 'Context references expose canonical T-037 readiness evidence' -Path 'docs/context_refs.md' -Patterns @(
+    'Development Entry Readiness Evidence',
+    '/docs/evaluations/auc-001/validations/auc-001-development-entry-readiness-evidence.md'
+)
+
+Assert-ContainsAll -Name 'AUC-001 index exposes canonical T-037 readiness evidence' -Path 'analytical_use_cases/auc-001/README.md' -Patterns @(
+    'Development Entry Readiness Evidence',
+    '/docs/evaluations/auc-001/validations/auc-001-development-entry-readiness-evidence.md'
+)
+Assert-MarkdownLinksResolve -Name 'Evaluation artifact local links resolve' -Paths @(
+    $ReasoningRecommendationsEvaluation,
+    $PresentationOutputEvaluation,
+    $DevelopmentEntryReadinessEvidence
 )
 
 $failures = $Results | Where-Object { $_.Status -ne 'PASS' }

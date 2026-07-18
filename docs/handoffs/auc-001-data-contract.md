@@ -63,11 +63,11 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 |---|---|---|
 | Context Definition | [AUC-001 Context Definition](auc-001-context-definition.md) | Validated |
 | Execution Context | [AUC-001 Execution Context](auc-001-execution-context.md) | Validated |
-| Base Data Contract | [VCA-DATA-001](../contracts/data.contract.md) | Documented |
-| AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Approved analytical use case |
-| Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Approved skill |
-| Client context | [CCD](../../knowledge/client/ccd.md) | Available |
-| Data Provider reference | [docs/context_refs.md](../context_refs.md) | BigQuery provider exposure verified in T-018; direct MCP access pending |
+| Base Data Contract | [VCA-DATA-001](/docs/contracts/data.contract.md) | Documented |
+| AUC-001 | [Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md) | Approved analytical use case |
+| Skill | [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Approved skill |
+| Client context | [CCD](/knowledge/client/ccd.md) | Available |
+| Data Provider reference | [docs/context_refs.md](/docs/context_refs.md) | BigQuery provider exposure verified in T-018; direct MCP access pending |
 
 ---
 
@@ -198,20 +198,20 @@ Este contract no formula hallazgos, conclusiones ni recomendaciones.
 
 ## Traceability
 
-- [T-017 in docs/tasks.md](../tasks.md)
+- [T-017 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
 - [AUC-001 Context Resolution](auc-001-context-resolution.md)
-- [VCA-DATA-001 Base Data Contract](../contracts/data.contract.md)
-- [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [Project Brief](../../project_brief.md)
-- [Context References](../context_refs.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Client CCD](../../knowledge/client/ccd.md)
+- [VCA-DATA-001 Base Data Contract](/docs/contracts/data.contract.md)
+- [VCA-CTX-001 Context Contract](/docs/contracts/context.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [Project Brief](/project_brief.md)
+- [Context References](/docs/context_refs.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [Client CCD](/knowledge/client/ccd.md)
 
 ---
 
@@ -222,3 +222,22 @@ T-017 is complete as a case-specific Data Contract for AUC-001 June 2026.
 The contract identifies the producer, consumer, requested scope, logical structure, required evidence families, limitations and the explicitly pending MCP access.
 
 T-018 verified provider availability and concrete source exposure with limitations. The next permitted increment is T-019, the Discovery Contract for AUC-001.
+## AUC-001 Post-Closure Cost-Quality Data Rules
+
+Estas reglas aplican solo a la evolucion post-cierre `AUC-001-PCI-001` definida por SPEC-012. No reabren el ciclo experimental original de AUC-001 y no modifican AIF Foundation.
+
+| Elemento | Regla contractual |
+|---|---|
+| Data Provider | BigQuery MCP Server es la unica via autorizada de adquisicion de evidencia nueva. |
+| Lead canonical source | `marts.fct_lead_enriched`. |
+| Lead validation source | `intermediate.int_faro_lead_scoring`; no hay fallback automatico. |
+| Spend canonical source | `marts.fct_spend`. |
+| Acquisition pattern | Adquisicion separada lead-side y spend-side mediante agregados autorizados. |
+| Period | Periodo comun, cerrado e identico entre fuentes. |
+| Integration key | `ad_id_norm`. |
+| Lead normalization | Eliminacion estricta del prefijo inicial `ag:` en `ad_id` lead-side. |
+| Label handling | `ad_name` es label descriptivo; no puede usarse como clave ni fallback. |
+| Double counting | Prohibido sumar `marts.fct_lead_enriched` e `intermediate.int_faro_lead_scoring` como bases de conteo. |
+| Query traceability | Cada adquisicion debe conservar SQL, request ID, trace ID, execution context, project, dataset, periodo, dry run, bytes procesados, estado de consulta y evidencia de allowlist. |
+| Invalid IDs | IDs nulos, vacios, no normalizables, colisiones y duplicados no resueltos deben registrarse como UNKNOWN o bloquear segun SPEC-012. |
+| Historical outputs | La adquisicion post-cierre no puede reutilizar outputs historicos como evidencia nueva ni sobrescribirlos. |

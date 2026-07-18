@@ -2,7 +2,9 @@
 type: analytical-use-case
 id: AUC-001
 name: Meta Lead Quality Analysis
-status: Proposed
+status: Active
+validation_status: Validated
+experimental_cycle: Closed
 priority: High
 ---
 
@@ -234,13 +236,13 @@ No constituye una specification ni una implementación.
 ## Registro
 
 - Fecha: 2026-07-11
-- Evidencia: la skill [meta-lead-quality-analysis](../.github/skills/meta-lead-quality-analysis/SKILL.md) queda alineada con este caso de uso y puede utilizarse para ejecutar y validar el primer análisis de VCA IA.
+- Evidencia: la skill [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) queda alineada con este caso de uso y puede utilizarse para ejecutar y validar el primer análisis de VCA IA.
 - Resultado: validación documental y trazable del caso de uso AUC-001 como primer caso analítico del proyecto.
 - Referencias de soporte:
-	- [docs/context_refs.md](../docs/context_refs.md)
-	- [project_brief.md](../project_brief.md)
-	- [meta-lead-quality-analysis skill](../.github/skills/meta-lead-quality-analysis/SKILL.md)
+	- [docs/context_refs.md](/docs/context_refs.md)
+	- [project_brief.md](/project_brief.md)
+	- [meta-lead-quality-analysis skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ## Evidencia adicional registrada
 
-- La definicion de criterios de validacion del caso AUC-001 queda registrada en [docs/context_refs.md](../docs/context_refs.md) y en [docs/tasks.md](../docs/tasks.md) como parte del cierre trazable de T-004 y T-005.
+- La definicion de criterios de validacion del caso AUC-001 queda registrada en [docs/context_refs.md](/docs/context_refs.md) y en [docs/tasks.md](/docs/tasks.md) como parte del cierre trazable de T-004 y T-005.

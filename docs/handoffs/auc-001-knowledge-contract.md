@@ -65,8 +65,8 @@ Este contract no define esfuerzo, dependencias operativas ni plan de ejecucion.
 | Evidence Contract | [AUC-001 Evidence Contract](auc-001-evidence-contract.md) | Completed |
 | Evidence Set | [AUC-001 Evidence Set](auc-001-evidence-set.md) | Completed |
 | Knowledge Set | [AUC-001 Knowledge Set](auc-001-knowledge-set.md) | Completed |
-| AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Available |
-| Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
+| AUC-001 | [Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md) | Available |
+| Skill | [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
 
 ---
 
@@ -242,17 +242,17 @@ The following are explicitly outside this Knowledge Contract:
 
 ## Traceability
 
-- [T-025 in docs/tasks.md](../tasks.md)
+- [T-025 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Knowledge Set](auc-001-knowledge-set.md)
 - [AUC-001 Evidence Contract](auc-001-evidence-contract.md)
 - [AUC-001 Evidence Set](auc-001-evidence-set.md)
 - [AUC-001 Analytical Contract](auc-001-analytical-contract.md)
-- [VCA-KNW-001 Base Knowledge Contract](../contracts/knowledge.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-KNW-001 Base Knowledge Contract](/docs/contracts/knowledge.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

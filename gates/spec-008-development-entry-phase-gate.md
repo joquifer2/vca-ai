@@ -14,19 +14,19 @@
 
 ## Evidencias utilizadas
 
-- [sdd_readiness_assessment.md](../sdd_readiness_assessment.md)
-- [project_brief.md](../project_brief.md)
-- [README.md](../README.md)
-- [docs/context_refs.md](../docs/context_refs.md)
-- [docs/tasks.md](../docs/tasks.md)
-- [specs/spec-001-analytical-lifecycle.md](../specs/spec-001-analytical-lifecycle.md)
-- [specs/spec-002-component-boundaries.md](../specs/spec-002-component-boundaries.md)
-- [specs/spec-003-extensibility-model.md](../specs/spec-003-extensibility-model.md)
-- [specs/spec-004-transversal-contracts.md](../specs/spec-004-transversal-contracts.md)
-- [specs/spec-005-readiness-gates.md](../specs/spec-005-readiness-gates.md)
-- [specs/spec-006-documentary-evaluations.md](../specs/spec-006-documentary-evaluations.md)
-- [specs/spec-007-extension-compatibility-reusability.md](../specs/spec-007-extension-compatibility-reusability.md)
-- [specs/spec-008-development-entry-phase-gate.md](../specs/spec-008-development-entry-phase-gate.md)
+- [docs/evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md)
+- [project_brief.md](/project_brief.md)
+- [README.md](/README.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [docs/tasks.md](/docs/tasks.md)
+- [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md)
+- [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
+- [specs/spec-003-extensibility-model.md](/specs/spec-003-extensibility-model.md)
+- [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
+- [specs/spec-005-readiness-gates.md](/specs/spec-005-readiness-gates.md)
+- [specs/spec-006-documentary-evaluations.md](/specs/spec-006-documentary-evaluations.md)
+- [specs/spec-007-extension-compatibility-reusability.md](/specs/spec-007-extension-compatibility-reusability.md)
+- [specs/spec-008-development-entry-phase-gate.md](/specs/spec-008-development-entry-phase-gate.md)
 
 ---
 
@@ -40,9 +40,9 @@
 
 ## Artefactos revisados
 
-- [README.md](../README.md)
-- [project_brief.md](../project_brief.md)
-- [sdd_readiness_assessment.md](../sdd_readiness_assessment.md)
-- [docs/context_refs.md](../docs/context_refs.md)
-- [docs/tasks.md](../docs/tasks.md)
-- [specs/spec-008-development-entry-phase-gate.md](../specs/spec-008-development-entry-phase-gate.md)
+- [README.md](/README.md)
+- [project_brief.md](/project_brief.md)
+- [docs/evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [docs/tasks.md](/docs/tasks.md)
+- [specs/spec-008-development-entry-phase-gate.md](/specs/spec-008-development-entry-phase-gate.md)

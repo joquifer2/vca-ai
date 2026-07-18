@@ -7,6 +7,8 @@ from pathlib import Path
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
+from vca_mcp_contract import build_discover_request
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SERVER_ROOT = Path(r"C:\Workspace\JOQUIFER\bigquery_mcp_server")
@@ -22,8 +24,16 @@ def payload(result):
     for item in data.get("content", []):
         text = item.get("text")
         if text:
-            return json.loads(text)
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError:
+                return {"raw_text": text}
     raise RuntimeError("MCP result contained no JSON payload")
+
+
+async def discover(session, request_id, scope_request, resource_selector):
+    request = build_discover_request(request_id, scope_request, resource_selector)
+    return payload(await session.call_tool("discover_metadata", request.as_payload()))
 
 
 async def main():
@@ -48,27 +58,56 @@ async def main():
         async with ClientSession(read, write) as session:
             init = await session.initialize()
             tools = await session.list_tools()
+            tool_schemas = {
+                tool.name: tool.model_dump(mode="json", by_alias=True)
+                for tool in tools.tools
+            }
 
-            datasets = payload(
-                await session.call_tool(
-                    "discover_metadata",
-                    {
-                        "request_id": "vca-smoke-datasets",
-                        "scope_request": "datasets",
-                        "resource_selector": "datamart-vca-494114",
-                    },
-                )
-            )
-            tables = payload(
-                await session.call_tool(
-                    "discover_metadata",
-                    {
-                        "request_id": "vca-smoke-marts-tables",
-                        "scope_request": "tables",
-                        "resource_selector": "datamart-vca-494114.marts",
-                    },
-                )
-            )
+            discovery = {
+                "workspace": await discover(
+                    session,
+                    "vca-smoke-workspace",
+                    "workspace",
+                    "workspace:vca",
+                ),
+                "dataset_intermediate": await discover(
+                    session,
+                    "vca-smoke-dataset-intermediate",
+                    "dataset",
+                    "dataset:intermediate",
+                ),
+                "dataset_marts": await discover(
+                    session,
+                    "vca-smoke-dataset-marts",
+                    "dataset",
+                    "dataset:marts",
+                ),
+                "table_int_faro_lead_scoring": await discover(
+                    session,
+                    "vca-smoke-table-int-faro-lead-scoring",
+                    "table",
+                    "table:intermediate.int_faro_lead_scoring",
+                ),
+                "table_fct_lead_enriched": await discover(
+                    session,
+                    "vca-smoke-table-fct-lead-enriched",
+                    "table",
+                    "table:marts.fct_lead_enriched",
+                ),
+                "table_fct_spend": await discover(
+                    session,
+                    "vca-smoke-table-fct-spend",
+                    "table",
+                    "table:marts.fct_spend",
+                ),
+                "table_dim_campaign_signal": await discover(
+                    session,
+                    "vca-smoke-table-dim-campaign-signal",
+                    "table",
+                    "table:marts.dim_campaign_signal",
+                ),
+            }
+
             query = payload(
                 await session.call_tool(
                     "query_read_only",
@@ -97,8 +136,8 @@ async def main():
                             "tools": sorted(tool.name for tool in tools.tools),
                         },
                         "workspace_file": str(WORKSPACES),
-                        "datasets": datasets,
-                        "tables": tables,
+                        "discover_metadata_schema": tool_schemas.get("discover_metadata"),
+                        "discovery": discovery,
                         "query": query,
                     },
                     indent=2,

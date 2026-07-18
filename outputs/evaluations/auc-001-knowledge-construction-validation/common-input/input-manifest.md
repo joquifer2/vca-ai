@@ -37,13 +37,13 @@ These files are not part of the common package and are only available to the nam
 
 The execution must not read, use or incorporate:
 
-- `docs/evaluations/auc-001-analytical-scaffold-controlled-experiment.md`
-- `docs/evaluations/auc-001-evidence-to-knowledge-independent-research.md`
-- `docs/evaluations/auc-001-knowledge-construction-comparative-analysis.md`
-- `docs/evaluations/auc-001-knowledge-methodology-investigation.md`
-- `docs/evaluations/corpus/`
-- `docs/evaluations/knowledge-construction-architectural-investigation.md`
-- `docs/evaluations/knowledge-construction-profile-validation-execution-blocker.md`
+- `docs/evaluations/auc-001/experiments/auc-001-analytical-scaffold-controlled-experiment.md`
+- `docs/evaluations/auc-001/investigations/auc-001-evidence-to-knowledge-independent-research.md`
+- `docs/evaluations/auc-001/investigations/auc-001-knowledge-construction-comparative-analysis.md`
+- `docs/evaluations/auc-001/investigations/auc-001-knowledge-methodology-investigation.md`
+- `docs/corpus/auc-001/`
+- `docs/evaluations/transversal/investigations/knowledge-construction-architectural-investigation.md`
+- `docs/evaluations/transversal/diagnostics/knowledge-construction-profile-validation-execution-blocker.md`
 - `docs/experiments/auc-001-knowledge-construction-profile-design.md`
 - `docs/experiments/knowledge-construction-blueprint-conceptual-model.md`
 - `docs/handoffs/auc-001-knowledge-set.md`

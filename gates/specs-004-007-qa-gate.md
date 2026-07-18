@@ -14,7 +14,7 @@
 
 ## Gate evaluado
 
-Este gate valida el bloque formado por [specs/spec-004-transversal-contracts.md](../specs/spec-004-transversal-contracts.md), [specs/spec-005-readiness-gates.md](../specs/spec-005-readiness-gates.md), [specs/spec-006-documentary-evaluations.md](../specs/spec-006-documentary-evaluations.md) y [specs/spec-007-extension-compatibility-reusability.md](../specs/spec-007-extension-compatibility-reusability.md).
+Este gate valida el bloque formado por [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md), [specs/spec-005-readiness-gates.md](/specs/spec-005-readiness-gates.md), [specs/spec-006-documentary-evaluations.md](/specs/spec-006-documentary-evaluations.md) y [specs/spec-007-extension-compatibility-reusability.md](/specs/spec-007-extension-compatibility-reusability.md).
 
 ## Propósito
 
@@ -22,23 +22,23 @@ Confirmar que el marco de contracts, gates, evaluaciones y compatibilidad de ext
 
 ## Artefactos requeridos
 
-- [README.md](../README.md)
-- [project_brief.md](../project_brief.md)
-- [docs/context_refs.md](../docs/context_refs.md)
-- [specs/spec-004-transversal-contracts.md](../specs/spec-004-transversal-contracts.md)
-- [specs/spec-005-readiness-gates.md](../specs/spec-005-readiness-gates.md)
-- [specs/spec-006-documentary-evaluations.md](../specs/spec-006-documentary-evaluations.md)
-- [specs/spec-007-extension-compatibility-reusability.md](../specs/spec-007-extension-compatibility-reusability.md)
-- [.github/agents/specification.agent.md](../.github/agents/specification.agent.md)
-- [.github/agents/qa-gate.agent.md](../.github/agents/qa-gate.agent.md)
+- [README.md](/README.md)
+- [project_brief.md](/project_brief.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
+- [specs/spec-005-readiness-gates.md](/specs/spec-005-readiness-gates.md)
+- [specs/spec-006-documentary-evaluations.md](/specs/spec-006-documentary-evaluations.md)
+- [specs/spec-007-extension-compatibility-reusability.md](/specs/spec-007-extension-compatibility-reusability.md)
+- [.github/agents/specification.agent.md](/.github/agents/specification.agent.md)
+- [.github/agents/qa-gate.agent.md](/.github/agents/qa-gate.agent.md)
 
 ## Evidencias encontradas
 
-- [specs/spec-004-transversal-contracts.md](../specs/spec-004-transversal-contracts.md) define categorías contractuales, metadata mínima y reglas de estabilidad.
-- [specs/spec-005-readiness-gates.md](../specs/spec-005-readiness-gates.md) formaliza categorías de gates, metadata mínima y modelo de decisión.
-- [specs/spec-006-documentary-evaluations.md](../specs/spec-006-documentary-evaluations.md) define evaluaciones documentales reutilizables como evidencia para gates y reviews.
-- [specs/spec-007-extension-compatibility-reusability.md](../specs/spec-007-extension-compatibility-reusability.md) define el Extension Compatibility Dossier y sus reglas de compatibilidad y reutilización.
-- [docs/context_refs.md](../docs/context_refs.md) documenta que este tramo forma parte del roadmap fundacional ya acordado.
+- [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md) define categorías contractuales, metadata mínima y reglas de estabilidad.
+- [specs/spec-005-readiness-gates.md](/specs/spec-005-readiness-gates.md) formaliza categorías de gates, metadata mínima y modelo de decisión.
+- [specs/spec-006-documentary-evaluations.md](/specs/spec-006-documentary-evaluations.md) define evaluaciones documentales reutilizables como evidencia para gates y reviews.
+- [specs/spec-007-extension-compatibility-reusability.md](/specs/spec-007-extension-compatibility-reusability.md) define el Extension Compatibility Dossier y sus reglas de compatibilidad y reutilización.
+- [docs/context_refs.md](/docs/context_refs.md) documenta que este tramo forma parte del roadmap fundacional ya acordado.
 
 ## Criterios cumplidos
 
@@ -70,15 +70,15 @@ Confirmar que el marco de contracts, gates, evaluaciones y compatibilidad de ext
 
 ## Trazabilidad
 
-- [README.md](../README.md)
-- [docs/context_refs.md](../docs/context_refs.md)
-- [project_brief.md](../project_brief.md)
-- [specs/spec-004-transversal-contracts.md](../specs/spec-004-transversal-contracts.md)
-- [specs/spec-005-readiness-gates.md](../specs/spec-005-readiness-gates.md)
-- [specs/spec-006-documentary-evaluations.md](../specs/spec-006-documentary-evaluations.md)
-- [specs/spec-007-extension-compatibility-reusability.md](../specs/spec-007-extension-compatibility-reusability.md)
-- [.github/agents/specification.agent.md](../.github/agents/specification.agent.md)
-- [.github/agents/qa-gate.agent.md](../.github/agents/qa-gate.agent.md)
+- [README.md](/README.md)
+- [docs/context_refs.md](/docs/context_refs.md)
+- [project_brief.md](/project_brief.md)
+- [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
+- [specs/spec-005-readiness-gates.md](/specs/spec-005-readiness-gates.md)
+- [specs/spec-006-documentary-evaluations.md](/specs/spec-006-documentary-evaluations.md)
+- [specs/spec-007-extension-compatibility-reusability.md](/specs/spec-007-extension-compatibility-reusability.md)
+- [.github/agents/specification.agent.md](/.github/agents/specification.agent.md)
+- [.github/agents/qa-gate.agent.md](/.github/agents/qa-gate.agent.md)
 
 ## Decisión
 

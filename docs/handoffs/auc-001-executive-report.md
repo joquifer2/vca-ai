@@ -233,10 +233,10 @@ These recommendations are documentary suggested actions only; they do not author
 
 ## Projection Traceability
 
-- [SPEC-010 Presentation Projection Selection](../../specs/spec-010-presentation-projection-selection.md)
-- [VCA-AUC-001-ARCH-002 Presentation Projection Decision](../evaluations/auc-001-presentation-projection-architectural-decision.md)
-- [T-043 Documentary Alignment Decision](../evaluations/auc-001-documentary-alignment-decision.md)
-- [T-044 Base Contracts Alignment Record](../evaluations/auc-001-base-contracts-alignment-record.md)
+- [SPEC-010 Presentation Projection Selection](/specs/spec-010-presentation-projection-selection.md)
+- [VCA-AUC-001-ARCH-002 Presentation Projection Decision](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md)
+- [T-043 Documentary Alignment Decision](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md)
+- [T-044 Base Contracts Alignment Record](/docs/evaluations/auc-001/validations/auc-001-base-contracts-alignment-record.md)
 - [AUC-001 Presentation Contract](auc-001-presentation-contract.md)
 ---
 

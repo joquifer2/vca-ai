@@ -52,8 +52,8 @@ Este artefacto no formula conclusiones ni recomendaciones.
 | [AUC-001 Evidence Acquisition](auc-001-evidence-acquisition.md) | Acquired source evidence and reproducibility queries | Completed with limitations |
 | [AUC-001 Source Table Review](auc-001-source-table-review.md) | Corrective source-table and `ad_id` review | Resolved for T-019 |
 | [AUC-001 Discovery Contract](auc-001-discovery-contract.md) | Corrected source tables, relationships and grain | Revised after source-table review |
-| [AUC-001](../../analytical_use_cases/meta_lead_quality_analysis.md) | Analytical use case | Available |
-| [meta-lead-quality-analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Domain guardrails | Available |
+| [AUC-001](/analytical_use_cases/meta_lead_quality_analysis.md) | Analytical use case | Available |
+| [meta-lead-quality-analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Domain guardrails | Available |
 
 ---
 
@@ -302,16 +302,16 @@ FULL OUTER JOIN spend_ads s USING(ad_id_norm);
 
 ## Traceability
 
-- [T-020 in docs/tasks.md](../tasks.md)
+- [T-020 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Source Table Review](auc-001-source-table-review.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Data Contract](auc-001-data-contract.md)
 - [AUC-001 Evidence Acquisition](auc-001-evidence-acquisition.md)
 - [AUC-001 Discovery Contract](auc-001-discovery-contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

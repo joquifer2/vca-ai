@@ -52,15 +52,15 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 | Source | Role | Status | Notes |
 |---|---|---|---|
-| [project_brief.md](../../project_brief.md) | Project Source of Truth | Available | Define VCA IA purpose, scope, constraints, success criteria and AUC-001 as initial approved analytical use case. |
-| [docs/context_refs.md](../context_refs.md) | Context index | Available | Declares official context sources, Knowledge Base, runtime sources and pending technical references. |
-| [knowledge/client/ccd.md](../../knowledge/client/ccd.md) | Client context | Available | Provides client, ecosystem, FARO, CLARO, Meta Ads, BigQuery and business interpretation context. |
-| [analytical_use_cases/meta_lead_quality_analysis.md](../../analytical_use_cases/meta_lead_quality_analysis.md) | Analytical use case | Available | Defines AUC-001 objective, scope, evidence inventory, flow, validation criteria and expected outcome. |
-| [.github/skills/meta-lead-quality-analysis/SKILL.md](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Skill rules | Available | Defines operational flow, required context, evidence rules and blocking criteria for the analysis. |
-| [docs/contracts/context.contract.md](../contracts/context.contract.md) | Context Contract | Available | Defines required fields, validation rules and UNKNOWN handling for context resolution. |
-| [specs/spec-001-analytical-lifecycle.md](../../specs/spec-001-analytical-lifecycle.md) | Lifecycle specification | Available | Requires objective, restrictions and official context sources before Discovery. |
-| [specs/spec-002-component-boundaries.md](../../specs/spec-002-component-boundaries.md) | Boundary specification | Available | Requires handoffs to be materialized in identifiable, reviewable artifacts. |
-| [specs/spec-004-transversal-contracts.md](../../specs/spec-004-transversal-contracts.md) | Contract specification | Available | Requires explicit traceability and UNKNOWN handling in contracts and contractual artifacts. |
+| [project_brief.md](/project_brief.md) | Project Source of Truth | Available | Define VCA IA purpose, scope, constraints, success criteria and AUC-001 as initial approved analytical use case. |
+| [docs/context_refs.md](/docs/context_refs.md) | Context index | Available | Declares official context sources, Knowledge Base, runtime sources and pending technical references. |
+| [knowledge/client/ccd.md](/knowledge/client/ccd.md) | Client context | Available | Provides client, ecosystem, FARO, CLARO, Meta Ads, BigQuery and business interpretation context. |
+| [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md) | Analytical use case | Available | Defines AUC-001 objective, scope, evidence inventory, flow, validation criteria and expected outcome. |
+| [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Skill rules | Available | Defines operational flow, required context, evidence rules and blocking criteria for the analysis. |
+| [docs/contracts/context.contract.md](/docs/contracts/context.contract.md) | Context Contract | Available | Defines required fields, validation rules and UNKNOWN handling for context resolution. |
+| [specs/spec-001-analytical-lifecycle.md](/specs/spec-001-analytical-lifecycle.md) | Lifecycle specification | Available | Requires objective, restrictions and official context sources before Discovery. |
+| [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md) | Boundary specification | Available | Requires handoffs to be materialized in identifiable, reviewable artifacts. |
+| [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md) | Contract specification | Available | Requires explicit traceability and UNKNOWN handling in contracts and contractual artifacts. |
 
 ---
 
@@ -141,19 +141,19 @@ Este artefacto no formula conclusiones ni recomendaciones.
 
 ## Traceability
 
-- [T-015 and T-016 in docs/tasks.md](../tasks.md)
+- [T-015 and T-016 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Analysis Request](auc-001-analysis-request.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
-- [VCA-CTX-001 Context Contract](../contracts/context.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [Project Brief](../../project_brief.md)
-- [Context References](../context_refs.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
-- [Client CCD](../../knowledge/client/ccd.md)
+- [VCA-CTX-001 Context Contract](/docs/contracts/context.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [Project Brief](/project_brief.md)
+- [Context References](/docs/context_refs.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [Client CCD](/knowledge/client/ccd.md)
 
 ---
 

@@ -259,17 +259,17 @@ Este artefacto no construye el informe final ni define formato de presentacion.
 
 ## Traceability
 
-- [T-027 in docs/tasks.md](../tasks.md)
-- [T-029 in docs/tasks.md](../tasks.md)
+- [T-027 in docs/tasks.md](/docs/tasks.md)
+- [T-029 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Recommendation Contract](auc-001-recommendation-contract.md)
 - [AUC-001 Knowledge Set](auc-001-knowledge-set.md)
 - [AUC-001 Knowledge Contract](auc-001-knowledge-contract.md)
 - [AUC-001 Evidence Contract](auc-001-evidence-contract.md)
-- [VCA-REC-001 Base Recommendation Contract](../contracts/recommendation.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-REC-001 Base Recommendation Contract](/docs/contracts/recommendation.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

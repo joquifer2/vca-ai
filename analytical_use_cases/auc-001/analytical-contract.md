@@ -9,7 +9,7 @@
 | Status | Active |
 | Scope | What AUC-001 must be able to answer and what it needs to do so |
 
-El caso de uso base permanece registrado como Proposed en [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md); este contrato fija la articulacion operativa vigente del caso de uso.
+El caso de uso base permanece activo y validado en [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md); este contrato fija la articulacion operativa vigente del caso de uso.
 
 ## 1. Propósito
 
@@ -59,7 +59,7 @@ La lista canonica de preguntas que AUC-001 debe responder es la siguiente:
 |---|---|
 | Volumen | Totales por periodo, variacion, distribucion por segmento y brechas entre universo total y universo utilizable |
 | Calidad | Distribucion de score o tier, umbral operativo, diferencias entre categorias y presencia o ausencia de high quality |
-| Eficiencia | Spend, CPL, CPQL, CPHQL o equivalentes, y coste por segmento |
+| Eficiencia | Spend y metricas canonicas o diagnosticas con universo explicito: `cpl_commercial_matched`, `cost_per_ab_commercial_matched`, `cost_per_tier_a_commercial_matched`, `commercial_spend_per_matched_lead_observed` |
 | Campañas y conjuntos | Ranking por campaign y adset, calidad vs coste por estructura y separacion de coverage states |
 | Creatividades y anuncios | Ranking de anuncios o creatividades, concentracion del resultado y comparacion entre activos top y long tail |
 | Senales explicativas | Cruces de variables, thresholds, diferenciales entre categorias y combinacion de senales |
@@ -88,6 +88,24 @@ AUC-001 debe ser capaz de:
 - separar coverage states no equivalentes;
 - conservar limites de interpretacion cuando la evidencia es parcial.
 
+
+## 5.1 Nomenclatura economica canonica
+
+AUC-001 debe usar nombres de metricas economicas con universo y coverage explicitos. La terminologia generica `CPL`, `CPQL` y `CPHQL` queda marcada como deprecated terminology no publicable cuando no declare fuente, señal, universo y coverage.
+
+| Termino | Clasificacion | Uso permitido |
+|---|---|---|
+| `cpl_commercial_matched` | Canonica | Coste por lead en universo comercial emparejado: `matched_commercial_spend / matched_leads`. |
+| `cost_per_ab_commercial_matched` | Canonica | Coste por lead cualificado A/B en universo comercial emparejado: `matched_commercial_spend / matched_ab_leads`. |
+| `cost_per_tier_a_commercial_matched` | Canonica condicionada | Coste por lead Tier A emparejado, sujeto a denominador y umbrales suficientes. |
+| `commercial_spend_per_matched_lead_observed` | Diagnostica | Reconciliacion observada de spend comercial total por lead matched; no es CPL canonico ni KPI principal. |
+| `qualified_rate_ab_global` | Descriptiva | Calidad A/B lead-side global; no incluye coste. |
+| `qualified_rate_ab_matched` | Canonica | Calidad A/B dentro del universo matched. |
+| `CPL` sin universo | Prohibida | No publicable. Debe reemplazarse por `cpl_commercial_matched` u otra metrica con universo explicito. |
+| `CPQL` sin universo, señal y coverage | Prohibida | No publicable. Debe reemplazarse por `cost_per_ab_commercial_matched` cuando aplique. |
+| `CPHQL` sin definicion contractual de high-quality y coverage | Prohibida | No publicable. Cualquier uso futuro requiere definicion contractual previa. |
+
+Las metricas diagnosticas no pueden gobernar recomendaciones de inversion como KPI principal. Las metricas canonicas solo pueden publicarse cuando el denominador es mayor que cero y la fuente canonica de leads ha sido validada.
 ## 6. Representación actual
 
 Las capacidades anteriores se satisfacen actualmente en AUC-001 mediante estas representaciones contingentes. Esta tabla describe materializaciones actuales; no redefine el contrato analitico, que se expresa en las capacidades de las secciones anteriores.
@@ -99,7 +117,7 @@ Las capacidades anteriores se satisfacen actualmente en AUC-001 mediante estas r
 | Distinguir niveles de calidad | lead_tier, qualified AB y high quality donde exista |
 | Distribuir observaciones por superficie o segmento | platform, audience segment o dimension equivalente |
 | Identificar activos publicitarios | ad reference o identificador de anuncio equivalente |
-| Medir eficiencia economica | spend y ratios derivados sobre universos emparejados |
+| Medir eficiencia economica | spend y metricas canonicas/diagnosticas con universo explicito sobre universos emparejados |
 | Detectar concentracion | ranking y shares por campaign, adset o ad reference |
 | Analizar relaciones entre variables | cruces y comparaciones entre senales, categorias y resultados |
 | Evaluar trade-offs | lectura conjunta de volumen, calidad y coste |
@@ -115,7 +133,7 @@ Estas representaciones son contingentes y pueden cambiar sin modificar el contra
 
 - medir volumen por periodo;
 - distinguir calidad observable en el universo disponible;
-- medir eficiencia economica en los casos emparejados;
+- medir eficiencia economica mediante `cpl_commercial_matched`, `cost_per_ab_commercial_matched` y metricas canonicas equivalentes en universos emparejados;
 - comparar campaign y adset cuando exista cobertura;
 - identificar concentracion por activo o estructura;
 - preservar coverage states y limites de interpretacion.
@@ -152,9 +170,9 @@ El contrato de AUC-001 acepta como limites actuales:
 
 Este contrato consolida conocimiento validado en:
 
-- [docs/evaluations/auc-001-knowledge-construction-comparative-analysis.md](../../docs/evaluations/auc-001-knowledge-construction-comparative-analysis.md)
-- [docs/evaluations/auc-001-analytical-investigation-analysis.md](../../docs/evaluations/auc-001-analytical-investigation-analysis.md)
-- [docs/evaluations/auc-001-knowledge-depth-recovery-validation.md](../../docs/evaluations/auc-001-knowledge-depth-recovery-validation.md)
-- [docs/evaluations/auc-001-minimum-evidence-contract-analysis.md](../../docs/evaluations/auc-001-minimum-evidence-contract-analysis.md)
+- [docs/evaluations/auc-001/investigations/auc-001-knowledge-construction-comparative-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-knowledge-construction-comparative-analysis.md)
+- [docs/evaluations/auc-001/investigations/auc-001-analytical-investigation-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-analytical-investigation-analysis.md)
+- [docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md](/docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md)
+- [docs/evaluations/auc-001/investigations/auc-001-minimum-evidence-contract-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-minimum-evidence-contract-analysis.md)
 
 La lectura del contrato debe hacerse junto con [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md) como documento base del caso de uso.

@@ -244,18 +244,18 @@ The corrected Discovery supports a primary ad-level preparation model using norm
 
 ## Traceability
 
-- [T-019 in docs/tasks.md](../tasks.md)
+- [T-019 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Source Table Review](auc-001-source-table-review.md)
 - [AUC-001 Context Definition](auc-001-context-definition.md)
 - [AUC-001 Execution Context](auc-001-execution-context.md)
 - [AUC-001 Data Contract](auc-001-data-contract.md)
 - [AUC-001 Evidence Acquisition](auc-001-evidence-acquisition.md)
-- [VCA-DISC-001 Base Discovery Contract](../contracts/discovery.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-DISC-001 Base Discovery Contract](/docs/contracts/discovery.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

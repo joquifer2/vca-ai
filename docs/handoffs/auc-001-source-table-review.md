@@ -106,8 +106,8 @@ T-017 and T-018 remain useful as provider-access evidence, but their selected so
 - [AUC-001 Discovery Contract](auc-001-discovery-contract.md)
 - [AUC-001 Analytical Preparation](auc-001-analytical-preparation.md)
 - [AUC-001 Analytical Contract](auc-001-analytical-contract.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

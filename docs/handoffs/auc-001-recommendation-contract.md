@@ -65,8 +65,8 @@ Este contract no construye el artefacto final de presentacion.
 | Knowledge Contract | [AUC-001 Knowledge Contract](auc-001-knowledge-contract.md) | Completed |
 | Knowledge Set | [AUC-001 Knowledge Set](auc-001-knowledge-set.md) | Confirmed |
 | Recommendation Set | [AUC-001 Recommendation Set](auc-001-recommendation-set.md) | Completed |
-| AUC-001 | [Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md) | Available |
-| Skill | [meta-lead-quality-analysis](../../.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
+| AUC-001 | [Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md) | Available |
+| Skill | [meta-lead-quality-analysis](/.github/skills/meta-lead-quality-analysis/SKILL.md) | Available |
 
 ---
 
@@ -210,17 +210,17 @@ Este contract no construye el artefacto final de presentacion.
 
 ## Traceability
 
-- [T-028 in docs/tasks.md](../tasks.md)
+- [T-028 in docs/tasks.md](/docs/tasks.md)
 - [AUC-001 Recommendation Set](auc-001-recommendation-set.md)
 - [AUC-001 Knowledge Contract](auc-001-knowledge-contract.md)
 - [AUC-001 Knowledge Set](auc-001-knowledge-set.md)
 - [AUC-001 Evidence Contract](auc-001-evidence-contract.md)
-- [VCA-REC-001 Base Recommendation Contract](../contracts/recommendation.contract.md)
-- [SPEC-001 Analytical Lifecycle](../../specs/spec-001-analytical-lifecycle.md)
-- [SPEC-002 Component Boundaries](../../specs/spec-002-component-boundaries.md)
-- [SPEC-004 Transversal Contracts](../../specs/spec-004-transversal-contracts.md)
-- [AUC-001 Meta Lead Quality Analysis](../../analytical_use_cases/meta_lead_quality_analysis.md)
-- [Meta Lead Quality Analysis Skill](../../.github/skills/meta-lead-quality-analysis/SKILL.md)
+- [VCA-REC-001 Base Recommendation Contract](/docs/contracts/recommendation.contract.md)
+- [SPEC-001 Analytical Lifecycle](/specs/spec-001-analytical-lifecycle.md)
+- [SPEC-002 Component Boundaries](/specs/spec-002-component-boundaries.md)
+- [SPEC-004 Transversal Contracts](/specs/spec-004-transversal-contracts.md)
+- [AUC-001 Meta Lead Quality Analysis](/analytical_use_cases/meta_lead_quality_analysis.md)
+- [Meta Lead Quality Analysis Skill](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 
 ---
 

@@ -228,8 +228,8 @@ La specification preserva la posibilidad de evolucionar la proyeccion analitica 
 - specs/spec-004-transversal-contracts.md;
 - docs/contracts/context.contract.md;
 - docs/contracts/presentation.contract.md;
-- docs/evaluations/auc-001-presentation-projection-architectural-decision.md;
-- docs/evaluations/auc-001-execution-scope-canonicalization-architectural-decision.md;
+- docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md;
+- docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md;
 - docs/handoffs/auc-001-presentation-contract.md;
 - docs/handoffs/auc-001-executive-report.md;
 - analytical_use_cases/meta_lead_quality_analysis.md;
