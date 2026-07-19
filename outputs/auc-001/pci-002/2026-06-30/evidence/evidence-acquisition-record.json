@@ -1,0 +1,456 @@
+{
+  "data_provider": "BigQuery MCP Server",
+  "execution_id": "AUC-001-PCI-002-2026-06-30-REAL-20260719",
+  "input_hashes": {
+    "lead_aggregates_sha256": "118be2141678cec6dd7be0820c83603ebc9302489617b8a929b092ce19e302aa",
+    "spend_aggregates_sha256": "f02349a65add328d7b421992b1640e1c48ccfd086c682a1679627fab28f6328a"
+  },
+  "lead_aggregates": [
+    {
+      "ad_id": "ag:120245407987440721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 2,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245407987440721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 8,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245407987440721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 6,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245407987440721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 3,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245407987450721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "lead_count": 3,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245407987450721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "lead_count": 19,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245407987450721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "lead_count": 23,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245407987450721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "lead_count": 12,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245823087500721",
+      "ad_name": "MasCaroPorqueMejor_CalidadVsCantidad_ViajesConCalidad_Reel_v1",
+      "lead_count": 1,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245823087500721",
+      "ad_name": "MasCaroPorqueMejor_CalidadVsCantidad_ViajesConCalidad_Reel_v1",
+      "lead_count": 8,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245823087500721",
+      "ad_name": "MasCaroPorqueMejor_CalidadVsCantidad_ViajesConCalidad_Reel_v1",
+      "lead_count": 5,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245823087500721",
+      "ad_name": "MasCaroPorqueMejor_CalidadVsCantidad_ViajesConCalidad_Reel_v1",
+      "lead_count": 4,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245823087510721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "lead_count": 2,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245823087510721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "lead_count": 1,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245828603090721",
+      "ad_name": "ViajeSinEstres_AlivioEmocional_ViajeSinEstres_Reel_v1",
+      "lead_count": 23,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245828603090721",
+      "ad_name": "ViajeSinEstres_AlivioEmocional_ViajeSinEstres_Reel_v1",
+      "lead_count": 164,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245828603090721",
+      "ad_name": "ViajeSinEstres_AlivioEmocional_ViajeSinEstres_Reel_v1",
+      "lead_count": 281,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245828603090721",
+      "ad_name": "ViajeSinEstres_AlivioEmocional_ViajeSinEstres_Reel_v1",
+      "lead_count": 176,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245829115590721",
+      "ad_name": "ViajeSinEstres_PrevencionDeRiesgo_ErroresViaje_Reel_v1",
+      "lead_count": 2,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245829115590721",
+      "ad_name": "ViajeSinEstres_PrevencionDeRiesgo_ErroresViaje_Reel_v1",
+      "lead_count": 4,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245829115590721",
+      "ad_name": "ViajeSinEstres_PrevencionDeRiesgo_ErroresViaje_Reel_v1",
+      "lead_count": 4,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245829115590721",
+      "ad_name": "ViajeSinEstres_PrevencionDeRiesgo_ErroresViaje_Reel_v1",
+      "lead_count": 6,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245829545180721",
+      "ad_name": "ViajaComoInvitado_Identidad_ViajarComoLocal_Reel_v1",
+      "lead_count": 18,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245829545180721",
+      "ad_name": "ViajaComoInvitado_Identidad_ViajarComoLocal_Reel_v1",
+      "lead_count": 85,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245829545180721",
+      "ad_name": "ViajaComoInvitado_Identidad_ViajarComoLocal_Reel_v1",
+      "lead_count": 135,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245829545180721",
+      "ad_name": "ViajaComoInvitado_Identidad_ViajarComoLocal_Reel_v1",
+      "lead_count": 121,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120245829746630721",
+      "ad_name": "ViajaComoInvitado_Estatus_ExperienciaCalidad_Reel_v1",
+      "lead_count": 1,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120245829746630721",
+      "ad_name": "ViajaComoInvitado_Estatus_ExperienciaCalidad_Reel_v1",
+      "lead_count": 7,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120245829746630721",
+      "ad_name": "ViajaComoInvitado_Estatus_ExperienciaCalidad_Reel_v1",
+      "lead_count": 7,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120245829746630721",
+      "ad_name": "ViajaComoInvitado_Estatus_ExperienciaCalidad_Reel_v1",
+      "lead_count": 5,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120247352473020721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 9,
+      "lead_tier": "A"
+    },
+    {
+      "ad_id": "ag:120247352473020721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 33,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120247352473020721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 50,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120247352473020721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "lead_count": 26,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120251254823190721",
+      "ad_name": "ExperienciasUnicas_OportunidadIrrepetible_EclipseSolar2026_Reel_v1",
+      "lead_count": 2,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120251254823190721",
+      "ad_name": "ExperienciasUnicas_OportunidadIrrepetible_EclipseSolar2026_Reel_v1",
+      "lead_count": 2,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120251254823190721",
+      "ad_name": "ExperienciasUnicas_OportunidadIrrepetible_EclipseSolar2026_Reel_v1",
+      "lead_count": 1,
+      "lead_tier": "D"
+    },
+    {
+      "ad_id": "ag:120251255543160721",
+      "ad_name": "ExperienciasUnicas_LugaresSorprendentes_CamposLavanda_Reel_v1",
+      "lead_count": 1,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120251255543170721",
+      "ad_name": "ExperienciasUnicas_OportunidadIrrepetible_EclipseSolar2026_Reel_v1",
+      "lead_count": 2,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120251257513780721",
+      "ad_name": "ExperienciasUnicas_ViajesConAlma_BoriWine2026_Reel_v1",
+      "lead_count": 8,
+      "lead_tier": "B"
+    },
+    {
+      "ad_id": "ag:120251257513780721",
+      "ad_name": "ExperienciasUnicas_ViajesConAlma_BoriWine2026_Reel_v1",
+      "lead_count": 37,
+      "lead_tier": "C"
+    },
+    {
+      "ad_id": "ag:120251257513780721",
+      "ad_name": "ExperienciasUnicas_ViajesConAlma_BoriWine2026_Reel_v1",
+      "lead_count": 22,
+      "lead_tier": "D"
+    }
+  ],
+  "mode": "full_real_execution_corrective_package",
+  "period_end": "2026-06-30",
+  "period_start": "2026-04-18",
+  "project_id": "datamart-vca-494114",
+  "queries": [
+    {
+      "bytes_processed": 12624,
+      "request_id": "auc-001-pci-002-coverage-leads-20260719",
+      "status": "success",
+      "trace_reference": "trc-30eaa444a4234c68b9e1470b37893208"
+    },
+    {
+      "bytes_processed": 163552,
+      "request_id": "auc-001-pci-002-coverage-spend-20260719",
+      "status": "success",
+      "trace_reference": "trc-82b59a3ccea149c2964b271218b555b2"
+    },
+    {
+      "bytes_processed": 138648,
+      "request_id": "auc-001-pci-002-evidence-lead-aggregates-20260719",
+      "status": "success",
+      "trace_reference": "trc-a8fbe1a84b284ac4871bb3c16a0e2132"
+    },
+    {
+      "bytes_processed": 1043559,
+      "request_id": "auc-001-pci-002-evidence-spend-aggregates-20260719",
+      "status": "success",
+      "trace_reference": "trc-7e6d52c62c004fbe979ede02b9cdfdb2"
+    }
+  ],
+  "spend_aggregates": [
+    {
+      "ad_id": "120245074032120721",
+      "ad_name": "MadridNoGoogle_MiedoAPerdida_OrganizacionViaje_Reel_v1",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "279.69",
+      "spend_record_count": 58
+    },
+    {
+      "ad_id": "120245407987440721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "25.16",
+      "spend_record_count": 407
+    },
+    {
+      "ad_id": "120245407987450721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "48.96",
+      "spend_record_count": 795
+    },
+    {
+      "ad_id": "120245823087500721",
+      "ad_name": "MasCaroPorqueMejor_CalidadVsCantidad_ViajesConCalidad_Reel_v1",
+      "campaign_signal": "ACTIVATION",
+      "spend_amount": "44.95",
+      "spend_record_count": 29
+    },
+    {
+      "ad_id": "120245823087510721",
+      "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+      "campaign_signal": "ACTIVATION",
+      "spend_amount": "5.69",
+      "spend_record_count": 16
+    },
+    {
+      "ad_id": "120245828603090721",
+      "ad_name": "ViajeSinEstres_AlivioEmocional_ViajeSinEstres_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "468.06",
+      "spend_record_count": 2669
+    },
+    {
+      "ad_id": "120245829115590721",
+      "ad_name": "ViajeSinEstres_PrevencionDeRiesgo_ErroresViaje_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "12.52",
+      "spend_record_count": 403
+    },
+    {
+      "ad_id": "120245829545180721",
+      "ad_name": "ViajaComoInvitado_Identidad_ViajarComoLocal_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "245.84",
+      "spend_record_count": 1805
+    },
+    {
+      "ad_id": "120245829746630721",
+      "ad_name": "ViajaComoInvitado_Estatus_ExperienciaCalidad_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "18.22",
+      "spend_record_count": 538
+    },
+    {
+      "ad_id": "120245830423970721",
+      "ad_name": "MadridNoGoogle_Curiosidad_Propina_Reel_v1- Copia",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "4.02",
+      "spend_record_count": 35
+    },
+    {
+      "ad_id": "120245831213410721",
+      "ad_name": "MadridNoGoogle_Curiosidad_Agua_Reel_v1",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "5.94",
+      "spend_record_count": 33
+    },
+    {
+      "ad_id": "120247352473020721",
+      "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+      "campaign_signal": "ACTIVATION",
+      "spend_amount": "155.64",
+      "spend_record_count": 35
+    },
+    {
+      "ad_id": "120251249759480721",
+      "ad_name": "ExperienciasUnicas_LugaresSorprendentes_CamposLavanda_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "1.20",
+      "spend_record_count": 57
+    },
+    {
+      "ad_id": "120251250039260721",
+      "ad_name": "DescubreEspana_ConsejoPractico_RopaCamposLavanda_Reel_v1",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "1.06",
+      "spend_record_count": 3
+    },
+    {
+      "ad_id": "120251250342180721",
+      "ad_name": "DescubreEspana_LugaresSorprendentes_CamposLavanda_Reel_v1",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "14.86",
+      "spend_record_count": 4
+    },
+    {
+      "ad_id": "120251252180570721",
+      "ad_name": "ExperienciasUnicas_ErroresPlanificacion_EclipseSolar2026_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "1.00",
+      "spend_record_count": 42
+    },
+    {
+      "ad_id": "120251254823190721",
+      "ad_name": "ExperienciasUnicas_OportunidadIrrepetible_EclipseSolar2026_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "4.86",
+      "spend_record_count": 116
+    },
+    {
+      "ad_id": "120251255275440721",
+      "ad_name": "DescubreEspana_EventosEspeciales_EclipseSolar2026_Reel_v1 - Copia",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "1.77",
+      "spend_record_count": 4
+    },
+    {
+      "ad_id": "120251255543160721",
+      "ad_name": "ExperienciasUnicas_LugaresSorprendentes_CamposLavanda_Reel_v1",
+      "campaign_signal": "ACTIVATION",
+      "spend_amount": "3.15",
+      "spend_record_count": 4
+    },
+    {
+      "ad_id": "120251255543170721",
+      "ad_name": "ExperienciasUnicas_OportunidadIrrepetible_EclipseSolar2026_Reel_v1",
+      "campaign_signal": "ACTIVATION",
+      "spend_amount": "11.75",
+      "spend_record_count": 4
+    },
+    {
+      "ad_id": "120251255543180721",
+      "ad_name": "ExperienciasUnicas_PlanificaLaExperiencia_EclipseSolar2026_Reel_v1",
+      "campaign_signal": "ACTIVATION",
+      "spend_amount": "0.68",
+      "spend_record_count": 4
+    },
+    {
+      "ad_id": "120251257186280721",
+      "ad_name": "DescubreEspana_ViajesConAlma_BoriWine2026_Reel_v1 - Copia",
+      "campaign_signal": "ATTENTION",
+      "spend_amount": "1.20",
+      "spend_record_count": 4
+    },
+    {
+      "ad_id": "120251257513780721",
+      "ad_name": "ExperienciasUnicas_ViajesConAlma_BoriWine2026_Reel_v1",
+      "campaign_signal": "COMMERCIAL",
+      "spend_amount": "50.03",
+      "spend_record_count": 267
+    }
+  ],
+  "workspace": "vca"
+}

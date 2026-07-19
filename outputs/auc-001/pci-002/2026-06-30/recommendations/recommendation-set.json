@@ -1,0 +1,16 @@
+{
+  "derived_from": "knowledge/knowledge-set.json",
+  "execution_id": "AUC-001-PCI-002-2026-06-30-REAL-20260719",
+  "items": [
+    {
+      "action": "QA Gate Agent debe validar fisicamente `execution/runtime-output.json` contra SPEC-013 sin usar Markdown como fuente de datos.",
+      "expected_outcome": "P0 puede reabrirse con evidencia fisica trazable si el JSON cumple los criterios formales.",
+      "id": "R-001",
+      "priority": "P0",
+      "support": [
+        "K-001",
+        "K-002"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "all_required_invariants_pass": true,
+  "canonical_aliases_coherent": true,
+  "execution_id": "AUC-001-PCI-002-2026-06-30-REAL-20260719",
+  "is_consumable": true,
+  "markdown_used_as_data_source": false,
+  "package_complete": true,
+  "protected_namespaces_modified_by_execution": false,
+  "ready_for_qa_physical_validation": true,
+  "runtime_output_path": "outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json",
+  "runtime_output_sha256": "d606aa10960942eef5c47bb7ba474b1e56bbb228cd14422b3cb35fefa22163ab",
+  "write_status": "PASS"
+}

@@ -103,9 +103,17 @@ Su cierre experimental ha sido aprobado con decisión:
 
 El ciclo experimental original de AUC-001 permanece cerrado y su producto validado no se modifica retrospectivamente.
 
-La mejora definida por `SPEC-012 - AUC-001 Canonical Cost-Quality Model` se clasifica como una evolucion post-cierre. Su validacion debe ejecutarse como `AUC-001 Post-Closure Iteration 1` (`AUC-001-PCI-001`), con [Entry Gate](/gates/auc-001-pci-001-entry-gate.md), [Exit Gate](/gates/auc-001-pci-001-exit-gate.md) y outputs propios bajo `outputs/auc-001/pci-001/2026-06-30/`, sin sobrescribir `outputs/auc-001/2026-06-30/` ni promover la capacidad a AIF Foundation.
+La mejora definida por `SPEC-012 - AUC-001 Canonical Cost-Quality Model` se clasifica como una evolucion post-cierre. Su validacion se ejecuto como `AUC-001 Post-Closure Iteration 1` (`AUC-001-PCI-001`), con [Entry Gate](/gates/auc-001-pci-001-entry-gate.md), [Exit Gate](/gates/auc-001-pci-001-exit-gate.md) y outputs propios bajo `outputs/auc-001/pci-001/2026-06-30/`, sin sobrescribir `outputs/auc-001/2026-06-30/` ni promover la capacidad a AIF Foundation.
 
-Estado de la evolucion: implementacion local validada pre-ejecucion con namespace oficial definido; pendiente de ejecucion analitica y Exit Gate.
+Estado de la evolucion SPEC-012: `AUC-001-PCI-001` ejecutado; Exit Gate `PASS WITH CONDITIONS`; modelo canonico coste-calidad estabilizado dentro de AUC-001.
+
+La mejora definida por `SPEC-013 - AUC-001 Structured Reconciliation Output` endurece la exposicion estructurada del runtime para futuras ejecuciones AUC-001. Su implementacion tecnica, validacion QA y Exit Gate estan completados con decision `PASS WITH CONDITIONS`. No modifica outputs historicos, no regenera informes y no inicia contrato de producto analitico.
+
+El cierre operativo P0 fue reevaluado el 2026-07-19 con evidencia adicional de la ultima ejecucion real AUC-001 hasta 2026-06-30. La decision QA inicial fue `P0 BLOCKED` por falta de persistencia fisica SPEC-013. Tras AUC-001-PCI-002, la decision final es `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`. P01 no esta iniciado por este cierre.
+
+Specification Agent formalizo la correccion minima como `CORRECTIVE TASKS UNDER SPEC-013`. No se abre una nueva specification: la siguiente accion metodologica recomendada es planificar `AUC-001-PCI-002` para persistir un `execution/runtime-output.json` fisico conforme a SPEC-013 en un nuevo namespace autorizado.
+
+QA Gate Agent ha evaluado el Entry Gate de AUC-001-PCI-002 con `PASS WITH CONDITIONS`, ha validado la implementacion local con pruebas 14/14 PASS y ha autorizado la ejecucion real via BigQuery MCP. Implementation Agent ha materializado el paquete real en `outputs/auc-001/pci-002/2026-06-30/`. QA Gate Agent ha validado fisicamente `execution/runtime-output.json` desde disco, ha emitido el Exit Gate de PCI-002 con `PASS` y ha reemitido el P0 Operational Closure Gate como `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`. P01 queda listo para un paso posterior controlado; no se inicia en este cierre.
 
 ### Namespace de outputs post-cierre
 

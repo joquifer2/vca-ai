@@ -1,0 +1,177 @@
+{
+  "coverage_reconciliation": {
+    "invariants": [
+      {
+        "expression": "lead_total = matched.leads + lead_only.leads + unknown.leads",
+        "left_value": 1329,
+        "name": "lead_total_identity",
+        "result": "PASS",
+        "right_value": 1329,
+        "tolerance": null
+      },
+      {
+        "expression": "ab_total = matched.ab_leads + lead_only.ab_leads + unknown.ab_leads",
+        "left_value": 399,
+        "name": "ab_total_identity",
+        "result": "PASS",
+        "right_value": 399,
+        "tolerance": null
+      },
+      {
+        "expression": "tier_a_total = matched.tier_a + lead_only.tier_a + unknown.tier_a",
+        "left_value": 59,
+        "name": "tier_a_total_identity",
+        "result": "PASS",
+        "right_value": 59,
+        "tolerance": null
+      },
+      {
+        "expression": "tier_b_total = matched.tier_b + lead_only.tier_b + unknown.tier_b",
+        "left_value": 340,
+        "name": "tier_b_total_identity",
+        "result": "PASS",
+        "right_value": 340,
+        "tolerance": null
+      },
+      {
+        "expression": "commercial_spend = matched.matched_commercial_spend + spend_only.spend_only_commercial_spend + unknown.commercial_spend",
+        "left_value": "875.85",
+        "name": "commercial_spend_coverage_identity",
+        "result": "PASS",
+        "right_value": "875.85",
+        "tolerance": "0.01"
+      },
+      {
+        "expression": "prepared_ad_count = matched.ad_count + lead_only.ad_count + spend_only.ad_count + unknown.ad_count",
+        "left_value": 15,
+        "name": "prepared_ad_count_identity",
+        "result": "PASS",
+        "right_value": 15,
+        "tolerance": null
+      }
+    ],
+    "lead_only": {
+      "ab_leads": 53,
+      "ad_count": 5,
+      "commercial_spend": "0",
+      "leads": 142,
+      "tier_a": 10,
+      "tier_b": 43
+    },
+    "matched": {
+      "ab_leads": 346,
+      "ad_count": 8,
+      "commercial_spend": "873.65",
+      "leads": 1187,
+      "matched_commercial_spend": "873.65",
+      "tier_a": 49,
+      "tier_b": 297
+    },
+    "spend_only": {
+      "ab_leads": 0,
+      "ad_count": 2,
+      "commercial_spend": "2.20",
+      "leads": 0,
+      "spend_only_commercial_spend": "2.20",
+      "tier_a": 0,
+      "tier_b": 0
+    },
+    "unknown": {
+      "ab_leads": 0,
+      "ad_count": 0,
+      "commercial_spend": "0",
+      "leads": 0,
+      "reason_codes": [],
+      "tier_a": 0,
+      "tier_b": 0
+    }
+  },
+  "data_provider": "BigQuery MCP Server",
+  "deprecated_aliases": {
+    "matched_spend": "matched_commercial_spend",
+    "spend_only_spend": "spend_only_commercial_spend"
+  },
+  "execution_id": "AUC-001-PCI-002-2026-06-30-REAL-20260719",
+  "input_hashes": {
+    "lead_aggregates_sha256": "118be2141678cec6dd7be0820c83603ebc9302489617b8a929b092ce19e302aa",
+    "spend_aggregates_sha256": "f02349a65add328d7b421992b1640e1c48ccfd086c682a1679627fab28f6328a"
+  },
+  "is_consumable": true,
+  "issues": [],
+  "model_name": "auc_001_canonical_cost_quality_model",
+  "namespace": "outputs/auc-001/pci-002/2026-06-30",
+  "output_schema_version": "auc_001_reconciliation_output.v1",
+  "package_status": {
+    "blockers": [],
+    "is_complete": true,
+    "is_consumable": true
+  },
+  "period_end": "2026-06-30",
+  "period_start": "2026-04-18",
+  "runtime": "auc_001_canonical_cost_quality_model",
+  "runtime_output_path": "outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json",
+  "schema_family": "auc_001_reconciliation_output",
+  "schema_status": "active",
+  "source_tables": [
+    "datamart-vca-494114.marts.fct_lead_enriched",
+    "datamart-vca-494114.marts.fct_spend",
+    "datamart-vca-494114.intermediate.int_faro_lead_scoring",
+    "datamart-vca-494114.marts.dim_campaign_signal"
+  ],
+  "specification_versions": [
+    "SPEC-012",
+    "SPEC-013"
+  ],
+  "spend_reconciliation": {
+    "commercial_spend": "875.85",
+    "invariants": [
+      {
+        "expression": "total_spend_all_signals = commercial_spend + non_commercial_spend",
+        "left_value": "1406.25",
+        "name": "total_spend_all_signals_identity",
+        "result": "PASS",
+        "right_value": "1406.25",
+        "tolerance": "0.01"
+      },
+      {
+        "expression": "commercial_spend = matched_commercial_spend + spend_only_commercial_spend",
+        "left_value": "875.85",
+        "name": "commercial_spend_identity",
+        "result": "PASS",
+        "right_value": "875.85",
+        "tolerance": "0.01"
+      },
+      {
+        "expression": "non_commercial_spend = sum(non_commercial_spend_by_signal)",
+        "left_value": "530.40",
+        "name": "non_commercial_spend_by_signal_identity",
+        "result": "PASS",
+        "right_value": "530.40",
+        "tolerance": "0.01"
+      },
+      {
+        "expression": "total_spend_all_signals = sum(spend_by_signal)",
+        "left_value": "1406.25",
+        "name": "total_spend_by_signal_identity",
+        "result": "PASS",
+        "right_value": "1406.25",
+        "tolerance": "0.01"
+      }
+    ],
+    "matched_commercial_spend": "873.65",
+    "matched_spend": "873.65",
+    "non_commercial_spend": "530.40",
+    "non_commercial_spend_by_signal": {
+      "ACTIVATION": "221.86",
+      "ATTENTION": "308.54"
+    },
+    "spend_by_signal": {
+      "ACTIVATION": "221.86",
+      "ATTENTION": "308.54",
+      "COMMERCIAL": "875.85"
+    },
+    "spend_only_commercial_spend": "2.20",
+    "spend_only_spend": "2.20",
+    "total_spend_all_signals": "1406.25"
+  }
+}

@@ -107,6 +107,21 @@ Este backlog recoge validaciones documentadas para el cierre del caso y su traza
 
 ---
 
+## Backlog correctivo post-cierre AUC-001
+
+Este bloque registra la planificacion correctiva bajo SPEC-013 para desbloquear P0 sin abrir P01, sin regenerar informes y sin modificar namespaces historicos.
+
+| ID | Tarea | Tipo | Fuentes | Dependencias | Criterio de finalizacion | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-051 | Planificar AUC-001-PCI-002 Runtime Output Persistence | Planning / Governance | specs/spec-013-auc-001-structured-reconciliation-output.md; tasks/spec-013-auc-001-runtime-output-persistence-corrective-tasks.md; gates/auc-001-p0-operational-closure-gate.md | P0 Operational Closure Gate bloqueado | Existe un plan de tareas trazable para PCI-002 y el Entry Gate queda reservado a QA Gate Agent | Completed |
+| T-052 | Evaluar AUC-001-PCI-002 Entry Gate | Validation / Governance | tasks/auc-001-pci-002-runtime-output-persistence-task-plan.md; docs/evaluations/auc-001/validations/auc-001-pci-002-entry-gate-handoff-to-qa.md; docs/evaluations/auc-001/validations/auc-001-pci-002-planning-review.md | T-051 | QA Gate Agent emite `gates/auc-001-pci-002-entry-gate.md` antes de cualquier implementacion o ejecucion real | Completed - PASS WITH CONDITIONS |
+| T-053 | Implementar localmente AUC-001-PCI-002 Runtime Output Persistence | Development / Validation | gates/auc-001-pci-002-entry-gate.md; tasks/auc-001-pci-002-runtime-output-persistence-task-plan.md; tasks/spec-013-auc-001-runtime-output-persistence-corrective-tasks.md; docs/evaluations/auc-001/validations/auc-001-pci-002-implementation-report.md; docs/handoffs/auc-001-pci-002-qa-handoff.md | T-052 | Implementacion local y tests locales completados; no se ejecuta BigQuery MCP, no se ejecuta el informe real y no se escribe `outputs/auc-001/pci-002/2026-06-30/` | Completed - local implementation ready for QA |
+| T-054 | Validar QA local y autorizar ejecucion real AUC-001-PCI-002 | Validation / Governance | docs/evaluations/auc-001/validations/auc-001-pci-002-local-implementation-qa-validation.md; gates/auc-001-pci-002-real-execution-authorization-gate.md; gates/auc-001-pci-002-entry-gate.md | T-053 | QA reejecuta pruebas locales, valida BigQuery MCP por `discover_metadata` canonico y autoriza la ejecucion real en `outputs/auc-001/pci-002/2026-06-30/` sin cerrar P0 | Completed - real execution authorized via BigQuery MCP |
+| T-055 | Ejecutar paquete real AUC-001-PCI-002 | Development / Validation | gates/auc-001-pci-002-real-execution-authorization-gate.md; outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json; docs/evaluations/auc-001/validations/auc-001-pci-002-real-execution-report.md; docs/handoffs/auc-001-pci-002-physical-qa-handoff.md | T-054 | Existe paquete real PCI-002 con runtime fisico SPEC-013, `is_consumable = true`, invariantes PASS y handoff a QA fisico; P0 aun no se cierra | Completed - ready for QA physical validation |
+| T-056 | Validar fisicamente PCI-002 y cerrar P0 Operational Closure | Validation / Governance | outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json; docs/evaluations/auc-001/validations/auc-001-pci-002-physical-runtime-qa-validation.md; gates/auc-001-pci-002-exit-gate.md; docs/evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md; gates/auc-001-p0-operational-closure-gate.md | T-055 | QA valida runtime desde disco, emite Exit Gate PCI-002 `PASS` y P0 queda `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01` | Completed - P0 ready for P01 |
+
+---
+
 ## Backlog de alineamiento del repositorio
 
 Este backlog organiza tareas metodologicas de analisis de impacto, alineamiento arquitectonico y decision documental para introducir la capacidad minima aprobada por VCA-AUC-001-ARCH-002 y SPEC-010.

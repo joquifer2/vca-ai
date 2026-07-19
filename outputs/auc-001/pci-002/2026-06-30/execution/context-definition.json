@@ -1,0 +1,15 @@
+{
+  "authorized_namespace": "outputs/auc-001/pci-002/2026-06-30",
+  "cutoff_rule": "Fecha final indicada; inicio resuelto por cobertura MCP autorizada",
+  "data_provider": "BigQuery MCP Server",
+  "execution_id": "AUC-001-PCI-002-2026-06-30-REAL-20260719",
+  "mode": "full_real_execution_corrective_package",
+  "period_end": "2026-06-30",
+  "period_start": "2026-04-18",
+  "protected_namespaces": [
+    "outputs/auc-001/2026-06-30/",
+    "outputs/auc-001/pci-001/2026-06-30/"
+  ],
+  "request": "Ejecucion real AUC-001-PCI-002 autorizada para persistir runtime SPEC-013 hasta 2026-06-30",
+  "scope": "AUC-001 Meta Lead Quality Analysis; corrective SPEC-013 runtime persistence only"
+}

@@ -1,0 +1,37 @@
+{
+  "analytical_narrative": "La ejecucion PCI-002 transforma una brecha de empaquetado en un runtime fisico consumible: las cifras clave quedan reconciliadas por cobertura y senal, con invariantes PASS y lineage fisico para QA. La lectura estrategica principal no cambia el analisis de negocio anterior; cambia la auditabilidad del paquete.",
+  "derived_from": "evidence/evidence-set.json",
+  "execution_id": "AUC-001-PCI-002-2026-06-30-REAL-20260719",
+  "items": [
+    {
+      "confidence": "high",
+      "id": "K-001",
+      "statement": "El runtime fisico conserva la separacion entre gasto total, gasto comercial, gasto comercial matched y gasto comercial spend_only.",
+      "support": [
+        "spend_reconciliation",
+        "coverage_reconciliation"
+      ],
+      "type": "finding"
+    },
+    {
+      "confidence": "high",
+      "id": "K-002",
+      "statement": "El universo matched concentra 1.187 leads y 873,65 EUR de spend comercial matched; las metricas economicas canonicas son trazables a ese universo.",
+      "support": [
+        "coverage_reconciliation.matched",
+        "metrics"
+      ],
+      "type": "finding"
+    },
+    {
+      "confidence": "high",
+      "id": "K-003",
+      "statement": "La ejecucion PCI-002 no incorpora mejoras analiticas fuera de la correccion de persistencia autorizada.",
+      "support": [
+        "authorization gate",
+        "scope"
+      ],
+      "type": "limitation"
+    }
+  ]
+}
