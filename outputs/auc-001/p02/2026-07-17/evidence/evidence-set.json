@@ -1,0 +1,367 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-EVIDENCE-SET",
+  "status": "stabilized",
+  "period": {
+    "start": "2026-04-18",
+    "end": "2026-07-17"
+  },
+  "provider": "BigQuery MCP Server",
+  "source_tables": [
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal",
+    "intermediate.int_faro_lead_scoring"
+  ],
+  "query_records": {
+    "successful": [
+      "auc-001-p02-2026-07-21-coverage-leads",
+      "auc-001-p02-2026-07-21-coverage-spend",
+      "auc-001-p02-2026-07-21-evidence-global-quality",
+      "auc-001-p02-2026-07-21-evidence-spend-signal",
+      "auc-001-p02-2026-07-21-evidence-lead-side-by-ad",
+      "auc-001-p02-2026-07-21-evidence-spend-side-commercial-by-ad",
+      "auc-001-p02-2026-07-21-evidence-leads-by-campaign-adset",
+      "auc-001-p02-2026-07-21-evidence-spend-by-ad-name",
+      "auc-001-p02-2026-07-21-evidence-monthly-quality",
+      "auc-001-p02-2026-07-21-evidence-platform-quality",
+      "auc-001-p02-2026-07-21-evidence-ticket-status",
+      "auc-001-p02-2026-07-21-evidence-weekly-quality",
+      "auc-001-p02-2026-07-21-evidence-faro-signals-billetes",
+      "auc-001-p02-2026-07-21-evidence-form-product",
+      "auc-001-p02-2026-07-21-evidence-campaign-signal-domain",
+      "auc-001-p02-2026-07-21-evidence-lead-source-validation"
+    ],
+    "rejected_not_used_as_evidence": [
+      {
+        "request_id": "auc-001-p02-2026-07-21-evidence-reconciliation-global",
+        "error_code": "ERR_SCOPE_DENIED",
+        "reason": "Provider policy rejected a combined reconciliation query. Lead-side and spend-side were acquired separately and reconciled deterministically in the Evidence Set."
+      },
+      {
+        "request_id": "auc-001-p02-2026-07-21-evidence-monthly-commercial-spend",
+        "error_code": "ERR_COST_LIMIT_EXCEEDED",
+        "reason": "Temporal commercial spend query exceeded provider cost policy and is not used as evidence."
+      },
+      {
+        "request_id": "auc-001-p02-2026-07-21-evidence-weekly-commercial-spend",
+        "error_code": "ERR_COST_LIMIT_EXCEEDED",
+        "reason": "Temporal commercial spend query exceeded provider cost policy and is not used as evidence."
+      }
+    ],
+    "trace_artifact": "../execution/query-trace.json",
+    "successful_traceability_status": "complete_in_trace_artifact"
+  },
+  "facts": {
+    "lead_global": {
+      "lead_count": 1549,
+      "distinct_lead_count": 1549,
+      "tier_a_leads": 67,
+      "tier_b_leads": 402,
+      "ab_leads": 469,
+      "tier_c_leads": 648,
+      "tier_d_leads": 432,
+      "tier_unknown_leads": 0,
+      "avg_score_inicial": 50.0277598451,
+      "qualified_rate_ab_global": 0.3027759845,
+      "tier_a_rate_global": 0.0432537121,
+      "missing_ad_id_leads": 0,
+      "missing_ad_name_leads": 0
+    },
+    "spend_by_signal": [
+      {
+        "campaign_signal": "COMMERCIAL",
+        "spend_record_count": 9918,
+        "spend_amount": 1071.25001,
+        "distinct_ad_count": 14,
+        "spend_share": 0.6194254783
+      },
+      {
+        "campaign_signal": "ATTENTION",
+        "spend_record_count": 181,
+        "spend_amount": 372.36,
+        "distinct_ad_count": 7,
+        "spend_share": 0.2153010426
+      },
+      {
+        "campaign_signal": "ACTIVATION",
+        "spend_record_count": 123,
+        "spend_amount": 285.75,
+        "distinct_ad_count": 6,
+        "spend_share": 0.1652734791
+      }
+    ],
+    "reconciliation_summary": {
+      "matched": {
+        "ad_count": 12,
+        "lead_count": 1362,
+        "tier_a_leads": 55,
+        "tier_b_leads": 341,
+        "ab_leads": 396,
+        "commercial_spend": 1069.05001,
+        "cpl_commercial_matched": 0.7849119016,
+        "qualified_rate_ab_matched": 0.2907488987,
+        "cost_per_ab_commercial_matched": 2.6996212374,
+        "cost_per_tier_a_commercial_matched": 19.4372729091
+      },
+      "lead_only": {
+        "ad_count": 5,
+        "lead_count": 187,
+        "tier_a_leads": 12,
+        "tier_b_leads": 61,
+        "ab_leads": 73,
+        "commercial_spend": 0
+      },
+      "spend_only": {
+        "ad_count": 2,
+        "lead_count": 0,
+        "ab_leads": 0,
+        "commercial_spend": 2.2
+      },
+      "invariants": {
+        "commercial_spend_equals_matched_plus_spend_only": true,
+        "lead_total_equals_matched_plus_lead_only": true,
+        "ab_total_equals_matched_plus_lead_only_ab": true,
+        "tier_a_total_equals_matched_plus_lead_only_tier_a": true,
+        "prepared_ad_count_equals_coverage_sum": true
+      }
+    },
+    "top_ads_reconciled": [
+      {
+        "ad_id_norm": "120245828603090721",
+        "ad_name": "ViajeSinEstres_AlivioEmocional_ViajeSinEstres_Reel_v1",
+        "coverage_status": "matched",
+        "lead_count": 643,
+        "ab_leads": 187,
+        "tier_a_leads": 23,
+        "commercial_spend": 468.060008,
+        "cost_per_ab_commercial_matched": 2.5029946952,
+        "qualified_rate_ab_matched": 0.2908242613
+      },
+      {
+        "ad_id_norm": "120245829545180721",
+        "ad_name": "ViajaComoInvitado_Identidad_ViajarComoLocal_Reel_v1",
+        "coverage_status": "matched",
+        "lead_count": 359,
+        "ab_leads": 101,
+        "tier_a_leads": 17,
+        "commercial_spend": 245.839997,
+        "cost_per_ab_commercial_matched": 2.4340593762,
+        "qualified_rate_ab_matched": 0.2813370474
+      },
+      {
+        "ad_id_norm": "120247352473020721",
+        "ad_name": "FiltroBilletes_EscasezReal_3TipsDeViaje_Reel_v1",
+        "coverage_status": "lead_only",
+        "lead_count": 157,
+        "ab_leads": 59,
+        "tier_a_leads": 11,
+        "commercial_spend": 0
+      },
+      {
+        "ad_id_norm": "120245407987450721",
+        "ad_name": "FiltroBilletes_AutoSegmentacion_PrimeraVez_Reel_v1",
+        "coverage_status": "matched",
+        "lead_count": 58,
+        "ab_leads": 22,
+        "tier_a_leads": 3,
+        "commercial_spend": 48.96,
+        "cost_per_ab_commercial_matched": 2.2254545455,
+        "qualified_rate_ab_matched": 0.3793103448
+      }
+    ],
+    "campaign_adset": [
+      {
+        "campaign_name": "[META]_[CLP]_[CAPTACIÓN]_[ABO]",
+        "adset_name": "[PR]_[NATIVE FORM]_[AVG+]_[ISLA]",
+        "lead_count": 1267,
+        "ab_leads": 370,
+        "tier_a_leads": 53,
+        "avg_score_inicial": 49.5122336227,
+        "derived_commercial_spend_from_reconciled_ads": 929.520004,
+        "coverage_note": "Spend is derived from ad-level reconciliation, not from direct campaign fields in fct_spend."
+      },
+      {
+        "campaign_name": "[META]_[CLP]_[RTG]_[CBO]",
+        "adset_name": "[RTG]_[NATIVE FORM]_[INTERACCIONES + 50% VIDEO]_[DIASPORA]",
+        "lead_count": 187,
+        "ab_leads": 73,
+        "tier_a_leads": 12,
+        "avg_score_inicial": 54.0160427807,
+        "derived_commercial_spend_from_reconciled_ads": 0,
+        "coverage_note": "Lead-side only for commercial matched universe in this execution."
+      },
+      {
+        "campaign_name": "[META]_[CLP]_[CAPTACIÓN]_[ABO] - ESC",
+        "adset_name": "[PR]_[NATIVE FORM]_[AVG+]_[ISLA] - FiltroBilletes",
+        "lead_count": 50,
+        "ab_leads": 19,
+        "tier_a_leads": 2,
+        "avg_score_inicial": 53.82,
+        "derived_commercial_spend_from_reconciled_ads": 58.270004
+      },
+      {
+        "campaign_name": "[META]_[CLP]_[CAPTACIÓN]_[ABO] - ESC",
+        "adset_name": "[PR]_[NATIVE FORM]_[AVG+]_[ISLA] - ViajeInvitado",
+        "lead_count": 45,
+        "ab_leads": 7,
+        "tier_a_leads": 0,
+        "avg_score_inicial": 43.7555555556,
+        "derived_commercial_spend_from_reconciled_ads": 35.079997
+      }
+    ],
+    "temporal_quality": {
+      "monthly": [
+        {
+          "month_start": "2026-04-01",
+          "lead_count": 184,
+          "tier_a_leads": 8,
+          "ab_leads": 57,
+          "ab_rate": 0.3097826087,
+          "avg_score_inicial": 50.7065217391,
+          "period_note": "partial month"
+        },
+        {
+          "month_start": "2026-05-01",
+          "lead_count": 369,
+          "tier_a_leads": 19,
+          "ab_leads": 111,
+          "ab_rate": 0.3008130081,
+          "avg_score_inicial": 49.2655826558
+        },
+        {
+          "month_start": "2026-06-01",
+          "lead_count": 776,
+          "tier_a_leads": 31,
+          "ab_leads": 229,
+          "ab_rate": 0.2951030928,
+          "avg_score_inicial": 49.8440721649
+        },
+        {
+          "month_start": "2026-07-01",
+          "lead_count": 220,
+          "tier_a_leads": 9,
+          "ab_leads": 72,
+          "ab_rate": 0.3272727273,
+          "avg_score_inicial": 51.3863636364,
+          "period_note": "partial month through 2026-07-17"
+        }
+      ],
+      "weekly_quality_available": true,
+      "weekly_cost_quality_available": false,
+      "weekly_comparability": "partial; first and last weeks are partial and no approved rule converts partial weeks into complete-week comparisons"
+    },
+    "segments": {
+      "platform": [
+        {
+          "platform": "fb",
+          "lead_count": 1047,
+          "ab_leads": 329,
+          "tier_a_leads": 44,
+          "ab_rate": 0.3142311366,
+          "avg_score_inicial": 50.323782235
+        },
+        {
+          "platform": "ig",
+          "lead_count": 502,
+          "ab_leads": 140,
+          "tier_a_leads": 23,
+          "ab_rate": 0.2788844622,
+          "avg_score_inicial": 49.4103585657
+        }
+      ],
+      "ticket_status": [
+        {
+          "ticket_status": "solo_mirando",
+          "lead_count": 955,
+          "ab_leads": 53,
+          "tier_a_leads": 0,
+          "ab_rate": 0.0554973822,
+          "avg_score_inicial": 40.4219895288
+        },
+        {
+          "ticket_status": "en_proceso",
+          "lead_count": 376,
+          "ab_leads": 221,
+          "tier_a_leads": 13,
+          "ab_rate": 0.5877659574,
+          "avg_score_inicial": 60.7021276596
+        },
+        {
+          "ticket_status": "tiene_billetes",
+          "lead_count": 218,
+          "ab_leads": 195,
+          "tier_a_leads": 54,
+          "ab_rate": 0.8944954128,
+          "avg_score_inicial": 73.6972477064
+        }
+      ],
+      "has_tickets": [
+        {
+          "tiene_billetes": true,
+          "lead_count": 218,
+          "ab_leads": 195,
+          "tier_a_leads": 54,
+          "ab_rate": 0.8944954128,
+          "avg_score_inicial": 73.6972477064
+        },
+        {
+          "tiene_billetes": false,
+          "lead_count": 1331,
+          "ab_leads": 274,
+          "tier_a_leads": 13,
+          "ab_rate": 0.2058602554,
+          "avg_score_inicial": 46.151014275
+        }
+      ],
+      "product_form": [
+        {
+          "product": "isla",
+          "formulario_origen": "ISLA",
+          "lead_count": 1362,
+          "ab_leads": 396,
+          "tier_a_leads": 55,
+          "ab_rate": 0.2907488987,
+          "avg_score_inicial": 49.4801762115
+        },
+        {
+          "product": "diapora",
+          "formulario_origen": "DIASPORA",
+          "lead_count": 187,
+          "ab_leads": 73,
+          "tier_a_leads": 12,
+          "ab_rate": 0.3903743316,
+          "avg_score_inicial": 54.0160427807
+        }
+      ]
+    },
+    "lead_source_validation": {
+      "canonical_source": "marts.fct_lead_enriched",
+      "validation_source": "intermediate.int_faro_lead_scoring",
+      "lead_count_match": true,
+      "distinct_lead_count_match": true,
+      "tier_a_match": true,
+      "tier_b_match": true,
+      "ab_match": true,
+      "missing_ad_id_match": true
+    }
+  },
+  "limitations": [
+    "Combined MCP reconciliation query was rejected by provider scope policy; reconciliation was built from separately acquired lead-side and spend-side aggregates.",
+    "Commercial spend does not expose direct campaign/adset identifiers in fct_spend; campaign/adset economic reads are derived through ad-level reconciliation.",
+    "Temporal cost-quality by month/week is partial because spend temporal queries were rejected by cost policy.",
+    "Weekly quality exists, but first and last weeks are partial and no explicit partial-week comparability rule was approved.",
+    "Creative analysis uses ad_id_norm as technical key and ad_name only as descriptive label; no visual or causal creative inference is authorized.",
+    "No revenue or sales conversion source beyond authorized ticket_status-like fields is included."
+  ],
+  "unknowns": [
+    "Causal effect of campaign, platform, ad, creative, or ticket_status remains UNKNOWN.",
+    "Revenue or sale conversion efficiency remains not_available within this execution.",
+    "Complete weekly cost-quality trend remains UNKNOWN because temporal spend evidence was rejected."
+  ],
+  "excluded_interpretations": [
+    "lead_only is not interpreted as free acquisition.",
+    "spend_only is not interpreted as zero real leads.",
+    "ad_name is not used as a technical join key or ranking key.",
+    "Rejected MCP queries are not used as evidence."
+  ]
+}

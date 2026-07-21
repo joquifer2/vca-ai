@@ -1,0 +1,71 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-RECOMMENDATION-SET",
+  "status": "stabilized",
+  "source_knowledge_set": "../knowledge/knowledge-set.json",
+  "recommendations": [
+    {
+      "recommendation_id": "REC-001",
+      "category": "measurable_experiment",
+      "priority": "high",
+      "knowledge_refs": ["KNW-003", "KNW-005"],
+      "hypothesis": "A controlled increase in traffic or messaging that pre-qualifies ticket intent can increase A/B rate without materially degrading matched cost per A/B lead.",
+      "action": "Run a controlled Meta test that isolates ticket-intent framing or equivalent pre-qualification while preserving the current matched commercial baseline.",
+      "population": "Meta Lead Ads audiences and ads with traceable ad_id_norm in the matched commercial universe.",
+      "primary_metric": "qualified_rate_ab_matched",
+      "guardrail": "cost_per_ab_commercial_matched must not materially worsen versus baseline.",
+      "expected_direction": "Increase A/B share and maintain or improve cost per A/B lead.",
+      "success_criterion": "A/B rate improves with sufficient matched sample and no material deterioration in cost_per_ab_commercial_matched.",
+      "validation_window": "At least two complete comparable weeks or a documented approved period rule.",
+      "evidence_dependency": "EVD-has-tickets, EVD-ticket-status, EVD-reconciliation-summary",
+      "uncertainty": "Observed association, not causal proof.",
+      "stop_or_review_condition": "Stop or review if sample remains low, matched coverage degrades, or cost per A/B worsens."
+    },
+    {
+      "recommendation_id": "REC-002",
+      "category": "verifiable_action",
+      "priority": "high",
+      "knowledge_refs": ["KNW-002", "KNW-005"],
+      "action": "Review and document why 187 lead-side leads and 2.20 EUR commercial spend remain outside matched coverage.",
+      "supporting_evidence": "EVD-reconciliation-summary",
+      "verifiable_result": "Coverage register classifies each lead_only and spend_only ad_id_norm as expected, data latency, mapping gap, or unresolved.",
+      "closure_criterion": "All unmatched ad_id_norm values have a documented cause or an explicit UNKNOWN retained for future execution.",
+      "risk": "Without this review, quality-rich lead_only groups can be overread economically.",
+      "dependency": "Authorized data owner review of ad_id_norm mapping and spend ingestion coverage.",
+      "expected_impact": "Improves reliability of future cost-quality decisions.",
+      "confidence": "high for need, medium for remediation impact."
+    },
+    {
+      "recommendation_id": "REC-003",
+      "category": "measurable_experiment",
+      "priority": "medium-high",
+      "knowledge_refs": ["KNW-004"],
+      "hypothesis": "Reducing dependency on the two highest-volume ads while testing adjacent concepts can preserve volume and improve robustness of quality signals.",
+      "action": "Create a small controlled creative/message diversification test anchored to ad_id_norm tracking, not ad_name as key.",
+      "population": "Matched ads with sufficient denominator, excluding spend_only and lead_only from cost-quality claims.",
+      "primary_metric": "matched A/B leads per ad and cost_per_ab_commercial_matched",
+      "guardrail": "Total matched lead volume should not fall materially during the test.",
+      "expected_direction": "Maintain volume while reducing concentration risk and finding additional qualified pockets.",
+      "success_criterion": "At least one non-dominant ad reaches sufficient sample with comparable or better A/B rate and acceptable cost per A/B lead.",
+      "validation_window": "Two complete comparable weeks or one approved full evaluation period.",
+      "evidence_dependency": "EVD-top-ads, EVD-campaign-adset",
+      "uncertainty": "Current evidence supports concentration, not creative causality.",
+      "stop_or_review_condition": "Stop or review if sample is insufficient or performance depends on partial-week artifacts."
+    },
+    {
+      "recommendation_id": "REC-004",
+      "category": "non_actionable_hypothesis",
+      "priority": "medium",
+      "knowledge_refs": ["KNW-006"],
+      "hypothesis": "July partial quality may indicate improvement, but current evidence does not establish a durable trend.",
+      "support": "Monthly quality shows July A/B rate at 32.73%, higher than June's 29.51%, but July is partial and temporal spend evidence is unavailable.",
+      "uncertainty": "Partial month and rejected temporal spend queries.",
+      "missing_evidence": "Complete July period and authorized temporal spend-quality evidence.",
+      "promotion_condition": "Promote to measurable experiment or action only after a complete comparable period validates the change."
+    }
+  ],
+  "excluded_actions": [
+    "No budget reallocation is recommended as an immediate decision because key economic comparisons are partial outside matched coverage.",
+    "No creative winner is declared because ad_name is a label and causality is not validated.",
+    "No revenue optimization recommendation is issued because revenue or sales conversion evidence is not available."
+  ]
+}

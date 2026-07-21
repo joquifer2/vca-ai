@@ -1,0 +1,156 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-KNOWLEDGE-SET",
+  "status": "stabilized",
+  "source_evidence_set": "../evidence/evidence-set.json",
+  "analytical_investigation_record": [
+    {
+      "finding_id": "FND-001",
+      "observation": "The execution generated 1549 leads and 469 A/B leads; Tier A is small at 67 leads.",
+      "support": ["EVD-global-quality"],
+      "importance": "Volume is substantial, but the highest-quality segment is limited.",
+      "uncertainty": "FARO tier is the authorized quality proxy; downstream revenue is not available.",
+      "related_findings": ["FND-002", "FND-004"]
+    },
+    {
+      "finding_id": "FND-002",
+      "observation": "The commercial matched universe contains 1362 leads, 396 A/B leads and 1069.05 EUR commercial spend.",
+      "support": ["EVD-reconciliation-summary"],
+      "importance": "Canonical cost-quality metrics are calculable only on matched coverage.",
+      "uncertainty": "Lead-only and spend-only coverage must not be read as zero-cost or zero-lead performance.",
+      "related_findings": ["FND-001", "FND-003"]
+    },
+    {
+      "finding_id": "FND-003",
+      "observation": "Matched cost per A/B lead is 2.70 EUR and cpl_commercial_matched is 0.78 EUR.",
+      "support": ["EVD-reconciliation-summary"],
+      "importance": "Economic efficiency is strong in the matched universe, but it is not a global CPL.",
+      "uncertainty": "Temporal spend evidence is partial and campaign/adset spend is derived via ad-level reconciliation.",
+      "related_findings": ["FND-002", "FND-005"]
+    },
+    {
+      "finding_id": "FND-004",
+      "observation": "The strongest quality separator is ticket or ticket-like intent: tiene_billetes true has 89.45% A/B rate versus 20.59% when false.",
+      "support": ["EVD-has-tickets", "EVD-ticket-status"],
+      "importance": "Lead quality is much more explained by intent status than by aggregate volume.",
+      "uncertainty": "This is an observed association, not a causal claim or a post-lead revenue outcome.",
+      "related_findings": ["FND-001", "FND-007"]
+    },
+    {
+      "finding_id": "FND-005",
+      "observation": "The main captacion adset concentrates 1267 of 1549 leads and 929.52 EUR of matched commercial spend.",
+      "support": ["EVD-campaign-adset", "EVD-top-ads"],
+      "importance": "The system is highly dependent on one acquisition structure for scale.",
+      "uncertainty": "Campaign/adset spend is derived from ad-level reconciliation due fct_spend schema.",
+      "related_findings": ["FND-003", "FND-006"]
+    },
+    {
+      "finding_id": "FND-006",
+      "observation": "Some high-quality-looking lead-side groups, such as RTG/DIASPORA, are lead_only for commercial matched spend in this execution.",
+      "support": ["EVD-campaign-adset", "EVD-reconciliation-summary"],
+      "importance": "Quality comparisons and economic comparisons are not equivalent when coverage differs.",
+      "uncertainty": "The absence of matched commercial spend does not prove zero investment or free acquisition.",
+      "related_findings": ["FND-002", "FND-005"]
+    },
+    {
+      "finding_id": "FND-007",
+      "observation": "Monthly A/B quality is broadly stable around 29.5%-32.7%, with July partial data slightly higher.",
+      "support": ["EVD-temporal-quality"],
+      "importance": "There is no strong deterioration signal in quality across the monthly lead-side view.",
+      "uncertainty": "April and July are partial months; weekly and temporal cost-quality are partial.",
+      "related_findings": ["FND-001", "FND-003"]
+    },
+    {
+      "finding_id": "FND-008",
+      "observation": "Facebook contributes 1047 leads with 31.42% A/B rate; Instagram contributes 502 leads with 27.89% A/B rate.",
+      "support": ["EVD-platform-quality"],
+      "importance": "Platform differences exist but are moderate and remain associative.",
+      "uncertainty": "Platform spend and placement-level economics were not available in this execution.",
+      "related_findings": ["FND-004", "FND-007"]
+    }
+  ],
+  "knowledge_claims": [
+    {
+      "knowledge_id": "KNW-001",
+      "type": "conclusion",
+      "evidence_refs": ["EVD-global-quality", "EVD-reconciliation-summary"],
+      "interpretation": "AUC-001 is buying substantial Meta lead volume, but only about 30.28% of total leads are A/B and only 4.33% are Tier A.",
+      "business_implication": "The decision problem is not lead availability; it is improving the mix of qualified and high-intent leads.",
+      "limitation_or_uncertainty": "FARO quality is the available quality standard; revenue conversion is not available."
+    },
+    {
+      "knowledge_id": "KNW-002",
+      "type": "insight",
+      "evidence_refs": ["EVD-reconciliation-summary"],
+      "interpretation": "The matched commercial universe is economically efficient on observed metrics, with 0.78 EUR cpl_commercial_matched and 2.70 EUR cost_per_ab_commercial_matched.",
+      "business_implication": "The current matched acquisition base is not obviously inefficient economically, so optimization should avoid reading generic CPL in isolation.",
+      "limitation_or_uncertainty": "This applies only to matched commercial coverage and excludes lead_only/spend_only interpretation."
+    },
+    {
+      "knowledge_id": "KNW-003",
+      "type": "insight",
+      "evidence_refs": ["EVD-has-tickets", "EVD-ticket-status"],
+      "interpretation": "Intent/status signals separate quality much more sharply than aggregate campaign volume: tiene_billetes true reaches 89.45% A/B and solo_mirando only 5.55% A/B.",
+      "business_implication": "Future optimization should focus on increasing qualified intent signals, not merely more form submissions.",
+      "limitation_or_uncertainty": "The relationship is observational and must not be treated as causal or as revenue validation."
+    },
+    {
+      "knowledge_id": "KNW-004",
+      "type": "risk",
+      "evidence_refs": ["EVD-campaign-adset", "EVD-top-ads"],
+      "interpretation": "Volume and spend are concentrated in the main captacion structure and two high-volume ads.",
+      "business_implication": "A small number of assets can dominate learning and reporting, creating dependency risk and possible overfitting to current messages.",
+      "limitation_or_uncertainty": "Ad-level sample is sufficient for descriptive ranking, but creative causality remains UNKNOWN."
+    },
+    {
+      "knowledge_id": "KNW-005",
+      "type": "hypothesis",
+      "evidence_refs": ["EVD-campaign-adset", "EVD-form-product", "EVD-reconciliation-summary"],
+      "interpretation": "DIASPORA/RTG and ticket-intent-aligned traffic may contain higher quality share, but coverage prevents a full economic comparison.",
+      "business_implication": "There may be quality upside outside the dominant matched captacion base, but it is not yet safe to reallocate spend on this evidence alone.",
+      "limitation_or_uncertainty": "Lead-only coverage and missing temporal spend make the economic claim partial."
+    },
+    {
+      "knowledge_id": "KNW-006",
+      "type": "conclusion",
+      "evidence_refs": ["EVD-temporal-quality"],
+      "interpretation": "Lead-side quality is stable month to month, with July partial data slightly stronger but not enough to claim a durable trend.",
+      "business_implication": "There is no urgent evidence of quality collapse; optimization can be framed as improving mix rather than emergency correction.",
+      "limitation_or_uncertainty": "Weekly comparability and temporal cost-quality remain partial."
+    }
+  ],
+  "priorities": [
+    {
+      "priority_id": "PRI-001",
+      "basis": "quality separation and business relevance",
+      "knowledge_refs": ["KNW-003"],
+      "priority": "high"
+    },
+    {
+      "priority_id": "PRI-002",
+      "basis": "coverage and economic interpretation risk",
+      "knowledge_refs": ["KNW-002", "KNW-005"],
+      "priority": "high"
+    },
+    {
+      "priority_id": "PRI-003",
+      "basis": "concentration risk",
+      "knowledge_refs": ["KNW-004"],
+      "priority": "medium-high"
+    }
+  ],
+  "analytical_narrative": {
+    "status": "stabilized",
+    "text": "El fenomeno principal es una tension entre escala eficiente y calidad selectiva: Meta esta generando mucho volumen a bajo coste observado en el universo comercial matched, pero la calidad alta se concentra en señales de intencion muy concretas y en una parte pequena del volumen. Los hallazgos estructurales son la dependencia del matched comercial, la concentracion de volumen en pocas estructuras y la separacion fuerte que produce tener billetes o estados equivalentes; los hallazgos secundarios son las diferencias moderadas por plataforma y la estabilidad mensual. El trade-off dominante es no sacrificar escala barata mientras se intenta desplazar el mix hacia señales de mayor intencion. La limitacion que mas condiciona la lectura es la cobertura: lead_only, spend_only y la falta de coste temporal impiden convertir todos los patrones de calidad en decisiones economicas. La implicacion estrategica es que VCA no necesita solo mas leads, necesita que Meta aprenda y sea evaluada por calidad observable. La idea que debe quedar una semana despues es: el coste parece controlado, pero el valor esta en mover el mix hacia intencion, no en celebrar volumen."
+  },
+  "risks": [
+    "Over-interpreting lead_only groups as zero-cost efficient.",
+    "Treating ad_name patterns as creative causality.",
+    "Using generic CPL/CPQL terminology without matched commercial universe.",
+    "Comparing partial weeks as complete weeks."
+  ],
+  "unknowns": [
+    "Revenue conversion and sales outcome remain not_available.",
+    "Creative causal impact remains UNKNOWN.",
+    "Temporal cost-quality trend remains UNKNOWN."
+  ]
+}

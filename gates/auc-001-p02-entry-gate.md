@@ -1,113 +1,113 @@
-# AUC-001 P02 Entry Gate
+# AUC-001 P02 Gate de Entrada
 
-## Metadata
+## Metadatos
 
-| Field | Value |
-|---|---|
-| Gate ID | AUC-001-P02-ENTRY-GATE |
-| Type | QA / Implementation Entry Gate |
-| Category | P02 Entry Gate |
-| Parent Use Case | AUC-001 - Meta Lead Quality Analysis |
-| Phase | AUC-001-P02 - Analytical Product Contract Implementation |
-| Owner | QA Gate Agent |
-| Date | 2026-07-21 |
-| Status | Passed With Conditions |
-| Decision | PASS WITH CONDITIONS |
-
----
-
-## Purpose
-
-This gate evaluates whether `AUC-001-P02` may advance from approved planning into controlled implementation.
-
-The gate authorizes implementation work derived from `SPEC-014 - AUC-001 Analytical Product Contract` and from the approved P02 task plan.
-
-It does not authorize analytical execution, BigQuery evidence acquisition, report generation, output materialization, experimental validation or P02 closure.
+| Campo | Valor |
+| --- | --- |
+| ID del gate | AUC-001-P02-ENTRY-GATE |
+| Tipo | Gate de entrada de QA / implementación |
+| Categoría | Gate de entrada P02 |
+| Caso de uso padre | AUC-001 - Meta Lead Quality Analysis |
+| Fase | AUC-001-P02 - Implementación del contrato analítico de producto |
+| Responsable | QA Gate Agent |
+| Fecha | 2026-07-21 |
+| Estado | Aprobado con condiciones |
+| Decisión | PASS WITH CONDITIONS |
 
 ---
 
-## Inputs Reviewed
+## Propósito
 
-| Artifact | Status | Result |
-|---|---|---|
-| [SPEC-014 Analytical Product Contract](../specs/spec-014-auc-001-analytical-product-contract.md) | Closed | Approved source of requirements |
-| [AUC-001 P01 Documentary Closure Gate](auc-001-p01-documentary-closure-gate.md) | PASS | P01 closed and ready for controlled post-P01 planning |
-| [AUC-001 P02 Task Plan](../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) | Ready for Entry Gate review | Scope translated into implementable tasks |
-| Reviewer confirmation | PASS | No findings after correction of reviewer observations |
-| AUC-001 Skill, Runbook and references | Available | Routing and execution constraints preserved |
+Este gate evalúa si `AUC-001-P02` puede avanzar desde la planificación aprobada hacia una implementación controlada.
+
+El gate autoriza trabajo de implementación derivado de `SPEC-014 - AUC-001 Analytical Product Contract` y del plan de tareas P02 aprobado.
+
+No autoriza ejecución analítica, adquisición de evidencia mediante BigQuery, generación de informes, materialización de salidas, validación experimental ni cierre de P02.
 
 ---
 
-## Gate Assessment
+## Entradas revisadas
 
-| Check | Result | Notes |
-|---|---|---|
-| P02 depends on an approved contract | PASS | `SPEC-014` is closed and P01 has documentary closure `PASS`. |
-| P02 scope is traceable to SPEC-014 | PASS | The task plan maps implementation work to approved contract requirements. |
-| No informal scope expansion detected | PASS | The plan does not introduce new analytical questions, new sources, new metrics or new product obligations outside SPEC-014. |
-| Runtime, Evidence, Knowledge, Recommendations and Presentation responsibilities are separated | PASS | The task plan preserves contract boundaries and avoids mixing facts, interpretations and recommendations. |
-| Conditional gaps are treated according to SPEC-014 | PASS | `ad_name`, `ticket_status` and weekly evolution remain conditional and cannot be promoted silently to mandatory blockers. |
-| Robustness and coverage states are included | PASS | P02 tasks cover question-level completeness, criticality, coverage states, `UNKNOWN`, `not_available`, partial coverage and robustness evidence. |
-| Recommendations remain constrained | PASS | Recommendations must be classified as measurable experiments, verifiable actions or non-actionable hypotheses according to available support. |
-| Output and execution boundaries are explicit | PASS | The plan states that implementation does not equal analytical execution or output generation. |
+| Artefacto | Estado | Resultado |
+| --- | --- | --- |
+| [SPEC-014 Analytical Product Contract](../specs/spec-014-auc-001-analytical-product-contract.md) | Cerrado | Fuente aprobada de requisitos |
+| [AUC-001 P01 Documentary Closure Gate](auc-001-p01-documentary-closure-gate.md) | PASS | P01 cerrado y listo para planificación controlada posterior a P01 |
+| [AUC-001 P02 Task Plan](../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) | Listo para revisión del gate de entrada | Alcance traducido a tareas implementables |
+| Confirmación del revisor | PASS | Sin hallazgos tras corregir observaciones del Reviewer Agent |
+| Skill, runbook y referencias de AUC-001 | Disponibles | Routing y restricciones de ejecución preservados |
 
 ---
 
-## Authorized Scope
+## Evaluación del gate
 
-The Implementation Agent is authorized to start controlled implementation of P02 tasks that materialize support for SPEC-014, including:
-
-- structured support for the Analytical Product Contract and its coverage matrix;
-- runtime or contract structures required to represent question-level completeness, coverage state and robustness;
-- local generation logic for Evidence, Knowledge and Recommendations, preserving their boundaries;
-- report construction capabilities for common core, analytical projection and executive projection;
-- local tests and QA evidence required before any real execution;
-- documentary updates needed to describe implementation state and traceability.
-
-Implementation must follow the approved P02 task plan and preserve its ordering unless a deviation is explicitly documented and reviewed.
-
----
-
-## Not Authorized By This Gate
-
-This gate does not authorize:
-
-- BigQuery MCP evidence acquisition;
-- direct BigQuery CLI usage or fallback data access;
-- execution of a real AUC-001 analytical run;
-- creation of new Evidence, Knowledge, Recommendation, Presentation or report outputs;
-- experimental validation of the implemented product contract;
-- opening or closing a P02 Exit Gate;
-- modifying historical outputs;
-- using historical outputs as expected values or as a source of new analytical knowledge;
-- expanding the Data Contract, Analytical Contract, SPEC-014 or the approved P02 scope;
-- promoting any capability to Foundation.
+| Verificación | Resultado | Notas |
+| --- | --- | --- |
+| P02 depende de un contrato aprobado | PASS | `SPEC-014` está cerrado y P01 tiene cierre documental `PASS`. |
+| El alcance de P02 es trazable a SPEC-014 | PASS | El plan de tareas mapea el trabajo de implementación a los requisitos aprobados del contrato. |
+| No se detecta ampliación informal de alcance | PASS | El plan no introduce nuevas preguntas analíticas, fuentes, métricas u obligaciones de producto fuera de SPEC-014. |
+| Runtime, Evidence, Knowledge, Recommendations y Presentation están separados | PASS | El plan preserva los límites del contrato y evita mezclar hechos, interpretaciones y recomendaciones. |
+| Los gaps condicionales se tratan según SPEC-014 | PASS | `ad_name`, `ticket_status` y evolución semanal siguen siendo condicionales y no pueden promoverse silenciosamente a bloqueadores obligatorios. |
+| Robustez y estados de cobertura están incluidos | PASS | Las tareas P02 cubren completitud por pregunta, criticidad, estados de cobertura, `UNKNOWN`, `not_available`, cobertura parcial y robustez. |
+| Las recomendaciones permanecen acotadas | PASS | Deben clasificarse como experimentos medibles, acciones verificables o hipótesis no accionables según soporte disponible. |
+| Los límites de ejecución y salidas son explícitos | PASS | El plan establece que implementación no equivale a ejecución analítica ni generación de salidas. |
 
 ---
 
-## Mandatory Conditions
+## Alcance autorizado
 
-| Condition | Requirement |
-|---|---|
-| C01 | Implementation must remain derived exclusively from SPEC-014 and the approved P02 task plan. |
-| C02 | Evidence generation logic must produce facts, metrics, coverage states, limitations and traceability only; it must not produce findings, opportunities or recommendations. |
-| C03 | Knowledge generation logic must derive interpretation only from stabilized Evidence and must preserve `UNKNOWN`, insufficiency and partial coverage. |
-| C04 | Recommendation generation logic must derive only from Knowledge and classify each recommendation as `measurable_experiment`, `verifiable_action` or `non_actionable_hypothesis`. |
-| C05 | `ad_name` absence must not block AQ-005 by itself; it may only limit interpretation or label quality according to SPEC-014. |
-| C06 | `ticket_status` must remain conditional on an authorized post-lead source and must not be inferred from FARO quality signals. |
-| C07 | Weekly evolution must remain conditional on temporal comparability; monthly coverage remains the minimum expected basis for AQ-009. |
-| C08 | Local tests must verify coverage matrix semantics, completeness by question and criticality, robustness evidence, projection equivalence and mandatory depth. |
-| C09 | Any real evidence acquisition or analytical execution requires a later explicit authorization using the AUC-001 Runbook and BigQuery MCP Server only. |
-| C10 | P02 closure requires a later QA assessment against implemented artifacts, tests and any authorized execution evidence. |
+El Implementation Agent está autorizado a iniciar implementación controlada de tareas P02 que materialicen soporte para SPEC-014, incluyendo:
+
+- soporte estructurado para el contrato analítico de producto y su matriz de cobertura;
+- estructuras de runtime o de contrato necesarias para representar la completitud por pregunta, el estado de cobertura y la robustez;
+- lógica local de generación para Evidence, Knowledge y Recommendations, preservando sus límites;
+- capacidades de construcción de informes desde el núcleo común, la proyección analítica y la proyección ejecutiva;
+- pruebas locales y evidencia de QA requeridas antes de cualquier ejecución real;
+- documentación necesaria para describir el estado de implementación y la trazabilidad.
+
+La implementación debe seguir el plan P02 aprobado y preservar su orden salvo desviación explícitamente documentada y revisada.
 
 ---
 
-## Decision
+## No autorizado por este gate
+
+Este gate no autoriza:
+
+- adquisición de evidencia mediante BigQuery MCP;
+- uso directo de BigQuery CLI o acceso a datos mediante fallback;
+- ejecución de una corrida analítica real de AUC-001;
+- creación de nuevas salidas de Evidence, Knowledge, Recommendation, Presentation o reportes;
+- validación experimental del contrato de producto implementado;
+- apertura o cierre de un P02 Exit Gate;
+- modificación de outputs históricos;
+- uso de salidas históricas como valores esperados o fuente de nuevo conocimiento analítico;
+- ampliación del Data Contract, Analytical Contract, SPEC-014 o alcance P02 aprobado;
+- promoción de capacidades a Foundation.
+
+---
+
+## Condiciones Obligatorias
+
+| Condición | Requisito |
+| --- | --- |
+| C01 | La implementación debe permanecer derivada exclusivamente de SPEC-014 y del plan P02 aprobado. |
+| C02 | La lógica de Evidence debe producir solo hechos, métricas, estados de cobertura, limitaciones y trazabilidad; no debe producir hallazgos, oportunidades ni recomendaciones. |
+| C03 | La lógica de Knowledge debe derivar interpretación únicamente desde Evidence estabilizada y preservar `UNKNOWN`, insuficiencia y cobertura parcial. |
+| C04 | La lógica de Recommendations debe derivar solo desde Knowledge y clasificar cada recomendación como `measurable_experiment`, `verifiable_action` o `non_actionable_hypothesis`. |
+| C05 | La ausencia de `ad_name` no debe bloquear AQ-005 por sí sola; solo puede limitar interpretación o calidad de etiqueta según SPEC-014. |
+| C06 | `ticket_status` debe seguir siendo condicional a una fuente post-lead autorizada y no debe inferirse desde señales de calidad FARO. |
+| C07 | La evolución semanal debe seguir condicionada por comparabilidad temporal; la cobertura mensual sigue siendo la base mínima esperada para AQ-009. |
+| C08 | Las pruebas locales deben verificar la semántica de la matriz de cobertura, la completitud por pregunta y criticidad, la robustez, la equivalencia de proyecciones y la profundidad obligatoria. |
+| C09 | Cualquier adquisición real de evidencia o ejecución analítica requiere autorización explícita posterior usando únicamente AUC-001 Runbook y BigQuery MCP Server. |
+| C10 | El cierre de P02 requiere evaluación QA posterior sobre artefactos implementados, pruebas y cualquier evidencia de ejecución autorizada. |
+
+---
+
+## Decisión
 
 ```text
 PASS WITH CONDITIONS
 ```
 
-AUC-001-P02 is authorized to enter controlled implementation.
+AUC-001-P02 está autorizado para entrar en implementación controlada.
 
-The authorized implementation is bounded by SPEC-014 and by the P02 task plan. Execution, BigQuery acquisition, output materialization, experimental validation and P02 closure remain outside this gate and require later authorization.
+La implementación autorizada está delimitada por SPEC-014 y por el plan P02. La ejecución, la adquisición en BigQuery, la materialización de salidas, la validación experimental y el cierre de P02 quedan fuera de este gate y requieren autorización posterior.

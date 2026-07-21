@@ -1,0 +1,470 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-MCP-QUERY-TRACE",
+  "status": "reconstructed_from_acquisition_log",
+  "reconstruction_basis": "Existing successful MCP acquisition trace references, request identifiers, SQL texts, source tables, execution contexts and byte/cost decisions recorded during the 2026-07-21 run; no new analytical evidence was acquired.",
+  "provider": "BigQuery MCP Server",
+  "successful_queries": [
+    {
+      "request_id": "auc-001-p02-2026-07-21-coverage-leads",
+      "status": "success",
+      "trace_reference": "trc-a7af328a139747f094e9c26c9f27f125",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "scope": "full_available_source_coverage"
+      },
+      "filters": [
+        "day IS NOT NULL"
+      ],
+      "granularity": "source coverage aggregate",
+      "sql": "SELECT MIN(day) AS min_day, MAX(day) AS max_day, COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_lead_count FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day IS NOT NULL",
+      "estimated_bytes": 44933,
+      "bytes_processed": 44933,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-coverage-spend",
+      "status": "success",
+      "trace_reference": "trc-7a5605977f6540a588612a5bceaf499c",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_spend"
+      ],
+      "period": {
+        "scope": "full_available_source_coverage"
+      },
+      "filters": [
+        "spend_period IS NOT NULL"
+      ],
+      "granularity": "source coverage aggregate",
+      "sql": "SELECT MIN(spend_period) AS min_day, MAX(spend_period) AS max_day, COUNT(*) AS spend_record_count, SUM(spend_amount) AS total_spend_amount FROM `datamart-vca-494114.marts.fct_spend` WHERE spend_period IS NOT NULL",
+      "estimated_bytes": 163552,
+      "bytes_processed": 163552,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-global-quality",
+      "status": "success",
+      "trace_reference": "trc-3875ee58ac6d4c59aaea42a3a923b598",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "aggregate",
+      "sql": "SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier = 'B') AS tier_b_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, COUNTIF(lead_tier = 'C') AS tier_c_leads, COUNTIF(lead_tier = 'D') AS tier_d_leads, COUNTIF(lead_tier IS NULL) AS tier_unknown_leads, AVG(score_inicial) AS avg_score_inicial, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS missing_ad_id_leads, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS missing_ad_name_leads FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'",
+      "estimated_bytes": 186618,
+      "bytes_processed": 186618,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-spend-signal",
+      "status": "success",
+      "trace_reference": "trc-09723c7700eb4a758dfa0c00c806677c",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_spend"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "spend_period BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "campaign_signal",
+      "sql": "SELECT campaign_signal, COUNT(*) AS spend_record_count, SUM(spend_amount) AS spend_amount, COUNT(DISTINCT ad_id) AS distinct_ad_count FROM `datamart-vca-494114.marts.fct_spend` WHERE spend_period BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY campaign_signal ORDER BY spend_amount DESC",
+      "estimated_bytes": 490475,
+      "bytes_processed": 490475,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-lead-side-by-ad",
+      "status": "success",
+      "trace_reference": "trc-bee5fb7fc13648f991c72cb745dba473",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'",
+        "ad_id IS NOT NULL",
+        "TRIM(ad_id) != ''"
+      ],
+      "granularity": "ad_id_norm",
+      "sql": "SELECT REGEXP_REPLACE(ad_id, r'^ag:', '') AS ad_id_norm, ANY_VALUE(ad_name) AS ad_name, ANY_VALUE(campaign_id) AS campaign_id, ANY_VALUE(campaign_name) AS campaign_name, ANY_VALUE(adset_id) AS adset_id, ANY_VALUE(adset_name) AS adset_name, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier = 'B') AS tier_b_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' AND ad_id IS NOT NULL AND TRIM(ad_id) != '' GROUP BY ad_id_norm ORDER BY lead_count DESC",
+      "estimated_bytes": 342367,
+      "bytes_processed": 342367,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-spend-side-commercial-by-ad",
+      "status": "success",
+      "trace_reference": "trc-c7c38dc1b648403e8e691f49298413d2",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_spend"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "spend_period BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'",
+        "campaign_signal = 'COMMERCIAL'",
+        "ad_id IS NOT NULL",
+        "TRIM(ad_id) != ''"
+      ],
+      "granularity": "ad_id_norm",
+      "sql": "SELECT ad_id AS ad_id_norm, ANY_VALUE(ad_name) AS ad_name, COUNT(*) AS spend_record_count, SUM(spend_amount) AS commercial_spend FROM `datamart-vca-494114.marts.fct_spend` WHERE spend_period BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' AND campaign_signal = 'COMMERCIAL' AND ad_id IS NOT NULL AND TRIM(ad_id) != '' GROUP BY ad_id_norm ORDER BY commercial_spend DESC",
+      "estimated_bytes": 1043559,
+      "bytes_processed": 1043559,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-leads-by-campaign-adset",
+      "status": "success",
+      "trace_reference": "trc-ca967f0c59a44ecc84825577336025b2",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "campaign_id, adset_id",
+      "sql": "SELECT campaign_id, ANY_VALUE(campaign_name) AS campaign_name, adset_id, ANY_VALUE(adset_name) AS adset_name, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY campaign_id, adset_id ORDER BY lead_count DESC",
+      "estimated_bytes": 218414,
+      "bytes_processed": 218414,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-spend-by-ad-name",
+      "status": "success",
+      "trace_reference": "trc-cd39b61c4e17494ead03fe9efe3ddf39",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_spend"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "spend_period BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'",
+        "campaign_signal = 'COMMERCIAL'"
+      ],
+      "granularity": "ad_name",
+      "sql": "SELECT ad_name, COUNT(DISTINCT ad_id) AS distinct_ad_count, SUM(spend_amount) AS commercial_spend FROM `datamart-vca-494114.marts.fct_spend` WHERE spend_period BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' AND campaign_signal = 'COMMERCIAL' GROUP BY ad_name ORDER BY commercial_spend DESC",
+      "estimated_bytes": 1043559,
+      "bytes_processed": 1043559,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-monthly-quality",
+      "status": "success",
+      "trace_reference": "trc-ce5af60c265940e89ee98b198c29ce78",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "month_start",
+      "sql": "SELECT DATE_TRUNC(day, MONTH) AS month_start, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY month_start ORDER BY month_start",
+      "estimated_bytes": 30628,
+      "bytes_processed": 30628,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-platform-quality",
+      "status": "success",
+      "trace_reference": "trc-55cb123506314aedb832cd62d495180c",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "platform",
+      "sql": "SELECT platform, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY platform ORDER BY lead_count DESC",
+      "estimated_bytes": 37076,
+      "bytes_processed": 37076,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-ticket-status",
+      "status": "success",
+      "trace_reference": "trc-5cf7d11da0e74ba0a52f63c76f29d041",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "ticket_status",
+      "sql": "SELECT ticket_status, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY ticket_status ORDER BY lead_count DESC",
+      "estimated_bytes": 52880,
+      "bytes_processed": 52880,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-weekly-quality",
+      "status": "success",
+      "trace_reference": "trc-d9489f5380824eb387b250ea04bf9dfe",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "week_start",
+      "sql": "SELECT DATE_TRUNC(day, WEEK(MONDAY)) AS week_start, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY week_start ORDER BY week_start",
+      "estimated_bytes": 30628,
+      "bytes_processed": 30628,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-faro-signals-billetes",
+      "status": "success",
+      "trace_reference": "trc-a631607212034173800f6297f7f3999e",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "tiene_billetes",
+      "sql": "SELECT tiene_billetes, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY tiene_billetes ORDER BY lead_count DESC",
+      "estimated_bytes": 32240,
+      "bytes_processed": 32240,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-form-product",
+      "status": "success",
+      "trace_reference": "trc-0b08100768ac443db05aee2d9bfdf2f8",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "product, formulario_origen",
+      "sql": "SELECT product, formulario_origen, COUNT(*) AS lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score_inicial FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-07-17' GROUP BY product, formulario_origen ORDER BY lead_count DESC LIMIT 20",
+      "estimated_bytes": 51309,
+      "bytes_processed": 51309,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-campaign-signal-domain",
+      "status": "success",
+      "trace_reference": "trc-54f734e125b84af28b99fa3fc25631bf",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.marts.dim_campaign_signal"
+      ],
+      "period": {
+        "scope": "domain_reference"
+      },
+      "filters": [],
+      "granularity": "signal_code",
+      "sql": "SELECT signal_code, signal_name, signal_description FROM `datamart-vca-494114.marts.dim_campaign_signal` ORDER BY signal_code",
+      "estimated_bytes": 500,
+      "bytes_processed": 0,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-lead-source-validation",
+      "status": "success",
+      "trace_reference": "trc-e1f46d2af72c415aa084544bf38e96e4",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "intermediate",
+        "max_bytes_billed": 1073741824
+      },
+      "tables": [
+        "datamart-vca-494114.intermediate.int_faro_lead_scoring"
+      ],
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-07-17"
+      },
+      "filters": [
+        "lead_date BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'"
+      ],
+      "granularity": "aggregate",
+      "sql": "SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_lead_count, COUNTIF(lead_tier = 'A') AS tier_a_leads, COUNTIF(lead_tier = 'B') AS tier_b_leads, COUNTIF(lead_tier IN ('A','B')) AS ab_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS missing_ad_id_leads, MIN(lead_date) AS min_day, MAX(lead_date) AS max_day FROM `datamart-vca-494114.intermediate.int_faro_lead_scoring` WHERE lead_date BETWEEN DATE '2026-04-18' AND DATE '2026-07-17'",
+      "estimated_bytes": 86845,
+      "bytes_processed": 86845,
+      "policy_decision": "allow",
+      "cost_decision": "within_limit",
+      "used_as_evidence": true
+    }
+  ],
+  "rejected_queries": [
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-reconciliation-global",
+      "status": "rejected",
+      "trace_reference": "trc-c76ee59cd21948f3b47730a6ad5047b2",
+      "error_code": "ERR_SCOPE_DENIED",
+      "policy_decision": "deny",
+      "cost_decision": "within_limit",
+      "used_as_evidence": false
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-monthly-commercial-spend",
+      "status": "rejected",
+      "trace_reference": "trc-8efb445f4037450db1c03e2e6fb5d24c",
+      "error_code": "ERR_COST_LIMIT_EXCEEDED",
+      "policy_decision": "deny",
+      "cost_decision": "exceeded_limit",
+      "used_as_evidence": false
+    },
+    {
+      "request_id": "auc-001-p02-2026-07-21-evidence-weekly-commercial-spend",
+      "status": "rejected",
+      "trace_reference": "trc-4e7cc07019f64f6aba65587acee724ac",
+      "error_code": "ERR_COST_LIMIT_EXCEEDED",
+      "policy_decision": "deny",
+      "cost_decision": "exceeded_limit",
+      "used_as_evidence": false
+    }
+  ]
+}

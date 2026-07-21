@@ -14,6 +14,7 @@ No forman un sistema multiagente operativo.
 
 No ejecutan procesos productivos.
 
+
 ---
 
 ## Relación con el SDD Harness
@@ -30,6 +31,8 @@ Su responsabilidad es ayudar a mantener:
 * evolución controlada.
 
 Los agentes metodológicos no sustituyen la validación humana.
+
+Todos los agentes escriben en español.
 
 Todas las decisiones relevantes permanecen bajo responsabilidad humana.
 

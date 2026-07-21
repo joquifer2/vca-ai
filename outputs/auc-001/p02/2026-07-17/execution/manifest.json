@@ -1,0 +1,164 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-EXECUTION-MANIFEST",
+  "execution_id": "auc-001-p02-2026-07-17-real-execution",
+  "generated_at_local": "2026-07-21T18:15:00+02:00",
+  "use_case": "AUC-001",
+  "phase": "AUC-001-P02",
+  "decision_context": "AUC-001-P02 closed after physical QA revalidation PASS WITH DECLARED LIMITATIONS",
+  "period": {
+    "start": "2026-04-18",
+    "end": "2026-07-17",
+    "cutoff": "2026-07-17"
+  },
+  "namespace": "outputs/auc-001/p02/2026-07-17/",
+  "specification": {
+    "id": "SPEC-014",
+    "version": "spec-014.v1",
+    "schema_family": "auc_001_analytical_product_contract",
+    "schema_version": "auc_001_analytical_product_contract.v1"
+  },
+  "data_provider_validation": {
+    "result": "PASS",
+    "provider": "BigQuery MCP Server",
+    "workspace_id": "vca",
+    "project_id": "datamart-vca-494114",
+    "canonical_discovery_only": true,
+    "fallback_outside_mcp_used": false
+  },
+  "authorized_sources_consulted": [
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal",
+    "intermediate.int_faro_lead_scoring"
+  ],
+  "artifact_paths": {
+    "context_definition": "context/context-definition.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "recommendation_set": "recommendations/recommendation-set.json",
+    "common_product_core": "product-core/common-product-core.json",
+    "coverage_matrix": "coverage-matrix/coverage-matrix.json",
+    "analytical_projection": "presentations/analytical/analytical-report.md",
+    "executive_projection": "presentations/executive/executive-report.md",
+    "final_checklist": "qa/checklist.md",
+    "manifest": "execution/manifest.json",
+    "query_trace": "execution/query-trace.json"
+  },
+  "common_core_fingerprint": {
+    "algorithm": "SHA256",
+    "hash": "95C00517590BDD4411E68877F4C5661A24697E9B03DCB7A3DFF4BD066AE883E7"
+  },
+  "product_contract_validation": {
+    "result": "PASS WITH DECLARED LIMITATIONS",
+    "completion_is_by_question_and_criticality": true,
+    "global_completion_boolean_used": false,
+    "coverage_state_summary": {
+      "complete": [
+        "AQ-001",
+        "AQ-002",
+        "AQ-003",
+        "AQ-006",
+        "AQ-007",
+        "AQ-008",
+        "AQ-010",
+        "AQ-011"
+      ],
+      "partial": [
+        "AQ-004",
+        "AQ-005",
+        "AQ-009",
+        "CQ-001",
+        "CQ-002",
+        "CQ-004",
+        "CQ-007"
+      ],
+      "not_available": [
+        "CQ-003",
+        "CQ-005",
+        "CQ-006"
+      ],
+      "not_applicable": [
+        "NAQ-001",
+        "NAQ-002",
+        "NAQ-003",
+        "NAQ-004",
+        "NAQ-005"
+      ],
+      "UNKNOWN": [],
+      "blocked": []
+    }
+  },
+  "material_limitations": [
+    "Temporal commercial spend queries were rejected by provider cost policy and excluded from evidence.",
+    "Combined MCP reconciliation query was rejected by provider scope policy and excluded from evidence.",
+    "Campaign/adset economic reads are derived through ad-level reconciliation.",
+    "Revenue/sales conversion is not_available.",
+    "Creative causality remains UNKNOWN."
+  ],
+  "historical_isolation": {
+    "historical_outputs_used_as_evidence": false,
+    "historical_outputs_used_as_expected_values": false,
+    "historical_namespaces_modified": false
+  },
+  "qa_readiness": {
+    "physical_package_ready_for_qa": true,
+    "p02_closed_by_this_execution": true,
+    "requires_subsequent_qa_gate_validation": false,
+    "blocker_correction_ready_for_revalidation": true
+  },
+  "package_revision": "blocker-correction-001",
+  "correction_scope": [
+    "coverage matrix rows for all SPEC-014 AQ/CQ/NAQ questions",
+    "complete persisted traceability for successful MCP queries"
+  ],
+  "traceability": {
+    "mcp_successful_query_trace_artifact": "execution/query-trace.json",
+    "successful_queries_persisted": 16,
+    "rejected_queries_persisted": 3,
+    "new_acquisition_performed": false
+  },
+  "artifact_fingerprints": {
+    "context_definition": {
+      "algorithm": "SHA256",
+      "hash": "034285558D4D453AEB8F8A4487873A39EE540B0FF96B2FB7D2C6CD846F8ED298"
+    },
+    "evidence_set": {
+      "algorithm": "SHA256",
+      "hash": "07CF4630B3D22D543861755EE5A6DFC42027C046D8BEBC968AAE72E5ADDD75B8"
+    },
+    "knowledge_set": {
+      "algorithm": "SHA256",
+      "hash": "8EE7208848E432E2730A879558DCD56C3137DF8715E28BD8560D7DAD1BF65B1C"
+    },
+    "recommendation_set": {
+      "algorithm": "SHA256",
+      "hash": "EEEE8A3EA83A96C90E028BF5BA1A77C37C8EA66EB0A2377ADB73E9CF60716AAB"
+    },
+    "common_product_core": {
+      "algorithm": "SHA256",
+      "hash": "95C00517590BDD4411E68877F4C5661A24697E9B03DCB7A3DFF4BD066AE883E7"
+    },
+    "coverage_matrix": {
+      "algorithm": "SHA256",
+      "hash": "E26BC8FD3802D344ADE567DE89262C8CB80844E29ACB8BD9E623F7C31D1C17E0"
+    },
+    "query_trace": {
+      "algorithm": "SHA256",
+      "hash": "CBAB99E36822D8B4E75176E10EC2F5DC4EF47CE9E7CE9EDE3DDFDE04A42AFFB3"
+    },
+    "final_checklist": {
+      "algorithm": "SHA256",
+      "hash": "810B4B82152DB7B4A557B91F4C2551D34D1731EC6A5AFF3708FA1ED7FF4010C9"
+    }
+  },
+  "closure": {
+    "status": "closed",
+    "decision": "PASS WITH DECLARED LIMITATIONS",
+    "closed_at_local": "2026-07-21",
+    "closure_gate": "gates/auc-001-p02-closure-gate.md",
+    "qa_revalidation": "docs/evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md",
+    "scope_closed": "AUC-001-P02 - Analytical Product Contract real execution and physical package validation",
+    "new_acquisition_during_closure": false,
+    "analytical_evidence_modified_during_closure": false
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-CONTEXT-DEFINITION",
+  "status": "stabilized",
+  "use_case": "AUC-001",
+  "phase": "AUC-001-P02",
+  "execution_id": "auc-001-p02-2026-07-17-real-execution",
+  "original_request": "ejecutar AUC-001 con evidencia real y generar los outputs conformes con SPEC-014",
+  "execution_mode": "complete_real_execution",
+  "period": {
+    "start": "2026-04-18",
+    "end": "2026-07-17",
+    "cutoff": "2026-07-17",
+    "canonicalization_rule": "No explicit user cutoff was provided. The execution uses the closed common provider coverage across canonical lead-side and spend-side sources.",
+    "coverage_basis": {
+      "marts.fct_lead_enriched": {
+        "min_day": "2026-04-18",
+        "max_day": "2026-07-21"
+      },
+      "marts.fct_spend": {
+        "min_day": "2026-04-18",
+        "max_day": "2026-07-17"
+      }
+    }
+  },
+  "scope": {
+    "domain": "Meta Lead Ads lead quality",
+    "quality_definition": "FARO lead_tier with Tier A and Tier B treated as A/B qualified leads",
+    "economic_universe": "commercial matched universe for canonical cost-quality metrics",
+    "authorized_provider": "BigQuery MCP Server",
+    "workspace_id": "vca",
+    "project_id": "datamart-vca-494114"
+  },
+  "audience": "analytical and executive consumers",
+  "requested_outputs": [
+    "Context Definition",
+    "Evidence Set",
+    "Knowledge Set",
+    "Recommendation Set",
+    "Common Product Core",
+    "SPEC-014 coverage matrix",
+    "Analytical projection",
+    "Executive projection",
+    "Execution manifest",
+    "Final checklist"
+  ],
+  "authorized_sources": [
+    "datamart-vca-494114.marts.fct_lead_enriched",
+    "datamart-vca-494114.marts.fct_spend",
+    "datamart-vca-494114.marts.dim_campaign_signal",
+    "datamart-vca-494114.intermediate.int_faro_lead_scoring"
+  ],
+  "contracts_applied": [
+    "SPEC-014",
+    "SPEC-012",
+    "SPEC-013",
+    "AUC-001 analytical-contract.md",
+    "docs/contracts/data.contract.md",
+    "docs/contracts/evidence.contract.md",
+    "docs/contracts/knowledge.contract.md",
+    "docs/contracts/recommendation.contract.md",
+    "docs/contracts/presentation.contract.md",
+    "docs/contracts/bigquery-mcp-discover-metadata.contract.md"
+  ],
+  "data_provider_validation": {
+    "status": "PASS",
+    "metadata_discovery": [
+      "auc-001-p02-2026-07-21-provider-validation-workspace",
+      "auc-001-p02-2026-07-21-provider-validation-dataset-intermediate",
+      "auc-001-p02-2026-07-21-provider-validation-dataset-marts",
+      "auc-001-p02-2026-07-21-provider-validation-table-int-faro",
+      "auc-001-p02-2026-07-21-provider-validation-table-fct-spend",
+      "auc-001-p02-2026-07-21-provider-validation-table-fct-lead-enriched",
+      "auc-001-p02-2026-07-21-provider-validation-table-dim-campaign-signal"
+    ]
+  },
+  "historical_isolation": {
+    "historical_outputs_used_as_evidence": false,
+    "historical_outputs_used_as_expected_values": false,
+    "protected_namespaces_modified": false
+  }
+}

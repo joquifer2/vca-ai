@@ -1,0 +1,96 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-COMMON-PRODUCT-CORE",
+  "schema_family": "auc_001_analytical_product_contract",
+  "schema_version": "auc_001_analytical_product_contract.v1",
+  "status": "stabilized",
+  "period": {
+    "start": "2026-04-18",
+    "end": "2026-07-17",
+    "cutoff": "2026-07-17"
+  },
+  "scope": {
+    "use_case": "AUC-001",
+    "phase": "AUC-001-P02",
+    "quality_model": "FARO lead_tier",
+    "cost_quality_model": "SPEC-012 canonical matched commercial model",
+    "product_contract": "SPEC-014"
+  },
+  "sources": [
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal",
+    "intermediate.int_faro_lead_scoring"
+  ],
+  "evidence_refs": [
+    "../evidence/evidence-set.json",
+    "../coverage-matrix/coverage-matrix.json",
+    "../knowledge/knowledge-set.json",
+    "../recommendations/recommendation-set.json"
+  ],
+  "canonical_metrics": {
+    "lead_count": 1549,
+    "ab_leads": 469,
+    "tier_a_leads": 67,
+    "qualified_rate_ab_global": 0.3027759845,
+    "matched_leads": 1362,
+    "matched_ab_leads": 396,
+    "matched_tier_a_leads": 55,
+    "matched_commercial_spend": 1069.05001,
+    "cpl_commercial_matched": 0.7849119016,
+    "qualified_rate_ab_matched": 0.2907488987,
+    "cost_per_ab_commercial_matched": 2.6996212374,
+    "cost_per_tier_a_commercial_matched": 19.4372729091
+  },
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "complete",
+    "AQ-004": "partial",
+    "AQ-005": "partial",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "partial",
+    "CQ-002": "partial",
+    "CQ-003": "not_available",
+    "CQ-004": "partial",
+    "CQ-005": "not_available",
+    "CQ-006": "not_available",
+    "CQ-007": "partial",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "knowledge_claims": [
+    "KNW-001: volume is substantial but high-quality Tier A is limited.",
+    "KNW-002: matched commercial cost-quality is efficient on observed canonical metrics.",
+    "KNW-003: ticket or intent status is the strongest observed quality separator.",
+    "KNW-004: volume and spend are concentrated in a small number of structures/assets.",
+    "KNW-005: quality upside outside the dominant base remains plausible but economically partial.",
+    "KNW-006: lead-side quality is broadly stable month to month."
+  ],
+  "recommendations": [
+    "REC-001",
+    "REC-002",
+    "REC-003",
+    "REC-004"
+  ],
+  "limitations": [
+    "Temporal cost-quality is partial because temporal spend queries were rejected by cost policy.",
+    "Campaign/adset economics are derived through ad-level reconciliation.",
+    "Creative causality is UNKNOWN.",
+    "Revenue conversion is not_available.",
+    "Weekly comparability is partial."
+  ],
+  "unknowns": [
+    "Creative causal impact UNKNOWN.",
+    "Revenue/sales conversion not_available.",
+    "Complete temporal cost-quality trend UNKNOWN."
+  ],
+  "semantic_fingerprint_note": "The package manifest records the file SHA256 fingerprint for this common core."
+}

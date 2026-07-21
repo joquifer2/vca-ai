@@ -7,11 +7,11 @@
 | Estado operativo | Active |
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
-| Closure gate | READY FOR CLOSURE |
-| Estado post-cierre vigente | AUC-001-P02 ENTRY GATE PASS WITH CONDITIONS - CONTROLLED IMPLEMENTATION AUTHORIZED |
+| Closure gate | P02 CLOSED |
+| Estado post-cierre vigente | AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED |
 | P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
-| P02 | Analytical Product Contract Implementation autorizada con PASS WITH CONDITIONS el 2026-07-21 |
-| Fecha del closure gate | 2026-07-16 |
+| P02 | Analytical Product Contract real execution cerrado con PASS WITH DECLARED LIMITATIONS el 2026-07-21 |
+| Fecha del closure gate | 2026-07-21 |
 
 ## Artefactos canónicos
 
@@ -26,6 +26,12 @@
 | P01 Documentary Closure Gate | [../../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
 | P02 Task Plan | [../../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
 | P02 Entry Gate | [../../gates/auc-001-p02-entry-gate.md](/gates/auc-001-p02-entry-gate.md) |
+| P02 Technical And Functional QA Validation | [../../docs/evaluations/auc-001/validations/auc-001-p02-technical-functional-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-p02-technical-functional-qa-validation.md) |
+| P02 Real Execution Authorization Gate | [../../gates/auc-001-p02-real-execution-authorization-gate.md](/gates/auc-001-p02-real-execution-authorization-gate.md) |
+| P02 Physical Product QA Revalidation | [../../docs/evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md](/docs/evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md) |
+| P02 Closure Gate | [../../gates/auc-001-p02-closure-gate.md](/gates/auc-001-p02-closure-gate.md) |
+| P01 And Transversal Documentation Final Review | [../../docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md](/docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md) |
+| P02 Output Namespace | `outputs/auc-001/p02/2026-07-17/` |
 | Skill | [../../.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) |
 | Runbook | [../../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Checklist | [../../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
@@ -108,7 +114,7 @@ Estado vigente P0: QA Gate Agent ha validado fisicamente el runtime `outputs/auc
 
 Estado vigente P01: Architect Agent emitio el memo arquitectonico de contrato de producto analitico, Specification Agent creo `SPEC-014 - AUC-001 Analytical Product Contract`, Reviewer Agent emitio `PASS WITH CONDITIONS`, Specification Agent corrigio las condiciones, Reviewer Agent confirmo `PASS` y QA Gate Agent emitio el cierre documental de P01 con decision `PASS`. Estado canonico de cierre P01: `AUC-001-P01 DOCUMENTARY CLOSURE PASS - READY FOR CONTROLLED POST-P01 IMPLEMENTATION PLANNING`.
 
-Estado vigente P02: Tasks Planner Agent preparo el plan implementable de `AUC-001-P02` a partir de SPEC-014 y del cierre documental de P01; Reviewer Agent confirmo que el plan cubre SPEC-014 sin ampliar informalmente el alcance; QA Gate Agent emitio el Entry Gate de P02 con decision `PASS WITH CONDITIONS`. Estado canonico vigente: `AUC-001-P02 ENTRY GATE PASS WITH CONDITIONS - CONTROLLED IMPLEMENTATION AUTHORIZED`. Esta autorizacion permite implementacion controlada segun el plan P02, pero no autoriza BigQuery, ejecucion analitica real, generacion de Evidence/Knowledge/Recommendations, materializacion de informes u outputs, validacion experimental ni cierre de P02.
+Estado vigente P02: Tasks Planner Agent preparo el plan implementable de `AUC-001-P02` a partir de SPEC-014 y del cierre documental de P01; Reviewer Agent confirmo que el plan cubre SPEC-014 sin ampliar informalmente el alcance; QA Gate Agent emitio el Entry Gate con `PASS WITH CONDITIONS`; Implementation Agent completo la implementacion local; QA Gate Agent revalido conformidad tecnica y funcional con `PASS`; QA Gate Agent autorizo ejecucion real via BigQuery MCP con `PASS WITH CONDITIONS`; Implementation Agent materializo el paquete real en `outputs/auc-001/p02/2026-07-17/`; QA Gate Agent revalido fisicamente el paquete con `PASS WITH DECLARED LIMITATIONS`; y QA Gate Agent emitio el Closure Gate de P02. Estado canonico vigente: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED`. Las limitaciones materiales declaradas permanecen visibles y no bloquean el cierre.
 
 ## Evidencia histórica
 

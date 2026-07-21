@@ -1,0 +1,656 @@
+{
+  "artifact_id": "AUC-001-P02-2026-07-17-SPEC-014-COVERAGE-MATRIX",
+  "status": "stabilized",
+  "states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "complete",
+    "AQ-004": "partial",
+    "AQ-005": "partial",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "partial",
+    "CQ-002": "partial",
+    "CQ-003": "not_available",
+    "CQ-004": "partial",
+    "CQ-005": "not_available",
+    "CQ-006": "not_available",
+    "CQ-007": "partial",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "rows": [
+    {
+      "question_id": "AQ-001",
+      "coverage_state": "complete",
+      "justification": "Lead volume and monthly/weekly lead-side evolution are observed for the canonical period.",
+      "evidence_refs": [
+        "EVD-global-quality",
+        "EVD-temporal-quality"
+      ],
+      "depth": {
+        "evidence": "1549 leads from 2026-04-18 to 2026-07-17.",
+        "comparison": "Monthly distribution from April partial through July partial.",
+        "interpretation": "Volume is substantial and concentrated in June, with July partial still active.",
+        "business_implication": "Scale is available for optimization decisions.",
+        "limitation_or_uncertainty": "April and July are partial months.",
+        "conclusion_or_hypothesis": "Volume is sufficient for aggregate product analysis.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-global-quality",
+          "auc-001-p02-2026-07-21-evidence-monthly-quality"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side",
+        "granularity": "period and month",
+        "comparator": "month",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-002",
+      "coverage_state": "complete",
+      "justification": "FARO tier distribution and A/B denominator are available.",
+      "evidence_refs": [
+        "EVD-global-quality"
+      ],
+      "depth": {
+        "evidence": "67 Tier A, 402 Tier B, 469 A/B, 648 Tier C, 432 Tier D.",
+        "comparison": "A/B and Tier A shares versus total leads.",
+        "interpretation": "Quality exists but high-quality Tier A is a small share.",
+        "business_implication": "Optimization should improve lead mix, not only volume.",
+        "limitation_or_uncertainty": "FARO is quality proxy; revenue unavailable.",
+        "conclusion_or_hypothesis": "A/B share is 30.28%; Tier A share is 4.33%.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-global-quality"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side",
+        "granularity": "period",
+        "comparator": "tier distribution",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-003",
+      "coverage_state": "complete",
+      "justification": "Canonical matched commercial metrics are calculable and coverage states are explicit.",
+      "evidence_refs": [
+        "EVD-reconciliation-summary"
+      ],
+      "depth": {
+        "evidence": "Matched universe: 1362 leads, 396 A/B, 55 Tier A, 1069.05 EUR spend.",
+        "comparison": "Matched versus lead_only and spend_only.",
+        "interpretation": "Matched cost-quality is efficient on observed metrics; unmatched coverage remains separate.",
+        "business_implication": "Use matched metrics for economic decisions.",
+        "limitation_or_uncertainty": "Temporal spend evidence is partial; rejected queries are excluded.",
+        "conclusion_or_hypothesis": "cost_per_ab_commercial_matched is 2.70 EUR.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-lead-side-by-ad",
+          "auc-001-p02-2026-07-21-evidence-spend-side-commercial-by-ad"
+        ]
+      },
+      "robustness": {
+        "denominator": 1362,
+        "observed_volume": 1362,
+        "coverage": "matched",
+        "granularity": "ad_id_norm",
+        "comparator": "coverage states",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-004",
+      "coverage_state": "partial",
+      "justification": "Campaign/adset lead quality is available, but spend lacks native campaign/adset fields and is derived from ad-level reconciliation.",
+      "impact": "Campaign/adset economic ranking should be treated as diagnostic, not definitive.",
+      "evidence_refs": [
+        "EVD-campaign-adset",
+        "EVD-top-ads"
+      ],
+      "depth": {
+        "evidence": "Campaign/adset lead quality exists; top adset has 1267 leads and 370 A/B. Derived commercial spend is available only through ad-level reconciliation.",
+        "comparison": "Campaign/adset lead quality versus ad-level matched commercial spend derivation.",
+        "interpretation": "Structure-level quality can be diagnosed, while direct campaign/adset economics remain partial.",
+        "business_implication": "Use campaign/adset reads as diagnostics and keep economic decisions at matched ad-level evidence.",
+        "limitation_or_uncertainty": "fct_spend does not expose direct campaign/adset identifiers in the acquired evidence.",
+        "conclusion_or_hypothesis": "Campaign/adset analysis is partially covered and should not be used as definitive economic ranking.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-leads-by-campaign-adset",
+          "auc-001-p02-2026-07-21-evidence-lead-side-by-ad",
+          "auc-001-p02-2026-07-21-evidence-spend-side-commercial-by-ad"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side plus derived matched spend",
+        "granularity": "campaign/adset and ad_id_norm",
+        "comparator": "campaign/adset structures",
+        "sample_sufficiency": "partial"
+      }
+    },
+    {
+      "question_id": "AQ-005",
+      "coverage_state": "partial",
+      "justification": "Ad-level evidence includes ad_id_norm, ad_name and metrics, but some rows are lead_only/spend_only and creative causality is prohibited.",
+      "impact": "Ad views support concentration and diagnostics, not causal creative winner claims.",
+      "evidence_refs": [
+        "EVD-top-ads"
+      ],
+      "depth": {
+        "evidence": "Ad-level evidence includes ad_id_norm, ad_name, lead_count, A/B, Tier A and matched commercial spend where available.",
+        "comparison": "Matched, lead_only and spend_only ad coverage states are separated.",
+        "interpretation": "Ad diagnostics are reliable for concentration and reconciliation status, but not for creative causality.",
+        "business_implication": "Use ad-level data to manage coverage and concentration; avoid creative winner claims.",
+        "limitation_or_uncertainty": "ad_name is descriptive only and creative metadata beyond ad_name is unavailable.",
+        "conclusion_or_hypothesis": "Ad-level analysis is partially covered for diagnostics and excluded for causal creative interpretation.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-lead-side-by-ad",
+          "auc-001-p02-2026-07-21-evidence-spend-side-commercial-by-ad",
+          "auc-001-p02-2026-07-21-evidence-spend-by-ad-name"
+        ]
+      },
+      "robustness": {
+        "denominator": 17,
+        "observed_volume": 17,
+        "coverage": "ad-level reconciliation",
+        "granularity": "ad_id_norm",
+        "comparator": "matched versus lead_only versus spend_only",
+        "sample_sufficiency": "partial"
+      }
+    },
+    {
+      "question_id": "AQ-006",
+      "coverage_state": "complete",
+      "justification": "FARO/ticket intent and product/form signals are available and strongly separate observed quality.",
+      "evidence_refs": [
+        "EVD-has-tickets",
+        "EVD-ticket-status",
+        "EVD-form-product"
+      ],
+      "depth": {
+        "evidence": "tiene_billetes true has 195 A/B of 218 leads; false has 274 A/B of 1331.",
+        "comparison": "Intent status true versus false and ticket_status categories.",
+        "interpretation": "Intent/status is the strongest observed separator.",
+        "business_implication": "Pre-qualification and optimization signals matter more than raw volume.",
+        "limitation_or_uncertainty": "Association only; not revenue or causality.",
+        "conclusion_or_hypothesis": "Intent variables explain quality differences better than aggregate volume.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-faro-signals-billetes",
+          "auc-001-p02-2026-07-21-evidence-ticket-status"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side",
+        "granularity": "intent/status",
+        "comparator": "true versus false/status buckets",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-007",
+      "coverage_state": "complete",
+      "justification": "The evidence supports a clear volume-quality-cost trade-off in the matched universe and coverage states.",
+      "evidence_refs": [
+        "EVD-global-quality",
+        "EVD-reconciliation-summary",
+        "EVD-has-tickets"
+      ],
+      "depth": {
+        "evidence": "High volume and low matched costs coexist with limited Tier A share.",
+        "comparison": "Volume versus A/B/Tier A quality and matched economics.",
+        "interpretation": "The optimization problem is lead mix, not just lead price.",
+        "business_implication": "Meta decisions should balance scale against intent-qualified quality.",
+        "limitation_or_uncertainty": "Coverage prevents full economic comparison for lead_only groups.",
+        "conclusion_or_hypothesis": "Main trade-off is scale efficiency versus qualified intent mix.",
+        "traceability": [
+          "EVD-global-quality",
+          "EVD-reconciliation-summary"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side and matched",
+        "granularity": "period",
+        "comparator": "volume, quality, cost",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-008",
+      "coverage_state": "complete",
+      "justification": "Concentration by campaign/adset and top ads is observable.",
+      "evidence_refs": [
+        "EVD-campaign-adset",
+        "EVD-top-ads"
+      ],
+      "depth": {
+        "evidence": "The main captacion adset has 1267 of 1549 leads; the top ad has 643 leads.",
+        "comparison": "Top structures versus remaining structures.",
+        "interpretation": "A few units dominate scale and learning.",
+        "business_implication": "Dependency risk should be managed before aggressive scaling.",
+        "limitation_or_uncertainty": "Concentration is not proof of creative superiority.",
+        "conclusion_or_hypothesis": "There is material concentration risk.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-leads-by-campaign-adset",
+          "auc-001-p02-2026-07-21-evidence-lead-side-by-ad"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side and matched",
+        "granularity": "campaign/adset/ad_id_norm",
+        "comparator": "top versus rest",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-009",
+      "coverage_state": "partial",
+      "justification": "Monthly and weekly lead quality exist, but weekly comparability and temporal spend-quality are partial.",
+      "impact": "Temporal conclusions are limited to lead-side quality stability, not cost-quality trend.",
+      "evidence_refs": [
+        "EVD-temporal-quality"
+      ],
+      "depth": {
+        "evidence": "Monthly lead quality is available for April partial through July partial; weekly lead quality is available.",
+        "comparison": "Monthly/weekly lead-side quality exists, while temporal commercial spend queries were rejected.",
+        "interpretation": "Lead-side temporal stability can be described, but temporal cost-quality cannot.",
+        "business_implication": "Use the temporal view for quality monitoring, not weekly or monthly budget efficiency decisions.",
+        "limitation_or_uncertainty": "April and July are partial months; first and last weeks are partial; spend temporal evidence is rejected.",
+        "conclusion_or_hypothesis": "Temporal analysis is partially covered by lead-side quality only.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-monthly-quality",
+          "auc-001-p02-2026-07-21-evidence-weekly-quality",
+          "auc-001-p02-2026-07-21-evidence-monthly-commercial-spend",
+          "auc-001-p02-2026-07-21-evidence-weekly-commercial-spend"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side temporal",
+        "granularity": "month and week",
+        "comparator": "period buckets",
+        "sample_sufficiency": "partial"
+      }
+    },
+    {
+      "question_id": "AQ-010",
+      "coverage_state": "complete",
+      "justification": "Recommendations are derived from stabilized Knowledge and classified by SPEC-014.",
+      "evidence_refs": [
+        "KNW-003",
+        "KNW-004",
+        "KNW-005",
+        "REC-001",
+        "REC-002",
+        "REC-003",
+        "REC-004"
+      ],
+      "depth": {
+        "evidence": "Knowledge Set identifies intent quality, coverage gaps, concentration and temporal limits.",
+        "comparison": "Actions are separated into experiments, verifiable action and non-actionable hypothesis.",
+        "interpretation": "Only testable or auditable actions are proposed.",
+        "business_implication": "Optimization can proceed without converting observations into unsupported decisions.",
+        "limitation_or_uncertainty": "Budget reallocation and creative winner claims remain excluded.",
+        "conclusion_or_hypothesis": "There are three actionable recommendations and one non-actionable hypothesis.",
+        "traceability": [
+          "knowledge-set.json",
+          "recommendation-set.json"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "Knowledge-derived",
+        "granularity": "recommendation",
+        "comparator": "actionability categories",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "AQ-011",
+      "coverage_state": "complete",
+      "justification": "Coverage states, limitations, rejected queries and UNKNOWNs are explicit.",
+      "evidence_refs": [
+        "EVD-reconciliation-summary",
+        "query_records.rejected_not_used_as_evidence"
+      ],
+      "depth": {
+        "evidence": "matched, lead_only, spend_only and rejected MCP queries are documented.",
+        "comparison": "Usable evidence versus rejected and unavailable evidence.",
+        "interpretation": "The product preserves material limits close to affected decisions.",
+        "business_implication": "Decision-makers can distinguish reliable metrics from partial reads.",
+        "limitation_or_uncertainty": "Some temporal and revenue questions remain unresolved.",
+        "conclusion_or_hypothesis": "Limitations are sufficient for transparent product acceptance.",
+        "traceability": [
+          "evidence-set.json"
+        ]
+      },
+      "robustness": {
+        "denominator": 16,
+        "observed_volume": 16,
+        "coverage": "query acquisition record",
+        "granularity": "query/evidence block",
+        "comparator": "accepted versus rejected",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "CQ-001",
+      "coverage_state": "partial",
+      "justification": "Platform is available in the authorized lead source, but platform-level spend economics are not available in the acquired evidence.",
+      "impact": "Platform comparison is limited to lead quality and cannot support platform budget reallocation.",
+      "evidence_refs": [
+        "EVD-platform-quality"
+      ],
+      "depth": {
+        "evidence": "fb has 1047 leads, 329 A/B and 44 Tier A; ig has 502 leads, 140 A/B and 23 Tier A.",
+        "comparison": "fb A/B rate is 31.42%; ig A/B rate is 27.89%.",
+        "interpretation": "Observed lead quality differs modestly by platform, but cost-quality by platform is unavailable.",
+        "business_implication": "Platform signals can guide diagnostics, not spend decisions.",
+        "limitation_or_uncertainty": "No approved platform spend allocation was acquired.",
+        "conclusion_or_hypothesis": "Platform quality is observable with partial economic coverage.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-platform-quality"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side",
+        "granularity": "platform",
+        "comparator": "fb versus ig",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "CQ-002",
+      "coverage_state": "partial",
+      "justification": "Ticket status is available in the authorized lead source, but it is not a revenue or sales conversion validation.",
+      "impact": "Ticket status may be used as an intent-quality diagnostic, not as proof of sale conversion.",
+      "evidence_refs": [
+        "EVD-ticket-status",
+        "EVD-has-tickets"
+      ],
+      "depth": {
+        "evidence": "solo_mirando has 955 leads and 53 A/B; en_proceso has 376 leads and 221 A/B; tiene_billetes has 218 leads and 195 A/B.",
+        "comparison": "A/B rate increases from 5.55% in solo_mirando to 89.45% in tiene_billetes.",
+        "interpretation": "Ticket status strongly separates observed FARO quality.",
+        "business_implication": "Intent qualification is a reliable diagnostic input for lead quality decisions.",
+        "limitation_or_uncertainty": "The field does not prove revenue, booking, or sales completion.",
+        "conclusion_or_hypothesis": "Ticket status is usable as quality evidence with revenue limits.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-ticket-status",
+          "auc-001-p02-2026-07-21-evidence-faro-signals-billetes"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side",
+        "granularity": "ticket_status and tiene_billetes",
+        "comparator": "intent buckets",
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "question_id": "CQ-003",
+      "coverage_state": "not_available",
+      "justification": "No separate current CAPI/event evidence beyond authorized lead fields was acquired for this product.",
+      "impact": "CAPI or event maturity cannot be evaluated in this execution.",
+      "evidence_refs": [
+        "evidence-set.limitations",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The consulted sources are fct_lead_enriched, fct_spend, dim_campaign_signal and int_faro_lead_scoring.",
+        "comparison": "No acquired artifact contains event-level CAPI delivery, match quality or browser/server event diagnostics.",
+        "interpretation": "The question is outside available evidence for this package.",
+        "business_implication": "No tracking-maturity recommendation is made.",
+        "limitation_or_uncertainty": "CAPI status remains not_available.",
+        "conclusion_or_hypothesis": "CAPI/event evaluation requires a separate authorized evidence source.",
+        "traceability": [
+          "evidence-set.json",
+          "execution/manifest.json"
+        ]
+      }
+    },
+    {
+      "question_id": "CQ-004",
+      "coverage_state": "partial",
+      "justification": "Tier A volume is available, but its low share makes fine-grained Tier A conclusions sensitive to denominators.",
+      "impact": "Tier A can support aggregate diagnostics, while small-segment Tier A reads require caution.",
+      "evidence_refs": [
+        "EVD-global-quality",
+        "EVD-reconciliation-summary"
+      ],
+      "depth": {
+        "evidence": "There are 67 Tier A leads globally and 55 Tier A leads in the matched commercial universe.",
+        "comparison": "Tier A is 4.33% of total leads; A/B is 30.28%.",
+        "interpretation": "Tier A exists but is sparse relative to total volume.",
+        "business_implication": "Use A/B for broader optimization and Tier A as a stricter guardrail.",
+        "limitation_or_uncertainty": "Small Tier A counts reduce stability in narrow breakdowns.",
+        "conclusion_or_hypothesis": "Tier A evidence is valid but partial for detailed segmentation.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-global-quality",
+          "auc-001-p02-2026-07-21-evidence-lead-side-by-ad"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 67,
+        "coverage": "lead-side and matched",
+        "granularity": "period and ad_id_norm",
+        "comparator": "Tier A versus A/B",
+        "sample_sufficiency": "partial"
+      }
+    },
+    {
+      "question_id": "CQ-005",
+      "coverage_state": "not_available",
+      "justification": "Creative metadata beyond ad_name was not available in the acquired evidence.",
+      "impact": "Creative analysis is restricted to ad-level diagnostics and cannot infer creative drivers.",
+      "evidence_refs": [
+        "EVD-top-ads",
+        "evidence-set.limitations"
+      ],
+      "depth": {
+        "evidence": "Ad evidence contains ad_id_norm and ad_name with lead and spend metrics.",
+        "comparison": "No visual asset, hook taxonomy, format metadata or creative attribute table was acquired.",
+        "interpretation": "ad_name is descriptive and not a causal creative dimension.",
+        "business_implication": "Creative winner claims remain excluded.",
+        "limitation_or_uncertainty": "Creative metadata remains not_available.",
+        "conclusion_or_hypothesis": "A creative analysis requires separate authorized creative metadata.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-lead-side-by-ad",
+          "auc-001-p02-2026-07-21-evidence-spend-by-ad-name"
+        ]
+      }
+    },
+    {
+      "question_id": "CQ-006",
+      "coverage_state": "not_available",
+      "justification": "No revenue or sales conversion source was included in the authorized acquisition.",
+      "impact": "The product cannot evaluate revenue efficiency or return on ad spend.",
+      "evidence_refs": [
+        "evidence-set.unknowns",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The Evidence Set declares revenue or sales conversion efficiency as not_available.",
+        "comparison": "Available quality metrics are FARO tiers and intent fields, not sales outcomes.",
+        "interpretation": "Economic conclusions stop at spend per lead and spend per FARO-qualified lead.",
+        "business_implication": "Revenue decisions require additional authorized sales data.",
+        "limitation_or_uncertainty": "Revenue/sales conversion remains not_available.",
+        "conclusion_or_hypothesis": "No revenue optimization claim is supported.",
+        "traceability": [
+          "evidence-set.json",
+          "execution/manifest.json"
+        ]
+      }
+    },
+    {
+      "question_id": "CQ-007",
+      "coverage_state": "partial",
+      "justification": "Weekly lead quality is available, but complete weekly cost-quality is unavailable because temporal spend queries were rejected by provider cost policy.",
+      "impact": "Weekly interpretation is limited to lead-side quality, not spend efficiency trend.",
+      "evidence_refs": [
+        "EVD-temporal-quality",
+        "query_records.rejected_not_used_as_evidence"
+      ],
+      "depth": {
+        "evidence": "Weekly lead quality was acquired; weekly commercial spend was rejected by ERR_COST_LIMIT_EXCEEDED.",
+        "comparison": "Monthly and weekly lead-side quality exist; temporal spend-quality does not.",
+        "interpretation": "Temporal quality can be monitored, but economic trend is incomplete.",
+        "business_implication": "Do not use this package for weekly budget pacing decisions.",
+        "limitation_or_uncertainty": "First and last weeks are partial and cost-quality is unavailable.",
+        "conclusion_or_hypothesis": "Weekly question is partially covered by quality evidence only.",
+        "traceability": [
+          "auc-001-p02-2026-07-21-evidence-weekly-quality",
+          "auc-001-p02-2026-07-21-evidence-weekly-commercial-spend"
+        ]
+      },
+      "robustness": {
+        "denominator": 1549,
+        "observed_volume": 1549,
+        "coverage": "lead-side temporal",
+        "granularity": "week",
+        "comparator": "week_start",
+        "sample_sufficiency": "partial"
+      }
+    },
+    {
+      "question_id": "NAQ-001",
+      "coverage_state": "not_applicable",
+      "justification": "SPEC-014 marks this non-applicable question as outside the analytical product scope.",
+      "impact": "No out-of-scope evidence source, runtime work or unsupported analytical claim is introduced.",
+      "evidence_refs": [
+        "SPEC-014",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The question is intentionally excluded from the AUC-001 P02 analytical product.",
+        "comparison": "It is not part of the AQ/CQ decision set.",
+        "interpretation": "The correct coverage state is not_applicable.",
+        "business_implication": "The package should not expand scope to answer it.",
+        "limitation_or_uncertainty": "None; exclusion is methodological.",
+        "conclusion_or_hypothesis": "No analytical claim is produced for NAQ-001.",
+        "traceability": [
+          "coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "question_id": "NAQ-002",
+      "coverage_state": "not_applicable",
+      "justification": "SPEC-014 marks this non-applicable question as outside the analytical product scope.",
+      "impact": "No out-of-scope evidence source, runtime work or unsupported analytical claim is introduced.",
+      "evidence_refs": [
+        "SPEC-014",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The question is intentionally excluded from the AUC-001 P02 analytical product.",
+        "comparison": "It is not part of the AQ/CQ decision set.",
+        "interpretation": "The correct coverage state is not_applicable.",
+        "business_implication": "The package should not expand scope to answer it.",
+        "limitation_or_uncertainty": "None; exclusion is methodological.",
+        "conclusion_or_hypothesis": "No analytical claim is produced for NAQ-002.",
+        "traceability": [
+          "coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "question_id": "NAQ-003",
+      "coverage_state": "not_applicable",
+      "justification": "SPEC-014 marks this non-applicable question as outside the analytical product scope.",
+      "impact": "No out-of-scope evidence source, runtime work or unsupported analytical claim is introduced.",
+      "evidence_refs": [
+        "SPEC-014",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The question is intentionally excluded from the AUC-001 P02 analytical product.",
+        "comparison": "It is not part of the AQ/CQ decision set.",
+        "interpretation": "The correct coverage state is not_applicable.",
+        "business_implication": "The package should not expand scope to answer it.",
+        "limitation_or_uncertainty": "None; exclusion is methodological.",
+        "conclusion_or_hypothesis": "No analytical claim is produced for NAQ-003.",
+        "traceability": [
+          "coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "question_id": "NAQ-004",
+      "coverage_state": "not_applicable",
+      "justification": "SPEC-014 marks this non-applicable question as outside the analytical product scope.",
+      "impact": "No out-of-scope evidence source, runtime work or unsupported analytical claim is introduced.",
+      "evidence_refs": [
+        "SPEC-014",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The question is intentionally excluded from the AUC-001 P02 analytical product.",
+        "comparison": "It is not part of the AQ/CQ decision set.",
+        "interpretation": "The correct coverage state is not_applicable.",
+        "business_implication": "The package should not expand scope to answer it.",
+        "limitation_or_uncertainty": "None; exclusion is methodological.",
+        "conclusion_or_hypothesis": "No analytical claim is produced for NAQ-004.",
+        "traceability": [
+          "coverage-matrix.json"
+        ]
+      }
+    },
+    {
+      "question_id": "NAQ-005",
+      "coverage_state": "not_applicable",
+      "justification": "SPEC-014 marks this non-applicable question as outside the analytical product scope.",
+      "impact": "No out-of-scope evidence source, runtime work or unsupported analytical claim is introduced.",
+      "evidence_refs": [
+        "SPEC-014",
+        "execution/manifest.json"
+      ],
+      "depth": {
+        "evidence": "The question is intentionally excluded from the AUC-001 P02 analytical product.",
+        "comparison": "It is not part of the AQ/CQ decision set.",
+        "interpretation": "The correct coverage state is not_applicable.",
+        "business_implication": "The package should not expand scope to answer it.",
+        "limitation_or_uncertainty": "None; exclusion is methodological.",
+        "conclusion_or_hypothesis": "No analytical claim is produced for NAQ-005.",
+        "traceability": [
+          "coverage-matrix.json"
+        ]
+      }
+    }
+  ],
+  "conditional_rows_summary": {
+    "CQ-001": "partial: platform dimension exists, but platform spend economics are not available.",
+    "CQ-002": "partial: ticket_status exists in authorized lead source and is read separately from FARO; not revenue validation.",
+    "CQ-003": "not_available: no separate current CAPI/event evidence beyond offline candidate fields was acquired for this product.",
+    "CQ-004": "partial: Tier A exists but is low share and sensitive to denominators.",
+    "CQ-005": "not_available: creative metadata beyond ad_name is not available.",
+    "CQ-006": "not_available: revenue or sales conversion source is not available.",
+    "CQ-007": "partial: weekly quality exists, but complete weekly cost-quality does not."
+  }
+}
