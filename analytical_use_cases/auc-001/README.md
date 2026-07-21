@@ -8,6 +8,9 @@
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
 | Closure gate | READY FOR CLOSURE |
+| Estado post-cierre vigente | AUC-001-P02 ENTRY GATE PASS WITH CONDITIONS - CONTROLLED IMPLEMENTATION AUTHORIZED |
+| P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
+| P02 | Analytical Product Contract Implementation autorizada con PASS WITH CONDITIONS el 2026-07-21 |
 | Fecha del closure gate | 2026-07-16 |
 
 ## Artefactos canónicos
@@ -18,6 +21,11 @@
 | Analytical Contract | [analytical-contract.md](analytical-contract.md) |
 | SPEC-012 Canonical Cost-Quality Model | [../../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md) |
 | SPEC-013 Structured Reconciliation Output | [../../specs/spec-013-auc-001-structured-reconciliation-output.md](/specs/spec-013-auc-001-structured-reconciliation-output.md) |
+| SPEC-014 Analytical Product Contract | [../../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
+| P01 Architectural Memo | [../../docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
+| P01 Documentary Closure Gate | [../../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
+| P02 Task Plan | [../../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
+| P02 Entry Gate | [../../gates/auc-001-p02-entry-gate.md](/gates/auc-001-p02-entry-gate.md) |
 | Skill | [../../.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) |
 | Runbook | [../../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Checklist | [../../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
@@ -55,6 +63,7 @@
 | Presentation Projection Architecture | [../../docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md) |
 | Communication Context Representation Transformation | [../../docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md](/docs/decisions/auc-001/auc-001-communication-context-representation-transformation-architectural-decision.md) |
 | Documentary Alignment Decision | [../../docs/decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md) |
+| P01 Analytical Product Contract Architectural Analysis | [../../docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
 
 
 ## Evolucion post-cierre
@@ -91,11 +100,15 @@ Politica de lectura: los outputs historicos pueden usarse solo como referencia d
 
 SPEC-013 formaliza la exposicion estructurada de reconciliacion para futuras ejecuciones AUC-001. Esta mejora no reabre el ciclo experimental original, no modifica outputs/auc-001/pci-001/2026-06-30/, no regenera informes y no promueve capacidades a AIF Foundation. El Exit Gate de SPEC-013 fue evaluado con `PASS WITH CONDITIONS`.
 
-El P0 Operational Closure Gate del 2026-07-19 queda `P0 BLOCKED`: la ultima ejecucion real aporta cifras trazables mediante MCP, pero no existe un nuevo namespace persistido y el runtime fisico localizado bajo `outputs/auc-001/pci-001/2026-06-30/` no cumple SPEC-013. Las observaciones analiticas residuales quedan asignadas a P01/backlog y no son el motivo del bloqueo.
+El bloqueo inicial del P0 Operational Closure Gate del 2026-07-19 queda como estado historico superado. La causa fue la falta de persistencia fisica SPEC-013 en un nuevo namespace autorizado; las observaciones analiticas residuales quedaron asignadas a P01/backlog y no fueron el motivo del bloqueo.
 
-Specification Agent formalizo la correccion minima como `CORRECTIVE TASKS UNDER SPEC-013`, no como nueva specification. La siguiente iteracion correctiva propuesta es `AUC-001-PCI-002`, con namespace `outputs/auc-001/pci-002/<execution-date>/`, pendiente de Tasks Planner / Entry Gate antes de cualquier implementacion o ejecucion.
+Specification Agent formalizo la correccion minima como `CORRECTIVE TASKS UNDER SPEC-013`, no como nueva specification. Esa correccion se ejecuto como `AUC-001-PCI-002`, con namespace `outputs/auc-001/pci-002/2026-06-30/`.
 
-QA Gate Agent ha validado fisicamente el runtime `outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json`, ha emitido el Exit Gate de AUC-001-PCI-002 con `PASS` y ha reemitido el P0 Operational Closure Gate como `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`. P01 queda listo para un paso posterior controlado; no se inicia en este cierre.
+Estado vigente P0: QA Gate Agent ha validado fisicamente el runtime `outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json`, ha emitido el Exit Gate de AUC-001-PCI-002 con `PASS` y ha reemitido el P0 Operational Closure Gate como `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`.
+
+Estado vigente P01: Architect Agent emitio el memo arquitectonico de contrato de producto analitico, Specification Agent creo `SPEC-014 - AUC-001 Analytical Product Contract`, Reviewer Agent emitio `PASS WITH CONDITIONS`, Specification Agent corrigio las condiciones, Reviewer Agent confirmo `PASS` y QA Gate Agent emitio el cierre documental de P01 con decision `PASS`. Estado canonico de cierre P01: `AUC-001-P01 DOCUMENTARY CLOSURE PASS - READY FOR CONTROLLED POST-P01 IMPLEMENTATION PLANNING`.
+
+Estado vigente P02: Tasks Planner Agent preparo el plan implementable de `AUC-001-P02` a partir de SPEC-014 y del cierre documental de P01; Reviewer Agent confirmo que el plan cubre SPEC-014 sin ampliar informalmente el alcance; QA Gate Agent emitio el Entry Gate de P02 con decision `PASS WITH CONDITIONS`. Estado canonico vigente: `AUC-001-P02 ENTRY GATE PASS WITH CONDITIONS - CONTROLLED IMPLEMENTATION AUTHORIZED`. Esta autorizacion permite implementacion controlada segun el plan P02, pero no autoriza BigQuery, ejecucion analitica real, generacion de Evidence/Knowledge/Recommendations, materializacion de informes u outputs, validacion experimental ni cierre de P02.
 
 ## Evidencia histórica
 

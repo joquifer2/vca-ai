@@ -56,6 +56,11 @@ cliente:
 | Required | Closure Gate | [../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
 | Post-closure | SPEC-012 Canonical Cost-Quality Model | [../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md) |
 | Post-closure | SPEC-013 Structured Reconciliation Output | [../specs/spec-013-auc-001-structured-reconciliation-output.md](/specs/spec-013-auc-001-structured-reconciliation-output.md) |
+| P01 | SPEC-014 Analytical Product Contract | [../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
+| P01 | P01 Analytical Product Contract Architectural Analysis | [decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
+| P01 | AUC-001 P01 Documentary Closure Gate | [../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
+| P02 | AUC-001 P02 Analytical Product Contract Implementation Task Plan | [../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
+| P02 | AUC-001 P02 Entry Gate | [../gates/auc-001-p02-entry-gate.md](/gates/auc-001-p02-entry-gate.md) |
 | Post-closure | ARCH-004 Canonical Cost-Quality Model Decision | [decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md](/docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md) |
 | Post-closure | AUC-001-PCI-001 Entry Gate | [../gates/auc-001-pci-001-entry-gate.md](/gates/auc-001-pci-001-entry-gate.md) |
 | Post-closure | AUC-001-PCI-001 Exit Gate | [../gates/auc-001-pci-001-exit-gate.md](/gates/auc-001-pci-001-exit-gate.md) |
@@ -107,6 +112,8 @@ cliente:
 | 2026-07-19 | Autorizar ejecucion real AUC-001-PCI-002 via BigQuery MCP | QA valida implementacion local, tests 14/14 PASS y Data Provider Validation por `discover_metadata` canonico; se autoriza ejecucion real en `outputs/auc-001/pci-002/2026-06-30/`; P0 sigue bloqueado hasta QA fisico del runtime | [evaluations/auc-001/validations/auc-001-pci-002-local-implementation-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-pci-002-local-implementation-qa-validation.md); [../gates/auc-001-pci-002-real-execution-authorization-gate.md](/gates/auc-001-pci-002-real-execution-authorization-gate.md) |
 | 2026-07-19 | Ejecutar paquete real AUC-001-PCI-002 | Se materializa `outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json` via BigQuery MCP con `is_consumable = true` e invariantes PASS; queda listo para QA fisico y P0 sigue bloqueado hasta esa validacion | [evaluations/auc-001/validations/auc-001-pci-002-real-execution-report.md](/docs/evaluations/auc-001/validations/auc-001-pci-002-real-execution-report.md); [handoffs/auc-001-pci-002-physical-qa-handoff.md](/docs/handoffs/auc-001-pci-002-physical-qa-handoff.md); [../outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json](/outputs/auc-001/pci-002/2026-06-30/execution/runtime-output.json) |
 | 2026-07-19 | Cerrar PCI-002 y P0 Operational Closure | QA valida fisicamente el runtime PCI-002 desde disco, emite Exit Gate `PASS` y reevalua P0 como `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`; P01 no se inicia en esta decision | [evaluations/auc-001/validations/auc-001-pci-002-physical-runtime-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-pci-002-physical-runtime-qa-validation.md); [../gates/auc-001-pci-002-exit-gate.md](/gates/auc-001-pci-002-exit-gate.md); [evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md); [../gates/auc-001-p0-operational-closure-gate.md](/gates/auc-001-p0-operational-closure-gate.md) |
+| 2026-07-21 | Cerrar documentalmente AUC-001-P01 | Architect Agent define el boundary del Analytical Product Contract; Specification Agent crea y corrige SPEC-014; Reviewer Agent confirma `PASS`; QA Gate Agent emite el cierre documental con `PASS`. Estado canonico: `AUC-001-P01 DOCUMENTARY CLOSURE PASS - READY FOR CONTROLLED POST-P01 IMPLEMENTATION PLANNING`. La implementacion, validacion experimental, task plans y outputs pertenecen a fases posteriores separadas | [../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md); [decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md); [../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
+| 2026-07-21 | Autorizar entrada a implementacion AUC-001-P02 | Tasks Planner Agent traduce exclusivamente SPEC-014 en plan implementable; Reviewer Agent confirma que no hay ampliacion informal de alcance; QA Gate Agent emite Entry Gate `PASS WITH CONDITIONS`. Estado canonico: `AUC-001-P02 ENTRY GATE PASS WITH CONDITIONS - CONTROLLED IMPLEMENTATION AUTHORIZED`. No autoriza BigQuery, ejecucion analitica real, outputs, validacion experimental ni cierre P02 | [../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md); [../gates/auc-001-p02-entry-gate.md](/gates/auc-001-p02-entry-gate.md) |
 
 ---
 
@@ -172,8 +179,8 @@ apis:
 ## 8. Trazabilidad
 
 ```yaml
-ultima_actualizacion: 2026-07-19
+ultima_actualizacion: 2026-07-21
 actualizado_por: QA Gate Agent
-motivo: Validacion fisica QA AUC-001-PCI-002, Exit Gate PASS y P0 ready for P01
-version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-p0-pass-ready-for-p01
+motivo: Entry Gate de AUC-001-P02 autorizado con PASS WITH CONDITIONS; implementacion controlada autorizada sin ejecucion analitica ni outputs
+version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-p02-entry-gate-pass-with-conditions
 ```

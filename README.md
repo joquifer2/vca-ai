@@ -109,11 +109,15 @@ Estado de la evolucion SPEC-012: `AUC-001-PCI-001` ejecutado; Exit Gate `PASS WI
 
 La mejora definida por `SPEC-013 - AUC-001 Structured Reconciliation Output` endurece la exposicion estructurada del runtime para futuras ejecuciones AUC-001. Su implementacion tecnica, validacion QA y Exit Gate estan completados con decision `PASS WITH CONDITIONS`. No modifica outputs historicos, no regenera informes y no inicia contrato de producto analitico.
 
-El cierre operativo P0 fue reevaluado el 2026-07-19 con evidencia adicional de la ultima ejecucion real AUC-001 hasta 2026-06-30. La decision QA inicial fue `P0 BLOCKED` por falta de persistencia fisica SPEC-013. Tras AUC-001-PCI-002, la decision final es `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`. P01 no esta iniciado por este cierre.
+El cierre operativo P0 fue reevaluado el 2026-07-19 con evidencia adicional de la ultima ejecucion real AUC-001 hasta 2026-06-30. La decision QA inicial fue `P0 BLOCKED` por falta de persistencia fisica SPEC-013. Tras AUC-001-PCI-002, la decision final es `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`. En ese momento, P01 no quedo iniciado por ese cierre.
 
-Specification Agent formalizo la correccion minima como `CORRECTIVE TASKS UNDER SPEC-013`. No se abre una nueva specification: la siguiente accion metodologica recomendada es planificar `AUC-001-PCI-002` para persistir un `execution/runtime-output.json` fisico conforme a SPEC-013 en un nuevo namespace autorizado.
+Specification Agent formalizo la correccion minima como `CORRECTIVE TASKS UNDER SPEC-013`. No se abrio una nueva specification: esa correccion fue planificada y ejecutada como `AUC-001-PCI-002` para persistir un `execution/runtime-output.json` fisico conforme a SPEC-013 en un nuevo namespace autorizado.
 
-QA Gate Agent ha evaluado el Entry Gate de AUC-001-PCI-002 con `PASS WITH CONDITIONS`, ha validado la implementacion local con pruebas 14/14 PASS y ha autorizado la ejecucion real via BigQuery MCP. Implementation Agent ha materializado el paquete real en `outputs/auc-001/pci-002/2026-06-30/`. QA Gate Agent ha validado fisicamente `execution/runtime-output.json` desde disco, ha emitido el Exit Gate de PCI-002 con `PASS` y ha reemitido el P0 Operational Closure Gate como `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`. P01 queda listo para un paso posterior controlado; no se inicia en este cierre.
+QA Gate Agent ha evaluado el Entry Gate de AUC-001-PCI-002 con `PASS WITH CONDITIONS`, ha validado la implementacion local con pruebas 14/14 PASS y ha autorizado la ejecucion real via BigQuery MCP. Implementation Agent ha materializado el paquete real en `outputs/auc-001/pci-002/2026-06-30/`. QA Gate Agent ha validado fisicamente `execution/runtime-output.json` desde disco, ha emitido el Exit Gate de PCI-002 con `PASS` y ha reemitido el P0 Operational Closure Gate como `P0 PASS WITH RESIDUAL OBSERVATIONS - READY FOR P01`.
+
+P01 fue formalizado el 2026-07-21 como `AUC-001-P01 - Analytical Product Contract Definition`. Architect Agent emitio el memo arquitectonico y Specification Agent creo `SPEC-014 - AUC-001 Analytical Product Contract`. Reviewer Agent reviso adversarialmente la Specification, Specification Agent corrigio las condiciones y Reviewer Agent emitio `PASS`. QA Gate Agent emitio el cierre documental de P01 con decision `PASS`.
+
+P02 fue planificado a partir de SPEC-014 y del cierre documental de P01. Reviewer Agent confirmo que el plan cubre SPEC-014 sin ampliar informalmente el alcance. QA Gate Agent emitio el Entry Gate de P02 con decision `PASS WITH CONDITIONS`. Estado canonico vigente: `AUC-001-P02 ENTRY GATE PASS WITH CONDITIONS - CONTROLLED IMPLEMENTATION AUTHORIZED`. La autorizacion permite implementacion controlada segun el plan P02, pero no autoriza BigQuery, ejecucion analitica real, generacion de Evidence/Knowledge/Recommendations, materializacion de informes u outputs, validacion experimental ni cierre de P02.
 
 ### Namespace de outputs post-cierre
 
@@ -184,6 +188,10 @@ La evolución metodológica sigue una regla sencilla:
 4. `gates/auc-001-experimental-closure-gate.md`
 5. `gates/auc-001-pci-001-entry-gate.md` y `gates/auc-001-pci-001-exit-gate.md`
 6. `outputs/auc-001/2026-06-30/analytical-report.md`
+7. `specs/spec-014-auc-001-analytical-product-contract.md`
+8. `gates/auc-001-p01-documentary-closure-gate.md`
+9. `tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md`
+10. `gates/auc-001-p02-entry-gate.md`
 
 ---
 
@@ -202,4 +210,3 @@ Cada nueva capacidad debe:
 5. y únicamente entonces proponerse como capacidad reutilizable.
 
 Este enfoque permite que el sistema evolucione de forma controlada, manteniendo la coherencia entre metodología, implementación y conocimiento acumulado.
-
