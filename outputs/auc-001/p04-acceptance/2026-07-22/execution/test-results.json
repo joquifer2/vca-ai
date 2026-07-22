@@ -102,6 +102,41 @@
       "name": "p04_acceptance_package_physical_validation",
       "passed_checks": 14,
       "status": "PASS"
+    },
+    {
+      "command": "inline Python remediation of package traceability artifacts",
+      "details": "Added mcp-preflight-record, call_type, spec-016-validation, handoff markers and recalculated hashes.",
+      "name": "spec_016_physical_remediation",
+      "status": "PASS"
+    },
+    {
+      "command": "python -m py_compile tools/auc_001_analytical_product_contract.py tools/auc_001_operational_acceptance_package.py outputs/auc-001/p04-acceptance/2026-07-22/execution/generate_package.py outputs/auc-001/p04-acceptance/2026-07-22/execution/close_reviewer_conditions.py",
+      "name": "remediation_py_compile",
+      "status": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/evals/auc_001_analytical_product_contract_tests.ps1",
+      "name": "remediation_spec_014_suite",
+      "passed_checks": 11,
+      "status": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/evals/auc_001_canonical_projection_source_tests.ps1",
+      "name": "remediation_spec_015_cps_suite",
+      "passed_checks": 4,
+      "status": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/evals/auc_001_operational_acceptance_package_tests.ps1",
+      "name": "remediation_spec_016_suite",
+      "passed_checks": 3,
+      "status": "PASS"
+    },
+    {
+      "command": "validate_package('outputs/auc-001/p04-acceptance/2026-07-22')",
+      "name": "remediation_package_physical_validation",
+      "status": "PASS"
     }
-  ]
+  ],
+  "updated_at": "2026-07-22T16:20:00Z"
 }

@@ -1,0 +1,62 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-SPEC-016-VALIDATION",
+  "checks": [
+    {
+      "artifact": "execution/mcp-preflight-record.json",
+      "name": "mcp_preflight_record_present",
+      "status": "PASS"
+    },
+    {
+      "artifact": "validations/spec-016-validation.json",
+      "name": "spec_016_validation_present",
+      "status": "PASS"
+    },
+    {
+      "count": 18,
+      "name": "evidence_acquisition_records_include_call_type",
+      "status": "PASS"
+    },
+    {
+      "count": 16,
+      "name": "successful_queries_used_as_evidence",
+      "status": "PASS"
+    },
+    {
+      "count": 2,
+      "name": "rejected_scope_denied_queries_not_used_as_evidence",
+      "status": "PASS"
+    },
+    {
+      "name": "handoff_markers_present",
+      "status": "PASS"
+    },
+    {
+      "name": "manifest_fingerprints_recalculated",
+      "status": "PASS"
+    },
+    {
+      "name": "physical_traceability_recalculated",
+      "status": "PASS"
+    },
+    {
+      "name": "namespace_hygiene",
+      "status": "PASS"
+    }
+  ],
+  "contract_id": "AUC-001-OPERATIONAL-ACCEPTANCE-PACKAGE-CONTRACT",
+  "contract_version": "spec-016.v1",
+  "decision": "PASS",
+  "generated_at": "2026-07-22T16:20:00Z",
+  "notes": [
+    "Physical remediation only; no semantic artifacts were changed.",
+    "Final acceptance remains reserved for QA Gate Agent."
+  ],
+  "physical_package_validation": {
+    "command": "validate_package('outputs/auc-001/p04-acceptance/2026-07-22')",
+    "decision": "PASS",
+    "issues": []
+  },
+  "schema_family": "auc_001_operational_acceptance_package",
+  "schema_version": "auc_001_operational_acceptance_package.v1",
+  "specification": "SPEC-016"
+}

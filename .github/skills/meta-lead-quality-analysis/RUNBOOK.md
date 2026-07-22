@@ -19,7 +19,7 @@ Definir el unico orden operativo canonico para ejecutar AUC-001 despues de activ
 9. Knowledge Generation and Stabilization.
 10. Recommendation Generation and Stabilization.
 11. Canonical Content Validation Gate.
-12. Presentation Materialization.
+12. Canonical Projection Source and Presentation Materialization.
 13. Final Checklist and Delivery.
 
 ## Fase 01 - Skill Activation and Execution Mode Resolution
@@ -151,6 +151,7 @@ Acciones:
 - resolver workspace;
 - verificar mecanismo de acceso;
 - confirmar MCP disponible;
+- ejecutar y registrar preflight MCP obligatorio antes de cualquier consulta analitica;
 - ejecutar `discover_metadata` usando exclusivamente el selector canonico publicado en `docs/contracts/bigquery-mcp-discover-metadata.contract.md`;
 - verificar proyecto, datasets, tablas, allowlist y Data Contract a partir de los recursos autorizados necesarios para AUC-001;
 - descubrir esquemas necesarios mediante MCP usando una unica forma canonica por recurso;
@@ -326,9 +327,10 @@ Input:
 Acciones:
 
 - ejecutar consultas mediante BigQuery MCP Server cuando se requiera evidencia nueva;
+- aplicar la estrategia canonica vigente: consultas independientes por tabla autorizada y reconciliacion local controlada, preservando `matched`, `lead_only`, `spend_only` y `UNKNOWN`;
 - registrar SQL, request_id, execution_context, tablas, periodo, filtros, granularidad, dry run, coste estimado, bytes procesados, resultado, policy decision, trace ID y coverage;
-- registrar consultas rechazadas y su causa publica;
-- no usar consultas rechazadas como evidencia;
+- registrar consultas rechazadas, descartadas y su causa publica;
+- no usar consultas rechazadas o descartadas como evidencia;
 - no usar fallback, CLI ni clientes directos cuando el modo exige MCP.
 
 Output:
@@ -465,6 +467,8 @@ Input:
 Acciones:
 
 - comprobar consistencia, trazabilidad, separacion Evidence/Knowledge/Recommendations, coverage states, UNKNOWNs, limitaciones, prioridades y equivalencia semantica;
+- construir y validar Coverage Matrix y Common Product Core conforme a SPEC-014;
+- construir y validar Canonical Projection Source conforme a SPEC-015 antes de cualquier informe;
 - confirmar que Evidence no contiene interpretacion;
 - confirmar que Knowledge no introduce evidencia nueva;
 - confirmar que Recommendations derivan de Knowledge;
@@ -472,7 +476,10 @@ Acciones:
 
 Output:
 
-- Canonical Content Validation result.
+- Canonical Content Validation result;
+- Coverage Matrix validada;
+- Common Product Core validado;
+- Canonical Projection Source validado.
 
 Gate:
 
@@ -480,13 +487,15 @@ Gate:
 
 Definition of Done:
 
-- los cuatro artefactos canonicos estan listos para representarse sin reconstruccion.
+- los artefactos canonicos, Common Product Core y Canonical Projection Source estan listos para representarse sin reconstruccion.
 
-## Fase 12 - Presentation Materialization
+## Fase 12 - Canonical Projection Source and Presentation Materialization
 
 Input:
 
 - artefactos canonicos estabilizados;
+- Common Product Core;
+- Canonical Projection Source;
 - Presentation Contract;
 - Presentation Projection;
 - Communication Context;
@@ -499,7 +508,9 @@ Acciones:
 - resolver Communication Context;
 - resolver Representation Constraints;
 - aplicar Presentation Policy cuando exista;
-- consumir solo artefactos estabilizados;
+- consumir solo el Canonical Projection Source y artefactos estabilizados autorizados;
+- materializar analytical report y executive report como proyecciones hermanas cuando ambas se soliciten;
+- impedir derivacion entre proyecciones;
 - no consultar datos;
 - no generar evidencia;
 - no generar nuevo conocimiento;
@@ -536,7 +547,9 @@ Acciones:
 - declarar policy aplicada, cuando exista;
 - confirmar aislamiento historico;
 - confirmar trazabilidad;
-- confirmar preservacion de limitaciones y UNKNOWNs.
+- confirmar preservacion de limitaciones y UNKNOWNs;
+- cuando exista execution package, validar contrato fisico SPEC-016: manifest, fingerprints, physical traceability, registros MCP completos, resultados de validacion, higiene de namespace y handoff con comandos/resultados;
+- distinguir `READY_FOR_REVALIDATION` de aceptacion final por QA Gate.
 
 Output:
 

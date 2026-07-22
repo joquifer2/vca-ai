@@ -122,12 +122,22 @@ Framework, tras validar el contenido generado por Reasoning Layer y Recommendati
 - [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
 - [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
 - [specs/spec-010-presentation-projection-selection.md](/specs/spec-010-presentation-projection-selection.md)
+- [specs/spec-011-communication-context-representation-transformation.md](/specs/spec-011-communication-context-representation-transformation.md)
+- [specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md)
+- [specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md)
+- [specs/spec-016-auc-001-operational-acceptance-package-contract.md](/specs/spec-016-auc-001-operational-acceptance-package-contract.md)
 - [docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md)
 - [docs/decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md)
 - [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
 - [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 - [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
+
+## AUC-001 Canonical Projection Alignment
+
+Para AUC-001, las ejecuciones posteriores a P04 deben aplicar SPEC-014 y SPEC-015 antes de materializar informes. Presentation Layer consume el `Canonical Projection Source` y el contenido canónico aprobado; no consume prompts independientes, no deriva el informe ejecutivo desde el analítico ni el analítico desde el ejecutivo, y no introduce conocimiento nuevo.
+
+Cuando exista un execution package persistido, la trazabilidad física de Presentation se verifica mediante SPEC-016. Este apartado no modifica la semántica general del contrato; solo registra la dependencia vigente de AUC-001.
 ## Unknown Handling
 
 | Unknown | Handling |
@@ -162,6 +172,10 @@ Cuando consuma la misma proyeccion seleccionada y el mismo contenido canonico ap
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
 | SPEC-010 | Presentation projection selection |
+| SPEC-011 | Communication context representation transformation |
+| SPEC-014 | AUC-001 Analytical Product Contract |
+| SPEC-015 | AUC-001 Canonical Projection Consolidation |
+| SPEC-016 | AUC-001 Operational Acceptance Package Contract |
 | VCA-AUC-001-ARCH-002 | Presentation projection architecture |
 | AUC-001 | Analytical use case |
 | meta-lead-quality-analysis | Skill |

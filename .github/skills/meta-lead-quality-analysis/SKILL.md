@@ -93,6 +93,15 @@ Queda prohibido:
 - introducir acceso directo a BigQuery cuando el workspace exige MCP;
 - continuar cuando no pueda verificarse la autorizacion de una fuente.
 
+## Marco canónico vigente de AUC-001
+
+Para ejecuciones AUC-001 posteriores a P04, la cadena operativa vigente incorpora tres contratos específicos sin cambiar la semántica del lifecycle base:
+
+- `SPEC-014 - AUC-001 Analytical Product Contract`: define cobertura de preguntas de negocio, Common Product Core, preservación de coverage states, `UNKNOWN`, limitaciones y recomendaciones trazadas.
+- `SPEC-015 - AUC-001 Canonical Projection Consolidation`: exige un `Canonical Projection Source` previo a cualquier informe; analytical y executive son proyecciones hermanas derivadas del mismo núcleo, no de prompts independientes ni una de otra.
+- `SPEC-016 - AUC-001 Operational Acceptance Package Contract`: define preflight MCP, registro completo de llamadas MCP, estrategia de consultas independientes por tabla con reconciliación local controlada, manifest, fingerprints, trazabilidad física, higiene de namespace y handoff verificable.
+
+Estos contratos son dependencias vigentes de la skill. No autorizan ampliar fuentes, reinterpretar SPEC-014/SPEC-015, modificar el servidor BigQuery MCP ni reutilizar outputs históricos como evidencia nueva.
 ## Modos de ejecucion
 
 AUC-001 admite dos modos.
@@ -138,7 +147,7 @@ No significa:
 La ejecucion preserva esta cadena conceptual:
 
 ```text
-Context -> Evidence -> Knowledge -> Recommendations -> Presentation
+Context -> Evidence -> Knowledge -> Recommendations -> Common Product Core -> Canonical Projection Source -> Presentation
 ```
 
 La secuencia operativa detallada de esa cadena vive solo en `RUNBOOK.md`.
@@ -148,7 +157,9 @@ Antes de iniciar Presentation deben existir y estar estabilizados:
 - Context Definition;
 - Evidence Set;
 - Knowledge Set;
-- Recommendation Set.
+- Recommendation Set;
+- Common Product Core conforme a SPEC-014;
+- Canonical Projection Source conforme a SPEC-015.
 
 Presentation Layer no puede reconstruir estos artefactos ni volver a razonar directamente desde los datos.
 
@@ -235,6 +246,8 @@ La ejecucion no podra:
 - introducir recomendaciones no derivadas del Knowledge Set;
 - ocultar limitaciones materiales o UNKNOWNs;
 - alterar coverage states durante Presentation;
+- derivar una proyeccion desde otra proyeccion;
+- introducir conocimiento nuevo en Presentation;
 - romper la equivalencia semantica entre artefactos canonicos y representacion.
 
 ## Criterios de bloqueo
@@ -250,7 +263,7 @@ Detener la ejecucion cuando:
 - una fuente necesaria no este autorizada;
 - se detecte una fuente fuera del Data Contract;
 - el Context Definition, Evidence Set, Knowledge Set o Recommendation Set no pueda estabilizarse;
-- falte algun artefacto canonico antes de Presentation Layer;
+- falte algun artefacto canonico, Common Product Core o Canonical Projection Source antes de Presentation Layer;
 - la representacion requiera modificar el contenido canonico;
 - no pueda garantizarse la equivalencia semantica.
 
@@ -274,11 +287,14 @@ La ejecucion se considera completada cuando:
 - las fuentes utilizadas estan autorizadas;
 - BigQuery MCP Server ha sido el unico Data Provider cuando se adquirio evidencia nueva;
 - Context Definition, Evidence Set, Knowledge Set y Recommendation Set estan estabilizados;
+- Common Product Core y Canonical Projection Source existen antes de cualquier informe cuando aplique SPEC-014/SPEC-015;
 - las recomendaciones estan trazadas al conocimiento;
 - Presentation Layer consume los artefactos canonicos sin volver a derivarlos;
 - la proyeccion y el contexto comunicativo estan resueltos;
 - la politica aplicada esta identificada, cuando exista;
 - las limitaciones y UNKNOWNs permanecen visibles;
 - la equivalencia semantica esta preservada;
+- cuando se persiste un execution package, manifest, fingerprints, trazabilidad fisica, registro de llamadas MCP, higiene de namespace y handoff cumplen SPEC-016;
+- el estado `READY_FOR_REVALIDATION` no se declara como aceptacion final sin gate QA fisico;
 - `CHECKLIST.md` esta completado;
 - no se han introducido hechos, interpretaciones ni recomendaciones no aprobados.

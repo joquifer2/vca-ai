@@ -2,7 +2,7 @@
 
 ## Estado
 
-Draft - ready for Reviewer Agent.
+Approved - closed by QA Gate PASS.
 
 ## Fecha
 

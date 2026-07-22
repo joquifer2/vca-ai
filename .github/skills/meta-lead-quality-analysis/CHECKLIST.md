@@ -122,7 +122,21 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 
 ---
 
-# 7. Presentation
+# 7. Canonical Projection Source
+
+- [ ] Existe Coverage Matrix conforme a SPEC-014 cuando el alcance requiere producto analítico completo.
+- [ ] Existe Common Product Core conforme a SPEC-014 antes de Presentation.
+- [ ] Existe Canonical Projection Source conforme a SPEC-015 antes de cualquier informe.
+- [ ] El Canonical Projection Source deriva del núcleo canónico, Knowledge y Recommendation Sets aprobados.
+- [ ] Analytical report y executive report, si ambos existen, derivan del mismo Canonical Projection Source.
+- [ ] Ninguna proyección deriva de otra proyección.
+- [ ] Las variaciones entre analytical y executive son de selección, densidad, orden, énfasis, formato o audiencia, no de contenido semántico nuevo.
+- [ ] Limitaciones, `UNKNOWN`, `partial`, `not_available`, coverage states y prioridades permanecen presentes y equivalentes.
+- [ ] Presentation no introduce nueva evidencia, nuevo Knowledge, nuevas recomendaciones ni valoración comparativa externa.
+
+---
+
+# 8. Presentation
 
 - [ ] Los cuatro artefactos canónicos existen antes de Presentation Layer.
 - [ ] Puede demostrarse que Evidence quedó estabilizada antes de Presentation Layer.
@@ -139,7 +153,21 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 
 ---
 
-# 8. Validación final
+# 9. Execution Package y validación física
+
+- [ ] Si se persiste paquete físico, existe preflight MCP obligatorio antes de adquirir evidencia.
+- [ ] Si se persiste paquete físico, existe Evidence Acquisition Record completo con SQL, `execution_context`, datasets, tablas, periodo, filtros, granularidad, dry run, control de coste, resultado o error, `request_id`, `trace_reference`, bytes cuando estén disponibles y estado de uso como evidencia.
+- [ ] Las llamadas MCP rechazadas, descartadas o diagnósticas se registran y no se usan como Evidence.
+- [ ] La estrategia MCP usa consultas independientes por tabla autorizada y reconciliación local controlada hasta que el gap multi-tabla sea resuelto formalmente.
+- [ ] El grano adquirido permite cumplir SPEC-014; si no lo permite, la ejecución queda bloqueada o declara insuficiencia antes de Presentation.
+- [ ] Existen manifest, artifact fingerprints y physical traceability reproducibles.
+- [ ] El namespace no contiene `__pycache__`, `.pyc` ni residuos no contractuales.
+- [ ] El handoff declara comandos ejecutados, resultados, limitaciones y desviaciones.
+- [ ] `READY_FOR_REVALIDATION` no se declara como aceptación final sin gate QA físico.
+
+---
+
+# 10. Validación final
 
 - [ ] La equivalencia semántica se mantiene.
 - [ ] Los coverage states permanecen visibles.

@@ -121,6 +121,10 @@ P02 fue planificado a partir de SPEC-014 y del cierre documental de P01. Tras im
 
 P03 cerro una revision experimental de representacion sobre el producto canonico P02 con `PASS`, sin adquirir evidencia nueva ni modificar outputs historicos. P04 cerro despues la consolidacion canonica de proyecciones con `PASS`: `SPEC-015 - AUC-001 Canonical Projection Consolidation` queda implementada mediante `Canonical Projection Source`, proyecciones hermanas analytical/executive y validadores que bloquean nuevo conocimiento en Presentation.
 
+SPEC-016 cerro con `PASS` el contrato operativo de execution package: preflight MCP, consultas independientes por tabla, reconciliacion local controlada, registro completo de llamadas MCP, manifest, fingerprints, trazabilidad fisica, higiene de namespace y handoff verificable. El gap de consultas MCP multi-tabla queda fuera del flujo operativo principal.
+
+AUC-001-IC-001 cerro con `PASS` la consolidacion integral estructural, documental y operativa. Estado canonico vigente: `AUC-001-IC-001 CLOSURE PASS - INTEGRAL PRODUCT CONSOLIDATION CLOSED`. AUC-001 queda como producto operativo trazable basado en SPEC-014, SPEC-015 y SPEC-016, sin reabrir P02/P03/P04 ni modificar outputs historicos. `outputs/auc-001/p04-acceptance/2026-07-22/` ha sido revalidado fisicamente y queda `FINAL ACCEPTED` por `gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md`; su manifest interno conserva correctamente `READY_FOR_REVALIDATION`.
+
 ### Namespace de outputs post-cierre
 
 El namespace oficial para la primera iteracion post-cierre es `outputs/auc-001/pci-001/2026-06-30/`.
@@ -197,6 +201,9 @@ La evolución metodológica sigue una regla sencilla:
 11. `gates/auc-001-p02-closure-gate.md`
 12. `specs/spec-015-auc-001-canonical-projection-consolidation.md`
 13. `gates/auc-001-p04-exit-gate.md`
+14. `specs/spec-016-auc-001-operational-acceptance-package-contract.md`
+15. `gates/auc-001-ic-001-closure-gate.md`
+16. `gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md`
 
 ---
 

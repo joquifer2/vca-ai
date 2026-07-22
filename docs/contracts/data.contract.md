@@ -168,3 +168,11 @@ Estas reglas aplican solo a la evolucion post-cierre `AUC-001-PCI-001` definida 
 | Query traceability | Cada adquisicion debe conservar SQL, request ID, trace ID, execution context, project, dataset, periodo, dry run, bytes procesados, estado de consulta y evidencia de allowlist. |
 | Invalid IDs | IDs nulos, vacios, no normalizables, colisiones y duplicados no resueltos deben registrarse como UNKNOWN o bloquear segun SPEC-012. |
 | Historical outputs | La adquisicion post-cierre no puede reutilizar outputs historicos como evidencia nueva ni sobrescribirlos. |
+
+## AUC-001 Operational Acceptance Traceability
+
+Esta seccion registra la dependencia operativa vigente de AUC-001 con `SPEC-016 - AUC-001 Operational Acceptance Package Contract`.
+
+No introduce reglas nuevas en este Data Contract, no amplia fuentes, no modifica tablas, campos, metricas, allowlist ni cambia la semantica de SPEC-014 o SPEC-015.
+
+Las obligaciones de preflight MCP, estrategia de consultas independientes por tabla, reconciliacion local controlada, preservacion de `matched`, `lead_only`, `spend_only` y `UNKNOWN`, tratamiento de llamadas MCP rechazadas, bloqueo por granularidad insuficiente y contrato fisico de execution package permanecen definidas por SPEC-016 y por el Runbook AUC-001.

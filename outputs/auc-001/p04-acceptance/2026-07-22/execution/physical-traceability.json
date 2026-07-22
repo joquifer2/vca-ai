@@ -1,13 +1,19 @@
 {
   "artifact_id": "AUC-001-P04-ACCEPTANCE-PHYSICAL-TRACEABILITY",
   "fingerprint_policy": "artifact_fingerprints excludes manifest.json, physical-traceability.json and test-results.json to avoid recursive hash mutation; physical-traceability signs manifest and test-results.",
-  "generated_at": "2026-07-22T15:35:00Z",
+  "generated_at": "2026-07-22T16:20:00Z",
   "historical_outputs_modified": false,
-  "manifest_path": "outputs/auc-001/p04-acceptance/2026-07-22/execution/manifest.json",
-  "manifest_sha256": "61e7ce6fdd95dfb05ec569841fe8c2202511a0c0f0839aceda476b2b43485388",
+  "manifest_path": "execution/manifest.json",
+  "manifest_sha256": "ebc9ae8157e106369d68651613b076cf40140d7782a1c047e20cf895d38f2311",
+  "mcp_preflight_record_path": "execution/mcp-preflight-record.json",
+  "mcp_preflight_record_sha256": "9014663a40f89e89f5bbd51fcdeb135268d53744af916773658d95b2f5129ff5",
+  "namespace_hygiene_pass": true,
   "namespace_is_authorized": true,
-  "package_file_count": 25,
+  "package_file_count": 27,
   "pycache_present": false,
   "reviewer_condition_closure_validation_sha256": "4abd96e8d56838ad2eb749548fb279d52ce70ff9a789da60c0cef8d64503ca30",
-  "test_results_sha256": "794cea39170f99b7dfe8fbf20368ae1e7baa20cfcc1c63a3b50f602c622418ec"
+  "spec_016_validation_path": "validations/spec-016-validation.json",
+  "spec_016_validation_sha256": "fa3ee7e43a4d48a74218d69231c69da2a992dd564fe86cb10ad851fb5c331188",
+  "test_results_path": "execution/test-results.json",
+  "test_results_sha256": "8b7afb26b03c746023e86e1ce3536540a0dc823d4d0afb11122020509eefb584"
 }

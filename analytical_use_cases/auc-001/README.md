@@ -7,12 +7,15 @@
 | Estado operativo | Active |
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
-| Closure gate | P04 CLOSED |
-| Estado post-cierre vigente | AUC-001-P04 EXIT GATE PASS - CANONICAL PROJECTION CONSOLIDATION CLOSED |
+| Closure gate | P04 CLOSED; SPEC-016 CLOSED; IC-001 CLOSED; P04 acceptance FINAL ACCEPTED |
+| Estado post-cierre vigente | AUC-001 POST-P04 ACCEPTANCE FINAL ACCEPTED - INTEGRAL PRODUCT CONSOLIDATION CLOSED |
 | P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
 | P02 | Analytical Product Contract real execution cerrado con PASS WITH DECLARED LIMITATIONS el 2026-07-21 |
 | P03 | Experimental representation revision cerrada con PASS el 2026-07-22 |
 | P04 | Canonical Projection Consolidation cerrada con PASS el 2026-07-22 |
+| SPEC-016 | Operational Acceptance Package Contract cerrado con PASS el 2026-07-22 |
+| IC-001 | Integral Product Consolidation cerrada con PASS el 2026-07-22 sin nueva Specification |
+| Paquete real post-P04 | `outputs/auc-001/p04-acceptance/2026-07-22/` aceptado finalmente por QA Gate Agent el 2026-07-22 |
 | Fecha del closure gate | 2026-07-22 |
 
 ## Artefactos canónicos
@@ -25,6 +28,7 @@
 | SPEC-013 Structured Reconciliation Output | [../../specs/spec-013-auc-001-structured-reconciliation-output.md](/specs/spec-013-auc-001-structured-reconciliation-output.md) |
 | SPEC-014 Analytical Product Contract | [../../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
 | SPEC-015 Canonical Projection Consolidation | [../../specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md) |
+| SPEC-016 Operational Acceptance Package Contract | [../../specs/spec-016-auc-001-operational-acceptance-package-contract.md](/specs/spec-016-auc-001-operational-acceptance-package-contract.md) |
 | P01 Architectural Memo | [../../docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
 | P01 Documentary Closure Gate | [../../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
 | P02 Task Plan | [../../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
@@ -44,11 +48,20 @@
 | P04 Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
 | P04 Semantic Equivalence QA Gate | [../../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
 | P04 Exit Gate | [../../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
+| SPEC-016 Controlled Proof Namespace | `outputs/auc-001/spec-016-controlled-proof/2026-07-22/` |
+| SPEC-016 MCP Multi-table Query Gap | [../../docs/evaluations/auc-001/validations/auc-001-spec-016-mcp-multitable-query-gap.md](/docs/evaluations/auc-001/validations/auc-001-spec-016-mcp-multitable-query-gap.md) |
+| P04 Acceptance Real Execution Package | `outputs/auc-001/p04-acceptance/2026-07-22/` |
+| P04 Acceptance Final Physical Gate | [../../gates/auc-001-p04-acceptance-final-physical-gate.md](/gates/auc-001-p04-acceptance-final-physical-gate.md) |
+| P04 Acceptance Final Physical Revalidation Gate | [../../gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md](/gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md) |
+| IC-001 Task Plan | [../../tasks/auc-001-ic-001-integral-product-consolidation-task-plan.md](/tasks/auc-001-ic-001-integral-product-consolidation-task-plan.md) |
+| IC-001 Entry Gate | [../../gates/auc-001-ic-001-entry-gate.md](/gates/auc-001-ic-001-entry-gate.md) |
+| IC-001 Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-ic-001-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-ic-001-implementation-handoff.md) |
+| IC-001 Closure Gate | [../../gates/auc-001-ic-001-closure-gate.md](/gates/auc-001-ic-001-closure-gate.md) |
 | Skill | [../../.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) |
 | Runbook | [../../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Checklist | [../../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
 | Closure Gate | [../../gates/auc-001-experimental-closure-gate.md](/gates/auc-001-experimental-closure-gate.md) |
-| Producto analítico final validado | [../../outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md) |
+| Producto analítico histórico validado | [../../outputs/auc-001/2026-06-30/analytical-report.md](/outputs/auc-001/2026-06-30/analytical-report.md) |
 | Informe ejecutivo documentado | [../../docs/handoffs/auc-001-executive-report.md](/docs/handoffs/auc-001-executive-report.md) |
 
 ## Validaciones principales
@@ -78,6 +91,7 @@
 | AUC-001 P04 Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
 | AUC-001 P04 Semantic Equivalence QA Gate | [../../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
 | AUC-001 P04 Exit Gate | [../../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
+| IC-001 | AUC-001 IC-001 Closure Gate | [../../gates/auc-001-ic-001-closure-gate.md](/gates/auc-001-ic-001-closure-gate.md) |
 
 ## Decisiones vigentes
 
@@ -138,8 +152,38 @@ Estado vigente P03: Implementation Agent materializo una revision autorizada de 
 
 Estado vigente P04: Architect Agent definio el boundary para consolidar definitivamente las proyecciones analitica y ejecutiva; Specification Agent creo `SPEC-015 - AUC-001 Canonical Projection Consolidation`; Tasks Planner Agent preparo el plan implementable; QA Gate Agent autorizo implementacion controlada; Implementation Agent materializo el `Canonical Projection Source`, las proyecciones hermanas y los validadores en `tools/auc_001_analytical_product_contract.py`; Reviewer Agent confirmo las correcciones; QA Gate Agent valido equivalencia semantica y ausencia de conocimiento nuevo en Presentation; y QA Gate Agent emitio Exit Gate `PASS`. Estado canonico vigente: `AUC-001-P04 EXIT GATE PASS - CANONICAL PROJECTION CONSOLIDATION CLOSED`. P04 no adquiere evidencia, no genera outputs analiticos, no modifica P02/P03 y no resuelve gaps dependientes de evidencia futura.
 
+Estado vigente SPEC-016: Specification Agent creo `SPEC-016 - AUC-001 Operational Acceptance Package Contract` para estabilizar el contrato fisico y operativo de paquetes AUC-001 antes de la consolidacion integral; Reviewer Agent valido boundary, verificabilidad y ausencia de cambios semanticos en SPEC-014/SPEC-015; QA Gate Agent comprobo fisicamente el paquete controlado `outputs/auc-001/spec-016-controlled-proof/2026-07-22/`, ejecuto suites aplicables y emitio cierre formal `PASS`. Estado canonico: `SPEC-016 OPERATIONAL ACCEPTANCE PACKAGE CONTRACT CLOSED - READY FOR INTEGRAL ARTIFACT CONSOLIDATION INPUT`. SPEC-016 no adquiere evidencia nueva, no modifica outputs historicos, no modifica el servidor BigQuery MCP y no altera la semantica de SPEC-014/SPEC-015.
+
+Gap operativo SPEC-016: las consultas MCP multi-tabla permanecen como gap de proveedor/runtime registrado por separado. Hasta que exista decision tecnica futura, AUC-001 debe usar consultas MCP independientes por tabla autorizada y reconciliacion local controlada; cualquier intento multi-tabla debe registrarse como rechazado, descartado o diagnostico no-evidencial y nunca como Evidence.
+
 Gaps dependientes de evidencia futura: revenue/CRM o conversion comercial reconciliada permanece `not_available`; causalidad creativa permanece `UNKNOWN`; metadata creativa adicional mas alla de `ad_name` permanece `not_available`; temporalidad coste-calidad completa permanece `partial` por limites de proveedor. Estos gaps quedan registrados en [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) y requieren alcance posterior separado para resolverse.
 
+Estado vigente IC-001: QA Gate Agent emitio el Closure Gate con `PASS` tras ejecutar `py_compile`, suites SPEC-014/SPEC-015/SPEC-016, validacion de rutas canonicas, higiene de namespace y `git diff --check`. Estado canonico: `AUC-001-IC-001 CLOSURE PASS - INTEGRAL PRODUCT CONSOLIDATION CLOSED`. IC-001 consolida estructura documental y operativa, no abre nueva Specification, no adquiere evidencia, no genera outputs y no declara aceptado `outputs/auc-001/p04-acceptance/2026-07-22/` sin su gate fisico final propio.
+
+Estado vigente del paquete real post-P04: QA Gate Agent revalido fisicamente `outputs/auc-001/p04-acceptance/2026-07-22/` y emitio `FINAL ACCEPTED` en [../../gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md](/gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md). El manifest del paquete permanece correctamente en `READY_FOR_REVALIDATION`; la aceptacion final la concede el gate QA, no el manifest.
+
+
+## Modelo canónico operativo vigente tras IC-001
+
+AUC-001 queda consolidado como producto operativo trazable sobre esta cadena canónica:
+
+```text
+Instrucción breve -> Skill/Runbook -> Context Definition -> MCP preflight -> Evidence Acquisition Record -> Evidence Set -> Knowledge Set -> Recommendation Set -> Coverage Matrix -> Common Product Core -> Canonical Projection Source -> Analytical Report / Executive Report -> Execution Package -> Reviewer/QA Gate
+```
+
+Clasificación vigente de artefactos:
+
+| Clase | Artefactos |
+|---|---|
+| Canónicos vigentes | AUC definition, analytical contract, SPEC-014, SPEC-015, SPEC-016, Skill, Runbook, Checklist, Data Contract, Presentation Contract, BigQuery MCP discover_metadata contract reference, tests y herramientas asociadas. |
+| Operativos | `tools/auc_001_analytical_product_contract.py`, `tools/auc_001_operational_acceptance_package.py`, suites `tests/evals/auc_001_*`, task plans y gates vigentes autorizados. |
+| Históricos preservados | `outputs/auc-001/2026-06-30/`, `outputs/auc-001/pci-001/2026-06-30/`, `outputs/auc-001/pci-002/2026-06-30/`, corpus y evaluaciones históricas. |
+| Experimentales cerrados | P03 y su namespace `outputs/auc-001/p03/2026-07-22/`; se conservan por trazabilidad y no son fuente analítica nueva. |
+| Cerrados sin reapertura | P02, P03, P04 y SPEC-016 mantienen sus decisiones y outputs intactos. |
+| Paquete real final aceptado | `outputs/auc-001/p04-acceptance/2026-07-22/` queda `FINAL ACCEPTED` por gate QA físico final; su manifest interno conserva `READY_FOR_REVALIDATION` como estado de paquete producido por Implementation. |
+| Gaps fuera del flujo principal | MCP multi-tabla, revenue/CRM, causalidad creativa, metadata creativa adicional y temporalidad limitada por proveedor. |
+
+Regla de operación: las futuras ejecuciones completas deben construir el paquete físico conforme a SPEC-016; las proyecciones analytical y executive deben derivar del mismo Canonical Projection Source conforme a SPEC-015; y la cobertura, `UNKNOWN`, `partial`, `not_available`, limitaciones y recomendaciones deben preservar SPEC-014.
 ## Evidencia histórica
 
 - Índice de evaluaciones: [../../docs/evaluations/README.md](/docs/evaluations/README.md)

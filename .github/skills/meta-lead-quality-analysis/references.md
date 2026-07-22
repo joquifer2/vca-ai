@@ -95,6 +95,9 @@ En particular:
 - Execution Scope Canonicalization
 - Presentation Projection Selection (SPEC-010)
 - Communication Context Representation Transformation (SPEC-011)
+- AUC-001 Analytical Product Contract (SPEC-014)
+- AUC-001 Canonical Projection Consolidation (SPEC-015)
+- AUC-001 Operational Acceptance Package Contract (SPEC-016)
 
 La skill no necesita reinterpretarlas.
 
@@ -153,6 +156,10 @@ Antes de Presentation Layer deberán existir:
 - Evidence Set
 - Knowledge Set
 - Recommendation Set
+- Coverage Matrix y Common Product Core conforme a SPEC-014
+- Canonical Projection Source conforme a SPEC-015
+
+Cuando una ejecucion persista paquete fisico, tambien deberan existir los artefactos operativos definidos por SPEC-016: preflight MCP, Evidence Acquisition Record completo, manifests, fingerprints, trazabilidad fisica, resultados de validacion, higiene de namespace y handoff verificable.
 
 Estos artefactos serán construidos siguiendo `RUNBOOK.md`.
 
@@ -189,6 +196,14 @@ El `dataset_id` debe ser `intermediate` para consultas sobre `datamart-vca-49411
 
 No incluir dentro de `execution_context`: `workspace_id`, `table_id`, `purpose`, `request_id`, `resource_selector`, `location`, `auth_mode` ni ningun otro campo descriptivo o no soportado. `request_id` debe permanecer en el nivel superior de la llamada; la SQL debe permanecer en `sql_query`; la trazabilidad adicional debe documentarse en artefactos de ejecucion o auditoria.
 
+---
+
+
+## Artefactos historicos y gaps fuera del flujo principal
+
+Los outputs historicos y experimentales pueden consultarse para auditoria, comparacion metodologica o trazabilidad cuando la solicitud lo autorice, pero no son Evidence nueva ni expected values de una ejecucion actual.
+
+Permanecen fuera del flujo operativo principal hasta nueva evidencia o decision separada: revenue/CRM, causalidad creativa, metadata creativa adicional, temporalidad limitada por proveedor y gap MCP multi-tabla.
 ---
 
 ## Prioridad de referencias
