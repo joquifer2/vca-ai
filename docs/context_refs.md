@@ -67,6 +67,10 @@ cliente:
 | P02 | AUC-001 P02 Closure Gate | [../gates/auc-001-p02-closure-gate.md](/gates/auc-001-p02-closure-gate.md) |
 | Transversal | AUC-001 P01 And Transversal Documentation Final Review | [evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md](/docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md) |
 | P02 | AUC-001 P02 Output Namespace | `outputs/auc-001/p02/2026-07-17/` |
+| P03 | AUC-001 P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
+| P03 | AUC-001 P03 Revalidation Handoff | [handoffs/auc-001-p03-revalidation-handoff.md](/docs/handoffs/auc-001-p03-revalidation-handoff.md) |
+| P03 | AUC-001 P03 Experimental Closure Gate | [../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
+| P03 | AUC-001 P03 Future Evidence Gaps Record | [evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
 | Post-closure | ARCH-004 Canonical Cost-Quality Model Decision | [decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md](/docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md) |
 | Post-closure | AUC-001-PCI-001 Entry Gate | [../gates/auc-001-pci-001-entry-gate.md](/gates/auc-001-pci-001-entry-gate.md) |
 | Post-closure | AUC-001-PCI-001 Exit Gate | [../gates/auc-001-pci-001-exit-gate.md](/gates/auc-001-pci-001-exit-gate.md) |
@@ -123,6 +127,7 @@ cliente:
 | 2026-07-21 | Autorizar ejecucion real AUC-001-P02 via BigQuery MCP | QA Gate Agent revisa el estado vigente de P02, confirma validacion tecnica y funcional `PASS` y emite Real Execution Authorization Gate con `PASS WITH CONDITIONS - REAL EXECUTION AUTHORIZED VIA BIGQUERY MCP`. Estado canonico: `AUC-001-P02 REAL EXECUTION AUTHORIZED VIA BIGQUERY MCP WITH CONDITIONS`. Autoriza ejecucion real, adquisicion de evidencia nueva y persistencia en namespace protegido `outputs/auc-001/p02/<execution-date-or-cutoff>/`, sujeto a Runbook, Data Provider Validation MCP y QA fisico posterior; no ejecuta el analisis ni cierra P02 | [evaluations/auc-001/validations/auc-001-p02-technical-functional-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-p02-technical-functional-qa-validation.md); [../gates/auc-001-p02-real-execution-authorization-gate.md](/gates/auc-001-p02-real-execution-authorization-gate.md) |
 | 2026-07-21 | Cerrar AUC-001-P02 | QA Gate Agent revalida fisicamente el paquete `outputs/auc-001/p02/2026-07-17/` con `PASS WITH DECLARED LIMITATIONS`, cierra los blockers FND-001 y FND-002, verifica matriz SPEC-014 23/23, trazabilidad MCP 16/16, manifest, fingerprints, nucleo comun, informes y tests; emite Closure Gate de P02. Estado canonico: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED` | [evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md](/docs/evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md); [../gates/auc-001-p02-closure-gate.md](/gates/auc-001-p02-closure-gate.md); [../outputs/auc-001/p02/2026-07-17/execution/manifest.json](/outputs/auc-001/p02/2026-07-17/execution/manifest.json) |
 | 2026-07-21 | Revisar alineacion documental final P01 y transversal | Documentation Agent revisa P01, gates P01/P02, README raiz, README AUC-001 y context refs; confirma enlaces canonicos, estado vigente P02 cerrado y preservacion del boundary historico de P01. Decision: `DOCUMENTATION ALIGNED - PASS` | [evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md](/docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md) |
+| 2026-07-22 | Cerrar experimentalmente AUC-001-P03 | QA Gate Agent emite cierre experimental `PASS` para la revision de representacion P03 sobre el producto canonico P02. Estado canonico: `AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED`. No adquiere nueva evidencia, no modifica SPEC-014, no modifica outputs historicos ni reabre P02. Los gaps revenue/CRM, causalidad creativa, metadata creativa adicional y temporalidad coste-calidad quedan registrados como dependientes de evidencia futura | [../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md); [handoffs/auc-001-p03-revalidation-handoff.md](/docs/handoffs/auc-001-p03-revalidation-handoff.md); [evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md); [../outputs/auc-001/p03/2026-07-22/execution/manifest.json](/outputs/auc-001/p03/2026-07-22/execution/manifest.json) |
 
 ---
 
@@ -148,6 +153,9 @@ cliente:
 | Post-closure | AUC-001-PCI-002 Exit Gate | [../gates/auc-001-pci-002-exit-gate.md](/gates/auc-001-pci-002-exit-gate.md) |
 | Post-closure | AUC-001 P0 Final QA Validation | [evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md) |
 | Post-closure | AUC-001-PCI-002 Output Namespace | `outputs/auc-001/pci-002/2026-06-30/` |
+| P03 | AUC-001 P03 Experimental Closure Gate | [../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
+| P03 | AUC-001 P03 Future Evidence Gaps Record | [evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
+| P03 | AUC-001 P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
 | Historical | Closure Reconciliation Review | [evaluations/auc-001/historical/auc-001-closure-reconciliation-review.md](/docs/evaluations/auc-001/historical/auc-001-closure-reconciliation-review.md) |
 | Historical | SDD Readiness Assessment | [evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md) |
 
@@ -188,8 +196,8 @@ apis:
 ## 8. Trazabilidad
 
 ```yaml
-ultima_actualizacion: 2026-07-21
+ultima_actualizacion: 2026-07-22
 actualizado_por: Documentation Agent
-motivo: Revision final de alineacion documental P01 y transversal tras cierre P02
-version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-p01-transversal-aligned-after-p02-closure
+motivo: Actualizacion canonica tras cierre experimental P03 y registro de gaps dependientes de evidencia futura
+version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-p03-experimental-closure-aligned
 ```

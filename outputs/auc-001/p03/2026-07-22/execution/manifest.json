@@ -1,0 +1,52 @@
+{
+  "artifact_id": "AUC-001-P03-2026-07-22-REVISION-MANIFEST",
+  "execution_id": "auc-001-p03-2026-07-22-representation-revision",
+  "generated_at_local": "2026-07-22T00:00:00+02:00",
+  "use_case": "AUC-001",
+  "phase": "AUC-001-P03",
+  "package_type": "authorized_revision_package",
+  "namespace": "outputs/auc-001/p03/2026-07-22/",
+  "decision_context": "Resolve internal P03 conditions from existing P02 canonical product without new evidence acquisition.",
+  "source_package": "outputs/auc-001/p02/2026-07-17/",
+  "source_artifacts_consumed": {
+    "common_product_core": "outputs/auc-001/p02/2026-07-17/product-core/common-product-core.json",
+    "evidence_set": "outputs/auc-001/p02/2026-07-17/evidence/evidence-set.json",
+    "knowledge_set": "outputs/auc-001/p02/2026-07-17/knowledge/knowledge-set.json",
+    "recommendation_set": "outputs/auc-001/p02/2026-07-17/recommendations/recommendation-set.json",
+    "coverage_matrix": "outputs/auc-001/p02/2026-07-17/coverage-matrix/coverage-matrix.json"
+  },
+  "representation_outputs": {
+    "analytical_report": "presentations/analytical/analytical-report.md",
+    "executive_report": "presentations/executive/executive-report.md",
+    "checklist": "qa/checklist.md",
+    "handoff": "docs/handoffs/auc-001-p03-revalidation-handoff.md"
+  },
+  "scope_resolved": {
+    "no_new_evidence": true,
+    "no_bigquery_mcp_queries": true,
+    "no_spec_014_modification": true,
+    "no_historical_output_modification": true,
+    "no_p02_output_modification": true,
+    "presentation_revision_only": true
+  },
+  "conditions_addressed": [
+    "Integrated signal and combination view explaining quality is explicit in analytical and executive reports.",
+    "Analytical narrative is strengthened using existing P02 Knowledge only.",
+    "Recommendation success criteria are visible in the reports."
+  ],
+  "declared_gaps_preserved": [
+    "revenue_crm_not_available",
+    "creative_causality_unknown",
+    "additional_creative_metadata_not_available",
+    "provider_limited_temporal_cost_quality_partial"
+  ],
+  "semantic_preservation": {
+    "evidence_modified": false,
+    "knowledge_modified": false,
+    "recommendations_modified": false,
+    "coverage_states_modified": false,
+    "new_recommendations_created": false,
+    "presentation_layer_consumes_existing_canonical_content": true
+  },
+  "status": "READY FOR EXPERIMENTAL REVALIDATION"
+}

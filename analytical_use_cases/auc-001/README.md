@@ -7,11 +7,12 @@
 | Estado operativo | Active |
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
-| Closure gate | P02 CLOSED |
-| Estado post-cierre vigente | AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED |
+| Closure gate | P03 CLOSED |
+| Estado post-cierre vigente | AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED |
 | P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
 | P02 | Analytical Product Contract real execution cerrado con PASS WITH DECLARED LIMITATIONS el 2026-07-21 |
-| Fecha del closure gate | 2026-07-21 |
+| P03 | Experimental representation revision cerrada con PASS el 2026-07-22 |
+| Fecha del closure gate | 2026-07-22 |
 
 ## Artefactos canónicos
 
@@ -32,6 +33,10 @@
 | P02 Closure Gate | [../../gates/auc-001-p02-closure-gate.md](/gates/auc-001-p02-closure-gate.md) |
 | P01 And Transversal Documentation Final Review | [../../docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md](/docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md) |
 | P02 Output Namespace | `outputs/auc-001/p02/2026-07-17/` |
+| P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
+| P03 Revalidation Handoff | [../../docs/handoffs/auc-001-p03-revalidation-handoff.md](/docs/handoffs/auc-001-p03-revalidation-handoff.md) |
+| P03 Experimental Closure Gate | [../../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
+| P03 Future Evidence Gaps Record | [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
 | Skill | [../../.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) |
 | Runbook | [../../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Checklist | [../../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
@@ -60,6 +65,9 @@
 | AUC-001-PCI-002 Exit Gate | [../../gates/auc-001-pci-002-exit-gate.md](/gates/auc-001-pci-002-exit-gate.md) |
 | AUC-001 P0 Final QA Validation | [../../docs/evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-p0-operational-closure-final-qa-validation.md) |
 | AUC-001-PCI-002 Output Namespace | `outputs/auc-001/pci-002/2026-06-30/` |
+| AUC-001 P03 Experimental Closure Gate | [../../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
+| AUC-001 P03 Future Evidence Gaps Record | [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
+| AUC-001 P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
 
 ## Decisiones vigentes
 
@@ -115,6 +123,10 @@ Estado vigente P0: QA Gate Agent ha validado fisicamente el runtime `outputs/auc
 Estado vigente P01: Architect Agent emitio el memo arquitectonico de contrato de producto analitico, Specification Agent creo `SPEC-014 - AUC-001 Analytical Product Contract`, Reviewer Agent emitio `PASS WITH CONDITIONS`, Specification Agent corrigio las condiciones, Reviewer Agent confirmo `PASS` y QA Gate Agent emitio el cierre documental de P01 con decision `PASS`. Estado canonico de cierre P01: `AUC-001-P01 DOCUMENTARY CLOSURE PASS - READY FOR CONTROLLED POST-P01 IMPLEMENTATION PLANNING`.
 
 Estado vigente P02: Tasks Planner Agent preparo el plan implementable de `AUC-001-P02` a partir de SPEC-014 y del cierre documental de P01; Reviewer Agent confirmo que el plan cubre SPEC-014 sin ampliar informalmente el alcance; QA Gate Agent emitio el Entry Gate con `PASS WITH CONDITIONS`; Implementation Agent completo la implementacion local; QA Gate Agent revalido conformidad tecnica y funcional con `PASS`; QA Gate Agent autorizo ejecucion real via BigQuery MCP con `PASS WITH CONDITIONS`; Implementation Agent materializo el paquete real en `outputs/auc-001/p02/2026-07-17/`; QA Gate Agent revalido fisicamente el paquete con `PASS WITH DECLARED LIMITATIONS`; y QA Gate Agent emitio el Closure Gate de P02. Estado canonico vigente: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED`. Las limitaciones materiales declaradas permanecen visibles y no bloquean el cierre.
+
+Estado vigente P03: Implementation Agent materializo una revision autorizada de representacion en `outputs/auc-001/p03/2026-07-22/` consumiendo exclusivamente el producto canonico P02; Reviewer Agent confirmo que Presentation no introduce nuevo conocimiento y cerro la condicion menor tras retirar contenido comparativo de la Presentation ejecutiva; QA Gate Agent emitio el cierre experimental con `PASS`. Estado canonico vigente: `AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED`. P03 no adquiere evidencia, no modifica SPEC-014, no modifica outputs historicos y no reabre P02.
+
+Gaps dependientes de evidencia futura: revenue/CRM o conversion comercial reconciliada permanece `not_available`; causalidad creativa permanece `UNKNOWN`; metadata creativa adicional mas alla de `ad_name` permanece `not_available`; temporalidad coste-calidad completa permanece `partial` por limites de proveedor. Estos gaps quedan registrados en [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) y requieren alcance posterior separado para resolverse.
 
 ## Evidencia histórica
 
