@@ -117,7 +117,9 @@ QA Gate Agent ha evaluado el Entry Gate de AUC-001-PCI-002 con `PASS WITH CONDIT
 
 P01 fue formalizado el 2026-07-21 como `AUC-001-P01 - Analytical Product Contract Definition`. Architect Agent emitio el memo arquitectonico y Specification Agent creo `SPEC-014 - AUC-001 Analytical Product Contract`. Reviewer Agent reviso adversarialmente la Specification, Specification Agent corrigio las condiciones y Reviewer Agent emitio `PASS`. QA Gate Agent emitio el cierre documental de P01 con decision `PASS`.
 
-P02 fue planificado a partir de SPEC-014 y del cierre documental de P01. Tras implementacion local, autorizacion de ejecucion real via BigQuery MCP, materializacion del paquete `outputs/auc-001/p02/2026-07-17/` y revalidacion fisica QA con `PASS WITH DECLARED LIMITATIONS`, QA Gate Agent emitio el Closure Gate de P02. Estado canonico vigente: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED`.
+P02 fue planificado a partir de SPEC-014 y del cierre documental de P01. Tras implementacion local, autorizacion de ejecucion real via BigQuery MCP, materializacion del paquete `outputs/auc-001/p02/2026-07-17/` y revalidacion fisica QA con `PASS WITH DECLARED LIMITATIONS`, QA Gate Agent emitio el Closure Gate de P02. Estado canonico: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED`.
+
+P03 cerro una revision experimental de representacion sobre el producto canonico P02 con `PASS`, sin adquirir evidencia nueva ni modificar outputs historicos. P04 cerro despues la consolidacion canonica de proyecciones con `PASS`: `SPEC-015 - AUC-001 Canonical Projection Consolidation` queda implementada mediante `Canonical Projection Source`, proyecciones hermanas analytical/executive y validadores que bloquean nuevo conocimiento en Presentation.
 
 ### Namespace de outputs post-cierre
 
@@ -193,6 +195,8 @@ La evolución metodológica sigue una regla sencilla:
 9. `tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md`
 10. `gates/auc-001-p02-entry-gate.md`
 11. `gates/auc-001-p02-closure-gate.md`
+12. `specs/spec-015-auc-001-canonical-projection-consolidation.md`
+13. `gates/auc-001-p04-exit-gate.md`
 
 ---
 

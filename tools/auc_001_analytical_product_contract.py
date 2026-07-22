@@ -19,6 +19,10 @@ CONTRACT_VERSION = "spec-014.v1"
 CONTRACT_SPECIFICATION = "SPEC-014"
 PRODUCT_SCHEMA_FAMILY = "auc_001_analytical_product_contract"
 PRODUCT_SCHEMA_VERSION = "auc_001_analytical_product_contract.v1"
+CANONICAL_PROJECTION_SCHEMA_FAMILY = "auc_001_canonical_projection_source"
+CANONICAL_PROJECTION_SCHEMA_VERSION = "auc_001_canonical_projection_source.v1"
+CANONICAL_PROJECTION_CONTRACT_VERSION = "spec-015.v1"
+CANONICAL_PROJECTION_SPECIFICATION = "SPEC-015"
 
 COVERAGE_COMPLETE = "complete"
 COVERAGE_PARTIAL = "partial"
@@ -99,6 +103,64 @@ PROHIBITED_PRESENTATION_SECTION_FIELDS = PROHIBITED_PRESENTATION_FIELDS | {
     "coverage_states",
     "unknowns",
     "limitations",
+}
+
+PRESENTATION_BLOCKED_PHRASES = (
+    "conserva el valor del producto historico",
+    "recupera el valor historico",
+    "supera el valor historico",
+    "creative causality is confirmed",
+    "causalidad creativa confirmada",
+    "creative winner",
+    "ganador creativo",
+    "lead_only means zero cost",
+    "lead_only es coste cero",
+    "spend_only means no leads",
+    "spend_only es ausencia real de leads",
+)
+
+FUTURE_EVIDENCE_GAP_MARKERS = {
+    "revenue_or_crm": ("revenue", "sales", "crm", "conversion comercial", "ventas"),
+    "creative_causality": ("creative causal", "creative causality", "causalidad creativa"),
+    "additional_creative_metadata": ("creative metadata", "metadata creativa", "visual asset"),
+    "provider_limited_temporality": ("temporal", "weekly", "semanal", "cost-quality trend", "coste temporal"),
+}
+
+ALLOWED_PRESENTATION_SECTION_FIELDS = {
+    "title",
+    "content_ref",
+    "content_refs",
+    "cps_ref",
+    "cps_refs",
+    "traceability_refs",
+    "knowledge_refs",
+    "recommendation_refs",
+    "coverage_refs",
+    "metric_refs",
+    "limitation_refs",
+    "unknown_refs",
+    "display_role",
+    "projection_role",
+    "format",
+    "order",
+    "level",
+    "emphasis",
+    "visibility",
+    "items",
+}
+
+PRESENTATION_SECTION_REF_FIELDS = {
+    "content_ref",
+    "content_refs",
+    "cps_ref",
+    "cps_refs",
+    "traceability_refs",
+    "knowledge_refs",
+    "recommendation_refs",
+    "coverage_refs",
+    "metric_refs",
+    "limitation_refs",
+    "unknown_refs",
 }
 
 
@@ -554,6 +616,512 @@ def validate_projection_equivalence(core: CommonProductCore, projection: Product
         issues.append(ProductContractIssue("PROJECTION_FIELD_PROHIBITED", "blocking", f"Projection section cannot contain canonical field: {prohibited_path}"))
     return issues
 
+
+
+@dataclass(frozen=True)
+class CanonicalProjectionSource:
+    artifact_id: str
+    status: str
+    source_artifacts: Mapping[str, Any]
+    product_contract: Mapping[str, Any]
+    projection_contracts: Mapping[str, Any]
+    period: Mapping[str, Any]
+    scope: Mapping[str, Any]
+    sources: tuple[str, ...]
+    canonical_metrics: Mapping[str, Any]
+    coverage_states: Mapping[str, str]
+    knowledge_claims: tuple[Mapping[str, Any], ...]
+    analytical_narrative: Mapping[str, Any]
+    integrated_view: Mapping[str, Any]
+    decision_patterns: tuple[Mapping[str, Any], ...]
+    recommendations: tuple[Mapping[str, Any], ...]
+    limitations: tuple[str, ...]
+    unknowns: tuple[str, ...]
+    future_evidence_gaps: Mapping[str, str]
+    exclusions: tuple[str, ...]
+    traceability: Mapping[str, Any]
+    schema_family: str = CANONICAL_PROJECTION_SCHEMA_FAMILY
+    schema_version: str = CANONICAL_PROJECTION_SCHEMA_VERSION
+    specification: str = CANONICAL_PROJECTION_SPECIFICATION
+    contract_version: str = CANONICAL_PROJECTION_CONTRACT_VERSION
+
+    @property
+    def semantic_fingerprint(self) -> str:
+        payload = self.to_dict(include_fingerprint=False)
+        canonical = json.dumps(payload, sort_keys=True, default=str, separators=(",", ":"))
+        return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+
+    def to_dict(self, *, include_fingerprint: bool = True) -> dict[str, Any]:
+        payload = {
+            "artifact_id": self.artifact_id,
+            "schema_family": self.schema_family,
+            "schema_version": self.schema_version,
+            "specification": self.specification,
+            "contract_version": self.contract_version,
+            "status": self.status,
+            "source_artifacts": dict(self.source_artifacts),
+            "product_contract": dict(self.product_contract),
+            "projection_contracts": dict(self.projection_contracts),
+            "period": dict(self.period),
+            "scope": dict(self.scope),
+            "sources": list(self.sources),
+            "canonical_metrics": dict(self.canonical_metrics),
+            "coverage_states": dict(self.coverage_states),
+            "knowledge_claims": [dict(item) for item in self.knowledge_claims],
+            "analytical_narrative": dict(self.analytical_narrative),
+            "integrated_view": dict(self.integrated_view),
+            "decision_patterns": [dict(item) for item in self.decision_patterns],
+            "recommendations": [dict(item) for item in self.recommendations],
+            "limitations": list(self.limitations),
+            "unknowns": list(self.unknowns),
+            "future_evidence_gaps": dict(self.future_evidence_gaps),
+            "exclusions": list(self.exclusions),
+            "traceability": dict(self.traceability),
+        }
+        if include_fingerprint:
+            payload["semantic_fingerprint"] = self.semantic_fingerprint
+        return payload
+
+
+@dataclass(frozen=True)
+class CanonicalProductProjection:
+    projection_type: str
+    canonical_projection_source_id: str
+    canonical_projection_source_fingerprint: str
+    coverage_states: Mapping[str, str]
+    unknowns: tuple[str, ...]
+    limitations: tuple[str, ...]
+    future_evidence_gaps: Mapping[str, str]
+    recommendation_refs: tuple[Mapping[str, Any], ...]
+    knowledge_refs: tuple[str, ...]
+    communication_context: Mapping[str, Any]
+    sections: tuple[Mapping[str, Any], ...] = ()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "projection_type": self.projection_type,
+            "canonical_projection_source_id": self.canonical_projection_source_id,
+            "canonical_projection_source_fingerprint": self.canonical_projection_source_fingerprint,
+            "coverage_states": dict(self.coverage_states),
+            "unknowns": list(self.unknowns),
+            "limitations": list(self.limitations),
+            "future_evidence_gaps": dict(self.future_evidence_gaps),
+            "recommendation_refs": [dict(item) for item in self.recommendation_refs],
+            "knowledge_refs": list(self.knowledge_refs),
+            "communication_context": dict(self.communication_context),
+            "sections": [dict(section) for section in self.sections],
+        }
+
+
+def as_mapping(value: Any) -> dict[str, Any]:
+    return dict(value) if isinstance(value, Mapping) else {}
+
+
+def as_tuple_of_mappings(value: Any) -> tuple[Mapping[str, Any], ...]:
+    if not isinstance(value, (list, tuple)):
+        return ()
+    return tuple(dict(item) for item in value if isinstance(item, Mapping))
+
+
+def stable_text_items(*values: Any) -> tuple[str, ...]:
+    items: list[str] = []
+    for value in values:
+        if isinstance(value, str) and value.strip():
+            items.append(value.strip())
+        elif isinstance(value, Mapping):
+            for nested in value.values():
+                if isinstance(nested, str) and nested.strip():
+                    items.append(nested.strip())
+        elif isinstance(value, (list, tuple, set)):
+            for nested in value:
+                if isinstance(nested, str) and nested.strip():
+                    items.append(nested.strip())
+    return tuple(dict.fromkeys(items))
+
+
+def extract_coverage_states(common_core: Mapping[str, Any], coverage_matrix: Mapping[str, Any] | None = None) -> dict[str, str]:
+    coverage_source = dict(common_core.get("coverage_states") or {})
+    matrix = as_mapping(coverage_matrix)
+    coverage_source.update(dict(matrix.get("states") or {}))
+    if not coverage_source and isinstance(matrix.get("rows"), list):
+        coverage_source = {
+            str(row.get("question_id")): str(row.get("coverage_state"))
+            for row in matrix["rows"]
+            if isinstance(row, Mapping) and row.get("question_id")
+        }
+    return coverage_source
+
+
+def recommendation_identity(item: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        "recommendation_id": item.get("recommendation_id") or item.get("id"),
+        "category": item.get("category"),
+        "priority": item.get("priority"),
+        "knowledge_refs": list(item.get("knowledge_refs") or []),
+        "primary_metric": item.get("primary_metric") or item.get("verifiable_result"),
+        "guardrail": item.get("guardrail"),
+        "success_criterion": item.get("success_criterion") or item.get("closure_criterion"),
+        "review_condition": item.get("stop_or_review_condition") or item.get("promotion_condition"),
+    }
+
+
+def knowledge_identity(item: Mapping[str, Any]) -> str | None:
+    value = item.get("knowledge_id") or item.get("id")
+    return str(value) if value else None
+
+
+def infer_future_evidence_gaps(
+    limitations: Iterable[str],
+    unknowns: Iterable[str],
+    exclusions: Iterable[str],
+    coverage_states: Mapping[str, str] | None = None,
+) -> dict[str, str]:
+    corpus = "\n".join([*limitations, *unknowns, *exclusions]).lower()
+    gaps: dict[str, str] = {}
+    for gap_id, markers in FUTURE_EVIDENCE_GAP_MARKERS.items():
+        if any(marker in corpus for marker in markers):
+            gaps[gap_id] = "declared_dependency_on_future_evidence"
+
+    states = dict(coverage_states or {})
+    if states.get("CQ-006") == COVERAGE_NOT_AVAILABLE:
+        gaps["revenue_or_crm"] = "declared_dependency_on_future_evidence"
+    if states.get("CQ-005") == COVERAGE_NOT_AVAILABLE:
+        gaps["additional_creative_metadata"] = "declared_dependency_on_future_evidence"
+    if states.get("AQ-005") in {COVERAGE_PARTIAL, COVERAGE_UNKNOWN, COVERAGE_NOT_AVAILABLE}:
+        gaps["creative_causality"] = "declared_dependency_on_future_evidence"
+    if states.get("AQ-009") == COVERAGE_PARTIAL or states.get("CQ-007") == COVERAGE_PARTIAL:
+        gaps["provider_limited_temporality"] = "declared_dependency_on_future_evidence"
+    return gaps
+
+
+def build_default_integrated_view(
+    knowledge_set: Mapping[str, Any],
+    common_core: Mapping[str, Any],
+    coverage_states: Mapping[str, str],
+) -> dict[str, Any]:
+    investigation = as_tuple_of_mappings(knowledge_set.get("analytical_investigation_record"))
+    narrative = as_mapping(knowledge_set.get("analytical_narrative"))
+    return {
+        "status": "canonicalized_from_knowledge",
+        "signals": [
+            {
+                "finding_id": item.get("finding_id"),
+                "observation": item.get("observation"),
+                "support": list(item.get("support") or []),
+                "uncertainty": item.get("uncertainty"),
+                "related_findings": list(item.get("related_findings") or []),
+            }
+            for item in investigation
+        ],
+        "analytical_narrative_ref": narrative.get("status"),
+        "quality_explanation": narrative.get("text"),
+        "coverage_states": dict(coverage_states),
+        "canonical_metric_keys": sorted(str(key) for key in as_mapping(common_core.get("canonical_metrics")).keys()),
+    }
+
+
+def build_default_decision_patterns(knowledge_set: Mapping[str, Any]) -> tuple[Mapping[str, Any], ...]:
+    priorities = as_tuple_of_mappings(knowledge_set.get("priorities"))
+    narrative = as_mapping(knowledge_set.get("analytical_narrative"))
+    patterns = [
+        {
+            "pattern_id": item.get("priority_id"),
+            "basis": item.get("basis"),
+            "priority": item.get("priority"),
+            "knowledge_refs": list(item.get("knowledge_refs") or []),
+        }
+        for item in priorities
+    ]
+    if narrative:
+        patterns.append(
+            {
+                "pattern_id": "analytical_narrative",
+                "basis": narrative.get("text"),
+                "priority": "contextual",
+                "knowledge_refs": [
+                    item.get("knowledge_id")
+                    for item in as_tuple_of_mappings(knowledge_set.get("knowledge_claims"))
+                    if item.get("knowledge_id")
+                ],
+            }
+        )
+    return tuple(patterns)
+
+
+def build_canonical_projection_source(
+    common_core: Mapping[str, Any],
+    *,
+    knowledge_set: Mapping[str, Any] | None = None,
+    recommendation_set: Mapping[str, Any] | None = None,
+    coverage_matrix: Mapping[str, Any] | None = None,
+    manifest: Mapping[str, Any] | None = None,
+    integrated_view: Mapping[str, Any] | None = None,
+    decision_patterns: Iterable[Mapping[str, Any]] | None = None,
+    artifact_id: str | None = None,
+) -> CanonicalProjectionSource:
+    common_core = dict(common_core)
+    knowledge_set = as_mapping(knowledge_set)
+    recommendation_set = as_mapping(recommendation_set)
+    manifest = as_mapping(manifest)
+    coverage_states = extract_coverage_states(common_core, coverage_matrix)
+    knowledge_claims = as_tuple_of_mappings(knowledge_set.get("knowledge_claims")) or tuple(
+        {"knowledge_id": str(index + 1), "claim": claim}
+        for index, claim in enumerate(common_core.get("knowledge_claims") or [])
+    )
+    recommendations = as_tuple_of_mappings(recommendation_set.get("recommendations")) or tuple(
+        {"recommendation_id": str(item)} for item in common_core.get("recommendations") or []
+    )
+    exclusions = stable_text_items(recommendation_set.get("excluded_actions"))
+    limitations = stable_text_items(common_core.get("limitations"), knowledge_set.get("risks"))
+    unknowns = stable_text_items(common_core.get("unknowns"), knowledge_set.get("unknowns"))
+    cps_integrated_view = dict(integrated_view) if integrated_view is not None else build_default_integrated_view(knowledge_set, common_core, coverage_states)
+    cps_decision_patterns = tuple(dict(item) for item in decision_patterns) if decision_patterns is not None else build_default_decision_patterns(knowledge_set)
+    source_artifacts = {
+        "context_definition": manifest.get("artifact_paths", {}).get("context_definition"),
+        "evidence_set": manifest.get("artifact_paths", {}).get("evidence_set") or common_core.get("evidence_refs"),
+        "knowledge_set": manifest.get("artifact_paths", {}).get("knowledge_set") or knowledge_set.get("artifact_id"),
+        "recommendation_set": manifest.get("artifact_paths", {}).get("recommendation_set") or recommendation_set.get("artifact_id"),
+        "coverage_matrix": manifest.get("artifact_paths", {}).get("coverage_matrix"),
+        "common_product_core": manifest.get("artifact_paths", {}).get("common_product_core") or common_core.get("artifact_id"),
+        "manifest": manifest.get("artifact_paths", {}).get("manifest") or manifest.get("artifact_id"),
+    }
+    return CanonicalProjectionSource(
+        artifact_id=artifact_id or f"{common_core.get('artifact_id', 'AUC-001')}-CANONICAL-PROJECTION-SOURCE",
+        status="stabilized_for_presentation",
+        source_artifacts=source_artifacts,
+        product_contract={
+            "id": "SPEC-014",
+            "version": CONTRACT_VERSION,
+            "schema_family": PRODUCT_SCHEMA_FAMILY,
+            "schema_version": PRODUCT_SCHEMA_VERSION,
+        },
+        projection_contracts={
+            "projection_selection": "SPEC-010",
+            "communication_context_transformation": "SPEC-011",
+            "canonical_projection_consolidation": "SPEC-015",
+        },
+        period=as_mapping(common_core.get("period")),
+        scope=as_mapping(common_core.get("scope")),
+        sources=tuple(common_core.get("sources") or []),
+        canonical_metrics=as_mapping(common_core.get("canonical_metrics")),
+        coverage_states=coverage_states,
+        knowledge_claims=knowledge_claims,
+        analytical_narrative=as_mapping(knowledge_set.get("analytical_narrative")),
+        integrated_view=cps_integrated_view,
+        decision_patterns=cps_decision_patterns,
+        recommendations=recommendations,
+        limitations=limitations,
+        unknowns=unknowns,
+        future_evidence_gaps=infer_future_evidence_gaps(limitations, unknowns, exclusions, coverage_states),
+        exclusions=exclusions,
+        traceability={
+            "common_core_fingerprint": common_core.get("semantic_fingerprint") or manifest.get("common_core_fingerprint"),
+            "artifact_fingerprints": manifest.get("artifact_fingerprints", {}),
+            "coverage_matrix_states_source": "coverage_matrix" if coverage_matrix else "common_core",
+            "presentation_must_not_consult_prompts_for_content": True,
+        },
+    )
+
+
+def validate_canonical_projection_source(cps: CanonicalProjectionSource | Mapping[str, Any]) -> list[ProductContractIssue]:
+    data = cps.to_dict() if isinstance(cps, CanonicalProjectionSource) else dict(cps)
+    issues: list[ProductContractIssue] = []
+    required = (
+        "source_artifacts",
+        "product_contract",
+        "projection_contracts",
+        "period",
+        "scope",
+        "sources",
+        "canonical_metrics",
+        "coverage_states",
+        "knowledge_claims",
+        "integrated_view",
+        "recommendations",
+        "limitations",
+        "unknowns",
+        "traceability",
+    )
+    for field_name in required:
+        if not normalize_truthy(data.get(field_name)):
+            issues.append(ProductContractIssue("CPS_MISSING_BLOCK", "blocking", f"Canonical Projection Source missing block: {field_name}"))
+
+    if data.get("schema_family") != CANONICAL_PROJECTION_SCHEMA_FAMILY:
+        issues.append(ProductContractIssue("CPS_SCHEMA_FAMILY_INVALID", "blocking", "Canonical Projection Source schema family is invalid"))
+    if data.get("specification") != CANONICAL_PROJECTION_SPECIFICATION:
+        issues.append(ProductContractIssue("CPS_SPECIFICATION_INVALID", "blocking", "Canonical Projection Source must declare SPEC-015"))
+
+    coverage_states = dict(data.get("coverage_states") or {})
+    for question_id, state in coverage_states.items():
+        if state not in VALID_PRODUCT_COVERAGE_STATES:
+            issues.append(ProductContractIssue("CPS_INVALID_COVERAGE_STATE", "blocking", "CPS contains invalid coverage state", str(question_id)))
+    missing_questions = sorted({definition.question_id for definition in QUESTION_DEFINITIONS} - set(coverage_states))
+    for question_id in missing_questions:
+        issues.append(ProductContractIssue("CPS_MISSING_COVERAGE_STATE", "blocking", "CPS is missing coverage state", question_id))
+
+    for item in data.get("knowledge_claims") or []:
+        if isinstance(item, Mapping) and not normalize_truthy(item.get("knowledge_id")):
+            issues.append(ProductContractIssue("CPS_KNOWLEDGE_WITHOUT_ID", "blocking", "CPS knowledge claim must preserve a stable identity"))
+    for item in data.get("recommendations") or []:
+        if isinstance(item, Mapping) and not normalize_truthy(item.get("recommendation_id")):
+            issues.append(ProductContractIssue("CPS_RECOMMENDATION_WITHOUT_ID", "blocking", "CPS recommendation must preserve a stable identity"))
+    return issues
+
+
+def build_projection_from_cps(
+    cps: CanonicalProjectionSource,
+    projection_type: str,
+    sections: Iterable[Mapping[str, Any]] = (),
+    communication_context: Mapping[str, Any] | None = None,
+) -> CanonicalProductProjection:
+    if projection_type not in {"analytical", "executive"}:
+        raise ValueError("projection_type must be analytical or executive")
+    return CanonicalProductProjection(
+        projection_type=projection_type,
+        canonical_projection_source_id=cps.artifact_id,
+        canonical_projection_source_fingerprint=cps.semantic_fingerprint,
+        coverage_states=cps.coverage_states,
+        unknowns=cps.unknowns,
+        limitations=cps.limitations,
+        future_evidence_gaps=cps.future_evidence_gaps,
+        recommendation_refs=tuple(recommendation_identity(item) for item in cps.recommendations),
+        knowledge_refs=tuple(value for value in (knowledge_identity(item) for item in cps.knowledge_claims) if value),
+        communication_context=dict(communication_context or {"projection": projection_type}),
+        sections=tuple(dict(section) for section in sections),
+    )
+
+
+def flatten_text(value: Any) -> str:
+    if isinstance(value, Mapping):
+        return "\n".join(f"{key}: {flatten_text(nested)}" for key, nested in value.items())
+    if isinstance(value, (list, tuple, set)):
+        return "\n".join(flatten_text(item) for item in value)
+    return str(value) if value is not None else ""
+
+
+def has_section_reference(value: Any) -> bool:
+    if isinstance(value, Mapping):
+        for key, nested in value.items():
+            if str(key) in PRESENTATION_SECTION_REF_FIELDS and normalize_truthy(nested):
+                return True
+            if has_section_reference(nested):
+                return True
+    elif isinstance(value, (list, tuple)):
+        return any(has_section_reference(item) for item in value)
+    return False
+
+
+def find_unapproved_presentation_section_fields(value: Any, path: str = "sections") -> list[str]:
+    findings: list[str] = []
+    if isinstance(value, Mapping):
+        for key, nested_value in value.items():
+            key_text = str(key)
+            current_path = f"{path}.{key_text}"
+            if key_text not in ALLOWED_PRESENTATION_SECTION_FIELDS:
+                findings.append(current_path)
+            findings.extend(find_unapproved_presentation_section_fields(nested_value, current_path))
+    elif isinstance(value, (list, tuple)):
+        for index, nested_value in enumerate(value):
+            findings.extend(find_unapproved_presentation_section_fields(nested_value, f"{path}[{index}]"))
+    return findings
+
+
+def validate_presentation_sections_are_cps_referenced(sections: Any) -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    if not isinstance(sections, (list, tuple)):
+        return issues
+    for index, section in enumerate(sections):
+        if not isinstance(section, Mapping):
+            continue
+        if not has_section_reference(section):
+            issues.append(
+                ProductContractIssue(
+                    "PROJECTION_SECTION_UNTRACED",
+                    "blocking",
+                    f"Presentation section {index} must reference CPS content instead of carrying standalone narrative",
+                )
+            )
+    return issues
+
+
+def validate_presentation_items_are_structured_refs(sections: Any) -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    if not isinstance(sections, (list, tuple)):
+        return issues
+    for section_index, section in enumerate(sections):
+        if not isinstance(section, Mapping) or "items" not in section:
+            continue
+        items = section.get("items")
+        if not isinstance(items, (list, tuple)):
+            issues.append(
+                ProductContractIssue(
+                    "PROJECTION_ITEMS_INVALID",
+                    "blocking",
+                    f"Presentation section {section_index} items must be a list of CPS-referenced objects",
+                )
+            )
+            continue
+        for item_index, item in enumerate(items):
+            if not isinstance(item, Mapping):
+                issues.append(
+                    ProductContractIssue(
+                        "PROJECTION_ITEM_FREE_TEXT",
+                        "blocking",
+                        f"Presentation section {section_index} item {item_index} must be a CPS-referenced object, not free text",
+                    )
+                )
+                continue
+            if not has_section_reference(item):
+                issues.append(
+                    ProductContractIssue(
+                        "PROJECTION_ITEM_UNTRACED",
+                        "blocking",
+                        f"Presentation section {section_index} item {item_index} must include its own CPS reference",
+                    )
+                )
+    return issues
+
+
+def validate_projection_against_cps(
+    cps: CanonicalProjectionSource,
+    projection: CanonicalProductProjection | Mapping[str, Any],
+) -> list[ProductContractIssue]:
+    data = projection.to_dict() if isinstance(projection, CanonicalProductProjection) else dict(projection)
+    issues: list[ProductContractIssue] = []
+    if data.get("canonical_projection_source_fingerprint") != cps.semantic_fingerprint:
+        issues.append(ProductContractIssue("PROJECTION_CPS_DIVERGENCE", "blocking", "Projection does not reference the CPS fingerprint"))
+    if data.get("canonical_projection_source_id") != cps.artifact_id:
+        issues.append(ProductContractIssue("PROJECTION_CPS_ID_DIVERGENCE", "blocking", "Projection does not reference the CPS artifact id"))
+    if dict(data.get("coverage_states") or {}) != dict(cps.coverage_states):
+        issues.append(ProductContractIssue("PROJECTION_COVERAGE_DIVERGENCE", "blocking", "Projection changes coverage states"))
+    if tuple(data.get("unknowns") or ()) != tuple(cps.unknowns):
+        issues.append(ProductContractIssue("PROJECTION_UNKNOWN_DIVERGENCE", "blocking", "Projection changes UNKNOWNs"))
+    if tuple(data.get("limitations") or ()) != tuple(cps.limitations):
+        issues.append(ProductContractIssue("PROJECTION_LIMITATION_DIVERGENCE", "blocking", "Projection changes limitations"))
+    if dict(data.get("future_evidence_gaps") or {}) != dict(cps.future_evidence_gaps):
+        issues.append(ProductContractIssue("PROJECTION_GAP_DIVERGENCE", "blocking", "Projection changes future evidence gaps"))
+    if data.get("derived_from_projection"):
+        issues.append(ProductContractIssue("PROJECTION_SIBLING_RULE_VIOLATION", "blocking", "Projection cannot derive from another projection"))
+
+    expected_recommendations = [recommendation_identity(item) for item in cps.recommendations]
+    if list(data.get("recommendation_refs") or []) != expected_recommendations:
+        issues.append(ProductContractIssue("PROJECTION_RECOMMENDATION_DIVERGENCE", "blocking", "Projection changes recommendation identity, priority or success criteria"))
+
+    sections = data.get("sections", ())
+    prohibited_paths = find_prohibited_nested_fields(sections, PROHIBITED_PRESENTATION_SECTION_FIELDS, "sections")
+    for prohibited_path in prohibited_paths:
+        issues.append(ProductContractIssue("PROJECTION_FIELD_PROHIBITED", "blocking", f"Projection section cannot contain canonical field: {prohibited_path}"))
+    unapproved_paths = find_unapproved_presentation_section_fields(sections, "sections")
+    for unapproved_path in unapproved_paths:
+        issues.append(ProductContractIssue("PROJECTION_UNAPPROVED_SECTION_FIELD", "blocking", f"Projection section field is not a CPS reference or presentation control: {unapproved_path}"))
+    issues.extend(validate_presentation_sections_are_cps_referenced(sections))
+    issues.extend(validate_presentation_items_are_structured_refs(sections))
+
+    text = flatten_text(sections).lower()
+    for phrase in PRESENTATION_BLOCKED_PHRASES:
+        if phrase in text:
+            issues.append(ProductContractIssue("PROJECTION_NEW_KNOWLEDGE_BLOCKED", "blocking", f"Projection contains blocked Presentation claim: {phrase}"))
+    return issues
 
 def assess_ad_name_applicability(*, has_ad_id_norm: bool, has_ad_metrics: bool, has_ad_name: bool) -> dict[str, Any]:
     if not has_ad_id_norm or not has_ad_metrics:

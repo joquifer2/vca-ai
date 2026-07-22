@@ -7,11 +7,12 @@
 | Estado operativo | Active |
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
-| Closure gate | P03 CLOSED |
-| Estado post-cierre vigente | AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED |
+| Closure gate | P04 CLOSED |
+| Estado post-cierre vigente | AUC-001-P04 EXIT GATE PASS - CANONICAL PROJECTION CONSOLIDATION CLOSED |
 | P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
 | P02 | Analytical Product Contract real execution cerrado con PASS WITH DECLARED LIMITATIONS el 2026-07-21 |
 | P03 | Experimental representation revision cerrada con PASS el 2026-07-22 |
+| P04 | Canonical Projection Consolidation cerrada con PASS el 2026-07-22 |
 | Fecha del closure gate | 2026-07-22 |
 
 ## Artefactos canónicos
@@ -23,6 +24,7 @@
 | SPEC-012 Canonical Cost-Quality Model | [../../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md) |
 | SPEC-013 Structured Reconciliation Output | [../../specs/spec-013-auc-001-structured-reconciliation-output.md](/specs/spec-013-auc-001-structured-reconciliation-output.md) |
 | SPEC-014 Analytical Product Contract | [../../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
+| SPEC-015 Canonical Projection Consolidation | [../../specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md) |
 | P01 Architectural Memo | [../../docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
 | P01 Documentary Closure Gate | [../../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
 | P02 Task Plan | [../../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
@@ -37,6 +39,11 @@
 | P03 Revalidation Handoff | [../../docs/handoffs/auc-001-p03-revalidation-handoff.md](/docs/handoffs/auc-001-p03-revalidation-handoff.md) |
 | P03 Experimental Closure Gate | [../../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
 | P03 Future Evidence Gaps Record | [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
+| P04 Task Plan | [../../tasks/auc-001-p04-canonical-projection-consolidation-task-plan.md](/tasks/auc-001-p04-canonical-projection-consolidation-task-plan.md) |
+| P04 Entry Gate | [../../gates/auc-001-p04-entry-gate.md](/gates/auc-001-p04-entry-gate.md) |
+| P04 Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
+| P04 Semantic Equivalence QA Gate | [../../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
+| P04 Exit Gate | [../../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 | Skill | [../../.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md) |
 | Runbook | [../../.github/skills/meta-lead-quality-analysis/RUNBOOK.md](/.github/skills/meta-lead-quality-analysis/RUNBOOK.md) |
 | Checklist | [../../.github/skills/meta-lead-quality-analysis/CHECKLIST.md](/.github/skills/meta-lead-quality-analysis/CHECKLIST.md) |
@@ -68,6 +75,9 @@
 | AUC-001 P03 Experimental Closure Gate | [../../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
 | AUC-001 P03 Future Evidence Gaps Record | [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
 | AUC-001 P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
+| AUC-001 P04 Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
+| AUC-001 P04 Semantic Equivalence QA Gate | [../../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
+| AUC-001 P04 Exit Gate | [../../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 
 ## Decisiones vigentes
 
@@ -124,7 +134,9 @@ Estado vigente P01: Architect Agent emitio el memo arquitectonico de contrato de
 
 Estado vigente P02: Tasks Planner Agent preparo el plan implementable de `AUC-001-P02` a partir de SPEC-014 y del cierre documental de P01; Reviewer Agent confirmo que el plan cubre SPEC-014 sin ampliar informalmente el alcance; QA Gate Agent emitio el Entry Gate con `PASS WITH CONDITIONS`; Implementation Agent completo la implementacion local; QA Gate Agent revalido conformidad tecnica y funcional con `PASS`; QA Gate Agent autorizo ejecucion real via BigQuery MCP con `PASS WITH CONDITIONS`; Implementation Agent materializo el paquete real en `outputs/auc-001/p02/2026-07-17/`; QA Gate Agent revalido fisicamente el paquete con `PASS WITH DECLARED LIMITATIONS`; y QA Gate Agent emitio el Closure Gate de P02. Estado canonico vigente: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED`. Las limitaciones materiales declaradas permanecen visibles y no bloquean el cierre.
 
-Estado vigente P03: Implementation Agent materializo una revision autorizada de representacion en `outputs/auc-001/p03/2026-07-22/` consumiendo exclusivamente el producto canonico P02; Reviewer Agent confirmo que Presentation no introduce nuevo conocimiento y cerro la condicion menor tras retirar contenido comparativo de la Presentation ejecutiva; QA Gate Agent emitio el cierre experimental con `PASS`. Estado canonico vigente: `AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED`. P03 no adquiere evidencia, no modifica SPEC-014, no modifica outputs historicos y no reabre P02.
+Estado vigente P03: Implementation Agent materializo una revision autorizada de representacion en `outputs/auc-001/p03/2026-07-22/` consumiendo exclusivamente el producto canonico P02; Reviewer Agent confirmo que Presentation no introduce nuevo conocimiento y cerro la condicion menor tras retirar contenido comparativo de la Presentation ejecutiva; QA Gate Agent emitio el cierre experimental con `PASS`. Estado canonico: `AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED`. P03 no adquiere evidencia, no modifica SPEC-014, no modifica outputs historicos y no reabre P02.
+
+Estado vigente P04: Architect Agent definio el boundary para consolidar definitivamente las proyecciones analitica y ejecutiva; Specification Agent creo `SPEC-015 - AUC-001 Canonical Projection Consolidation`; Tasks Planner Agent preparo el plan implementable; QA Gate Agent autorizo implementacion controlada; Implementation Agent materializo el `Canonical Projection Source`, las proyecciones hermanas y los validadores en `tools/auc_001_analytical_product_contract.py`; Reviewer Agent confirmo las correcciones; QA Gate Agent valido equivalencia semantica y ausencia de conocimiento nuevo en Presentation; y QA Gate Agent emitio Exit Gate `PASS`. Estado canonico vigente: `AUC-001-P04 EXIT GATE PASS - CANONICAL PROJECTION CONSOLIDATION CLOSED`. P04 no adquiere evidencia, no genera outputs analiticos, no modifica P02/P03 y no resuelve gaps dependientes de evidencia futura.
 
 Gaps dependientes de evidencia futura: revenue/CRM o conversion comercial reconciliada permanece `not_available`; causalidad creativa permanece `UNKNOWN`; metadata creativa adicional mas alla de `ad_name` permanece `not_available`; temporalidad coste-calidad completa permanece `partial` por limites de proveedor. Estos gaps quedan registrados en [../../docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) y requieren alcance posterior separado para resolverse.
 

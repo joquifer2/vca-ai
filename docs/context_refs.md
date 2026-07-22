@@ -57,6 +57,7 @@ cliente:
 | Post-closure | SPEC-012 Canonical Cost-Quality Model | [../specs/spec-012-auc-001-canonical-cost-quality-model.md](/specs/spec-012-auc-001-canonical-cost-quality-model.md) |
 | Post-closure | SPEC-013 Structured Reconciliation Output | [../specs/spec-013-auc-001-structured-reconciliation-output.md](/specs/spec-013-auc-001-structured-reconciliation-output.md) |
 | P01 | SPEC-014 Analytical Product Contract | [../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
+| P04 | SPEC-015 Canonical Projection Consolidation | [../specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md) |
 | P01 | P01 Analytical Product Contract Architectural Analysis | [decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
 | P01 | AUC-001 P01 Documentary Closure Gate | [../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
 | P02 | AUC-001 P02 Analytical Product Contract Implementation Task Plan | [../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
@@ -68,9 +69,17 @@ cliente:
 | Transversal | AUC-001 P01 And Transversal Documentation Final Review | [evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md](/docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md) |
 | P02 | AUC-001 P02 Output Namespace | `outputs/auc-001/p02/2026-07-17/` |
 | P03 | AUC-001 P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
+| P04 | AUC-001 P04 Implementation Handoff | [evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
+| P04 | AUC-001 P04 Semantic Equivalence QA Gate | [../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
+| P04 | AUC-001 P04 Exit Gate | [../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 | P03 | AUC-001 P03 Revalidation Handoff | [handoffs/auc-001-p03-revalidation-handoff.md](/docs/handoffs/auc-001-p03-revalidation-handoff.md) |
 | P03 | AUC-001 P03 Experimental Closure Gate | [../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
 | P03 | AUC-001 P03 Future Evidence Gaps Record | [evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
+| P04 | AUC-001 P04 Task Plan | [../tasks/auc-001-p04-canonical-projection-consolidation-task-plan.md](/tasks/auc-001-p04-canonical-projection-consolidation-task-plan.md) |
+| P04 | AUC-001 P04 Entry Gate | [../gates/auc-001-p04-entry-gate.md](/gates/auc-001-p04-entry-gate.md) |
+| P04 | AUC-001 P04 Implementation Handoff | [evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
+| P04 | AUC-001 P04 Semantic Equivalence QA Gate | [../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
+| P04 | AUC-001 P04 Exit Gate | [../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 | Post-closure | ARCH-004 Canonical Cost-Quality Model Decision | [decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md](/docs/decisions/auc-001/auc-001-canonical-cost-quality-model-architectural-decision.md) |
 | Post-closure | AUC-001-PCI-001 Entry Gate | [../gates/auc-001-pci-001-entry-gate.md](/gates/auc-001-pci-001-entry-gate.md) |
 | Post-closure | AUC-001-PCI-001 Exit Gate | [../gates/auc-001-pci-001-exit-gate.md](/gates/auc-001-pci-001-exit-gate.md) |
@@ -128,6 +137,7 @@ cliente:
 | 2026-07-21 | Cerrar AUC-001-P02 | QA Gate Agent revalida fisicamente el paquete `outputs/auc-001/p02/2026-07-17/` con `PASS WITH DECLARED LIMITATIONS`, cierra los blockers FND-001 y FND-002, verifica matriz SPEC-014 23/23, trazabilidad MCP 16/16, manifest, fingerprints, nucleo comun, informes y tests; emite Closure Gate de P02. Estado canonico: `AUC-001-P02 CLOSURE PASS WITH DECLARED LIMITATIONS - ANALYTICAL PRODUCT CONTRACT REAL EXECUTION CLOSED` | [evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md](/docs/evaluations/auc-001/validations/auc-001-p02-physical-product-qa-revalidation.md); [../gates/auc-001-p02-closure-gate.md](/gates/auc-001-p02-closure-gate.md); [../outputs/auc-001/p02/2026-07-17/execution/manifest.json](/outputs/auc-001/p02/2026-07-17/execution/manifest.json) |
 | 2026-07-21 | Revisar alineacion documental final P01 y transversal | Documentation Agent revisa P01, gates P01/P02, README raiz, README AUC-001 y context refs; confirma enlaces canonicos, estado vigente P02 cerrado y preservacion del boundary historico de P01. Decision: `DOCUMENTATION ALIGNED - PASS` | [evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md](/docs/evaluations/auc-001/validations/auc-001-p01-transversal-documentation-final-review.md) |
 | 2026-07-22 | Cerrar experimentalmente AUC-001-P03 | QA Gate Agent emite cierre experimental `PASS` para la revision de representacion P03 sobre el producto canonico P02. Estado canonico: `AUC-001-P03 EXPERIMENTAL CLOSURE PASS - REPRESENTATION REVISION CLOSED`. No adquiere nueva evidencia, no modifica SPEC-014, no modifica outputs historicos ni reabre P02. Los gaps revenue/CRM, causalidad creativa, metadata creativa adicional y temporalidad coste-calidad quedan registrados como dependientes de evidencia futura | [../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md); [handoffs/auc-001-p03-revalidation-handoff.md](/docs/handoffs/auc-001-p03-revalidation-handoff.md); [evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md); [../outputs/auc-001/p03/2026-07-22/execution/manifest.json](/outputs/auc-001/p03/2026-07-22/execution/manifest.json) |
+| 2026-07-22 | Cerrar AUC-001-P04 Canonical Projection Consolidation | QA Gate Agent emite Exit Gate `PASS` tras validar que `SPEC-015` queda implementada mediante `Canonical Projection Source`, proyecciones hermanas y bloqueos verificables contra nuevo conocimiento en Presentation. Estado canonico: `AUC-001-P04 EXIT GATE PASS - CANONICAL PROJECTION CONSOLIDATION CLOSED`. No adquiere nueva evidencia, no genera outputs analiticos, no modifica P02/P03 y preserva los gaps dependientes de evidencia futura | [../specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md); [../gates/auc-001-p04-entry-gate.md](/gates/auc-001-p04-entry-gate.md); [evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md); [../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md); [../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 
 ---
 
@@ -155,7 +165,15 @@ cliente:
 | Post-closure | AUC-001-PCI-002 Output Namespace | `outputs/auc-001/pci-002/2026-06-30/` |
 | P03 | AUC-001 P03 Experimental Closure Gate | [../gates/auc-001-p03-experimental-closure-gate.md](/gates/auc-001-p03-experimental-closure-gate.md) |
 | P03 | AUC-001 P03 Future Evidence Gaps Record | [evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md](/docs/evaluations/auc-001/validations/auc-001-p03-future-evidence-gaps-record.md) |
+| P04 | AUC-001 P04 Task Plan | [../tasks/auc-001-p04-canonical-projection-consolidation-task-plan.md](/tasks/auc-001-p04-canonical-projection-consolidation-task-plan.md) |
+| P04 | AUC-001 P04 Entry Gate | [../gates/auc-001-p04-entry-gate.md](/gates/auc-001-p04-entry-gate.md) |
+| P04 | AUC-001 P04 Implementation Handoff | [evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
+| P04 | AUC-001 P04 Semantic Equivalence QA Gate | [../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
+| P04 | AUC-001 P04 Exit Gate | [../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 | P03 | AUC-001 P03 Output Namespace | `outputs/auc-001/p03/2026-07-22/` |
+| P04 | AUC-001 P04 Implementation Handoff | [evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
+| P04 | AUC-001 P04 Semantic Equivalence QA Gate | [../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
+| P04 | AUC-001 P04 Exit Gate | [../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 | Historical | Closure Reconciliation Review | [evaluations/auc-001/historical/auc-001-closure-reconciliation-review.md](/docs/evaluations/auc-001/historical/auc-001-closure-reconciliation-review.md) |
 | Historical | SDD Readiness Assessment | [evaluations/transversal/historical/sdd_readiness_assessment.md](/docs/evaluations/transversal/historical/sdd_readiness_assessment.md) |
 
@@ -198,6 +216,6 @@ apis:
 ```yaml
 ultima_actualizacion: 2026-07-22
 actualizado_por: Documentation Agent
-motivo: Actualizacion canonica tras cierre experimental P03 y registro de gaps dependientes de evidencia futura
-version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-p03-experimental-closure-aligned
+motivo: Actualizacion canonica tras cierre P04 Canonical Projection Consolidation y preservacion de gaps dependientes de evidencia futura
+version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-p04-canonical-projection-consolidation-closed
 ```
