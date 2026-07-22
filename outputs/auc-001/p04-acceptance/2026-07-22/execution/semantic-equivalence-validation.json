@@ -1,0 +1,11 @@
+{
+  "analytical_issues": [],
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-SEMANTIC-EQUIVALENCE-VALIDATION",
+  "decision": "PASS",
+  "executive_issues": [],
+  "markdown_checks": {
+    "blocked_historical_value_claim_absent": true,
+    "projection_derivation_between_siblings": false
+  },
+  "same_cps": true
+}

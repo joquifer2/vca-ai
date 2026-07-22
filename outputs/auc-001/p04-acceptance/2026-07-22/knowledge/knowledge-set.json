@@ -1,0 +1,108 @@
+{
+  "analytical_narrative": {
+    "text": "The product separates volume, FARO quality, commercial matched cost-quality, concentration, temporality and material limits."
+  },
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-KNOWLEDGE-SET",
+  "generated_at": "2026-07-22T15:08:00Z",
+  "knowledge_claims": [
+    {
+      "evidence_refs": [
+        "EVD-001",
+        "EVD-002"
+      ],
+      "interpretation": "The product has sufficient FARO coverage to describe lead quality: 1632 leads, 504 A/B leads and 76 Tier A leads.",
+      "knowledge_id": "KNW-001",
+      "limitation_or_uncertainty": "This is FARO quality, not revenue or CRM outcome."
+    },
+    {
+      "evidence_refs": [
+        "EVD-003",
+        "EVD-004"
+      ],
+      "interpretation": "Cost-quality must be read in the commercial matched universe: 12 matched ads, 1458 leads and 1069.05001 matched commercial spend, with lead_only and spend_only preserved.",
+      "knowledge_id": "KNW-002",
+      "limitation_or_uncertainty": "lead_only is not zero cost and spend_only is not proof of no leads."
+    },
+    {
+      "evidence_refs": [
+        "EVD-004",
+        "EVD-006"
+      ],
+      "interpretation": "Observed quality is explained by combinations of FARO tier, ticket_status, form/campaign concentration and ad-level coverage.",
+      "knowledge_id": "KNW-003",
+      "limitation_or_uncertainty": "The evidence supports association, not creative causality."
+    },
+    {
+      "evidence_refs": [
+        "EVD-005"
+      ],
+      "interpretation": "Monthly evolution is usable and June is the largest observed month; weekly comparability is partial because provider periods are incomplete at the edges.",
+      "knowledge_id": "KNW-004",
+      "limitation_or_uncertainty": "Spend ends on 2026-07-17 while leads extend to 2026-07-22."
+    },
+    {
+      "evidence_refs": [
+        "EVD-006"
+      ],
+      "interpretation": "The main ABO campaign concentrates most leads; ticket_status has strong descriptive separation between solo_mirando, en_proceso and tiene_billetes.",
+      "knowledge_id": "KNW-005",
+      "limitation_or_uncertainty": "Campaign/adset economics remain partial because spend reconciliation is robust at ad_id level."
+    },
+    {
+      "evidence_refs": [
+        "EVD-007"
+      ],
+      "interpretation": "Material limits must stay visible in both projections: revenue/CRM not_available, creative causality UNKNOWN, metadata not_available and temporal coverage partial.",
+      "knowledge_id": "KNW-006",
+      "limitation_or_uncertainty": "Presentation cannot turn these limits into a positive or negative finding."
+    }
+  ],
+  "priorities": [
+    {
+      "basis": "Prioritize controlled commercial matched tests before broad budget changes.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-003"
+      ],
+      "pattern_id": "DP-001",
+      "priority": "high",
+      "recommendation_refs": [
+        "REC-001"
+      ]
+    },
+    {
+      "basis": "Review coverage states before interpreting economic gaps.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-006"
+      ],
+      "pattern_id": "DP-002",
+      "priority": "high",
+      "recommendation_refs": [
+        "REC-002"
+      ]
+    },
+    {
+      "basis": "Keep future-evidence gaps declared until new authorized evidence exists.",
+      "knowledge_refs": [
+        "KNW-006"
+      ],
+      "pattern_id": "DP-003",
+      "priority": "medium",
+      "recommendation_refs": [
+        "REC-004"
+      ]
+    }
+  ],
+  "risks": [
+    "over-reading ad names as causality",
+    "hiding lead_only or spend_only",
+    "treating partial weekly data as complete"
+  ],
+  "schema_family": "auc_001_knowledge_set",
+  "unknowns": [
+    "UNKNOWN: causal effect of creative/ad_name on lead quality.",
+    "UNKNOWN: commercial revenue or CRM outcome of FARO tiers.",
+    "UNKNOWN: complete current-week cost-quality pattern after provider spend cutoff."
+  ]
+}

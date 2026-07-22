@@ -1,0 +1,756 @@
+{
+  "all_rejected_queries_marked_not_used_as_evidence": true,
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-EVIDENCE-ACQUISITION-RECORD",
+  "coverage": "new MCP evidence only",
+  "evidence_use_policy": {
+    "cli_used": false,
+    "fallback_used": false,
+    "rejected_queries_not_used_as_evidence": [
+      "rejected_evidence_summary",
+      "rejected_marts_summary"
+    ],
+    "successful_queries_used_as_evidence": [
+      "lead_summary",
+      "spend_summary",
+      "scoring_summary",
+      "signal_dimension",
+      "leads_by_ad",
+      "spend_by_ad",
+      "monthly_leads",
+      "monthly_spend",
+      "leads_by_campaign",
+      "leads_by_form",
+      "leads_by_ticket",
+      "spend_by_signal",
+      "weekly_leads",
+      "weekly_spend",
+      "score_components",
+      "platform"
+    ]
+  },
+  "query_record_count": 18,
+  "query_records": [
+    {
+      "bytes_processed": 209821,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 209821,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; full provider coverage observed by MIN/MAX(day)",
+      "granularity": "global lead summary",
+      "key": "lead_summary",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-lead-summary",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_leads, MIN(day) AS min_day, MAX(day) AS max_day, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS leads_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS leads_without_ad_name, COUNTIF(NOT COALESCE(is_q_tiene_billetes_mapped, FALSE)) AS unmapped_tiene_billetes, COUNTIF(NOT COALESCE(is_q_cuando_viaja_mapped, FALSE)) AS unmapped_cuando_viaja, COUNTIF(NOT COALESCE(is_q_num_personas_mapped, FALSE)) AS unmapped_num_personas, COUNTIF(NOT COALESCE(is_q_tipo_experiencia_mapped, FALSE)) AS unmapped_tipo_experiencia, COUNTIF(NOT COALESCE(is_form_origen_mapped, FALSE)) AS unmapped_form_origen, COUNTIF(is_organic IS TRUE) AS organic_leads, COUNTIF(is_qualified_for_meta_offline IS TRUE) AS offline_candidate_leads, COUNTIF(ticket_status IS NOT NULL AND TRIM(ticket_status) != '') AS ticket_status_available FROM `datamart-vca-494114.marts.fct_lead_enriched`",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-fc13a933451d4b96a832eb77687b0e79",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 1043559,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 1043559,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; full provider coverage observed by MIN/MAX(spend_period)",
+      "granularity": "global spend summary",
+      "key": "spend_summary",
+      "period": {
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-spend-summary",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT COUNT(*) AS spend_records, MIN(spend_period) AS min_spend_period, MAX(spend_period) AS max_spend_period, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS spend_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS spend_without_ad_name FROM `datamart-vca-494114.marts.fct_spend`",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-a3fc49fec5814a068b1cdc8ef7993909",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 91191,
+      "dataset": "intermediate",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 91191,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "intermediate",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; full provider coverage observed by MIN/MAX(lead_date)",
+      "granularity": "global scoring summary",
+      "key": "scoring_summary",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-scoring-summary",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT COUNT(*) AS scoring_rows, COUNT(DISTINCT lead_id) AS distinct_scored_leads, MIN(lead_date) AS min_lead_date, MAX(lead_date) AS max_lead_date, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS scoring_without_ad_id, COUNTIF(unmapped_reason IS NOT NULL AND TRIM(unmapped_reason) != '') AS rows_with_unmapped_reason FROM `datamart-vca-494114.intermediate.int_faro_lead_scoring`",
+      "tables": [
+        "intermediate.int_faro_lead_scoring"
+      ],
+      "trace_reference": "trc-eaf8431b888543009c77dd8f01b4e405",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 500,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 500,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no filters",
+      "granularity": "dimension rows",
+      "key": "signal_dimension",
+      "period": "not temporal",
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-signal-dimension",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT signal_code, signal_name, signal_description FROM `datamart-vca-494114.marts.dim_campaign_signal` ORDER BY signal_code",
+      "tables": [
+        "marts.dim_campaign_signal"
+      ],
+      "trace_reference": "trc-4b9b2ef1c5954f69acbba8095aa5eda4",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 320788,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 320788,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "ad_id_norm",
+      "key": "leads_by_ad",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-leads-by-ad",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT REGEXP_REPLACE(TRIM(ad_id), r'^ag:', '') AS ad_id_norm, ANY_VALUE(ad_id) AS sample_ad_id, ANY_VALUE(ad_name) AS sample_ad_name, ANY_VALUE(campaign_id) AS sample_campaign_id, ANY_VALUE(campaign_name) AS sample_campaign_name, ANY_VALUE(adset_id) AS sample_adset_id, ANY_VALUE(adset_name) AS sample_adset_name, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY ad_id_norm ORDER BY leads DESC",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-bde0a7a3fed34538afed1541cd6690d6",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 961783,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 961783,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "ad_id_norm",
+      "key": "spend_by_ad",
+      "period": {
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-spend-by-ad",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT TRIM(ad_id) AS ad_id_norm, ANY_VALUE(ad_name) AS sample_ad_name, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend, ARRAY_TO_STRING(ARRAY_AGG(DISTINCT UPPER(campaign_signal) IGNORE NULLS ORDER BY UPPER(campaign_signal)), ',') AS observed_signals FROM `datamart-vca-494114.marts.fct_spend` GROUP BY ad_id_norm ORDER BY commercial_spend DESC",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-f78d7af3f8c34dec9cb153196180505b",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 17952,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 17952,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "month",
+      "key": "monthly_leads",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-monthly-leads",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT DATE_TRUNC(day, MONTH) AS month, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY month ORDER BY month",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-e2f9673a3d86439396fb8f2e9f8e84ca",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 286035,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 286035,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "month",
+      "key": "monthly_spend",
+      "period": {
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-monthly-spend",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT DATE_TRUNC(spend_period, MONTH) AS month, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend FROM `datamart-vca-494114.marts.fct_spend` GROUP BY month ORDER BY month",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-24e042d96bdc4a20ab0fe185b85e9c1a",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 132423,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 132423,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "campaign_id, campaign_name",
+      "key": "leads_by_campaign",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-leads-by-campaign",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT campaign_id, campaign_name, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNT(DISTINCT ad_id) AS ads FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY campaign_id, campaign_name ORDER BY leads DESC",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-5ba3d0ec87084d998851ea8b7381558e",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 116859,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 116859,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "form_id, form_name, formulario_origen",
+      "key": "leads_by_form",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-leads-by-form",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT form_id, form_name, formulario_origen, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(tiene_billetes IS TRUE) AS tiene_billetes_true FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY form_id, form_name, formulario_origen ORDER BY leads DESC",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-d43b4afd25e244498f2dec42d31c8203",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 27434,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 27434,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "ticket_status",
+      "key": "leads_by_ticket",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-leads-by-ticket",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT ticket_status, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY ticket_status ORDER BY leads DESC",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-e67387a0fc9e411cb06b27ae8c693ff6",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 408699,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 408699,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "campaign_signal",
+      "key": "spend_by_signal",
+      "period": {
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-spend-by-signal",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT UPPER(campaign_signal) AS campaign_signal, COUNT(*) AS spend_records, COUNT(DISTINCT ad_id) AS ads, SUM(spend_amount) AS spend_amount FROM `datamart-vca-494114.marts.fct_spend` GROUP BY campaign_signal ORDER BY spend_amount DESC",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-ca8f6adc566244968d0d4364efd9393a",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 17952,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 17952,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "week_start",
+      "key": "weekly_leads",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-weekly-leads",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT DATE_TRUNC(day, WEEK(MONDAY)) AS week_start, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, MIN(day) AS observed_min_day, MAX(day) AS observed_max_day FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY week_start ORDER BY week_start",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-0db6a9a5622649c18a83795cebf7c37d",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 286035,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 286035,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "week_start",
+      "key": "weekly_spend",
+      "period": {
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-weekly-spend",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT DATE_TRUNC(spend_period, WEEK(MONDAY)) AS week_start, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, MIN(spend_period) AS observed_min_spend_period, MAX(spend_period) AS observed_max_spend_period FROM `datamart-vca-494114.marts.fct_spend` GROUP BY week_start ORDER BY week_start",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-f314f3f04e6c477bbf72d0134595086b",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 70176,
+      "dataset": "intermediate",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 70176,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "intermediate",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "LIMIT 50 after grouping; full provider coverage observed by scoring summary",
+      "granularity": "score component combination and lead_tier",
+      "key": "score_components",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-score-components",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT score_billetes, score_fecha_viaje, score_tipo_experiencia, score_num_personas, score_formulario, lead_tier, COUNT(*) AS leads FROM `datamart-vca-494114.intermediate.int_faro_lead_scoring` GROUP BY score_billetes, score_fecha_viaje, score_tipo_experiencia, score_num_personas, score_formulario, lead_tier ORDER BY leads DESC LIMIT 50",
+      "tables": [
+        "intermediate.int_faro_lead_scoring"
+      ],
+      "trace_reference": "trc-3e6c13f6d47c43cd874367065ebf99d4",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 13056,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 13056,
+        "cost_decision": "within_limit",
+        "dry_run_status": "approved",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; grouped over full provider coverage",
+      "granularity": "platform, is_organic",
+      "key": "platform",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-platform",
+      "result": {
+        "error_code": null,
+        "error_reason": null,
+        "status": "success"
+      },
+      "sql": "SELECT platform, is_organic, COUNT(*) AS leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads FROM `datamart-vca-494114.marts.fct_lead_enriched` GROUP BY platform, is_organic ORDER BY leads DESC",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "trc-0fe96c8b7e84456caa035ca90e7070f0",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": null,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": null,
+        "cost_decision": "within_limit",
+        "dry_run_status": "not_available_rejected_before_usable_dry_run",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; rejected before evidence use",
+      "granularity": "cross-table summary",
+      "key": "rejected_evidence_summary",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18",
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-evidence-summary",
+      "result": {
+        "error_code": "ERR_SCOPE_DENIED",
+        "error_reason": "The requested resource is outside the authorized scope.",
+        "status": "rejected"
+      },
+      "sql": "WITH leads AS (SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_leads, MIN(day) AS min_day, MAX(day) AS max_day, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS leads_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS leads_without_ad_name, COUNTIF(NOT COALESCE(is_q_tiene_billetes_mapped, FALSE)) AS unmapped_tiene_billetes, COUNTIF(NOT COALESCE(is_q_cuando_viaja_mapped, FALSE)) AS unmapped_cuando_viaja, COUNTIF(NOT COALESCE(is_q_num_personas_mapped, FALSE)) AS unmapped_num_personas, COUNTIF(NOT COALESCE(is_q_tipo_experiencia_mapped, FALSE)) AS unmapped_tipo_experiencia, COUNTIF(NOT COALESCE(is_form_origen_mapped, FALSE)) AS unmapped_form_origen, COUNTIF(is_organic IS TRUE) AS organic_leads, COUNTIF(is_qualified_for_meta_offline IS TRUE) AS offline_candidate_leads, COUNTIF(ticket_status IS NOT NULL AND TRIM(ticket_status) != '') AS ticket_status_available FROM `datamart-vca-494114.marts.fct_lead_enriched`), spend AS (SELECT COUNT(*) AS spend_records, MIN(spend_period) AS min_spend_period, MAX(spend_period) AS max_spend_period, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS spend_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS spend_without_ad_name FROM `datamart-vca-494114.marts.fct_spend`) SELECT * FROM leads CROSS JOIN spend",
+      "tables": [
+        "marts.fct_lead_enriched",
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-179642d12a704b5aa32f8292debd9c78",
+      "used_as_evidence": false
+    },
+    {
+      "bytes_processed": null,
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": null,
+        "cost_decision": "within_limit",
+        "dry_run_status": "not_available_rejected_before_usable_dry_run",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "no explicit WHERE; rejected before evidence use",
+      "granularity": "cross-table summary",
+      "key": "rejected_marts_summary",
+      "period": {
+        "lead_end": "2026-07-22",
+        "lead_start": "2026-04-18",
+        "spend_end": "2026-07-17",
+        "spend_start": "2026-04-18"
+      },
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-marts-summary",
+      "result": {
+        "error_code": "ERR_SCOPE_DENIED",
+        "error_reason": "The requested resource is outside the authorized scope.",
+        "status": "rejected"
+      },
+      "sql": "WITH leads AS (SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_leads, MIN(day) AS min_day, MAX(day) AS max_day, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS leads_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS leads_without_ad_name, COUNTIF(NOT COALESCE(is_q_tiene_billetes_mapped, FALSE)) AS unmapped_tiene_billetes, COUNTIF(NOT COALESCE(is_q_cuando_viaja_mapped, FALSE)) AS unmapped_cuando_viaja, COUNTIF(NOT COALESCE(is_q_num_personas_mapped, FALSE)) AS unmapped_num_personas, COUNTIF(NOT COALESCE(is_q_tipo_experiencia_mapped, FALSE)) AS unmapped_tipo_experiencia, COUNTIF(NOT COALESCE(is_form_origen_mapped, FALSE)) AS unmapped_form_origen, COUNTIF(is_organic IS TRUE) AS organic_leads, COUNTIF(is_qualified_for_meta_offline IS TRUE) AS offline_candidate_leads, COUNTIF(ticket_status IS NOT NULL AND TRIM(ticket_status) != '') AS ticket_status_available FROM fct_lead_enriched), spend AS (SELECT COUNT(*) AS spend_records, MIN(spend_period) AS min_spend_period, MAX(spend_period) AS max_spend_period, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS spend_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS spend_without_ad_name FROM fct_spend) SELECT * FROM leads CROSS JOIN spend",
+      "tables": [
+        "marts.fct_lead_enriched",
+        "marts.fct_spend"
+      ],
+      "trace_reference": "trc-5bba175274a7495c95811934835a3c24",
+      "used_as_evidence": false
+    }
+  ],
+  "query_traces": {
+    "lead_summary": [
+      "auc-001-p04-acceptance-2026-07-22-query-lead-summary",
+      "trc-fc13a933451d4b96a832eb77687b0e79",
+      209821
+    ],
+    "leads_by_ad": [
+      "auc-001-p04-acceptance-2026-07-22-query-leads-by-ad",
+      "trc-bde0a7a3fed34538afed1541cd6690d6",
+      320788
+    ],
+    "leads_by_campaign": [
+      "auc-001-p04-acceptance-2026-07-22-query-leads-by-campaign",
+      "trc-5ba3d0ec87084d998851ea8b7381558e",
+      132423
+    ],
+    "leads_by_form": [
+      "auc-001-p04-acceptance-2026-07-22-query-leads-by-form",
+      "trc-d43b4afd25e244498f2dec42d31c8203",
+      116859
+    ],
+    "leads_by_ticket": [
+      "auc-001-p04-acceptance-2026-07-22-query-leads-by-ticket",
+      "trc-e67387a0fc9e411cb06b27ae8c693ff6",
+      27434
+    ],
+    "monthly_leads": [
+      "auc-001-p04-acceptance-2026-07-22-query-monthly-leads",
+      "trc-e2f9673a3d86439396fb8f2e9f8e84ca",
+      17952
+    ],
+    "monthly_spend": [
+      "auc-001-p04-acceptance-2026-07-22-query-monthly-spend",
+      "trc-24e042d96bdc4a20ab0fe185b85e9c1a",
+      286035
+    ],
+    "platform": [
+      "auc-001-p04-acceptance-2026-07-22-query-platform",
+      "trc-0fe96c8b7e84456caa035ca90e7070f0",
+      13056
+    ],
+    "score_components": [
+      "auc-001-p04-acceptance-2026-07-22-query-score-components",
+      "trc-3e6c13f6d47c43cd874367065ebf99d4",
+      70176
+    ],
+    "scoring_summary": [
+      "auc-001-p04-acceptance-2026-07-22-query-scoring-summary",
+      "trc-eaf8431b888543009c77dd8f01b4e405",
+      91191
+    ],
+    "signal_dimension": [
+      "auc-001-p04-acceptance-2026-07-22-query-signal-dimension",
+      "trc-4b9b2ef1c5954f69acbba8095aa5eda4",
+      500
+    ],
+    "spend_by_ad": [
+      "auc-001-p04-acceptance-2026-07-22-query-spend-by-ad",
+      "trc-f78d7af3f8c34dec9cb153196180505b",
+      961783
+    ],
+    "spend_by_signal": [
+      "auc-001-p04-acceptance-2026-07-22-query-spend-by-signal",
+      "trc-ca8f6adc566244968d0d4364efd9393a",
+      408699
+    ],
+    "spend_summary": [
+      "auc-001-p04-acceptance-2026-07-22-query-spend-summary",
+      "trc-a3fc49fec5814a068b1cdc8ef7993909",
+      1043559
+    ],
+    "weekly_leads": [
+      "auc-001-p04-acceptance-2026-07-22-query-weekly-leads",
+      "trc-0db6a9a5622649c18a83795cebf7c37d",
+      17952
+    ],
+    "weekly_spend": [
+      "auc-001-p04-acceptance-2026-07-22-query-weekly-spend",
+      "trc-f314f3f04e6c477bbf72d0134595086b",
+      286035
+    ]
+  },
+  "record_completeness": "reviewer_conditions_closed",
+  "rejected_attempts_not_used_as_evidence": [
+    {
+      "error_code": "ERR_SCOPE_DENIED",
+      "handling": "not used as evidence",
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-evidence-summary",
+      "trace_reference": "trc-179642d12a704b5aa32f8292debd9c78"
+    },
+    {
+      "error_code": "ERR_SCOPE_DENIED",
+      "handling": "not used as evidence",
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-marts-summary",
+      "trace_reference": "trc-5bba175274a7495c95811934835a3c24"
+    }
+  ],
+  "rejected_query_count": 2,
+  "source_tables": [
+    "intermediate.int_faro_lead_scoring",
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal"
+  ],
+  "status": "PASS",
+  "successful_query_count": 16,
+  "updated_at": "2026-07-22T15:30:00Z"
+}

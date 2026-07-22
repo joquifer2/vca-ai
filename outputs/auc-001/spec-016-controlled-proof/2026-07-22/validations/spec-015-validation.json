@@ -1,0 +1,6 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-SPEC-015",
+  "decision": "PASS",
+  "note": "Controlled CPS exists before any report role.",
+  "same_cps": true
+}

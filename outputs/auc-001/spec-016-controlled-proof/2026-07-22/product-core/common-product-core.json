@@ -1,0 +1,25 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-COMMON-PRODUCT-CORE",
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "complete",
+    "AQ-004": "complete",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete"
+  },
+  "limitations": [
+    "Controlled proof does not acquire new evidence."
+  ],
+  "reconciliation_states": [
+    "matched",
+    "lead_only",
+    "spend_only"
+  ],
+  "unknowns": [
+    "UNKNOWN preserved as a package marker."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-CANONICAL-PROJECTION-SOURCE",
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "complete",
+    "AQ-004": "complete",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete"
+  },
+  "reconciliation_states": [
+    "matched",
+    "lead_only",
+    "spend_only"
+  ],
+  "schema_family": "auc_001_canonical_projection_source",
+  "semantic_fingerprint": "controlled-spec-016-cps-fingerprint",
+  "source_artifacts": {
+    "common_product_core": "product-core/common-product-core.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "recommendation_set": "recommendations/recommendation-set.json"
+  },
+  "specification": "SPEC-015"
+}

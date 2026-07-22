@@ -1,0 +1,107 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-TEST-RESULTS",
+  "generated_at": "2026-07-22T15:12:00Z",
+  "results": [
+    {
+      "detail": "outputs\\auc-001\\p04-acceptance\\2026-07-22",
+      "name": "authorized_namespace_exists",
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "name": "required_artifacts_present",
+      "status": "PASS"
+    },
+    {
+      "detail": "READY_FOR_REVALIDATION",
+      "name": "manifest_ready",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "spec014_pass",
+      "status": "PASS"
+    },
+    {
+      "detail": "PASS",
+      "name": "spec015_pass",
+      "status": "PASS"
+    },
+    {
+      "detail": "True",
+      "name": "same_cps",
+      "status": "PASS"
+    },
+    {
+      "detail": "{\"artifact_id\": \"AUC-001-P04-ACCEPTANCE-CONTEXT-DEFINITION\", \"bigquery_cli_used\": false, \"brief_instruction\": \"Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.\", \"fallback_used\": false, \"generated_at\": \"2026-07-22T15:08:00Z\", \"historical_outputs_used_as_new_evidence\": false, \"resolved_scope\": {\"brief_instruction\": \"Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.\", \"namespace\": \"outputs/auc-001/p04-acceptance/2026-07-22\", \"use_case\": \"AUC-001\", \"workspace\": \"vca\"}}",
+      "name": "no_cli_fallback_or_historical_evidence",
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "name": "presentation_blocked_phrases_absent",
+      "status": "PASS"
+    },
+    {
+      "detail": "unknown",
+      "name": "presentation_preserves_unknown",
+      "status": "PASS"
+    },
+    {
+      "detail": "partial",
+      "name": "presentation_preserves_partial",
+      "status": "PASS"
+    },
+    {
+      "detail": "not_available",
+      "name": "presentation_preserves_not_available",
+      "status": "PASS"
+    },
+    {
+      "detail": "lead_only",
+      "name": "presentation_preserves_lead_only",
+      "status": "PASS"
+    },
+    {
+      "detail": "spend_only",
+      "name": "presentation_preserves_spend_only",
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "name": "manifest_fingerprints_match_recorded_files",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "suite_results": [
+    {
+      "command": "python -m py_compile tools/auc_001_analytical_product_contract.py outputs/auc-001/p04-acceptance/2026-07-22/execution/generate_package.py",
+      "name": "py_compile_product_contract_and_generator",
+      "status": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/evals/auc_001_analytical_product_contract_tests.ps1",
+      "name": "auc_001_analytical_product_contract_tests",
+      "passed_checks": 11,
+      "status": "PASS"
+    },
+    {
+      "command": "powershell -NoProfile -ExecutionPolicy Bypass -File tests/evals/auc_001_canonical_projection_source_tests.ps1",
+      "name": "auc_001_canonical_projection_source_tests",
+      "passed_checks": 4,
+      "status": "PASS"
+    },
+    {
+      "command": "git diff --check",
+      "name": "git_diff_check",
+      "status": "PASS"
+    },
+    {
+      "command": "inline package validation persisted in this artifact",
+      "name": "p04_acceptance_package_physical_validation",
+      "passed_checks": 14,
+      "status": "PASS"
+    }
+  ]
+}

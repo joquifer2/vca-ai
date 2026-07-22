@@ -1,0 +1,11 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-SPEC-016",
+  "checks": [
+    "preflight_mcp_required",
+    "independent_table_queries",
+    "rejected_queries_not_evidence",
+    "physical_package_contract",
+    "namespace_hygiene"
+  ],
+  "decision": "PASS"
+}

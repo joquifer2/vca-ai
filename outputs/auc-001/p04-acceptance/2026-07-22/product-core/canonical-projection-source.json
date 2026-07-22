@@ -1,0 +1,445 @@
+{
+  "analytical_narrative": {
+    "text": "The product separates volume, FARO quality, commercial matched cost-quality, concentration, temporality and material limits."
+  },
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-CANONICAL-PROJECTION-SOURCE",
+  "canonical_metrics": {
+    "ab_leads": 504,
+    "ab_rate_total": 0.3088,
+    "commercial_spend": 1071.25001,
+    "cost_per_ab_commercial_matched": 2.5095,
+    "cost_per_lead_commercial_matched": 0.7332,
+    "coverage_reconciliation": {
+      "UNKNOWN": {
+        "ab_leads": 0,
+        "ad_count": 0,
+        "leads": 0,
+        "reason_codes": [],
+        "tier_a_leads": 0
+      },
+      "invariants": [
+        {
+          "expression": "lead_total = matched + lead_only + UNKNOWN",
+          "left_value": 1632,
+          "name": "lead_total_identity",
+          "result": "PASS",
+          "right_value": 1632
+        },
+        {
+          "expression": "commercial_spend = matched + spend_only",
+          "left_value": 1071.25001,
+          "name": "commercial_spend_identity",
+          "result": "PASS",
+          "right_value": 1071.25001
+        }
+      ],
+      "lead_only": {
+        "ab_leads": 78,
+        "ad_count": 5,
+        "leads": 174,
+        "tier_a_leads": 16
+      },
+      "matched": {
+        "ab_leads": 426,
+        "ad_count": 12,
+        "leads": 1458,
+        "matched_commercial_spend": 1069.05001,
+        "tier_a_leads": 60
+      },
+      "spend_only": {
+        "ab_leads": 0,
+        "ad_count": 2,
+        "leads": 0,
+        "spend_only_commercial_spend": 2.2,
+        "tier_a_leads": 0
+      }
+    },
+    "lead_only_leads": 174,
+    "lead_total": 1632,
+    "matched_commercial_spend": 1069.05001,
+    "matched_leads": 1458,
+    "non_commercial_spend": 658.11,
+    "spend_only_commercial_spend": 2.2,
+    "tier_a_leads": 76,
+    "tier_a_rate_total": 0.0466,
+    "total_spend_all_signals": 1729.36001
+  },
+  "contract_version": "spec-015.v1",
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "complete",
+    "AQ-004": "partial",
+    "AQ-005": "complete",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "complete",
+    "CQ-002": "complete",
+    "CQ-003": "not_available",
+    "CQ-004": "complete",
+    "CQ-005": "not_available",
+    "CQ-006": "not_available",
+    "CQ-007": "partial",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "decision_patterns": [
+    {
+      "basis": "Prioritize controlled commercial matched tests before broad budget changes.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-003"
+      ],
+      "pattern_id": "DP-001",
+      "priority": "high",
+      "recommendation_refs": [
+        "REC-001"
+      ]
+    },
+    {
+      "basis": "Review coverage states before interpreting economic gaps.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-006"
+      ],
+      "pattern_id": "DP-002",
+      "priority": "high",
+      "recommendation_refs": [
+        "REC-002"
+      ]
+    },
+    {
+      "basis": "Keep future-evidence gaps declared until new authorized evidence exists.",
+      "knowledge_refs": [
+        "KNW-006"
+      ],
+      "pattern_id": "DP-003",
+      "priority": "medium",
+      "recommendation_refs": [
+        "REC-004"
+      ]
+    }
+  ],
+  "exclusions": [
+    "Do not optimize from revenue/CRM",
+    "Do not claim creative causality",
+    "Do not infer additional creative metadata",
+    "Do not treat provider-limited weekly temporality as complete"
+  ],
+  "future_evidence_gaps": {
+    "additional_creative_metadata": "declared_dependency_on_future_evidence",
+    "creative_causality": "declared_dependency_on_future_evidence",
+    "provider_limited_temporality": "declared_dependency_on_future_evidence",
+    "revenue_or_crm": "declared_dependency_on_future_evidence"
+  },
+  "integrated_view": {
+    "combinations": [
+      {
+        "combination_id": "COMBO-001",
+        "components": [
+          "ticket_status",
+          "FARO A/B",
+          "form/campaign"
+        ],
+        "evidence_refs": [
+          "EVD-006"
+        ],
+        "interpretation_ref": "KNW-003"
+      },
+      {
+        "combination_id": "COMBO-002",
+        "components": [
+          "commercial matched ad_id",
+          "A/B rate",
+          "cost_per_ab"
+        ],
+        "evidence_refs": [
+          "EVD-004"
+        ],
+        "interpretation_ref": "KNW-002"
+      },
+      {
+        "combination_id": "COMBO-003",
+        "components": [
+          "month",
+          "lead volume",
+          "commercial spend",
+          "provider cutoff"
+        ],
+        "evidence_refs": [
+          "EVD-005"
+        ],
+        "interpretation_ref": "KNW-004"
+      }
+    ],
+    "coverage_states": {
+      "AQ-001": "complete",
+      "AQ-002": "complete",
+      "AQ-003": "complete",
+      "AQ-004": "partial",
+      "AQ-005": "complete",
+      "AQ-006": "complete",
+      "AQ-007": "complete",
+      "AQ-008": "complete",
+      "AQ-009": "partial",
+      "AQ-010": "complete",
+      "AQ-011": "complete",
+      "CQ-001": "complete",
+      "CQ-002": "complete",
+      "CQ-003": "not_available",
+      "CQ-004": "complete",
+      "CQ-005": "not_available",
+      "CQ-006": "not_available",
+      "CQ-007": "partial",
+      "NAQ-001": "not_applicable",
+      "NAQ-002": "not_applicable",
+      "NAQ-003": "not_applicable",
+      "NAQ-004": "not_applicable",
+      "NAQ-005": "not_applicable"
+    },
+    "metric_refs": [
+      "canonical_metrics.lead_total",
+      "canonical_metrics.ab_rate_total",
+      "canonical_metrics.cost_per_ab_commercial_matched",
+      "canonical_metrics.coverage_reconciliation"
+    ],
+    "quality_summary": {
+      "ab_rate_total": 0.3088,
+      "lead_total": 1632,
+      "tier_a_rate_total": 0.0466
+    },
+    "signals": [
+      {
+        "evidence_refs": [
+          "EVD-002"
+        ],
+        "finding_id": "FND-001",
+        "knowledge_ref": "KNW-001",
+        "statement": "FARO A/B and Tier A distribution define the quality base."
+      },
+      {
+        "evidence_refs": [
+          "EVD-004"
+        ],
+        "finding_id": "FND-002",
+        "knowledge_ref": "KNW-002",
+        "statement": "Cost-quality reading is valid in commercial matched universe with lead_only/spend_only coverage."
+      },
+      {
+        "evidence_refs": [
+          "EVD-006"
+        ],
+        "finding_id": "FND-003",
+        "knowledge_ref": "KNW-003",
+        "statement": "Ticket/form/ad combinations explain observed quality patterns without causal claims."
+      },
+      {
+        "evidence_refs": [
+          "EVD-005"
+        ],
+        "finding_id": "FND-004",
+        "knowledge_ref": "KNW-004",
+        "statement": "Temporal pattern is usable monthly and partial weekly."
+      }
+    ],
+    "view_id": "CPS-IV-001"
+  },
+  "knowledge_claims": [
+    {
+      "evidence_refs": [
+        "EVD-001",
+        "EVD-002"
+      ],
+      "interpretation": "The product has sufficient FARO coverage to describe lead quality: 1632 leads, 504 A/B leads and 76 Tier A leads.",
+      "knowledge_id": "KNW-001",
+      "limitation_or_uncertainty": "This is FARO quality, not revenue or CRM outcome."
+    },
+    {
+      "evidence_refs": [
+        "EVD-003",
+        "EVD-004"
+      ],
+      "interpretation": "Cost-quality must be read in the commercial matched universe: 12 matched ads, 1458 leads and 1069.05001 matched commercial spend, with lead_only and spend_only preserved.",
+      "knowledge_id": "KNW-002",
+      "limitation_or_uncertainty": "lead_only is not zero cost and spend_only is not proof of no leads."
+    },
+    {
+      "evidence_refs": [
+        "EVD-004",
+        "EVD-006"
+      ],
+      "interpretation": "Observed quality is explained by combinations of FARO tier, ticket_status, form/campaign concentration and ad-level coverage.",
+      "knowledge_id": "KNW-003",
+      "limitation_or_uncertainty": "The evidence supports association, not creative causality."
+    },
+    {
+      "evidence_refs": [
+        "EVD-005"
+      ],
+      "interpretation": "Monthly evolution is usable and June is the largest observed month; weekly comparability is partial because provider periods are incomplete at the edges.",
+      "knowledge_id": "KNW-004",
+      "limitation_or_uncertainty": "Spend ends on 2026-07-17 while leads extend to 2026-07-22."
+    },
+    {
+      "evidence_refs": [
+        "EVD-006"
+      ],
+      "interpretation": "The main ABO campaign concentrates most leads; ticket_status has strong descriptive separation between solo_mirando, en_proceso and tiene_billetes.",
+      "knowledge_id": "KNW-005",
+      "limitation_or_uncertainty": "Campaign/adset economics remain partial because spend reconciliation is robust at ad_id level."
+    },
+    {
+      "evidence_refs": [
+        "EVD-007"
+      ],
+      "interpretation": "Material limits must stay visible in both projections: revenue/CRM not_available, creative causality UNKNOWN, metadata not_available and temporal coverage partial.",
+      "knowledge_id": "KNW-006",
+      "limitation_or_uncertainty": "Presentation cannot turn these limits into a positive or negative finding."
+    }
+  ],
+  "limitations": [
+    "Revenue/CRM evidence is not_available in the authorized source set.",
+    "Creative causality remains UNKNOWN; ad_name is an interpretive label only.",
+    "Additional creative metadata beyond ad_name is not_available.",
+    "Temporal comparability is partial because spend ends on 2026-07-17 while leads extend to 2026-07-22.",
+    "Campaign/adset economic attribution is partial because robust spend reconciliation is at ad_id level.",
+    "over-reading ad names as causality",
+    "hiding lead_only or spend_only",
+    "treating partial weekly data as complete"
+  ],
+  "period": {
+    "basis": "observable MCP source coverage",
+    "lead_end": "2026-07-22",
+    "spend_end": "2026-07-17",
+    "start": "2026-04-18"
+  },
+  "product_contract": {
+    "id": "SPEC-014",
+    "schema_family": "auc_001_analytical_product_contract",
+    "schema_version": "auc_001_analytical_product_contract.v1",
+    "version": "spec-014.v1"
+  },
+  "projection_contracts": {
+    "canonical_projection_consolidation": "SPEC-015",
+    "communication_context_transformation": "SPEC-011",
+    "projection_selection": "SPEC-010"
+  },
+  "recommendations": [
+    {
+      "action": "Run a controlled budget experiment among matched ads with sufficient sample.",
+      "category": "measurable_experiment",
+      "evidence_dependency": "EVD-004",
+      "expected_direction": "increase A/B rate or reduce cost per A/B",
+      "guardrail": "cost_per_ab_commercial_matched does not worsen materially",
+      "hypothesis": "A bounded redistribution inside commercial matched ads may improve A/B rate without worsening cost per A/B.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-003"
+      ],
+      "population": "commercial matched ad_id_norm rows with at least 20 leads and 5 A/B leads",
+      "primary_metric": "A/B rate in commercial matched universe",
+      "recommendation_id": "REC-001",
+      "stop_or_review_condition": "stop if sample falls below threshold or spend coverage changes",
+      "success_criterion": "PASS if A/B rate increases versus control while cost_per_ab_commercial_matched is stable or lower over two comparable weeks.",
+      "uncertainty": "observational evidence only",
+      "validation_window": "two complete provider-comparable weeks"
+    },
+    {
+      "action": "Classify every lead_only and spend_only ad_id_norm before using economic metrics for budget decisions.",
+      "category": "verifiable_action",
+      "closure_criterion": "all current lead_only and spend_only rows have a declared reason code",
+      "dependency": "authorized Meta lead and spend sources",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-006"
+      ],
+      "recommendation_id": "REC-002",
+      "risk": "manual recoding can hide UNKNOWN",
+      "supporting_evidence": "EVD-004 coverage reconciliation",
+      "verifiable_result": "coverage register classifies each asymmetry without overwriting coverage state"
+    },
+    {
+      "action": "Run a form or qualification test focused on tiene_billetes/en_proceso share.",
+      "category": "measurable_experiment",
+      "evidence_dependency": "EVD-006",
+      "expected_direction": "increase qualified share",
+      "guardrail": "lead volume and Tier A count do not collapse",
+      "hypothesis": "A form or qualification-question test can increase qualified share without requiring revenue evidence.",
+      "knowledge_refs": [
+        "KNW-003",
+        "KNW-006"
+      ],
+      "population": "Meta Lead Ads forms with FARO coverage",
+      "primary_metric": "share of A/B leads and ticket_status tiene_billetes/en_proceso",
+      "recommendation_id": "REC-003",
+      "stop_or_review_condition": "stop if unmapped responses appear or weekly comparability remains partial",
+      "success_criterion": "PASS if qualified-share lift is observed with stable lead volume and no increase in unmapped responses.",
+      "uncertainty": "no commercial revenue validation",
+      "validation_window": "one complete month or two comparable complete weeks"
+    },
+    {
+      "category": "non_actionable_hypothesis",
+      "hypothesis": "Revenue/CRM outcomes may change FARO-only prioritization.",
+      "knowledge_refs": [
+        "KNW-006"
+      ],
+      "missing_evidence": "authorized and reconciled CRM/revenue evidence",
+      "promotion_condition": "promote only when future evidence is authorized and reconciled",
+      "recommendation_id": "REC-004",
+      "support": "FARO and ticket_status show quality strata but not commercial value.",
+      "uncertainty": "CRM/revenue source is absent."
+    }
+  ],
+  "schema_family": "auc_001_canonical_projection_source",
+  "schema_version": "auc_001_canonical_projection_source.v1",
+  "scope": {
+    "brief_instruction": "Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.",
+    "namespace": "outputs/auc-001/p04-acceptance/2026-07-22",
+    "use_case": "AUC-001",
+    "workspace": "vca"
+  },
+  "semantic_fingerprint": "79368d267dbe47d297338db1bbf84067694b4181ac0cba8e8874f8434abc5c22",
+  "source_artifacts": {
+    "common_product_core": "outputs/auc-001/p04-acceptance/2026-07-22/product-core/common-product-core.json",
+    "context_definition": "outputs/auc-001/p04-acceptance/2026-07-22/execution/context-definition.json",
+    "coverage_matrix": "outputs/auc-001/p04-acceptance/2026-07-22/coverage-matrix/coverage-matrix.json",
+    "evidence_set": "outputs/auc-001/p04-acceptance/2026-07-22/evidence/evidence-set.json",
+    "knowledge_set": "outputs/auc-001/p04-acceptance/2026-07-22/knowledge/knowledge-set.json",
+    "manifest": "outputs/auc-001/p04-acceptance/2026-07-22/execution/manifest.json",
+    "recommendation_set": "outputs/auc-001/p04-acceptance/2026-07-22/recommendations/recommendation-set.json"
+  },
+  "sources": [
+    "intermediate.int_faro_lead_scoring",
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal"
+  ],
+  "specification": "SPEC-015",
+  "status": "stabilized_for_presentation",
+  "traceability": {
+    "artifact_fingerprints": {
+      "outputs/auc-001/p04-acceptance/2026-07-22/coverage-matrix/coverage-matrix.json": "e2f317bddeecd62c8b273e93680dcd7a87e125125b8a3afae634a5a4bc95dc6c",
+      "outputs/auc-001/p04-acceptance/2026-07-22/evidence/evidence-set.json": "8cf317a795339790ea7fb56627bf81e972cd25add71b5b8fd3f2b4dcf06c67f8",
+      "outputs/auc-001/p04-acceptance/2026-07-22/execution/context-definition.json": "c447354f14de247d8c8a05162472a072df0a10a9946f7d55d92e5251f647d370",
+      "outputs/auc-001/p04-acceptance/2026-07-22/execution/data-provider-validation.json": "70134617c6ee3c4a92b87d20f75b1f0ef297c0c3ef1472f7e8190c53aa09fd97",
+      "outputs/auc-001/p04-acceptance/2026-07-22/knowledge/knowledge-set.json": "3136087f4d04abc24f312262e2698195d71131c526dabdacb0ce3f58b2eec047",
+      "outputs/auc-001/p04-acceptance/2026-07-22/product-core/common-product-core.json": "4eab6ec80905d68b545ef6e3f2a1ff391d8321e9d52ade0b47680f16fc976bc8",
+      "outputs/auc-001/p04-acceptance/2026-07-22/recommendations/recommendation-set.json": "6f1a7d629992afebf17cdf1cc69c59fd8fcc7f872232ebe2cb1d55a98744c268"
+    },
+    "common_core_fingerprint": "9496e976e187339d64a9a06cfdc426a019cc2648697643e419c73ca3c8f4be0a",
+    "coverage_matrix_states_source": "coverage_matrix",
+    "presentation_must_not_consult_prompts_for_content": true
+  },
+  "unknowns": [
+    "UNKNOWN: causal effect of creative/ad_name on lead quality.",
+    "UNKNOWN: commercial revenue or CRM outcome of FARO tiers.",
+    "UNKNOWN: complete current-week cost-quality pattern after provider spend cutoff."
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-RECOMMENDATION-SET",
+  "excluded_actions": [
+    "Do not optimize from revenue/CRM",
+    "Do not claim creative causality",
+    "Do not infer additional creative metadata",
+    "Do not treat provider-limited weekly temporality as complete"
+  ],
+  "generated_at": "2026-07-22T15:08:00Z",
+  "recommendations": [
+    {
+      "action": "Run a controlled budget experiment among matched ads with sufficient sample.",
+      "category": "measurable_experiment",
+      "evidence_dependency": "EVD-004",
+      "expected_direction": "increase A/B rate or reduce cost per A/B",
+      "guardrail": "cost_per_ab_commercial_matched does not worsen materially",
+      "hypothesis": "A bounded redistribution inside commercial matched ads may improve A/B rate without worsening cost per A/B.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-003"
+      ],
+      "population": "commercial matched ad_id_norm rows with at least 20 leads and 5 A/B leads",
+      "primary_metric": "A/B rate in commercial matched universe",
+      "recommendation_id": "REC-001",
+      "stop_or_review_condition": "stop if sample falls below threshold or spend coverage changes",
+      "success_criterion": "PASS if A/B rate increases versus control while cost_per_ab_commercial_matched is stable or lower over two comparable weeks.",
+      "uncertainty": "observational evidence only",
+      "validation_window": "two complete provider-comparable weeks"
+    },
+    {
+      "action": "Classify every lead_only and spend_only ad_id_norm before using economic metrics for budget decisions.",
+      "category": "verifiable_action",
+      "closure_criterion": "all current lead_only and spend_only rows have a declared reason code",
+      "dependency": "authorized Meta lead and spend sources",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-006"
+      ],
+      "recommendation_id": "REC-002",
+      "risk": "manual recoding can hide UNKNOWN",
+      "supporting_evidence": "EVD-004 coverage reconciliation",
+      "verifiable_result": "coverage register classifies each asymmetry without overwriting coverage state"
+    },
+    {
+      "action": "Run a form or qualification test focused on tiene_billetes/en_proceso share.",
+      "category": "measurable_experiment",
+      "evidence_dependency": "EVD-006",
+      "expected_direction": "increase qualified share",
+      "guardrail": "lead volume and Tier A count do not collapse",
+      "hypothesis": "A form or qualification-question test can increase qualified share without requiring revenue evidence.",
+      "knowledge_refs": [
+        "KNW-003",
+        "KNW-006"
+      ],
+      "population": "Meta Lead Ads forms with FARO coverage",
+      "primary_metric": "share of A/B leads and ticket_status tiene_billetes/en_proceso",
+      "recommendation_id": "REC-003",
+      "stop_or_review_condition": "stop if unmapped responses appear or weekly comparability remains partial",
+      "success_criterion": "PASS if qualified-share lift is observed with stable lead volume and no increase in unmapped responses.",
+      "uncertainty": "no commercial revenue validation",
+      "validation_window": "one complete month or two comparable complete weeks"
+    },
+    {
+      "category": "non_actionable_hypothesis",
+      "hypothesis": "Revenue/CRM outcomes may change FARO-only prioritization.",
+      "knowledge_refs": [
+        "KNW-006"
+      ],
+      "missing_evidence": "authorized and reconciled CRM/revenue evidence",
+      "promotion_condition": "promote only when future evidence is authorized and reconciled",
+      "recommendation_id": "REC-004",
+      "support": "FARO and ticket_status show quality strata but not commercial value.",
+      "uncertainty": "CRM/revenue source is absent."
+    }
+  ],
+  "schema_family": "auc_001_recommendation_set"
+}

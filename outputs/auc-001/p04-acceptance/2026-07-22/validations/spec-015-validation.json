@@ -1,0 +1,9 @@
+{
+  "canonical_projection_source_fingerprint": "79368d267dbe47d297338db1bbf84067694b4181ac0cba8e8874f8434abc5c22",
+  "canonical_projection_source_id": "AUC-001-P04-ACCEPTANCE-CANONICAL-PROJECTION-SOURCE",
+  "decision": "PASS",
+  "issues": [],
+  "no_projection_derivation": true,
+  "same_cps": true,
+  "validation_name": "AUC-001 P04 acceptance SPEC-015 validation"
+}

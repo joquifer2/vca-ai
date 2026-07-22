@@ -1,0 +1,6 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-SEMANTIC-EQUIVALENCE",
+  "decision": "PASS",
+  "note": "Controlled proof validates package mechanics, not report semantics.",
+  "same_cps": true
+}

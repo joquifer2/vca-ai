@@ -1,0 +1,14 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-CONTEXT-DEFINITION",
+  "bigquery_cli_used": false,
+  "brief_instruction": "Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.",
+  "fallback_used": false,
+  "generated_at": "2026-07-22T15:08:00Z",
+  "historical_outputs_used_as_new_evidence": false,
+  "resolved_scope": {
+    "brief_instruction": "Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.",
+    "namespace": "outputs/auc-001/p04-acceptance/2026-07-22",
+    "use_case": "AUC-001",
+    "workspace": "vca"
+  }
+}

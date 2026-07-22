@@ -1,0 +1,13 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-PHYSICAL-TRACEABILITY",
+  "fingerprint_policy": "artifact_fingerprints excludes manifest.json, physical-traceability.json and test-results.json to avoid recursive hash mutation; physical-traceability signs manifest and test-results.",
+  "generated_at": "2026-07-22T15:35:00Z",
+  "historical_outputs_modified": false,
+  "manifest_path": "outputs/auc-001/p04-acceptance/2026-07-22/execution/manifest.json",
+  "manifest_sha256": "61e7ce6fdd95dfb05ec569841fe8c2202511a0c0f0839aceda476b2b43485388",
+  "namespace_is_authorized": true,
+  "package_file_count": 25,
+  "pycache_present": false,
+  "reviewer_condition_closure_validation_sha256": "4abd96e8d56838ad2eb749548fb279d52ce70ff9a789da60c0cef8d64503ca30",
+  "test_results_sha256": "794cea39170f99b7dfe8fbf20368ae1e7baa20cfcc1c63a3b50f602c622418ec"
+}

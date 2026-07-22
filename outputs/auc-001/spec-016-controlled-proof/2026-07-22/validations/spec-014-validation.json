@@ -1,0 +1,5 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-SPEC-014",
+  "decision": "PASS",
+  "note": "Controlled grain readiness keeps AQ-009 partial and preserves SPEC-014 semantics."
+}

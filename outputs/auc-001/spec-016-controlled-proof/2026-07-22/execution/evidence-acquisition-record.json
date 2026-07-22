@@ -1,0 +1,145 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-EVIDENCE-ACQUISITION-RECORD",
+  "coverage": "synthetic controlled proof; no new analytical evidence acquired",
+  "generated_at": "2026-07-22T18:00:00Z",
+  "mcp_call_records": [
+    {
+      "bytes_processed": 0,
+      "call_type": "query_read_only",
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 0,
+        "cost_decision": "not_applicable_controlled_proof",
+        "dry_run_status": "controlled_not_executed",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "controlled proof, not executed",
+      "granularity": "table",
+      "period": {
+        "end": "controlled",
+        "start": "controlled"
+      },
+      "request_id": "auc-001-spec-016-controlled-lead-query",
+      "result": {
+        "controlled_result": true,
+        "status": "success"
+      },
+      "sql": "SELECT COUNT(*) AS lead_count, MIN(day) AS min_day, MAX(day) AS max_day FROM `datamart-vca-494114.marts.fct_lead_enriched`",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "trace_reference": "controlled-trace-leads",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 0,
+      "call_type": "query_read_only",
+      "dataset": "marts",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 0,
+        "cost_decision": "not_applicable_controlled_proof",
+        "dry_run_status": "controlled_not_executed",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "controlled proof, not executed",
+      "granularity": "table",
+      "period": {
+        "end": "controlled",
+        "start": "controlled"
+      },
+      "request_id": "auc-001-spec-016-controlled-spend-query",
+      "result": {
+        "controlled_result": true,
+        "status": "success"
+      },
+      "sql": "SELECT SUM(spend_amount) AS spend_amount FROM `datamart-vca-494114.marts.fct_spend`",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "trace_reference": "controlled-trace-spend",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": 0,
+      "call_type": "query_read_only",
+      "dataset": "intermediate",
+      "dry_run_and_cost_control": {
+        "bytes_processed": 0,
+        "cost_decision": "not_applicable_controlled_proof",
+        "dry_run_status": "controlled_not_executed",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "intermediate",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "controlled proof, not executed",
+      "granularity": "score component and tier",
+      "period": {
+        "end": "controlled",
+        "start": "controlled"
+      },
+      "request_id": "auc-001-spec-016-controlled-scoring-query",
+      "result": {
+        "controlled_result": true,
+        "status": "success"
+      },
+      "sql": "SELECT score_billetes, lead_tier, COUNT(*) AS lead_count FROM `datamart-vca-494114.intermediate.int_faro_lead_scoring` GROUP BY score_billetes, lead_tier",
+      "tables": [
+        "intermediate.int_faro_lead_scoring"
+      ],
+      "trace_reference": "controlled-trace-scoring",
+      "used_as_evidence": true
+    },
+    {
+      "bytes_processed": null,
+      "call_type": "query_read_only",
+      "dataset": "marts",
+      "discard_reason": "multi-table MCP query is not allowed as AUC-001 Evidence under SPEC-016",
+      "dry_run_and_cost_control": {
+        "bytes_processed": null,
+        "cost_decision": "within_limit_but_rejected",
+        "dry_run_status": "not_available_rejected_before_usable_dry_run",
+        "max_bytes_billed": 1073741824
+      },
+      "execution_context": {
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824,
+        "project_id": "datamart-vca-494114"
+      },
+      "filters": "controlled rejected example",
+      "granularity": "cross-table",
+      "period": {
+        "end": "controlled",
+        "start": "controlled"
+      },
+      "request_id": "auc-001-spec-016-controlled-multitable-query",
+      "result": {
+        "error_code": "ERR_SCOPE_DENIED",
+        "error_reason": "controlled proof of multi-table gap handling",
+        "status": "rejected"
+      },
+      "sql": "WITH leads AS (SELECT COUNT(*) AS lead_count FROM `datamart-vca-494114.marts.fct_lead_enriched`), spend AS (SELECT SUM(spend_amount) AS spend_amount FROM `datamart-vca-494114.marts.fct_spend`) SELECT * FROM leads CROSS JOIN spend",
+      "tables": [
+        "marts.fct_lead_enriched",
+        "marts.fct_spend"
+      ],
+      "trace_reference": "controlled-trace-multitable-rejected",
+      "used_as_evidence": false
+    }
+  ],
+  "rejected_call_count": 1,
+  "specification": "SPEC-016",
+  "successful_call_count": 3
+}

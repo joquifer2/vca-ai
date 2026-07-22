@@ -1,0 +1,729 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-COMMON-PRODUCT-CORE",
+  "canonical_metrics": {
+    "ab_leads": 504,
+    "ab_rate_total": 0.3088,
+    "commercial_spend": 1071.25001,
+    "cost_per_ab_commercial_matched": 2.5095,
+    "cost_per_lead_commercial_matched": 0.7332,
+    "coverage_reconciliation": {
+      "UNKNOWN": {
+        "ab_leads": 0,
+        "ad_count": 0,
+        "leads": 0,
+        "reason_codes": [],
+        "tier_a_leads": 0
+      },
+      "invariants": [
+        {
+          "expression": "lead_total = matched + lead_only + UNKNOWN",
+          "left_value": 1632,
+          "name": "lead_total_identity",
+          "result": "PASS",
+          "right_value": 1632
+        },
+        {
+          "expression": "commercial_spend = matched + spend_only",
+          "left_value": 1071.25001,
+          "name": "commercial_spend_identity",
+          "result": "PASS",
+          "right_value": 1071.25001
+        }
+      ],
+      "lead_only": {
+        "ab_leads": 78,
+        "ad_count": 5,
+        "leads": 174,
+        "tier_a_leads": 16
+      },
+      "matched": {
+        "ab_leads": 426,
+        "ad_count": 12,
+        "leads": 1458,
+        "matched_commercial_spend": 1069.05001,
+        "tier_a_leads": 60
+      },
+      "spend_only": {
+        "ab_leads": 0,
+        "ad_count": 2,
+        "leads": 0,
+        "spend_only_commercial_spend": 2.2,
+        "tier_a_leads": 0
+      }
+    },
+    "lead_only_leads": 174,
+    "lead_total": 1632,
+    "matched_commercial_spend": 1069.05001,
+    "matched_leads": 1458,
+    "non_commercial_spend": 658.11,
+    "spend_only_commercial_spend": 2.2,
+    "tier_a_leads": 76,
+    "tier_a_rate_total": 0.0466,
+    "total_spend_all_signals": 1729.36001
+  },
+  "coverage_matrix": [
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-001",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-001"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-001"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-001",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-002",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-002"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-002"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-002",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-003, EVD-004",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-003",
+          "EVD-004"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-003",
+        "EVD-004"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-003",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "partial",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-004, EVD-006",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-004",
+          "EVD-006"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-004",
+        "EVD-006"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-004",
+      "robustness": {
+        "comparator": "current MCP execution with source limits",
+        "coverage": "partial",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-004",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-004"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-004"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-005",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-002, EVD-006",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-002",
+          "EVD-006"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-002",
+        "EVD-006"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-006",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-003, EVD-004",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-003",
+          "EVD-004"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-003",
+        "EVD-004"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-007",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-006",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-006"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-006"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-008",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "partial",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-005",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-005"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-005"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-009",
+      "robustness": {
+        "comparator": "current MCP execution with source limits",
+        "coverage": "partial",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-004, EVD-006, EVD-007",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-004",
+          "EVD-006",
+          "EVD-007"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-004",
+        "EVD-006",
+        "EVD-007"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-010",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-007",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-007"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-007"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "AQ-011",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-006",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-006"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-006"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "CQ-001",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-006",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-006"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-006"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "CQ-002",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "not_available",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Must remain not_available and cannot be inferred in Presentation.",
+      "justification": "Authorized evidence is not available for this conditional question.",
+      "question_id": "CQ-003",
+      "robustness": null
+    },
+    {
+      "coverage_state": "complete",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-002",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-002"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-002"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "CQ-004",
+      "robustness": {
+        "comparator": "current MCP execution",
+        "coverage": "matched",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "not_available",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Must remain not_available and cannot be inferred in Presentation.",
+      "justification": "Authorized evidence is not available for this conditional question.",
+      "question_id": "CQ-005",
+      "robustness": null
+    },
+    {
+      "coverage_state": "not_available",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Must remain not_available and cannot be inferred in Presentation.",
+      "justification": "Authorized evidence is not available for this conditional question.",
+      "question_id": "CQ-006",
+      "robustness": null
+    },
+    {
+      "coverage_state": "partial",
+      "depth": {
+        "business_implication": "Can inform prioritization, controlled tests, coverage review or disclosure.",
+        "comparison": "Compared by time, tier, ad, campaign/form/platform or coverage state as applicable.",
+        "conclusion_or_hypothesis": "Answered within SPEC-014 or held partial where coverage limits comparability.",
+        "evidence": "EVD-005",
+        "interpretation": "Descriptive interpretation constrained by FARO, spend reconciliation and provider coverage.",
+        "limitation_or_uncertainty": "UNKNOWN/not_available/future evidence limits remain visible.",
+        "traceability": [
+          "EVD-005"
+        ]
+      },
+      "evidence_refs": [
+        "EVD-005"
+      ],
+      "impact": "Use with declared coverage state.",
+      "justification": "Answered with MCP evidence and canonical product depth.",
+      "question_id": "CQ-007",
+      "robustness": {
+        "comparator": "current MCP execution with source limits",
+        "coverage": "partial",
+        "denominator": 1632,
+        "granularity": "question",
+        "observed_volume": 1632,
+        "sample_sufficiency": "sufficient"
+      }
+    },
+    {
+      "coverage_state": "not_applicable",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Excluded by SPEC-014 boundary.",
+      "justification": "Outside AUC-001 product boundary.",
+      "question_id": "NAQ-001",
+      "robustness": null
+    },
+    {
+      "coverage_state": "not_applicable",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Excluded by SPEC-014 boundary.",
+      "justification": "Outside AUC-001 product boundary.",
+      "question_id": "NAQ-002",
+      "robustness": null
+    },
+    {
+      "coverage_state": "not_applicable",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Excluded by SPEC-014 boundary.",
+      "justification": "Outside AUC-001 product boundary.",
+      "question_id": "NAQ-003",
+      "robustness": null
+    },
+    {
+      "coverage_state": "not_applicable",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Excluded by SPEC-014 boundary.",
+      "justification": "Outside AUC-001 product boundary.",
+      "question_id": "NAQ-004",
+      "robustness": null
+    },
+    {
+      "coverage_state": "not_applicable",
+      "depth": {},
+      "evidence_refs": [],
+      "impact": "Excluded by SPEC-014 boundary.",
+      "justification": "Outside AUC-001 product boundary.",
+      "question_id": "NAQ-005",
+      "robustness": null
+    }
+  ],
+  "evidence_refs": [
+    "EVD-001",
+    "EVD-002",
+    "EVD-003",
+    "EVD-004",
+    "EVD-005",
+    "EVD-006",
+    "EVD-007"
+  ],
+  "knowledge_claims": [
+    {
+      "evidence_refs": [
+        "EVD-001",
+        "EVD-002"
+      ],
+      "interpretation": "The product has sufficient FARO coverage to describe lead quality: 1632 leads, 504 A/B leads and 76 Tier A leads.",
+      "knowledge_id": "KNW-001",
+      "limitation_or_uncertainty": "This is FARO quality, not revenue or CRM outcome."
+    },
+    {
+      "evidence_refs": [
+        "EVD-003",
+        "EVD-004"
+      ],
+      "interpretation": "Cost-quality must be read in the commercial matched universe: 12 matched ads, 1458 leads and 1069.05001 matched commercial spend, with lead_only and spend_only preserved.",
+      "knowledge_id": "KNW-002",
+      "limitation_or_uncertainty": "lead_only is not zero cost and spend_only is not proof of no leads."
+    },
+    {
+      "evidence_refs": [
+        "EVD-004",
+        "EVD-006"
+      ],
+      "interpretation": "Observed quality is explained by combinations of FARO tier, ticket_status, form/campaign concentration and ad-level coverage.",
+      "knowledge_id": "KNW-003",
+      "limitation_or_uncertainty": "The evidence supports association, not creative causality."
+    },
+    {
+      "evidence_refs": [
+        "EVD-005"
+      ],
+      "interpretation": "Monthly evolution is usable and June is the largest observed month; weekly comparability is partial because provider periods are incomplete at the edges.",
+      "knowledge_id": "KNW-004",
+      "limitation_or_uncertainty": "Spend ends on 2026-07-17 while leads extend to 2026-07-22."
+    },
+    {
+      "evidence_refs": [
+        "EVD-006"
+      ],
+      "interpretation": "The main ABO campaign concentrates most leads; ticket_status has strong descriptive separation between solo_mirando, en_proceso and tiene_billetes.",
+      "knowledge_id": "KNW-005",
+      "limitation_or_uncertainty": "Campaign/adset economics remain partial because spend reconciliation is robust at ad_id level."
+    },
+    {
+      "evidence_refs": [
+        "EVD-007"
+      ],
+      "interpretation": "Material limits must stay visible in both projections: revenue/CRM not_available, creative causality UNKNOWN, metadata not_available and temporal coverage partial.",
+      "knowledge_id": "KNW-006",
+      "limitation_or_uncertainty": "Presentation cannot turn these limits into a positive or negative finding."
+    }
+  ],
+  "limitations": [
+    "Revenue/CRM evidence is not_available in the authorized source set.",
+    "Creative causality remains UNKNOWN; ad_name is an interpretive label only.",
+    "Additional creative metadata beyond ad_name is not_available.",
+    "Temporal comparability is partial because spend ends on 2026-07-17 while leads extend to 2026-07-22.",
+    "Campaign/adset economic attribution is partial because robust spend reconciliation is at ad_id level."
+  ],
+  "period": {
+    "basis": "observable MCP source coverage",
+    "lead_end": "2026-07-22",
+    "spend_end": "2026-07-17",
+    "start": "2026-04-18"
+  },
+  "recommendations": [
+    {
+      "action": "Run a controlled budget experiment among matched ads with sufficient sample.",
+      "category": "measurable_experiment",
+      "evidence_dependency": "EVD-004",
+      "expected_direction": "increase A/B rate or reduce cost per A/B",
+      "guardrail": "cost_per_ab_commercial_matched does not worsen materially",
+      "hypothesis": "A bounded redistribution inside commercial matched ads may improve A/B rate without worsening cost per A/B.",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-003"
+      ],
+      "population": "commercial matched ad_id_norm rows with at least 20 leads and 5 A/B leads",
+      "primary_metric": "A/B rate in commercial matched universe",
+      "recommendation_id": "REC-001",
+      "stop_or_review_condition": "stop if sample falls below threshold or spend coverage changes",
+      "success_criterion": "PASS if A/B rate increases versus control while cost_per_ab_commercial_matched is stable or lower over two comparable weeks.",
+      "uncertainty": "observational evidence only",
+      "validation_window": "two complete provider-comparable weeks"
+    },
+    {
+      "action": "Classify every lead_only and spend_only ad_id_norm before using economic metrics for budget decisions.",
+      "category": "verifiable_action",
+      "closure_criterion": "all current lead_only and spend_only rows have a declared reason code",
+      "dependency": "authorized Meta lead and spend sources",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-006"
+      ],
+      "recommendation_id": "REC-002",
+      "risk": "manual recoding can hide UNKNOWN",
+      "supporting_evidence": "EVD-004 coverage reconciliation",
+      "verifiable_result": "coverage register classifies each asymmetry without overwriting coverage state"
+    },
+    {
+      "action": "Run a form or qualification test focused on tiene_billetes/en_proceso share.",
+      "category": "measurable_experiment",
+      "evidence_dependency": "EVD-006",
+      "expected_direction": "increase qualified share",
+      "guardrail": "lead volume and Tier A count do not collapse",
+      "hypothesis": "A form or qualification-question test can increase qualified share without requiring revenue evidence.",
+      "knowledge_refs": [
+        "KNW-003",
+        "KNW-006"
+      ],
+      "population": "Meta Lead Ads forms with FARO coverage",
+      "primary_metric": "share of A/B leads and ticket_status tiene_billetes/en_proceso",
+      "recommendation_id": "REC-003",
+      "stop_or_review_condition": "stop if unmapped responses appear or weekly comparability remains partial",
+      "success_criterion": "PASS if qualified-share lift is observed with stable lead volume and no increase in unmapped responses.",
+      "uncertainty": "no commercial revenue validation",
+      "validation_window": "one complete month or two comparable complete weeks"
+    },
+    {
+      "category": "non_actionable_hypothesis",
+      "hypothesis": "Revenue/CRM outcomes may change FARO-only prioritization.",
+      "knowledge_refs": [
+        "KNW-006"
+      ],
+      "missing_evidence": "authorized and reconciled CRM/revenue evidence",
+      "promotion_condition": "promote only when future evidence is authorized and reconciled",
+      "recommendation_id": "REC-004",
+      "support": "FARO and ticket_status show quality strata but not commercial value.",
+      "uncertainty": "CRM/revenue source is absent."
+    }
+  ],
+  "scope": {
+    "brief_instruction": "Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.",
+    "namespace": "outputs/auc-001/p04-acceptance/2026-07-22",
+    "use_case": "AUC-001",
+    "workspace": "vca"
+  },
+  "semantic_fingerprint": "9496e976e187339d64a9a06cfdc426a019cc2648697643e419c73ca3c8f4be0a",
+  "sources": [
+    "intermediate.int_faro_lead_scoring",
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal"
+  ],
+  "unknowns": [
+    "UNKNOWN: causal effect of creative/ad_name on lead quality.",
+    "UNKNOWN: commercial revenue or CRM outcome of FARO tiers.",
+    "UNKNOWN: complete current-week cost-quality pattern after provider spend cutoff."
+  ]
+}

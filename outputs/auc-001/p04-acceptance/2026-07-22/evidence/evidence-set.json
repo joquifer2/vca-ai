@@ -1,0 +1,485 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-EVIDENCE-SET",
+  "generated_at": "2026-07-22T15:08:00Z",
+  "items": [
+    {
+      "coverage_state": "complete",
+      "evidence_id": "EVD-001",
+      "facts": {
+        "brief": "Analiza la calidad de los leads de Meta Ads y genera un informe analitico y un informe ejecutivo.",
+        "period": {
+          "lead_end": "2026-07-22",
+          "lead_start": "2026-04-18",
+          "spend_end": "2026-07-17",
+          "spend_start": "2026-04-18"
+        },
+        "sources": [
+          "intermediate.int_faro_lead_scoring",
+          "marts.fct_lead_enriched",
+          "marts.fct_spend",
+          "marts.dim_campaign_signal"
+        ]
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-lead-summary",
+        "auc-001-p04-acceptance-2026-07-22-query-spend-summary",
+        "auc-001-p04-acceptance-2026-07-22-query-scoring-summary"
+      ]
+    },
+    {
+      "coverage_state": "complete",
+      "evidence_id": "EVD-002",
+      "facts": {
+        "lead": {
+          "ab": 504,
+          "count": 1632,
+          "end": "2026-07-22",
+          "offline_candidates": 504,
+          "start": "2026-04-18",
+          "ticket_status_available": 1632,
+          "tier_a": 76,
+          "tier_b": 428,
+          "unmapped": 0
+        },
+        "quality": {
+          "A": 76,
+          "A_or_B": 504,
+          "B": 428,
+          "ab_rate": 0.3088,
+          "tier_a_rate": 0.0466
+        }
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-lead-summary",
+        "auc-001-p04-acceptance-2026-07-22-query-scoring-summary"
+      ]
+    },
+    {
+      "coverage_state": "complete",
+      "evidence_id": "EVD-003",
+      "facts": {
+        "spend": {
+          "commercial": 1071.25001,
+          "end": "2026-07-17",
+          "non_commercial": 658.11,
+          "records": 10222,
+          "start": "2026-04-18",
+          "total": 1729.36001
+        },
+        "spend_by_signal": [
+          {
+            "signal": "COMMERCIAL",
+            "spend": 1071.25001
+          },
+          {
+            "signal": "ATTENTION",
+            "spend": 372.36
+          },
+          {
+            "signal": "ACTIVATION",
+            "spend": 285.75
+          }
+        ]
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-spend-summary",
+        "auc-001-p04-acceptance-2026-07-22-query-spend-by-signal"
+      ]
+    },
+    {
+      "coverage_state": "complete",
+      "evidence_id": "EVD-004",
+      "facts": {
+        "ad_examples": [
+          {
+            "ab": 187,
+            "ad_id_norm": "120245828603090721",
+            "commercial_spend": 468.060008,
+            "cost_per_ab": 2.503,
+            "coverage": "matched",
+            "leads": 643
+          },
+          {
+            "ab": 101,
+            "ad_id_norm": "120245829545180721",
+            "commercial_spend": 245.839997,
+            "cost_per_ab": 2.434,
+            "coverage": "matched",
+            "leads": 359
+          },
+          {
+            "ab": 26,
+            "ad_id_norm": "120251683460370721",
+            "commercial_spend": 51.850004,
+            "cost_per_ab": 1.994,
+            "coverage": "matched",
+            "leads": 58
+          },
+          {
+            "ab": 63,
+            "ad_id_norm": "120247352473020721",
+            "commercial_spend": 0,
+            "cost_per_ab": null,
+            "coverage": "lead_only",
+            "leads": 166
+          },
+          {
+            "ab": 0,
+            "ad_id_norm": "120251249759480721",
+            "commercial_spend": 1.2,
+            "cost_per_ab": null,
+            "coverage": "spend_only",
+            "leads": 0
+          }
+        ],
+        "reconciliation": {
+          "UNKNOWN": {
+            "ab_leads": 0,
+            "ad_count": 0,
+            "leads": 0,
+            "reason_codes": [],
+            "tier_a_leads": 0
+          },
+          "invariants": [
+            {
+              "expression": "lead_total = matched + lead_only + UNKNOWN",
+              "left_value": 1632,
+              "name": "lead_total_identity",
+              "result": "PASS",
+              "right_value": 1632
+            },
+            {
+              "expression": "commercial_spend = matched + spend_only",
+              "left_value": 1071.25001,
+              "name": "commercial_spend_identity",
+              "result": "PASS",
+              "right_value": 1071.25001
+            }
+          ],
+          "lead_only": {
+            "ab_leads": 78,
+            "ad_count": 5,
+            "leads": 174,
+            "tier_a_leads": 16
+          },
+          "matched": {
+            "ab_leads": 426,
+            "ad_count": 12,
+            "leads": 1458,
+            "matched_commercial_spend": 1069.05001,
+            "tier_a_leads": 60
+          },
+          "spend_only": {
+            "ab_leads": 0,
+            "ad_count": 2,
+            "leads": 0,
+            "spend_only_commercial_spend": 2.2,
+            "tier_a_leads": 0
+          }
+        }
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-leads-by-ad",
+        "auc-001-p04-acceptance-2026-07-22-query-spend-by-ad"
+      ]
+    },
+    {
+      "coverage_state": "partial",
+      "evidence_id": "EVD-005",
+      "facts": {
+        "monthly": [
+          {
+            "ab": 57,
+            "commercial_spend": 146.29,
+            "leads": 184,
+            "month": "2026-04-01"
+          },
+          {
+            "ab": 111,
+            "commercial_spend": 232.98,
+            "leads": 369,
+            "month": "2026-05-01"
+          },
+          {
+            "ab": 229,
+            "commercial_spend": 496.58,
+            "leads": 776,
+            "month": "2026-06-01"
+          },
+          {
+            "ab": 107,
+            "commercial_spend": 195.4,
+            "leads": 303,
+            "month": "2026-07-01"
+          }
+        ],
+        "provider_cutoff": {
+          "lead_end": "2026-07-22",
+          "spend_end": "2026-07-17"
+        },
+        "weekly_status": "partial"
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-monthly-leads",
+        "auc-001-p04-acceptance-2026-07-22-query-monthly-spend",
+        "auc-001-p04-acceptance-2026-07-22-query-weekly-leads",
+        "auc-001-p04-acceptance-2026-07-22-query-weekly-spend"
+      ]
+    },
+    {
+      "coverage_state": "complete",
+      "evidence_id": "EVD-006",
+      "facts": {
+        "concentration": {
+          "campaigns": [
+            {
+              "ab": 344,
+              "leads": 1187,
+              "name": "[META]_[CLP]_[CAPTACION]_[ABO]",
+              "tier_a": 48
+            },
+            {
+              "ab": 77,
+              "leads": 196,
+              "name": "[META]_[CLP]_[RTG]_[CBO]",
+              "tier_a": 14
+            },
+            {
+              "ab": 45,
+              "leads": 140,
+              "name": "[META]_[CLP]_[CAPTACION]_[ABO] - ESC",
+              "tier_a": 4
+            },
+            {
+              "ab": 38,
+              "leads": 109,
+              "name": "[META]_[CLP]_[CAPTACION]_[ABO] - TEST",
+              "tier_a": 10
+            }
+          ],
+          "platform": [
+            {
+              "ab": 355,
+              "leads": 1112,
+              "platform": "fb",
+              "tier_a": 52
+            },
+            {
+              "ab": 149,
+              "leads": 520,
+              "platform": "ig",
+              "tier_a": 24
+            }
+          ],
+          "spend_signal": [
+            {
+              "signal": "COMMERCIAL",
+              "spend": 1071.25001
+            },
+            {
+              "signal": "ATTENTION",
+              "spend": 372.36
+            },
+            {
+              "signal": "ACTIVATION",
+              "spend": 285.75
+            }
+          ],
+          "ticket_status": [
+            {
+              "ab": 59,
+              "leads": 999,
+              "status": "solo_mirando",
+              "tier_a": 0
+            },
+            {
+              "ab": 230,
+              "leads": 394,
+              "status": "en_proceso",
+              "tier_a": 15
+            },
+            {
+              "ab": 215,
+              "leads": 239,
+              "status": "tiene_billetes",
+              "tier_a": 61
+            }
+          ]
+        },
+        "form_signals_observed": true,
+        "score_components_observed": true
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-leads-by-campaign",
+        "auc-001-p04-acceptance-2026-07-22-query-leads-by-form",
+        "auc-001-p04-acceptance-2026-07-22-query-leads-by-ticket",
+        "auc-001-p04-acceptance-2026-07-22-query-platform",
+        "auc-001-p04-acceptance-2026-07-22-query-score-components"
+      ]
+    },
+    {
+      "coverage_state": "complete",
+      "evidence_id": "EVD-007",
+      "facts": {
+        "additional_creative_metadata": "not_available",
+        "creative_causality": "UNKNOWN",
+        "provider_temporality": "partial",
+        "revenue_or_crm": "not_available"
+      },
+      "traceability": [
+        "auc-001-p04-acceptance-2026-07-22-query-lead-summary",
+        "auc-001-p04-acceptance-2026-07-22-query-spend-summary",
+        "auc-001-p04-acceptance-2026-07-22-query-weekly-leads",
+        "auc-001-p04-acceptance-2026-07-22-query-weekly-spend"
+      ]
+    }
+  ],
+  "observation_tables": {
+    "ad_examples": [
+      {
+        "ab": 187,
+        "ad_id_norm": "120245828603090721",
+        "commercial_spend": 468.060008,
+        "cost_per_ab": 2.503,
+        "coverage": "matched",
+        "leads": 643
+      },
+      {
+        "ab": 101,
+        "ad_id_norm": "120245829545180721",
+        "commercial_spend": 245.839997,
+        "cost_per_ab": 2.434,
+        "coverage": "matched",
+        "leads": 359
+      },
+      {
+        "ab": 26,
+        "ad_id_norm": "120251683460370721",
+        "commercial_spend": 51.850004,
+        "cost_per_ab": 1.994,
+        "coverage": "matched",
+        "leads": 58
+      },
+      {
+        "ab": 63,
+        "ad_id_norm": "120247352473020721",
+        "commercial_spend": 0,
+        "cost_per_ab": null,
+        "coverage": "lead_only",
+        "leads": 166
+      },
+      {
+        "ab": 0,
+        "ad_id_norm": "120251249759480721",
+        "commercial_spend": 1.2,
+        "cost_per_ab": null,
+        "coverage": "spend_only",
+        "leads": 0
+      }
+    ],
+    "concentration": {
+      "campaigns": [
+        {
+          "ab": 344,
+          "leads": 1187,
+          "name": "[META]_[CLP]_[CAPTACION]_[ABO]",
+          "tier_a": 48
+        },
+        {
+          "ab": 77,
+          "leads": 196,
+          "name": "[META]_[CLP]_[RTG]_[CBO]",
+          "tier_a": 14
+        },
+        {
+          "ab": 45,
+          "leads": 140,
+          "name": "[META]_[CLP]_[CAPTACION]_[ABO] - ESC",
+          "tier_a": 4
+        },
+        {
+          "ab": 38,
+          "leads": 109,
+          "name": "[META]_[CLP]_[CAPTACION]_[ABO] - TEST",
+          "tier_a": 10
+        }
+      ],
+      "platform": [
+        {
+          "ab": 355,
+          "leads": 1112,
+          "platform": "fb",
+          "tier_a": 52
+        },
+        {
+          "ab": 149,
+          "leads": 520,
+          "platform": "ig",
+          "tier_a": 24
+        }
+      ],
+      "spend_signal": [
+        {
+          "signal": "COMMERCIAL",
+          "spend": 1071.25001
+        },
+        {
+          "signal": "ATTENTION",
+          "spend": 372.36
+        },
+        {
+          "signal": "ACTIVATION",
+          "spend": 285.75
+        }
+      ],
+      "ticket_status": [
+        {
+          "ab": 59,
+          "leads": 999,
+          "status": "solo_mirando",
+          "tier_a": 0
+        },
+        {
+          "ab": 230,
+          "leads": 394,
+          "status": "en_proceso",
+          "tier_a": 15
+        },
+        {
+          "ab": 215,
+          "leads": 239,
+          "status": "tiene_billetes",
+          "tier_a": 61
+        }
+      ]
+    },
+    "monthly": [
+      {
+        "ab": 57,
+        "commercial_spend": 146.29,
+        "leads": 184,
+        "month": "2026-04-01"
+      },
+      {
+        "ab": 111,
+        "commercial_spend": 232.98,
+        "leads": 369,
+        "month": "2026-05-01"
+      },
+      {
+        "ab": 229,
+        "commercial_spend": 496.58,
+        "leads": 776,
+        "month": "2026-06-01"
+      },
+      {
+        "ab": 107,
+        "commercial_spend": 195.4,
+        "leads": 303,
+        "month": "2026-07-01"
+      }
+    ]
+  },
+  "provider": "BigQuery MCP",
+  "schema_family": "auc_001_evidence_set"
+}

@@ -1,0 +1,52 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-REVIEWER-CONDITION-CLOSURE-VALIDATION",
+  "checks": [
+    {
+      "detail": "[]",
+      "name": "all_query_records_have_required_fields",
+      "status": "PASS"
+    },
+    {
+      "detail": "[{\"bytes_processed\": null, \"dataset\": \"marts\", \"dry_run_and_cost_control\": {\"bytes_processed\": null, \"cost_decision\": \"within_limit\", \"dry_run_status\": \"not_available_rejected_before_usable_dry_run\", \"max_bytes_billed\": 1073741824}, \"execution_context\": {\"dataset_id\": \"marts\", \"max_bytes_billed\": 1073741824, \"project_id\": \"datamart-vca-494114\"}, \"filters\": \"no explicit WHERE; rejected before evidence use\", \"granularity\": \"cross-table summary\", \"key\": \"rejected_evidence_summary\", \"period\": {\"lead_end\": \"2026-07-22\", \"lead_start\": \"2026-04-18\", \"spend_end\": \"2026-07-17\", \"spend_start\": \"2026-04-18\"}, \"request_id\": \"auc-001-p04-acceptance-2026-07-22-query-evidence-summary\", \"result\": {\"error_code\": \"ERR_SCOPE_DENIED\", \"error_reason\": \"The requested resource is outside the authorized scope.\", \"status\": \"rejected\"}, \"sql\": \"WITH leads AS (SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_leads, MIN(day) AS min_day, MAX(day) AS max_day, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS leads_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS leads_without_ad_name, COUNTIF(NOT COALESCE(is_q_tiene_billetes_mapped, FALSE)) AS unmapped_tiene_billetes, COUNTIF(NOT COALESCE(is_q_cuando_viaja_mapped, FALSE)) AS unmapped_cuando_viaja, COUNTIF(NOT COALESCE(is_q_num_personas_mapped, FALSE)) AS unmapped_num_personas, COUNTIF(NOT COALESCE(is_q_tipo_experiencia_mapped, FALSE)) AS unmapped_tipo_experiencia, COUNTIF(NOT COALESCE(is_form_origen_mapped, FALSE)) AS unmapped_form_origen, COUNTIF(is_organic IS TRUE) AS organic_leads, COUNTIF(is_qualified_for_meta_offline IS TRUE) AS offline_candidate_leads, COUNTIF(ticket_status IS NOT NULL AND TRIM(ticket_status) != '') AS ticket_status_available FROM `datamart-vca-494114.marts.fct_lead_enriched`), spend AS (SELECT COUNT(*) AS spend_records, MIN(spend_period) AS min_spend_period, MAX(spend_period) AS max_spend_period, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS spend_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS spend_without_ad_name FROM `datamart-vca-494114.marts.fct_spend`) SELECT * FROM leads CROSS JOIN spend\", \"tables\": [\"marts.fct_lead_enriched\", \"marts.fct_spend\"], \"trace_reference\": \"trc-179642d12a704b5aa32f8292debd9c78\", \"used_as_evidence\": false}, {\"bytes_processed\": null, \"dataset\": \"marts\", \"dry_run_and_cost_control\": {\"bytes_processed\": null, \"cost_decision\": \"within_limit\", \"dry_run_status\": \"not_available_rejected_before_usable_dry_run\", \"max_bytes_billed\": 1073741824}, \"execution_context\": {\"dataset_id\": \"marts\", \"max_bytes_billed\": 1073741824, \"project_id\": \"datamart-vca-494114\"}, \"filters\": \"no explicit WHERE; rejected before evidence use\", \"granularity\": \"cross-table summary\", \"key\": \"rejected_marts_summary\", \"period\": {\"lead_end\": \"2026-07-22\", \"lead_start\": \"2026-04-18\", \"spend_end\": \"2026-07-17\", \"spend_start\": \"2026-04-18\"}, \"request_id\": \"auc-001-p04-acceptance-2026-07-22-query-marts-summary\", \"result\": {\"error_code\": \"ERR_SCOPE_DENIED\", \"error_reason\": \"The requested resource is outside the authorized scope.\", \"status\": \"rejected\"}, \"sql\": \"WITH leads AS (SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_leads, MIN(day) AS min_day, MAX(day) AS max_day, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS leads_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS leads_without_ad_name, COUNTIF(NOT COALESCE(is_q_tiene_billetes_mapped, FALSE)) AS unmapped_tiene_billetes, COUNTIF(NOT COALESCE(is_q_cuando_viaja_mapped, FALSE)) AS unmapped_cuando_viaja, COUNTIF(NOT COALESCE(is_q_num_personas_mapped, FALSE)) AS unmapped_num_personas, COUNTIF(NOT COALESCE(is_q_tipo_experiencia_mapped, FALSE)) AS unmapped_tipo_experiencia, COUNTIF(NOT COALESCE(is_form_origen_mapped, FALSE)) AS unmapped_form_origen, COUNTIF(is_organic IS TRUE) AS organic_leads, COUNTIF(is_qualified_for_meta_offline IS TRUE) AS offline_candidate_leads, COUNTIF(ticket_status IS NOT NULL AND TRIM(ticket_status) != '') AS ticket_status_available FROM fct_lead_enriched), spend AS (SELECT COUNT(*) AS spend_records, MIN(spend_period) AS min_spend_period, MAX(spend_period) AS max_spend_period, SUM(spend_amount) AS total_spend_all_signals, SUM(IF(UPPER(campaign_signal) = 'COMMERCIAL', spend_amount, 0)) AS commercial_spend, SUM(IF(UPPER(campaign_signal) != 'COMMERCIAL' OR campaign_signal IS NULL, spend_amount, 0)) AS non_commercial_spend, COUNTIF(ad_id IS NULL OR TRIM(ad_id) = '') AS spend_without_ad_id, COUNTIF(ad_name IS NULL OR TRIM(ad_name) = '') AS spend_without_ad_name FROM fct_spend) SELECT * FROM leads CROSS JOIN spend\", \"tables\": [\"marts.fct_lead_enriched\", \"marts.fct_spend\"], \"trace_reference\": \"trc-5bba175274a7495c95811934835a3c24\", \"used_as_evidence\": false}]",
+      "name": "two_rejected_scope_denied_not_used",
+      "status": "PASS"
+    },
+    {
+      "detail": "16",
+      "name": "successful_queries_used_as_evidence",
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "name": "handoff_contains_command_results",
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "name": "pycache_and_pyc_absent",
+      "status": "PASS"
+    },
+    {
+      "detail": "",
+      "name": "manifest_fingerprints_match",
+      "status": "PASS"
+    },
+    {
+      "detail": "{\"closed_at\": \"2026-07-22T15:30:00Z\", \"conditions\": {\"complete_mcp_query_records\": \"closed\", \"fingerprints_recalculated\": \"closed\", \"handoff_commands\": \"closed\", \"pycache_removed\": \"closed\", \"rejected_queries_marked_not_used\": \"closed\", \"validations_reexecuted\": \"closed\"}, \"status\": \"CLOSED\"}",
+      "name": "reviewer_conditions_closed_in_manifest",
+      "status": "PASS"
+    },
+    {
+      "detail": "SPEC014=PASS SPEC015=PASS",
+      "name": "spec_validations_still_pass",
+      "status": "PASS"
+    },
+    {
+      "detail": "presentation scan",
+      "name": "presentation_semantic_markers_preserved",
+      "status": "PASS"
+    }
+  ],
+  "generated_at": "2026-07-22T15:34:00Z",
+  "status": "PASS"
+}

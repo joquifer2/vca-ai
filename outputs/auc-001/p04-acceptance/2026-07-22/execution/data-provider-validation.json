@@ -1,0 +1,56 @@
+{
+  "artifact_id": "AUC-001-P04-ACCEPTANCE-DATA-PROVIDER-VALIDATION",
+  "execution_context_contract": {
+    "dataset_id": "intermediate|marts",
+    "max_bytes_billed": 1073741824,
+    "project_id": "datamart-vca-494114"
+  },
+  "metadata_discovery": {
+    "dataset_intermediate": [
+      "auc-001-p04-acceptance-2026-07-22-discover-intermediate",
+      "trc-bc3e7a80d7bb482493e393f57278b8d6"
+    ],
+    "dataset_marts": [
+      "auc-001-p04-acceptance-2026-07-22-discover-marts",
+      "trc-1bffd5a45bca43a2bfa160ae3d4e8cfc"
+    ],
+    "table_leads": [
+      "auc-001-p04-acceptance-2026-07-22-discover-lead-enriched",
+      "trc-fc5b094d035646a391d8280d3484a56c"
+    ],
+    "table_scoring": [
+      "auc-001-p04-acceptance-2026-07-22-discover-scoring",
+      "trc-3b38f8843f41410e9458ae64a0623e77"
+    ],
+    "table_signal": [
+      "auc-001-p04-acceptance-2026-07-22-discover-campaign-signal",
+      "trc-c56883e0292646bbb1152d8c69e9133d"
+    ],
+    "table_spend": [
+      "auc-001-p04-acceptance-2026-07-22-discover-spend",
+      "trc-e153652c19f5422ba4411e4748fb77dd"
+    ],
+    "workspace": [
+      "auc-001-p04-acceptance-2026-07-22-discover-workspace",
+      "trc-605c70e3426d41efb38d88e793b838ea"
+    ]
+  },
+  "no_cli": true,
+  "no_fallback": true,
+  "provider": "BigQuery MCP",
+  "rejected_attempts_not_used_as_evidence": [
+    {
+      "error_code": "ERR_SCOPE_DENIED",
+      "handling": "not used as evidence",
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-evidence-summary",
+      "trace_reference": "trc-179642d12a704b5aa32f8292debd9c78"
+    },
+    {
+      "error_code": "ERR_SCOPE_DENIED",
+      "handling": "not used as evidence",
+      "request_id": "auc-001-p04-acceptance-2026-07-22-query-marts-summary",
+      "trace_reference": "trc-5bba175274a7495c95811934835a3c24"
+    }
+  ],
+  "status": "PASS"
+}

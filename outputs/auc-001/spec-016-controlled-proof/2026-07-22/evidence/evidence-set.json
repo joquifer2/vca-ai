@@ -1,0 +1,18 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-EVIDENCE-SET",
+  "excluded_mcp_records": [
+    "auc-001-spec-016-controlled-multitable-query"
+  ],
+  "note": "Operational controlled proof only; not analytical evidence for business use.",
+  "reconciliation_states": {
+    "lead_only": {},
+    "matched": {},
+    "spend_only": {}
+  },
+  "specification": "SPEC-016",
+  "used_mcp_records": [
+    "auc-001-spec-016-controlled-lead-query",
+    "auc-001-spec-016-controlled-spend-query",
+    "auc-001-spec-016-controlled-scoring-query"
+  ]
+}

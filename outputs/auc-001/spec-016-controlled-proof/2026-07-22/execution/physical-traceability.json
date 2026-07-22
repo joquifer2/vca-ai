@@ -1,0 +1,10 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-PHYSICAL-TRACEABILITY",
+  "generated_at": "2026-07-22T18:00:00Z",
+  "historical_outputs_modified": false,
+  "manifest_path": "execution/manifest.json",
+  "manifest_sha256": "19d5033dcc27156a3fe775e09d2caf5a248458b47257fc6062c6cf96b6e16c84",
+  "namespace_hygiene_pass": true,
+  "package_file_count": 15,
+  "test_results_sha256": "16340d0b92a732070d8896433638d89a7287826dd571d9c26d2272ae40dd6784"
+}

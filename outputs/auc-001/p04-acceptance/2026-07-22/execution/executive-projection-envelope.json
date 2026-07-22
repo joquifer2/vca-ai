@@ -1,0 +1,169 @@
+{
+  "canonical_projection_source_fingerprint": "79368d267dbe47d297338db1bbf84067694b4181ac0cba8e8874f8434abc5c22",
+  "canonical_projection_source_id": "AUC-001-P04-ACCEPTANCE-CANONICAL-PROJECTION-SOURCE",
+  "communication_context": {
+    "allowed_variation": "prioritized synthesis only",
+    "audience": "Direccion",
+    "projection": "executive"
+  },
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "complete",
+    "AQ-004": "partial",
+    "AQ-005": "complete",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "complete",
+    "CQ-002": "complete",
+    "CQ-003": "not_available",
+    "CQ-004": "complete",
+    "CQ-005": "not_available",
+    "CQ-006": "not_available",
+    "CQ-007": "partial",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "future_evidence_gaps": {
+    "additional_creative_metadata": "declared_dependency_on_future_evidence",
+    "creative_causality": "declared_dependency_on_future_evidence",
+    "provider_limited_temporality": "declared_dependency_on_future_evidence",
+    "revenue_or_crm": "declared_dependency_on_future_evidence"
+  },
+  "knowledge_refs": [
+    "KNW-001",
+    "KNW-002",
+    "KNW-003",
+    "KNW-004",
+    "KNW-005",
+    "KNW-006"
+  ],
+  "limitations": [
+    "Revenue/CRM evidence is not_available in the authorized source set.",
+    "Creative causality remains UNKNOWN; ad_name is an interpretive label only.",
+    "Additional creative metadata beyond ad_name is not_available.",
+    "Temporal comparability is partial because spend ends on 2026-07-17 while leads extend to 2026-07-22.",
+    "Campaign/adset economic attribution is partial because robust spend reconciliation is at ad_id level.",
+    "over-reading ad names as causality",
+    "hiding lead_only or spend_only",
+    "treating partial weekly data as complete"
+  ],
+  "projection_type": "executive",
+  "recommendation_refs": [
+    {
+      "category": "measurable_experiment",
+      "guardrail": "cost_per_ab_commercial_matched does not worsen materially",
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-003"
+      ],
+      "primary_metric": "A/B rate in commercial matched universe",
+      "priority": null,
+      "recommendation_id": "REC-001",
+      "review_condition": "stop if sample falls below threshold or spend coverage changes",
+      "success_criterion": "PASS if A/B rate increases versus control while cost_per_ab_commercial_matched is stable or lower over two comparable weeks."
+    },
+    {
+      "category": "verifiable_action",
+      "guardrail": null,
+      "knowledge_refs": [
+        "KNW-002",
+        "KNW-006"
+      ],
+      "primary_metric": "coverage register classifies each asymmetry without overwriting coverage state",
+      "priority": null,
+      "recommendation_id": "REC-002",
+      "review_condition": null,
+      "success_criterion": "all current lead_only and spend_only rows have a declared reason code"
+    },
+    {
+      "category": "measurable_experiment",
+      "guardrail": "lead volume and Tier A count do not collapse",
+      "knowledge_refs": [
+        "KNW-003",
+        "KNW-006"
+      ],
+      "primary_metric": "share of A/B leads and ticket_status tiene_billetes/en_proceso",
+      "priority": null,
+      "recommendation_id": "REC-003",
+      "review_condition": "stop if unmapped responses appear or weekly comparability remains partial",
+      "success_criterion": "PASS if qualified-share lift is observed with stable lead volume and no increase in unmapped responses."
+    },
+    {
+      "category": "non_actionable_hypothesis",
+      "guardrail": null,
+      "knowledge_refs": [
+        "KNW-006"
+      ],
+      "primary_metric": null,
+      "priority": null,
+      "recommendation_id": "REC-004",
+      "review_condition": "promote only when future evidence is authorized and reconciled",
+      "success_criterion": null
+    }
+  ],
+  "sections": [
+    {
+      "content_ref": "cps.decision_patterns",
+      "coverage_refs": [
+        "AQ-001",
+        "AQ-002",
+        "AQ-003",
+        "AQ-010"
+      ],
+      "format": "executive_summary",
+      "knowledge_refs": [
+        "KNW-001",
+        "KNW-002",
+        "KNW-003"
+      ],
+      "order": 1,
+      "title": "Decision summary"
+    },
+    {
+      "content_ref": "cps.recommendations",
+      "coverage_refs": [
+        "AQ-010"
+      ],
+      "format": "action_register",
+      "order": 2,
+      "recommendation_refs": [
+        "REC-001",
+        "REC-002",
+        "REC-003",
+        "REC-004"
+      ],
+      "title": "What can be acted on"
+    },
+    {
+      "content_ref": "cps.limitations",
+      "coverage_refs": [
+        "AQ-011",
+        "CQ-003",
+        "CQ-005",
+        "CQ-006"
+      ],
+      "format": "risk_register",
+      "limitation_refs": [
+        "cps.future_evidence_gaps"
+      ],
+      "order": 3,
+      "title": "What must not be inferred",
+      "unknown_refs": [
+        "cps.unknowns"
+      ]
+    }
+  ],
+  "unknowns": [
+    "UNKNOWN: causal effect of creative/ad_name on lead quality.",
+    "UNKNOWN: commercial revenue or CRM outcome of FARO tiers.",
+    "UNKNOWN: complete current-week cost-quality pattern after provider spend cutoff."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "acceptance_final_declared_by_implementation": false,
+  "acquisition_strategy": "independent_table_queries_with_local_reconciliation",
+  "artifact_fingerprints": {
+    "evidence/evidence-set.json": "2ad0cf0102329bba08af30c6b757c1d709e18a9a691c9c9d0120800a77707243",
+    "execution/evidence-acquisition-record.json": "80827df61a2ce6a14dbf42cad6b818a88153e223fbf755e3ea45330e0263be91",
+    "execution/mcp-preflight-record.json": "8bbd50712cd9093caffc6a640deea9ae2953e709124d24793300233d3f7b8946",
+    "execution/semantic-equivalence-validation.json": "9e1044107cf783804c461c51317e20eba01596a4489a008f40f7cdfa8b15375b",
+    "handoff/reviewer-qa-handoff.md": "34a9107db4fbabb00652edd95e8836cf5bc68c264e1c95c40924b78647de6c5e",
+    "knowledge/knowledge-set.json": "377d614ca7b96fdb92dfa8fcd60beefb23d211d60cc0e6d0d252e1aced392b7b",
+    "product-core/canonical-projection-source.json": "8d321a8243e556751615928f1dfa659e7b9084c029f032a90f6517e5583541f2",
+    "product-core/common-product-core.json": "ea9cbfbb5360abda44f5bf15f8c124c7ea006df9f8aae49bff9aa9304442980a",
+    "recommendations/recommendation-set.json": "f436024b7c6e6810e57c94a34c41cc25411629414db13c69456f83bdadf9a979",
+    "validations/spec-014-validation.json": "ce649b6208a1208f551c6a314b8193af54ae769a2c511b8d395041742d188194",
+    "validations/spec-015-validation.json": "3f0c98c20651a905bbc84abbdc867dcf98398d581a00b9e3c092b5991ea9d3c5",
+    "validations/spec-016-validation.json": "9aeaa1d94e94be15f4aa4b4a30a4fdc6d784965d13a728ec8a6aeb7b4cad93d0"
+  },
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-MANIFEST",
+  "artifact_paths": {
+    "canonical_projection_source": "product-core/canonical-projection-source.json",
+    "common_product_core": "product-core/common-product-core.json",
+    "evidence_acquisition_record": "execution/evidence-acquisition-record.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "handoff": "handoff/reviewer-qa-handoff.md",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "manifest": "execution/manifest.json",
+    "mcp_preflight_record": "execution/mcp-preflight-record.json",
+    "physical_traceability": "execution/physical-traceability.json",
+    "recommendation_set": "recommendations/recommendation-set.json",
+    "semantic_equivalence_validation": "execution/semantic-equivalence-validation.json",
+    "spec_014_validation": "validations/spec-014-validation.json",
+    "spec_015_validation": "validations/spec-015-validation.json",
+    "spec_016_validation": "validations/spec-016-validation.json",
+    "test_results": "execution/test-results.json"
+  },
+  "brief_instruction": "Validate the AUC-001 operational acceptance package standard.",
+  "canonical_projection_source_fingerprint": "controlled-spec-016-cps-fingerprint",
+  "canonical_projection_source_id": "AUC-001-SPEC-016-CONTROLLED-CANONICAL-PROJECTION-SOURCE",
+  "execution_mode": "controlled_operational_proof",
+  "fingerprint_policy": "artifact_fingerprints excludes execution/manifest.json, execution/physical-traceability.json and execution/test-results.json to avoid recursive hash mutation; physical traceability signs manifest and test-results.",
+  "gate": "not_applicable_controlled_spec_016_proof",
+  "generated_at": "2026-07-22T18:00:00Z",
+  "multi_table_mcp_queries_allowed_as_evidence": false,
+  "namespace": "outputs/auc-001/spec-016-controlled-proof/2026-07-22",
+  "schema_family": "auc_001_operational_acceptance_package",
+  "schema_version": "auc_001_operational_acceptance_package.v1",
+  "source_policy": {
+    "bigquery_mcp_only": true,
+    "cli_used": false,
+    "fallback_used": false,
+    "historical_outputs_used_as_new_evidence": false
+  },
+  "specification": "SPEC-016",
+  "status": "READY_FOR_REVALIDATION",
+  "validation_decisions": {
+    "spec_014": "PASS",
+    "spec_015": "PASS",
+    "spec_016": "PASS"
+  }
+}

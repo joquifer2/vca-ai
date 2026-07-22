@@ -1,0 +1,46 @@
+{
+  "acquisition_strategy": "independent_table_queries_with_local_reconciliation",
+  "artifact_id": "AUC-001-SPEC-016-CONTROLLED-PREFLIGHT",
+  "blocking_conditions": [],
+  "execution_contexts": {
+    "intermediate": {
+      "dataset_id": "intermediate",
+      "max_bytes_billed": 1073741824,
+      "project_id": "datamart-vca-494114"
+    },
+    "marts": {
+      "dataset_id": "marts",
+      "max_bytes_billed": 1073741824,
+      "project_id": "datamart-vca-494114"
+    }
+  },
+  "generated_at": "2026-07-22T18:00:00Z",
+  "multi_table_mcp_queries_allowed_as_evidence": false,
+  "planned_tables": [
+    "marts.fct_lead_enriched",
+    "marts.fct_spend",
+    "intermediate.int_faro_lead_scoring",
+    "marts.dim_campaign_signal"
+  ],
+  "project_id": "datamart-vca-494114",
+  "provider": "BigQuery MCP",
+  "reconciliation_states_preserved": [
+    "matched",
+    "lead_only",
+    "spend_only"
+  ],
+  "spec_014_grain_readiness": {
+    "AQ-001": "ready",
+    "AQ-002": "ready",
+    "AQ-003": "ready",
+    "AQ-004": "ready",
+    "AQ-006": "ready",
+    "AQ-007": "ready",
+    "AQ-009": "partial_allowed",
+    "AQ-010": "ready",
+    "AQ-011": "ready"
+  },
+  "specification": "SPEC-016",
+  "status": "PASS",
+  "workspace": "vca"
+}
