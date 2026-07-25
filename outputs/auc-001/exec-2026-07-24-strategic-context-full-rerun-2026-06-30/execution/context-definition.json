@@ -1,0 +1,77 @@
+{
+  "artifact_id": "AUC-001-STRATEGIC-CONTEXT-FULL-RERUN-2026-06-30-CONTEXT-DEFINITION",
+  "status": "stabilized_until_blocker",
+  "request_literal": "Genera el informe analítico y el informe ejecutivo de calidad de los leads hasta el 30 de junio de 2026.",
+  "mode": "complete_execution",
+  "objective": "Generate analytical and executive reports for Meta Ads lead quality",
+  "audience": ["analytical_review", "executive_decision_support"],
+  "projection_requested": ["analytical", "executive"],
+  "cutoff": "2026-06-30",
+  "period_rule": "User supplied cutoff without start date; start resolved from authorized MCP provider coverage.",
+  "period": {
+    "start": "2026-04-18",
+    "end": "2026-06-30"
+  },
+  "workspace": {
+    "workspace_id": "vca",
+    "project_id": "datamart-vca-494114",
+    "max_bytes_billed": 1073741824,
+    "authorized_tables": [
+      "intermediate.int_faro_lead_scoring",
+      "marts.fct_lead_enriched",
+      "marts.fct_spend",
+      "marts.dim_campaign_signal"
+    ]
+  },
+  "official_context_loaded": [
+    ".github/skills/meta-lead-quality-analysis/SKILL.md",
+    ".github/skills/meta-lead-quality-analysis/RUNBOOK.md",
+    ".github/skills/meta-lead-quality-analysis/references.md",
+    ".github/skills/meta-lead-quality-analysis/CHECKLIST.md",
+    "docs/context_refs.md",
+    "analytical_use_cases/meta_lead_quality_analysis.md",
+    "knowledge/client/ccd.md",
+    "analytical_use_cases/auc-001/faro-strategic-context-profile.json",
+    "docs/contracts/data.contract.md",
+    "docs/contracts/presentation.contract.md",
+    "docs/contracts/bigquery-mcp-discover-metadata.contract.md",
+    "configs/workspaces.json"
+  ],
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "forbidden_primary_kpi_families": ["direct_leads", "cpl", "qualified_cpl", "direct_commercial_efficiency"]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "required_cost_separation": ["direct_cost", "complete_or_assisted_cost"],
+        "forbidden_interpretations": ["mixed_with_cold_traffic", "universal_cpl_efficiency"]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": ["video_consumption", "attention_only"]
+      }
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  }
+}

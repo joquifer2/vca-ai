@@ -111,7 +111,6 @@ Reasoning Layer / fase Recomendaciones.
 - [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
 - [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
 - [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 - [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
 ## Unknown Handling
@@ -142,15 +141,12 @@ Una instancia concreta del Recommendation Contract debe describir de forma estab
 | SPEC-001 | Lifecycle |
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
-| AUC-001 | Analytical use case |
-| meta-lead-quality-analysis | Skill |
 
 ## Evidence
 
 - SPEC-001 define Recomendaciones como la fase que convierte conocimiento priorizado en acciones sugeridas, justificadas y evaluables.
 - SPEC-002 establece que Reasoning Layer produce conocimiento accionable y que Presentation Layer no debe crear nueva evidencia ni reinterpretar conclusiones.
 - SPEC-004 reconoce el Recommendation Contract como categoria fundacional para formalizar acciones sugeridas y su justificacion.
-- AUC-001 requiere recomendaciones accionables y priorizadas.
 - La skill asociada exige recomendaciones concretas, justificadas y alineadas con el contexto de negocio de VCA.
 
 ## Risks
@@ -158,9 +154,7 @@ Una instancia concreta del Recommendation Contract debe describir de forma estab
 | Risk | Severity | Impact | Evidence |
 |---|---|---|---|
 | Recomendacion sin trazabilidad | Important | Debilita confiabilidad y revision posterior | SPEC-001; SPEC-004 |
-| Accion sugerida fuera de alcance | Important | Introduce decision funcional no aprobada | Project Brief; AUC-001 |
 | Impacto o esfuerzo inventado | Important | Puede inducir decisiones no sustentadas | Skill; SPEC-001 |
-| Recomendacion concluyente con incertidumbre material | Important | Oculta limites de evidencia y razonamiento | VCA-KNW-001; AUC-001 |
 
 ## Definition of Done
 
@@ -171,3 +165,11 @@ Este contract cumple T-012 cuando:
 3. Mantiene trazabilidad entre recomendaciones, conocimiento y evidencia.
 4. Propaga incertidumbres y UNKNOWN sin inventar impacto, esfuerzo o dependencias.
 5. No crea evidencia nueva ni construye el artefacto final de presentacion.
+
+## Contextual Constraint Declaration
+
+Cuando una recomendacion dependa de una interpretacion condicionada por contexto de negocio, dominio o estrategia, debe derivar de Knowledge validado contra el perfil de restricciones aplicable.
+
+La recomendacion debe conservar trazabilidad al Knowledge item, al perfil de restricciones, a la fuente canonica y al identificador estable de la regla aplicada.
+
+Recommendation no puede modificar el significado de las restricciones contextuales, resolver conflictos no cerrados ni convertir UNKNOWNs en acciones concluyentes. Si el perfil aplicable bloquea una lectura, la recomendacion debe bloquearse, degradarse o declararse no accionable segun corresponda.

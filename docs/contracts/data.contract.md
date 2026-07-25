@@ -31,13 +31,11 @@ Este contract no produce evidencia derivada, conocimiento, recomendaciones ni pr
 
 Data Provider principal.
 
-Para AUC-001, el Data Provider principal previsto es BigQuery MCP Server.
 
 ## Consumer
 
 - Framework / fase Discovery.
 - Analytical Layer.
-- Future Data Contract instanciado del caso AUC-001.
 
 ## Inputs
 
@@ -128,7 +126,6 @@ Este contract es documental y no ejecuta consultas. Una instancia concreta del D
 | SPEC-001 | Lifecycle |
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
-| AUC-001 | Analytical use case |
 | meta-lead-quality-analysis | Skill |
 | BigQuery MCP Server | Data Provider principal previsto |
 
@@ -137,7 +134,6 @@ Este contract es documental y no ejecuta consultas. Una instancia concreta del D
 - SPEC-001 exige identificar datasets, entidades, dimensiones, metricas, relaciones y limitaciones antes de la preparacion.
 - SPEC-002 establece que el Data Provider adquiere y expone informacion sin interpretar datos ni formular recomendaciones.
 - SPEC-004 reconoce el Data Contract como categoria fundacional y exige metadata minima.
-- AUC-001 identifica BigQuery MCP Server como Data Provider principal para volumen, calidad, eficiencia, campanas, creatividades y segmentacion.
 - La skill asociada prioriza BigQuery MCP Server como fuente principal de evidencia cuando existan datos disponibles.
 
 ## Risks
@@ -145,34 +141,5 @@ Este contract es documental y no ejecuta consultas. Una instancia concreta del D
 | Riesgo | Severidad | Impacto | Evidencia |
 |---|---|---|---|
 | Data Provider emite interpretacion | Important | Rompe separacion entre adquisicion y razonamiento | SPEC-002 |
-| Fuente principal no disponible | Important | Impide reunir evidencia minima verificable | AUC-001; skill |
 | Estructura logica incompleta | Important | Debilita Discovery y preparacion analitica | SPEC-001 |
 | Asumir campos no publicados | Important | Introduce evidencia no verificable | SPEC-004; skill |
-
-## AUC-001 Post-Closure Cost-Quality Data Rules
-
-Estas reglas aplican solo a la evolucion post-cierre `AUC-001-PCI-001` definida por SPEC-012. No reabren el ciclo experimental original de AUC-001 y no modifican AIF Foundation.
-
-| Elemento | Regla contractual |
-|---|---|
-| Data Provider | BigQuery MCP Server es la unica via autorizada de adquisicion de evidencia nueva. |
-| Lead canonical source | `marts.fct_lead_enriched`. |
-| Lead validation source | `intermediate.int_faro_lead_scoring`; no hay fallback automatico. |
-| Spend canonical source | `marts.fct_spend`. |
-| Acquisition pattern | Adquisicion separada lead-side y spend-side mediante agregados autorizados. |
-| Period | Periodo comun, cerrado e identico entre fuentes. |
-| Integration key | `ad_id_norm`. |
-| Lead normalization | Eliminacion estricta del prefijo inicial `ag:` en `ad_id` lead-side. |
-| Label handling | `ad_name` es label descriptivo; no puede usarse como clave ni fallback. |
-| Double counting | Prohibido sumar `marts.fct_lead_enriched` e `intermediate.int_faro_lead_scoring` como bases de conteo. |
-| Query traceability | Cada adquisicion debe conservar SQL, request ID, trace ID, execution context, project, dataset, periodo, dry run, bytes procesados, estado de consulta y evidencia de allowlist. |
-| Invalid IDs | IDs nulos, vacios, no normalizables, colisiones y duplicados no resueltos deben registrarse como UNKNOWN o bloquear segun SPEC-012. |
-| Historical outputs | La adquisicion post-cierre no puede reutilizar outputs historicos como evidencia nueva ni sobrescribirlos. |
-
-## AUC-001 Operational Acceptance Traceability
-
-Esta seccion registra la dependencia operativa vigente de AUC-001 con `SPEC-016 - AUC-001 Operational Acceptance Package Contract`.
-
-No introduce reglas nuevas en este Data Contract, no amplia fuentes, no modifica tablas, campos, metricas, allowlist ni cambia la semantica de SPEC-014 o SPEC-015.
-
-Las obligaciones de preflight MCP, estrategia de consultas independientes por tabla, reconciliacion local controlada, preservacion de `matched`, `lead_only`, `spend_only` y `UNKNOWN`, tratamiento de llamadas MCP rechazadas, bloqueo por granularidad insuficiente y contrato fisico de execution package permanecen definidas por SPEC-016 y por el Runbook AUC-001.

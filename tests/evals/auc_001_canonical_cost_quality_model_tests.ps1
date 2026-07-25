@@ -261,23 +261,17 @@ $docCode = @"
 from pathlib import Path
 
 checks = {
-    "docs/contracts/analytical.contract.md": [
-        "AUC-001 Post-Closure Cost-Quality Analytical Model Rules",
-        "auc_001_canonical_cost_quality_model",
-        "ad_id_norm",
-        "CPQL",
-    ],
-    "docs/contracts/data.contract.md": [
-        "AUC-001 Post-Closure Cost-Quality Data Rules",
-        "marts.fct_lead_enriched",
-        "intermediate.int_faro_lead_scoring",
-        "Historical outputs",
-    ],
     "docs/contracts/evidence.contract.md": [
-        "AUC-001 Post-Closure Cost-Quality Evidence Rules",
-        "Coverage States",
-        "Economic Universes And Metrics",
-        "Publication Controls",
+        "Contextual Constraint Declaration",
+        "perfil o artefacto local",
+        "fuente canonica",
+        "UNKNOWN",
+    ],
+    "analytical_use_cases/auc-001/faro-strategic-context-profile.json": [
+        "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+        "campaign_signal_interpretation",
+        "AUC-001-FARO-GLOBAL-NO-UNIVERSAL-KPI",
+        "knowledge/client/ccd.md",
     ],
     "specs/spec-013-auc-001-structured-reconciliation-output.md": [
         "auc_001_reconciliation_output",
@@ -297,9 +291,9 @@ for path, markers in checks.items():
     missing = [marker for marker in markers if marker not in text]
     if missing:
         raise SystemExit(f"{path} missing markers: {missing}")
-print("documentary contract and gate markers passed")
+print("documentary contract, local profile, and gate markers passed")
 "@
-Invoke-PythonCheck 'Documentary contract, specification, and Entry Gate markers' $docCode
+Invoke-PythonCheck 'Documentary contract, local profile, specification, and Entry Gate markers' $docCode
 
 
 $runtimePersistenceCode = @"
@@ -327,7 +321,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
     namespace = Path(temp_dir) / "outputs" / "auc-001" / "pci-002" / "2026-06-30"
     payload = build_runtime_output_payload(model, execution_metadata=metadata, namespace_path=namespace)
     json.dumps(payload, sort_keys=True)
-    for key in ["schema_family", "output_schema_version", "spend_reconciliation", "coverage_reconciliation", "is_consumable", "execution_id", "period_start", "period_end", "source_tables", "input_hashes", "namespace"]:
+    for key in ["schema_family", "output_schema_version", "spend_reconciliation", "coverage_reconciliation", "strategic_context_constraints", "is_consumable", "execution_id", "period_start", "period_end", "source_tables", "input_hashes", "namespace"]:
         assert key in payload
     assert payload["spend_reconciliation"]["total_spend_all_signals"] == "12.50"
     assert payload["spend_reconciliation"]["non_commercial_spend"] == "2.50"

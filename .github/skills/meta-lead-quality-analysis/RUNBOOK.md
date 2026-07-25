@@ -88,8 +88,9 @@ Input:
 
 Acciones:
 
-- leer las fuentes oficiales aplicables: `docs/context_refs.md`, Analytical Use Case, Data Contract, Presentation Contract, CCD, FARO, CLARO, KPIs oficiales y `project_brief.md` cuando aplique;
+- leer las fuentes oficiales aplicables: `docs/context_refs.md`, Analytical Use Case, Data Contract, Presentation Contract, `knowledge/client/ccd.md`, `analytical_use_cases/auc-001/faro-strategic-context-profile.json`, FARO, CLARO, KPIs oficiales y `project_brief.md` cuando aplique;
 - aplicar las definiciones oficiales por encima de inferencias del modelo de datos;
+- cuando aplique contexto estrategico AUC-001, cargar `analytical_use_cases/auc-001/faro-strategic-context-profile.json` y derivar `strategic_context_constraints` trazables al CCD sin duplicar su contenido normativo;
 - registrar referencias ausentes o rutas rotas como limitaciones o bloqueos segun impacto.
 
 Output:
@@ -119,6 +120,7 @@ Acciones:
 
 - canonicalizar objetivo, periodo, fecha de corte, alcance, definicion de calidad, audiencia, tipo de salida y restricciones;
 - aplicar contratos, CCD, definiciones oficiales, restricciones del caso y alcance solicitado;
+- incorporar al Execution Context las restricciones verificables publicadas por el perfil local de AUC-001;
 - mantener como pendientes los campos que dependan del proveedor, como fecha inicial real o cobertura temporal;
 - cuando la solicitud use `hasta [fecha]` sin fecha inicial, no sustituir automaticamente por el mes natural;
 - usar mes natural solo si el usuario lo solicita explicitamente o existe restriccion contractual aplicable;
@@ -355,7 +357,7 @@ Input:
 
 Acciones:
 
-- construir hechos, metricas derivadas, coverage states, limitaciones, UNKNOWNs y trazabilidad;
+- construir hechos, metricas derivadas, coverage states, limitaciones, UNKNOWNs, trazabilidad y `strategic_context_constraints` cuando aplique el perfil local de AUC-001;
 - preservar `matched`, `lead_only`, `spend_only` y `UNKNOWN` cuando apliquen;
 - excluir outputs rechazados o no verificables;
 - separar hechos de interpretacion;
@@ -384,6 +386,7 @@ Input:
 Acciones:
 
 - derivar conocimiento exclusivamente desde el Evidence Set estabilizado;
+- aplicar `strategic_context_constraints` desde el perfil local a toda interpretacion cubierta por ese perfil;
 - aplicar los perfiles analiticos correspondientes;
 - ejecutar un programa de investigacion analitica antes de estabilizar el Knowledge Set;
 - seleccionar preguntas de negocio adaptadas a la evidencia disponible, incluyendo volumen, calidad, eficiencia, variables explicativas, equilibrio volumen-calidad-coste, trade-offs, patrones, anomalias, robustez y limitaciones cuando apliquen;
@@ -392,6 +395,7 @@ Acciones:
 - para cada finding intermedio, registrar que se observa, que evidencia lo soporta, por que importa, que incertidumbre permanece y con que otros findings se relaciona;
 - descartar observaciones que no superen el umbral de materialidad, robustez o utilidad para decision;
 - consolidar findings relacionados en Knowledge: insights, hipotesis, conclusiones, prioridades, riesgos e incertidumbres;
+- registrar la referencia de restriccion exigida por el perfil local en los Knowledge items cubiertos y bloquear interpretaciones que incumplan sus reglas;
 - distinguir afirmaciones solidas, hipotesis observacionales y UNKNOWNs;
 - conservar limitaciones, coverage states e incertidumbre;
 - estabilizar el Knowledge Set antes de cualquier recomendacion;
@@ -439,6 +443,7 @@ Input:
 Acciones:
 
 - derivar recomendaciones exclusivamente del Knowledge Set;
+- conservar en cada recomendacion dependiente del perfil local la trazabilidad al Knowledge item y a la regla contextual correspondiente;
 - incluir prioridad, accion, soporte, riesgo, impacto esperado y validacion posterior;
 - no introducir recomendaciones sin finding de soporte;
 - estabilizar el Recommendation Set antes de Presentation.
@@ -466,7 +471,7 @@ Input:
 
 Acciones:
 
-- comprobar consistencia, trazabilidad, separacion Evidence/Knowledge/Recommendations, coverage states, UNKNOWNs, limitaciones, prioridades y equivalencia semantica;
+- comprobar consistencia, trazabilidad, separacion Evidence/Knowledge/Recommendations, coverage states, UNKNOWNs, limitaciones, prioridades, `strategic_context_constraints` y equivalencia semantica;
 - construir y validar Coverage Matrix y Common Product Core conforme a SPEC-014;
 - construir y validar Canonical Projection Source conforme a SPEC-015 antes de cualquier informe;
 - confirmar que Evidence no contiene interpretacion;
@@ -515,7 +520,7 @@ Acciones:
 - no generar evidencia;
 - no generar nuevo conocimiento;
 - no generar nuevas recomendaciones;
-- preservar equivalencia semantica, coverage states, UNKNOWNs, limitaciones y prioridades.
+- preservar equivalencia semantica, coverage states, UNKNOWNs, limitaciones, prioridades y trazabilidad al perfil local y a su fuente canonica cuando se presente una interpretacion cubierta por restricciones contextuales.
 
 Output:
 
@@ -547,6 +552,7 @@ Acciones:
 - declarar policy aplicada, cuando exista;
 - confirmar aislamiento historico;
 - confirmar trazabilidad;
+- confirmar que las interpretaciones cubiertas por el perfil local preservan la referencia contextual requerida y cumplen sus reglas;
 - confirmar preservacion de limitaciones y UNKNOWNs;
 - cuando exista execution package, validar contrato fisico SPEC-016: manifest, fingerprints, physical traceability, registros MCP completos, resultados de validacion, higiene de namespace y handoff con comandos/resultados;
 - distinguir `READY_FOR_REVALIDATION` de aceptacion final por QA Gate.

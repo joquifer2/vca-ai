@@ -207,6 +207,14 @@ No puede consultar BigQuery, Evidence Set bruto, tablas, outputs historicos, Rec
 No puede producir nuevos findings, nuevo Knowledge, recomendaciones encubiertas ni adaptacion comunicativa propia de Presentation.
 
 Su salida debe construir una tesis integrada, no repetir una lista de insights.
+
+## Perfil local de restricciones estratégicas
+
+Para AUC-001, las restricciones contextuales ejecutables derivadas del CCD se materializan en `analytical_use_cases/auc-001/faro-strategic-context-profile.json`.
+
+La ejecucion debe cargar ese perfil cuando interprete dimensiones o señales condicionadas por contexto de negocio, transportar su contenido como `strategic_context_constraints` y conservar trazabilidad a `knowledge/client/ccd.md`.
+
+Esta skill no enumera las reglas de dominio del perfil. El perfil local contiene solo las restricciones necesarias para ejecucion y validacion; el CCD permanece como fuente canonica.
 ## Aislamiento entre ejecuciones
 
 Los artefactos persistidos documentan ejecuciones anteriores. No representan el estado logico de la ejecucion actual ni sustituyen el workflow.

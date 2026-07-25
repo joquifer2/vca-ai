@@ -1,0 +1,146 @@
+{
+  "artifact_id": "AUC-001-ANALYTICAL-PROJECTION-20260724-RETRY2",
+  "projection_type": "analytical",
+  "canonical_projection_source_id": "AUC-001-CANONICAL-PROJECTION-SOURCE-20260724-RETRY2",
+  "canonical_projection_source_fingerprint": "576433d7dc818e194bd0d428a13e7a36e111207984c97c9ea20f60a10a919a2d",
+  "common_core_fingerprint": "ad6ffb5ee3d12b14d930e18624a7e5ecc23f5ba5f7415d26f891a2d6ba33209b",
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-004": "complete",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "complete",
+    "CQ-002": "complete",
+    "CQ-004": "complete",
+    "AQ-003": "partial",
+    "AQ-005": "partial",
+    "AQ-009": "partial",
+    "CQ-003": "not_available",
+    "CQ-005": "partial",
+    "CQ-006": "not_available",
+    "CQ-007": "not_available",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "unknowns": [
+    "Revenue/CRM final: UNKNOWN.",
+    "Causalidad creativa: UNKNOWN."
+  ],
+  "limitations": [
+    "Eficiencia económica limitada a COMMERCIAL matched.",
+    "Comparación cross-layer descriptiva y no equivalente.",
+    "Sin fuente MCP de ventas/CRM final.",
+    "Temporalidad estabilizada a nivel mensual."
+  ],
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+  "derived_from_projection": false,
+  "sections": [
+    {
+      "title": "Lectura analítica",
+      "content_refs": [
+        "K-001",
+        "K-002",
+        "K-003",
+        "K-004",
+        "K-005"
+      ],
+      "cps_refs": [
+        "AUC-001-CANONICAL-PROJECTION-SOURCE-20260724-RETRY2"
+      ],
+      "ccd_constraint_refs": [
+        "knowledge/client/ccd.md#campaign_signal"
+      ]
+    }
+  ]
+}

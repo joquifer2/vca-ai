@@ -1,0 +1,450 @@
+{
+  "artifact_id": "AUC-001-COMMON-PRODUCT-CORE-20260724-RETRY2",
+  "status": "validated",
+  "period": {
+    "start_date": "2026-04-18",
+    "end_date": "2026-06-30",
+    "cutoff_date": "2026-06-30"
+  },
+  "scope": {
+    "use_case_id": "AUC-001",
+    "quality_definition": "FARO A/B with Tier A detail"
+  },
+  "sources": [
+    "knowledge/client/ccd.md",
+    "analytical_use_cases/auc-001/faro-strategic-context-profile.json",
+    ".github/skills/meta-lead-quality-analysis/RUNBOOK.md",
+    "analytical_use_cases/meta_lead_quality_analysis.md",
+    "specs/spec-014-auc-001-analytical-product-contract.md",
+    "specs/spec-015-auc-001-canonical-projection-consolidation.md",
+    "specs/spec-016-auc-001-operational-acceptance-package-contract.md",
+    "BigQuery MCP: marts.fct_lead_enriched",
+    "BigQuery MCP: intermediate.int_faro_lead_scoring",
+    "BigQuery MCP: marts.fct_spend",
+    "BigQuery MCP: marts.dim_campaign_signal"
+  ],
+  "evidence_refs": [
+    "AUC-001-EVIDENCE-SET-20260724-RETRY2"
+  ],
+  "canonical_metrics": {
+    "lead_summary": {
+      "lead_count": 1329,
+      "distinct_lead_count": 1329,
+      "tier_ab_lead_count": 397,
+      "tier_a_lead_count": 58,
+      "tier_b_lead_count": 339,
+      "tier_c_lead_count": 554,
+      "tier_d_lead_count": 378,
+      "avg_lead_score": 49.8029
+    },
+    "monthly": [
+      {
+        "lead_month": "2026-04",
+        "lead_count": 184,
+        "tier_ab_lead_count": 57,
+        "tier_a_lead_count": 8,
+        "avg_lead_score": 50.7065
+      },
+      {
+        "lead_month": "2026-05",
+        "lead_count": 369,
+        "tier_ab_lead_count": 111,
+        "tier_a_lead_count": 19,
+        "avg_lead_score": 49.2656
+      },
+      {
+        "lead_month": "2026-06",
+        "lead_count": 776,
+        "tier_ab_lead_count": 229,
+        "tier_a_lead_count": 31,
+        "avg_lead_score": 49.8441
+      }
+    ],
+    "campaign_adset": [
+      {
+        "campaign_name": "[META]_[CLP]_[CAPTACIÓN]_[ABO]",
+        "adset_name": "[PR]_[NATIVE FORM]_[AVG+]_[ISLA]",
+        "lead_count": 1187,
+        "tier_ab_lead_count": 344,
+        "tier_a_lead_count": 48,
+        "avg_lead_score": 49.3715
+      },
+      {
+        "campaign_name": "[META]_[CLP]_[RTG]_[CBO]",
+        "adset_name": "[RTG]_[NATIVE FORM]_[INTERACCIONES + 50% VIDEO]_[DIASPORA]",
+        "lead_count": 141,
+        "tier_ab_lead_count": 53,
+        "tier_a_lead_count": 10,
+        "avg_lead_score": 53.4539
+      }
+    ],
+    "signals": [
+      {
+        "section": "ticket",
+        "bucket": "tiene_billetes",
+        "lead_count": 177,
+        "tier_ab_lead_count": 157,
+        "tier_a_lead_count": 47,
+        "avg_lead_score": 73.8136
+      },
+      {
+        "section": "ticket",
+        "bucket": "en_proceso",
+        "lead_count": 314,
+        "tier_ab_lead_count": 192,
+        "tier_a_lead_count": 11,
+        "avg_lead_score": 61.0064
+      },
+      {
+        "section": "ticket",
+        "bucket": "solo_mirando",
+        "lead_count": 838,
+        "tier_ab_lead_count": 48,
+        "tier_a_lead_count": 0,
+        "avg_lead_score": 40.5334
+      },
+      {
+        "section": "travel_window",
+        "bucket": "en menos de 1 mes",
+        "lead_count": 80,
+        "tier_ab_lead_count": 74,
+        "tier_a_lead_count": 26,
+        "avg_lead_score": 75.4125
+      },
+      {
+        "section": "travel_window",
+        "bucket": "aun no lo tengo claro",
+        "lead_count": 463,
+        "tier_ab_lead_count": 26,
+        "tier_a_lead_count": 0,
+        "avg_lead_score": 38.0065
+      }
+    ],
+    "spend_by_signal": [
+      {
+        "campaign_signal": "ACTIVATION",
+        "spend_amount_total": 221.86
+      },
+      {
+        "campaign_signal": "ATTENTION",
+        "spend_amount_total": 308.54
+      },
+      {
+        "campaign_signal": "COMMERCIAL",
+        "spend_amount_total": 875.850006
+      }
+    ],
+    "commercial_matched": {
+      "matched_lead_count": 1187,
+      "matched_tier_ab_lead_count": 344,
+      "matched_tier_a_lead_count": 48,
+      "matched_commercial_spend_amount": 873.650006,
+      "matched_commercial_cost_per_lead": 0.736,
+      "matched_commercial_cost_per_tier_ab_lead": 2.5397
+    }
+  },
+  "coverage_matrix": [
+    {
+      "question_id": "AQ-001",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-002",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-004",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-006",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-007",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-008",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-010",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-011",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-001",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-002",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-004",
+      "coverage_state": "complete",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-003",
+      "coverage_state": "partial",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-005",
+      "coverage_state": "partial",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "AQ-009",
+      "coverage_state": "partial",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-003",
+      "coverage_state": "not_available",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-005",
+      "coverage_state": "partial",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-006",
+      "coverage_state": "not_available",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "CQ-007",
+      "coverage_state": "not_available",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "NAQ-001",
+      "coverage_state": "not_applicable",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "NAQ-002",
+      "coverage_state": "not_applicable",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "NAQ-003",
+      "coverage_state": "not_applicable",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "NAQ-004",
+      "coverage_state": "not_applicable",
+      "justification": "MCP evidence or explicit limit."
+    },
+    {
+      "question_id": "NAQ-005",
+      "coverage_state": "not_applicable",
+      "justification": "MCP evidence or explicit limit."
+    }
+  ],
+  "knowledge_claims": [
+    {
+      "knowledge_id": "K-001",
+      "claim": "El periodo contiene 1.329 leads y 397 leads A/B; Tier A representa 58 leads.",
+      "evidence_refs": [
+        "lead_summary"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+      ]
+    },
+    {
+      "knowledge_id": "K-002",
+      "claim": "Junio concentra el mayor volumen y la mayor cantidad absoluta de A/B, con score medio estable.",
+      "evidence_refs": [
+        "monthly"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+      ]
+    },
+    {
+      "knowledge_id": "K-003",
+      "claim": "Las respuestas de billete y ventana temporal explican la calidad observada.",
+      "evidence_refs": [
+        "signals"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+      ]
+    },
+    {
+      "knowledge_id": "K-004",
+      "claim": "COMMERCIAL matched soporta lectura coste-calidad directa: 873,650006 EUR, 1.187 leads, 344 A/B y 2,5397 EUR por A/B.",
+      "signal_layer": "COMMERCIAL",
+      "campaign_signal": "COMMERCIAL",
+      "kpi_family": "cost_quality",
+      "claim_type": "descriptive_within_layer",
+      "evidence_refs": [
+        "commercial_matched"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-LAYER-COMMERCIAL"
+      ]
+    },
+    {
+      "knowledge_id": "K-005",
+      "claim": "ATTENTION, ACTIVATION y COMMERCIAL permanecen como universos estratégicos no equivalentes; no hay ranking universal.",
+      "claim_type": "cross_layer_descriptive_non_equivalent",
+      "evidence_refs": [
+        "spend_by_signal"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-NO-UNIVERSAL-KPI"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "recommendation_id": "R-001",
+      "priority": "high",
+      "action": "Mantener escala comercial y reforzar filtros de intención verificable.",
+      "supporting_knowledge_refs": [
+        "K-003",
+        "K-004"
+      ],
+      "validation": "Medir A/B y Tier A por billete y ventana temporal.",
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-LAYER-COMMERCIAL"
+      ]
+    },
+    {
+      "recommendation_id": "R-002",
+      "priority": "medium",
+      "action": "Tratar ACTIVATION como reimpacto descriptivo, no como ganador económico frente a COMMERCIAL.",
+      "supporting_knowledge_refs": [
+        "K-005"
+      ],
+      "validation": "Comparar dentro de ACTIVATION antes de escalar.",
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-NO-UNIVERSAL-KPI"
+      ]
+    }
+  ],
+  "limitations": [
+    "Eficiencia económica limitada a COMMERCIAL matched.",
+    "Comparación cross-layer descriptiva y no equivalente.",
+    "Sin fuente MCP de ventas/CRM final.",
+    "Temporalidad estabilizada a nivel mensual."
+  ],
+  "unknowns": [
+    "Revenue/CRM final: UNKNOWN.",
+    "Causalidad creativa: UNKNOWN."
+  ],
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+  "semantic_fingerprint": "ad6ffb5ee3d12b14d930e18624a7e5ecc23f5ba5f7415d26f891a2d6ba33209b"
+}

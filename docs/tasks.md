@@ -132,6 +132,31 @@ Este bloque registra la iniciativa estructural y documental `AUC-001-IC-001`, ej
 | T-058 | Autorizar Entry Gate AUC-001-IC-001 | Validation / Governance | tasks/auc-001-ic-001-integral-product-consolidation-task-plan.md; gates/auc-001-ic-001-entry-gate.md | T-057 | QA Gate Agent autoriza cambios estructurales, documentales y operativos, sin BigQuery, evidencia nueva ni outputs | Completed - PASS WITH CONDITIONS |
 | T-059 | Implementar consolidacion integral AUC-001 | Documentation / Governance | gates/auc-001-ic-001-entry-gate.md; docs/evaluations/auc-001/validations/auc-001-ic-001-implementation-handoff.md | T-058 | Skill, Runbook, Checklist, references, README, context_refs, contratos y validadores quedan alineados con SPEC-014/SPEC-015/SPEC-016 | Completed - ready for QA closure |
 | T-060 | Cerrar AUC-001-IC-001 | Validation / Governance | gates/auc-001-ic-001-closure-gate.md | T-059 | QA Gate Agent ejecuta suites SPEC-014, SPEC-015 y SPEC-016, valida rutas, conserva outputs y emite Closure Gate PASS | Completed - PASS |
+
+---
+
+## Backlog de evolucion local AUC-001 CCD/FARO
+
+Este bloque registra la planificacion de la correccion local para transportar y validar el contexto estrategico del CCD raiz en la interpretacion de `campaign_signal`. No crea una nueva Specification, no duplica `knowledge/client/ccd.md`, no reabre SPEC-014/SPEC-015/SPEC-016 y no modifica outputs cerrados.
+
+| ID | Tarea | Tipo | Fuentes | Dependencias | Criterio de finalizacion | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-061 | Planificar AUC-001 CCD/FARO Strategic Context Constraints | Planning / Governance | knowledge/client/ccd.md; .github/skills/meta-lead-quality-analysis/SKILL.md; .github/skills/meta-lead-quality-analysis/RUNBOOK.md; .github/skills/meta-lead-quality-analysis/references.md; docs/contracts/evidence.contract.md; docs/contracts/knowledge.contract.md; docs/contracts/recommendation.contract.md; docs/contracts/presentation.contract.md; tools/auc_001_canonical_cost_quality_model.py; tools/auc_001_analytical_product_contract.py | Architect Agent memo y Reviewer Agent PASS del 2026-07-23 | Existe un plan trazable para evolucionar Skill, Runbook, references, contratos, runtime, validadores y tests mediante `strategic_context_constraints`, preservando CCD como fuente canonica | Completed - ready for controlled Entry Gate review |
+| T-062 | Autorizar Entry Gate AUC-001 CCD/FARO Strategic Context Constraints | Validation / Governance | tasks/auc-001-ccd-faro-strategic-context-constraints-task-plan.md; gates/auc-001-ccd-faro-strategic-context-constraints-entry-gate.md | T-061 | QA Gate Agent autoriza implementacion local controlada sin BigQuery, sin evidencia nueva, sin outputs y sin reabrir SPEC-014/SPEC-015/SPEC-016 | Completed - PASS WITH CONDITIONS |
+
+## Registro de iteracion experimental AUC-001-EXP-COMP-001
+
+Este bloque registra la iteracion experimental local de gobernanza de comparaciones. No abre una nueva SPEC Foundation, no modifica Strategic Context, no adquiere evidencia nueva, no ejecuta BigQuery y no genera outputs analiticos reales.
+
+| ID | Tarea | Tipo | Fuentes | Dependencias | Criterio de finalizacion | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-063 | Preparar especificacion experimental AUC-001-EXP-COMP-001 | Specification / Governance | docs/decisions/auc-001/auc-001-exp-comp-001-architectural-memo.md; docs/evaluations/auc-001/experiments/auc-001-exp-comp-001-final-experimental-specification.md | Decision `EXPERIMENT FIRST` | Existe especificacion experimental final con cinco cambios Reviewer aplicados | Completed |
+| T-064 | Autorizar Entry Gate AUC-001-EXP-COMP-001 | Validation / Governance | gates/auc-001-exp-comp-001-entry-gate.md | T-063 | QA Gate Agent emite `PASS WITH CONDITIONS` para planificacion e implementacion local controlada | Completed - PASS WITH CONDITIONS |
+| T-065 | Planificar implementacion AUC-001-EXP-COMP-001 | Planning / Governance | tasks/auc-001-exp-comp-001-comparison-governance-task-plan.md | T-064 | Existe plan implementable trazable, local y sin evidencia nueva | Completed |
+| T-066 | Implementar contrato experimental local de comparaciones | Development / Governance | tools/auc_001_analytical_product_contract.py; tests/evals/auc_001_comparison_governance_tests.ps1; docs/evaluations/auc-001/validations/auc-001-exp-comp-001-implementation-handoff.md | T-065 | Implementacion local completa, con correcciones Reviewer aplicadas y tests locales PASS | Completed |
+| T-067 | Validar QA final AUC-001-EXP-COMP-001 | Validation / Governance | docs/evaluations/auc-001/validations/auc-001-exp-comp-001-final-qa-validation.md | T-066 | QA final emite `PASS` sobre implementacion experimental local | Completed - PASS |
+| T-068 | Ejecutar experimento AUC-001-EXP-COMP-001 | Validation / Experiment | docs/evaluations/auc-001/validations/auc-001-exp-comp-001-experimental-execution-report.md | T-067 | Ejecucion experimental local obtiene `PASS` sin evidencia nueva ni BigQuery | Completed - PASS |
+| T-069 | Cerrar iteracion AUC-001-EXP-COMP-001 | Documentation / Governance | gates/auc-001-exp-comp-001-exit-gate.md; docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md | T-068 | Exit Gate `PASS` y cierre documental persistido en indices | Completed - CLOSED WITH PASS |
 ## Backlog de alineamiento del repositorio
 
 

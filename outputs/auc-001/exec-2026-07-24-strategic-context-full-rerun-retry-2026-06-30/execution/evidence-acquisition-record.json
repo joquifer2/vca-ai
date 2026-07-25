@@ -1,0 +1,468 @@
+{
+  "artifact_id": "AUC-001-EVIDENCE-ACQUISITION-RECORD-20260724-RETRY2",
+  "specification": "SPEC-016",
+  "provider": "BigQuery MCP",
+  "status": "PASS",
+  "mcp_call_records": [
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-leads-summary-valid-schema",
+      "trace_reference": "trc-7f50f131ee3a4c1abb72c5d3b7d6aca4",
+      "bytes_processed": 66357,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-leads-monthly",
+      "trace_reference": "trc-2a887304c61c4a8f8556eb4e901e1264",
+      "bytes_processed": 31616,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-leads-campaign-adset",
+      "trace_reference": "trc-93d2937c67af42b0814b845bf74697d1",
+      "bytes_processed": 151319,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-leads-top-ads",
+      "trace_reference": "trc-71d2632963854266ae631dc9bfd3740a",
+      "bytes_processed": 214743,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-leads-platform-ticket",
+      "trace_reference": "trc-56fcb1193da44b198a9feb6e8b78dd81",
+      "bytes_processed": 61244,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "intermediate",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "intermediate",
+      "tables": [
+        "intermediate.int_faro_lead_scoring"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-scoring-key-signals",
+      "trace_reference": "trc-06ee6ead936a4087bc84f44639c58fae",
+      "bytes_processed": 102697,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-spend-by-signal",
+      "trace_reference": "trc-9116f0155e3542c892a5ce163f4c6157",
+      "bytes_processed": 337145,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-commercial-spend-top-ads",
+      "trace_reference": "trc-37743464e0a5445695c845a2618801f0",
+      "bytes_processed": 1043559,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.dim_campaign_signal"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-campaign-signal-dim",
+      "trace_reference": "trc-7087dffac06649d196fd6cfbd33cb179",
+      "bytes_processed": 500,
+      "used_as_evidence": true,
+      "sql": "recorded in MCP tool transcript; summarized in handoff"
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched",
+        "marts.fct_spend"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-commercial-inner-cost-quality",
+      "trace_reference": "trc-58d67b5142154f84b619cb55be69b9ad",
+      "bytes_processed": 602263,
+      "used_as_evidence": false,
+      "sql": "recorded in MCP tool transcript; summarized in handoff",
+      "discard_reason": "Metadata, rejected, discarded, or multi-table diagnostic; not used as Evidence."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched",
+        "marts.fct_spend"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date_filter": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "rejected"
+      },
+      "result": {
+        "status": "rejected",
+        "error_code": "ERR_SCOPE_DENIED",
+        "error_reason": "The requested resource is outside the authorized scope."
+      },
+      "request_id": "auc001-strctx-retry2-20260724-q-commercial-cost-quality-matched",
+      "trace_reference": "trc-9aec5dd41a464976a9b2f3f8c4aefd8f",
+      "bytes_processed": null,
+      "used_as_evidence": false,
+      "sql": "recorded in MCP tool transcript; summarized in handoff",
+      "discard_reason": "Metadata, rejected, discarded, or multi-table diagnostic; not used as Evidence."
+    }
+  ],
+  "source_policy": {
+    "bigquery_mcp_only": true,
+    "cli_used": false,
+    "fallback_used": false,
+    "historical_evidence_used": false
+  },
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal"
+}

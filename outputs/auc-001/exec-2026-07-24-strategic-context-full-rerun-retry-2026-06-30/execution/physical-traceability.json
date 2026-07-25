@@ -1,0 +1,32 @@
+{
+  "artifact_id": "AUC-001-PHYSICAL-TRACEABILITY-20260724-RETRY2",
+  "status": "PASS",
+  "namespace_hygiene_pass": true,
+  "manifest_sha256": "cd3ec24a8bfee62e641f02137ae9c1b39dca84fe07a5bc9342cb943921fba100",
+  "test_results_sha256": "7512ad3912df43fa071bb3ddfd7eedd33a9da6cbb1f9964867c18a6d20be071d",
+  "artifact_inventory": {
+    "manifest": "execution/manifest.json",
+    "physical_traceability": "execution/physical-traceability.json",
+    "mcp_preflight_record": "execution/mcp-preflight-record.json",
+    "evidence_acquisition_record": "execution/evidence-acquisition-record.json",
+    "test_results": "execution/test-results.json",
+    "semantic_equivalence_validation": "execution/semantic-equivalence-validation.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "recommendation_set": "recommendations/recommendation-set.json",
+    "common_product_core": "product-core/common-product-core.json",
+    "canonical_projection_source": "product-core/canonical-projection-source.json",
+    "spec_014_validation": "validations/spec-014-validation.json",
+    "spec_015_validation": "validations/spec-015-validation.json",
+    "spec_016_validation": "validations/spec-016-validation.json",
+    "handoff": "handoff/reviewer-qa-handoff.md",
+    "context_definition": "execution/context-definition.json",
+    "analytical_report": "reports/analytical-report.md",
+    "executive_report": "reports/executive-report.md",
+    "analytical_projection": "product-core/analytical-projection.json",
+    "executive_projection": "product-core/executive-projection.json"
+  },
+  "strategic_context_chain": "CCD → Strategic Context Profile → runtime → ejecución → proyección",
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+  "exit_gate_reference": "validations/exit-gate-strategic-context-validation.json"
+}

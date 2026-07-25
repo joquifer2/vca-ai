@@ -135,7 +135,6 @@ Una instancia concreta del Discovery Contract debe producir el mismo Discovery M
 | SPEC-001 | Lifecycle |
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
-| AUC-001 | Analytical use case |
 | meta-lead-quality-analysis | Skill |
 
 ## Evidence
@@ -143,7 +142,6 @@ Una instancia concreta del Discovery Contract debe producir el mismo Discovery M
 - SPEC-001 define Discovery como la fase que identifica datasets, entidades, dimensiones, metricas, relaciones y limitaciones antes de Preparacion.
 - SPEC-002 exige que los handoffs entre Data Provider y Analytical Layer ocurran mediante artefactos identificables.
 - SPEC-004 reconoce el Discovery Contract como categoria fundacional para formalizar el Discovery Model y sus limitaciones.
-- AUC-001 requiere identificar Data Providers, evidencia principal, volumen, calidad, eficiencia, campanas, creatividades y segmentacion antes del analisis.
 - La skill asociada exige no inventar datos, segmentos, campanas, periodos ni conclusiones no sustentadas.
 
 ## Risks
@@ -153,7 +151,6 @@ Una instancia concreta del Discovery Contract debe producir el mismo Discovery M
 | Discovery incompleto | Important | Puede conducir a una Preparacion ambigua o no trazable | SPEC-001 |
 | Discovery convertido en preparacion | Important | Mezcla fases y debilita boundary compliance | SPEC-001; SPEC-002 |
 | Relaciones asumidas sin fuente | Important | Puede producir modelos analiticos no verificables | SPEC-004; skill |
-| Limitaciones no propagadas | Important | Puede ocultar incertidumbre en Analisis y Razonamiento | SPEC-001; AUC-001 |
 
 ## Definition of Done
 

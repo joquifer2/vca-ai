@@ -8,7 +8,6 @@
 | Server name | BigQuery Read-Only MCP |
 | Observed version | 1.28.1 |
 | Observed date | 2026-07-17 |
-| Scope | AUC-001 Data Provider Validation |
 
 ## Purpose
 
@@ -43,21 +42,8 @@ Discover allowlisted metadata using the canonical selector contract.
 | `dataset` | `dataset:<dataset_id>` | `dataset:marts` |
 | `table` | `table:<dataset_id>.<table_id>` | `table:marts.fct_spend` |
 
-## AUC-001 Canonical Requests
-
-| Resource | Request |
-|---|---|
-| Workspace | `scope_request=workspace`, `resource_selector=workspace:vca` |
-| Dataset `intermediate` | `scope_request=dataset`, `resource_selector=dataset:intermediate` |
-| Dataset `marts` | `scope_request=dataset`, `resource_selector=dataset:marts` |
-| Table `int_faro_lead_scoring` | `scope_request=table`, `resource_selector=table:intermediate.int_faro_lead_scoring` |
-| Table `fct_spend` | `scope_request=table`, `resource_selector=table:marts.fct_spend` |
-| Table `fct_lead_enriched` | `scope_request=table`, `resource_selector=table:marts.fct_lead_enriched` |
-| Table `dim_campaign_signal` | `scope_request=table`, `resource_selector=table:marts.dim_campaign_signal` |
-
 ## Invalid Selector Categories
 
-AUC-001 must not use legacy plural `scope_request` values, project-prefixed selectors, table names without dataset scope, wildcard selectors, or any selector format not exposed by the current MCP `tools/list` schema.
 
 This document intentionally avoids preserving legacy selector strings as runnable examples.
 
@@ -79,4 +65,3 @@ The currently observed server schema does not publish a specific functional-unav
 | `PASS` | `discover_metadata` works, identity is valid, resources are authorized, and schemas are available. |
 | `PASS WITH OBSERVATION` | Reserved for a future server-published functional-unavailability code; no currently observed official code activates this path. |
 | `FAIL` | Authentication is invalid, contract is incompatible, resource is not allowlisted, scope is not safely correctable, access is denied, or the MCP response is not safely interpretable. |
-

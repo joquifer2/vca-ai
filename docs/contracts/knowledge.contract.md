@@ -106,7 +106,6 @@ Reasoning Layer / fase Razonamiento.
 - [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
 - [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
 - [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 - [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
 ## Unknown Handling
@@ -137,15 +136,12 @@ Una instancia concreta del Knowledge Contract debe describir de forma estable el
 | SPEC-001 | Lifecycle |
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
-| AUC-001 | Analytical use case |
-| meta-lead-quality-analysis | Skill |
 
 ## Evidence
 
 - SPEC-001 define Razonamiento como la fase que transforma evidencia en insights, hipotesis, oportunidades, riesgos, prioridades e incertidumbres.
 - SPEC-002 establece que la Reasoning Layer consume evidencia y produce conocimiento accionable sin reconsultar la fuente original para compensar evidencia mal definida.
 - SPEC-004 reconoce el Knowledge Contract como categoria fundacional para formalizar insights, hipotesis, prioridades e incertidumbres.
-- AUC-001 requiere explicar el razonamiento que conecta evidencia con conclusiones.
 - La skill asociada exige evitar saltos logicos y distinguir correlacion de interpretacion.
 
 ## Risks
@@ -154,7 +150,6 @@ Una instancia concreta del Knowledge Contract debe describir de forma estable el
 |---|---|---|---|
 | Insight sin evidencia trazable | Important | Debilita confiabilidad y auditabilidad | SPEC-001; SPEC-004 |
 | Razonamiento crea evidencia nueva | Important | Rompe separacion entre Analisis y Razonamiento | SPEC-001; SPEC-002 |
-| Hipotesis tratada como conclusion | Important | Puede inducir recomendaciones no sustentadas | AUC-001; skill |
 | Recomendaciones prematuras | Important | Mezcla Razonamiento con Recomendaciones | SPEC-001; SPEC-004 |
 
 ## Definition of Done
@@ -166,3 +161,16 @@ Este contract cumple T-011 cuando:
 3. Mantiene trazabilidad entre conocimiento y evidencia.
 4. Distingue correlacion, hipotesis, conclusion e incertidumbre.
 5. No formula recomendaciones ni acciones sugeridas.
+
+## Contextual Constraint Declaration
+
+Cuando Knowledge interprete evidencia condicionada por contexto de negocio, dominio o estrategia, debe consumir las restricciones contextuales aplicables desde un perfil o artefacto local declarado.
+
+Cada claim afectado debe conservar trazabilidad a:
+
+- la evidencia usada;
+- el perfil de restricciones aplicable;
+- la fuente canonica de la restriccion;
+- el identificador estable de la regla o restriccion aplicada.
+
+Knowledge no puede crear restricciones nuevas ni completar restricciones ausentes por inferencia. Si una interpretacion entra en conflicto con el perfil aplicable, debe bloquearse, degradarse a hipotesis con incertidumbre explicita o declararse UNKNOWN segun el alcance.

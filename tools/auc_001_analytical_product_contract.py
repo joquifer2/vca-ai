@@ -7,12 +7,14 @@ outputs, or write analytical products.
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Mapping
 
+from tools.auc_001_canonical_cost_quality_model import STRATEGIC_CONTEXT_CONSTRAINTS as DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS
 
 CONTRACT_ID = "AUC-001-ANALYTICAL-PRODUCT-CONTRACT"
 CONTRACT_VERSION = "spec-014.v1"
@@ -49,6 +51,50 @@ VALID_RECOMMENDATION_CATEGORIES = {
     RECOMMENDATION_VERIFIABLE_ACTION,
     RECOMMENDATION_NON_ACTIONABLE_HYPOTHESIS,
 }
+
+COMPARISON_DESCRIPTIVE_CONTRAST = "descriptive_contrast"
+COMPARISON_ECONOMIC_EFFICIENCY_CLAIM = "economic_efficiency_claim"
+COMPARISON_STRATEGIC_HIERARCHY_CLAIM = "strategic_hierarchy_claim"
+COMPARISON_CAUSAL_OR_OPTIMIZATION_CLAIM = "causal_or_optimization_claim"
+
+VALID_COMPARISON_TYPES = {
+    COMPARISON_DESCRIPTIVE_CONTRAST,
+    COMPARISON_ECONOMIC_EFFICIENCY_CLAIM,
+    COMPARISON_STRATEGIC_HIERARCHY_CLAIM,
+    COMPARISON_CAUSAL_OR_OPTIMIZATION_CLAIM,
+}
+
+STRATEGIC_EQUIVALENCE_EQUIVALENT = "equivalent"
+STRATEGIC_EQUIVALENCE_NON_EQUIVALENT = "non_equivalent"
+STRATEGIC_EQUIVALENCE_UNKNOWN = "unknown"
+
+VALID_STRATEGIC_EQUIVALENCE = {
+    STRATEGIC_EQUIVALENCE_EQUIVALENT,
+    STRATEGIC_EQUIVALENCE_NON_EQUIVALENT,
+    STRATEGIC_EQUIVALENCE_UNKNOWN,
+}
+
+COMPARISON_GOVERNANCE_ALLOWED = "allowed"
+COMPARISON_GOVERNANCE_ALLOWED_WITH_LIMITATION = "allowed_with_limitation"
+COMPARISON_GOVERNANCE_PRESENTATION_RESTRICTED = "presentation_restricted"
+COMPARISON_GOVERNANCE_BLOCKED = "blocked"
+
+VALID_COMPARISON_GOVERNANCE_STATUSES = {
+    COMPARISON_GOVERNANCE_ALLOWED,
+    COMPARISON_GOVERNANCE_ALLOWED_WITH_LIMITATION,
+    COMPARISON_GOVERNANCE_PRESENTATION_RESTRICTED,
+    COMPARISON_GOVERNANCE_BLOCKED,
+}
+
+COMPARISON_GOVERNANCE_RANK = {
+    COMPARISON_GOVERNANCE_ALLOWED: 0,
+    COMPARISON_GOVERNANCE_ALLOWED_WITH_LIMITATION: 1,
+    COMPARISON_GOVERNANCE_PRESENTATION_RESTRICTED: 2,
+    COMPARISON_GOVERNANCE_BLOCKED: 3,
+}
+
+ANALYTICAL_COMPARISON_BEHAVIORS = {"preserve_full_context", "preserve_with_limitation", "suppress_claim"}
+EXECUTIVE_COMPARISON_BEHAVIORS = {"simplify_with_limitation", "downgrade_to_descriptive", "suppress_claim"}
 
 MANDATORY_DEPTH_FIELDS = (
     "evidence",
@@ -135,6 +181,8 @@ ALLOWED_PRESENTATION_SECTION_FIELDS = {
     "traceability_refs",
     "knowledge_refs",
     "recommendation_refs",
+    "comparison_refs",
+    "comparison_classification_refs",
     "coverage_refs",
     "metric_refs",
     "limitation_refs",
@@ -147,7 +195,28 @@ ALLOWED_PRESENTATION_SECTION_FIELDS = {
     "emphasis",
     "visibility",
     "items",
+    "ccd_constraint_refs",
+    "strategic_context_constraint_refs",
 }
+
+VALID_CAMPAIGN_SIGNAL_LAYERS = set(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS.get("layers", {}))
+SIGNAL_INTERPRETATION_FIELDS = {
+    "signal_layer",
+    "campaign_signal",
+    "kpi_family",
+    "claim_type",
+    "ccd_constraint_ref",
+}
+PROFILE_LAYERS = DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS.get("layers", {})
+ATTENTION_FORBIDDEN_KPI_FAMILIES = set(PROFILE_LAYERS.get("ATTENTION", {}).get("forbidden_kpi_families", ()))
+ACTIVATION_ALLOWED_INTERPRETATION_SCOPES = set(PROFILE_LAYERS.get("ACTIVATION", {}).get("allowed_interpretation_scopes", ()))
+ACTIVATION_REQUIRED_COST_SEPARATION = set(PROFILE_LAYERS.get("ACTIVATION", {}).get("required_cost_separation", ()))
+COMMERCIAL_ALLOWED_COST_QUALITY_UNIVERSE = PROFILE_LAYERS.get("COMMERCIAL", {}).get("allowed_cost_quality_universe")
+COMMERCIAL_FORBIDDEN_PRIMARY_KPI_FAMILIES = set(PROFILE_LAYERS.get("COMMERCIAL", {}).get("forbidden_primary_kpi_families", ()))
+PROFILE_METRIC_FAMILIES = DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS.get("metric_families", {})
+COST_KPI_FAMILIES = set(PROFILE_METRIC_FAMILIES.get("cost_metric_families", ()))
+UNIVERSAL_KPI_RANKING_CLAIM_TYPES = set(PROFILE_METRIC_FAMILIES.get("universal_kpi_ranking_claim_types", ()))
+UNIVERSAL_KPI_RANKING_COMPARISON_SCOPES = set(PROFILE_METRIC_FAMILIES.get("universal_kpi_ranking_comparison_scopes", ()))
 
 PRESENTATION_SECTION_REF_FIELDS = {
     "content_ref",
@@ -157,10 +226,14 @@ PRESENTATION_SECTION_REF_FIELDS = {
     "traceability_refs",
     "knowledge_refs",
     "recommendation_refs",
+    "comparison_refs",
+    "comparison_classification_refs",
     "coverage_refs",
     "metric_refs",
     "limitation_refs",
     "unknown_refs",
+    "ccd_constraint_refs",
+    "strategic_context_constraint_refs",
 }
 
 
@@ -257,6 +330,36 @@ class ProductContractIssue:
 
 
 @dataclass(frozen=True)
+class ComparisonClassification:
+    comparison_id: str
+    source_artifact: str
+    compared_universes: tuple[Mapping[str, Any], ...]
+    comparison_type: tuple[str, ...]
+    governance_status: str
+    provisional_claim_ref: Mapping[str, Any] | None = None
+    stabilized_claim_refs: Mapping[str, Any] = field(default_factory=dict)
+    required_limitation_or_disclaimer_semantics: str | None = None
+    allowed_projection_behavior: Mapping[str, str] = field(default_factory=dict)
+    traceability: Mapping[str, Any] = field(default_factory=dict)
+    qa_expected_check: str = ""
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "comparison_id": self.comparison_id,
+            "source_artifact": self.source_artifact,
+            "provisional_claim_ref": dict(self.provisional_claim_ref) if self.provisional_claim_ref else None,
+            "stabilized_claim_refs": dict(self.stabilized_claim_refs),
+            "compared_universes": [dict(item) for item in self.compared_universes],
+            "comparison_type": list(self.comparison_type),
+            "governance_status": self.governance_status,
+            "required_limitation_or_disclaimer_semantics": self.required_limitation_or_disclaimer_semantics,
+            "allowed_projection_behavior": dict(self.allowed_projection_behavior),
+            "traceability": dict(self.traceability),
+            "qa_expected_check": self.qa_expected_check,
+        }
+
+
+@dataclass(frozen=True)
 class CommonProductCore:
     period: Mapping[str, Any]
     scope: Mapping[str, Any]
@@ -268,6 +371,8 @@ class CommonProductCore:
     recommendations: tuple[Mapping[str, Any], ...]
     limitations: tuple[str, ...]
     unknowns: tuple[str, ...]
+    comparison_classifications: tuple[Mapping[str, Any], ...] = ()
+    strategic_context_constraints: Mapping[str, Any] = field(default_factory=lambda: copy.deepcopy(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS))
 
     @property
     def semantic_fingerprint(self) -> str:
@@ -282,6 +387,8 @@ class CommonProductCore:
             "recommendations": [dict(item) for item in self.recommendations],
             "limitations": list(self.limitations),
             "unknowns": list(self.unknowns),
+            "comparison_classifications": [dict(item) for item in self.comparison_classifications],
+            "strategic_context_constraints": dict(self.strategic_context_constraints),
         }
         canonical = json.dumps(payload, sort_keys=True, default=str, separators=(",", ":"))
         return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
@@ -298,6 +405,8 @@ class CommonProductCore:
             "recommendations": [dict(item) for item in self.recommendations],
             "limitations": list(self.limitations),
             "unknowns": list(self.unknowns),
+            "comparison_classifications": [dict(item) for item in self.comparison_classifications],
+            "strategic_context_constraints": dict(self.strategic_context_constraints),
             "semantic_fingerprint": self.semantic_fingerprint,
         }
 
@@ -309,7 +418,9 @@ class ProductProjection:
     coverage_states: Mapping[str, str]
     unknowns: tuple[str, ...]
     limitations: tuple[str, ...]
+    comparison_classifications: tuple[Mapping[str, Any], ...] = ()
     sections: tuple[Mapping[str, Any], ...] = ()
+    strategic_context_constraints: Mapping[str, Any] = field(default_factory=lambda: copy.deepcopy(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS))
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -318,7 +429,9 @@ class ProductProjection:
             "coverage_states": dict(self.coverage_states),
             "unknowns": list(self.unknowns),
             "limitations": list(self.limitations),
+            "comparison_classifications": [dict(item) for item in self.comparison_classifications],
             "sections": [dict(section) for section in self.sections],
+            "strategic_context_constraints": dict(self.strategic_context_constraints),
         }
 
 
@@ -408,6 +521,367 @@ def normalize_truthy(value: Any) -> bool:
         return bool(value)
     return True
 
+
+def normalize_token(value: Any) -> str:
+    return str(value or "").strip().lower().replace("-", "_").replace(" ", "_")
+
+
+def strategic_constraints_payload(value: Mapping[str, Any] | None = None) -> dict[str, Any]:
+    return copy.deepcopy(dict(value)) if isinstance(value, Mapping) and value else copy.deepcopy(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS)
+
+
+def validate_strategic_context_constraints(value: Mapping[str, Any] | None, *, artifact: str = "strategic_context_constraints") -> list[ProductContractIssue]:
+    data = strategic_constraints_payload(value)
+    issues: list[ProductContractIssue] = []
+    if data.get("source_artifact") != "knowledge/client/ccd.md":
+        issues.append(ProductContractIssue("STRATEGIC_CONTEXT_SOURCE_INVALID", "blocking", "Strategic constraints must reference knowledge/client/ccd.md", artifact))
+    if not normalize_truthy(data.get("source_refs")):
+        issues.append(ProductContractIssue("STRATEGIC_CONTEXT_REFS_MISSING", "blocking", "Strategic constraints must preserve CCD source references", artifact))
+    layers = dict(data.get("layers") or {})
+    for layer in sorted(VALID_CAMPAIGN_SIGNAL_LAYERS):
+        if layer not in layers:
+            issues.append(ProductContractIssue("STRATEGIC_CONTEXT_LAYER_MISSING", "blocking", f"Strategic constraints missing FARO layer: {layer}", artifact))
+    global_rules = dict(data.get("global_rules") or {})
+    if global_rules.get("forbidden_comparison") != "universal_kpi_ranking_across_layers":
+        issues.append(ProductContractIssue("STRATEGIC_CONTEXT_UNIVERSAL_KPI_RULE_MISSING", "blocking", "Strategic constraints must block universal KPI ranking across FARO layers", artifact))
+    if global_rules.get("required_traceability") != "ccd_constraint_ref":
+        issues.append(ProductContractIssue("STRATEGIC_CONTEXT_TRACEABILITY_RULE_MISSING", "blocking", "Strategic constraints must require ccd_constraint_ref", artifact))
+    return issues
+
+
+def has_campaign_signal_semantics(item: Mapping[str, Any]) -> bool:
+    return bool(set(item) & SIGNAL_INTERPRETATION_FIELDS)
+
+
+def validate_campaign_signal_interpretation(item: Mapping[str, Any], *, artifact: str = "claim") -> list[ProductContractIssue]:
+    if not has_campaign_signal_semantics(item):
+        return []
+
+    issues: list[ProductContractIssue] = []
+    signal = str(item.get("signal_layer") or item.get("campaign_signal") or "").strip().upper()
+    kpi_family = normalize_token(item.get("kpi_family"))
+    claim_type = normalize_token(item.get("claim_type"))
+    universe = normalize_token(item.get("universe"))
+    interpretation_scope = normalize_token(item.get("interpretation_scope") or item.get("interpretation_type"))
+    cost_scope = normalize_token(item.get("cost_scope"))
+    cost_separation = {normalize_token(value) for value in item.get("cost_separation", [])} if isinstance(item.get("cost_separation"), (list, tuple, set)) else set()
+
+    if signal not in VALID_CAMPAIGN_SIGNAL_LAYERS:
+        issues.append(ProductContractIssue("CAMPAIGN_SIGNAL_LAYER_INVALID", "blocking", "campaign_signal interpretation must declare a layer published by the local profile", artifact))
+        return issues
+    if not normalize_truthy(item.get("ccd_constraint_ref")):
+        issues.append(ProductContractIssue("CAMPAIGN_SIGNAL_CCD_REF_MISSING", "blocking", "campaign_signal interpretation must trace to CCD constraint", artifact))
+    if not kpi_family:
+        issues.append(ProductContractIssue("CAMPAIGN_SIGNAL_KPI_FAMILY_MISSING", "blocking", "campaign_signal interpretation must declare kpi_family", artifact))
+
+    if claim_type in UNIVERSAL_KPI_RANKING_CLAIM_TYPES or normalize_token(item.get("comparison_scope")) in UNIVERSAL_KPI_RANKING_COMPARISON_SCOPES:
+        issues.append(ProductContractIssue("FARO_UNIVERSAL_KPI_RANKING", "blocking", "Profile layers cannot be compared through one universal KPI", artifact))
+
+    if signal == "ATTENTION" and kpi_family in ATTENTION_FORBIDDEN_KPI_FAMILIES:
+        issues.append(ProductContractIssue("FARO_ATTENTION_FORBIDDEN_KPI", "blocking", "ATTENTION cannot be evaluated by direct leads, CPL, qualified CPL or direct commercial efficiency", artifact))
+
+    if signal == "ACTIVATION":
+        if interpretation_scope not in ACTIVATION_ALLOWED_INTERPRETATION_SCOPES:
+            issues.append(ProductContractIssue("FARO_ACTIVATION_INTERPRETATION_REQUIRED", "blocking", "ACTIVATION must be interpreted as retargeting or prior-interest activation", artifact))
+        if kpi_family in COST_KPI_FAMILIES or cost_scope:
+            required = {"direct_cost", "complete_or_assisted_cost"}
+            if not required <= cost_separation:
+                issues.append(ProductContractIssue("FARO_ACTIVATION_COST_SEPARATION_REQUIRED", "blocking", "ACTIVATION cost reading must separate direct cost from complete or assisted cost", artifact))
+
+    if signal == "COMMERCIAL":
+        if kpi_family in COMMERCIAL_FORBIDDEN_PRIMARY_KPI_FAMILIES:
+            issues.append(ProductContractIssue("FARO_COMMERCIAL_FORBIDDEN_PRIMARY_KPI", "blocking", "COMMERCIAL cannot be primarily evaluated by attention or video-consumption KPIs", artifact))
+        if kpi_family in COST_KPI_FAMILIES and universe != COMMERCIAL_ALLOWED_COST_QUALITY_UNIVERSE:
+            issues.append(ProductContractIssue("FARO_COMMERCIAL_UNIVERSE_REQUIRED", "blocking", "COMMERCIAL cost-quality must use the profile-declared universe", artifact))
+    return issues
+
+
+def validate_campaign_signal_collection(items: Iterable[Mapping[str, Any]], *, artifact: str) -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    for index, item in enumerate(items):
+        issues.extend(validate_campaign_signal_interpretation(item, artifact=f"{artifact}#{index}"))
+    return issues
+
+
+def comparison_classification_to_dict(item: ComparisonClassification | Mapping[str, Any]) -> dict[str, Any]:
+    return item.to_dict() if isinstance(item, ComparisonClassification) else dict(item)
+
+
+def comparison_governance_minimum_status(data: Mapping[str, Any]) -> str:
+    comparison_types = set(data.get("comparison_type") or [])
+    equivalence_values = {
+        str(universe.get("strategic_equivalence"))
+        for universe in data.get("compared_universes") or []
+        if isinstance(universe, Mapping)
+    }
+    if COMPARISON_CAUSAL_OR_OPTIMIZATION_CLAIM in comparison_types and STRATEGIC_EQUIVALENCE_NON_EQUIVALENT in equivalence_values:
+        return COMPARISON_GOVERNANCE_BLOCKED
+    if comparison_types & {COMPARISON_ECONOMIC_EFFICIENCY_CLAIM, COMPARISON_STRATEGIC_HIERARCHY_CLAIM, COMPARISON_CAUSAL_OR_OPTIMIZATION_CLAIM}:
+        if STRATEGIC_EQUIVALENCE_UNKNOWN in equivalence_values:
+            return COMPARISON_GOVERNANCE_ALLOWED_WITH_LIMITATION
+        if STRATEGIC_EQUIVALENCE_NON_EQUIVALENT in equivalence_values:
+            return COMPARISON_GOVERNANCE_ALLOWED_WITH_LIMITATION
+    return COMPARISON_GOVERNANCE_ALLOWED
+
+
+def comparison_is_material(data: Mapping[str, Any]) -> bool:
+    if "is_material" in data:
+        return normalize_truthy(data.get("is_material"))
+    if "material" in data:
+        return normalize_truthy(data.get("material"))
+    return True
+
+
+def knowledge_ref_index(items: Iterable[Mapping[str, Any]]) -> set[str]:
+    refs: set[str] = set()
+    for item in items:
+        if not isinstance(item, Mapping):
+            continue
+        value = item.get("knowledge_id") or item.get("id")
+        if normalize_truthy(value):
+            refs.add(str(value))
+    return refs
+
+
+def has_unknown_restrictive_comparison(classification: Mapping[str, Any]) -> bool:
+    comparison_types = set(classification.get("comparison_type") or [])
+    if not comparison_types & {COMPARISON_ECONOMIC_EFFICIENCY_CLAIM, COMPARISON_STRATEGIC_HIERARCHY_CLAIM, COMPARISON_CAUSAL_OR_OPTIMIZATION_CLAIM}:
+        return False
+    return any(
+        isinstance(universe, Mapping) and universe.get("strategic_equivalence") == STRATEGIC_EQUIVALENCE_UNKNOWN
+        for universe in classification.get("compared_universes") or []
+    )
+
+
+def recommendation_has_conclusive_unknown_decision(item: Mapping[str, Any]) -> bool:
+    explicit_flags = {
+        "economic_decision_conclusive",
+        "optimization_action",
+        "strategic_prioritization",
+        "comparative_superiority_claim",
+    }
+    if any(normalize_truthy(item.get(flag)) for flag in explicit_flags):
+        return True
+    text = flatten_text(item).lower()
+    blocked_markers = (
+        "redistribuir inversion",
+        "redistribuir inversión",
+        "redistribuir presupuesto",
+        "reallocate budget",
+        "increase budget",
+        "aumentar presupuesto",
+        "reduce budget",
+        "reducir presupuesto",
+        "declares a winner",
+        "declare a winner",
+        "ganador",
+        "winner",
+        "priorizar estrategicamente",
+        "priorizar estratégicamente",
+        "strategically prioritize",
+        "priorizar",
+        "superioridad",
+        "superiority",
+        "mayor eficiencia economica",
+        "mayor eficiencia económica",
+        "mejor eficiencia",
+        "eficiencia comparada",
+        "economic efficiency is higher",
+        "better efficiency",
+        "more efficient",
+        "optimize based on this comparison",
+        "optimizar por esta comparacion",
+        "optimizar por esta comparación",
+    )
+    return any(marker in text for marker in blocked_markers)
+
+
+def recommendation_resolves_unknown_without_conclusive_decision(item: Mapping[str, Any]) -> bool:
+    text = flatten_text(item).lower()
+    resolution_markers = (
+        "resolve",
+        "resolver",
+        "validate",
+        "validar",
+        "measure",
+        "medir",
+        "test",
+        "experiment",
+        "experimento",
+        "reconcile",
+        "reconciliar",
+        "equivalence",
+        "equivalencia",
+        "uncertainty",
+        "incertidumbre",
+        "unknown",
+        "desconocida",
+        "evidence",
+        "evidencia",
+    )
+    return any(marker in text for marker in resolution_markers)
+
+
+def validate_comparison_classification(
+    item: ComparisonClassification | Mapping[str, Any],
+    *,
+    artifact: str = "comparison_classification",
+    knowledge_set_stabilized: bool = False,
+    knowledge_items: Iterable[Mapping[str, Any]] = (),
+) -> list[ProductContractIssue]:
+    data = comparison_classification_to_dict(item)
+    issues: list[ProductContractIssue] = []
+    comparison_id = str(data.get("comparison_id") or "")
+    if not normalize_truthy(comparison_id):
+        issues.append(ProductContractIssue("COMPARISON_ID_MISSING", "blocking", "Comparison classification must preserve a stable identity", artifact))
+
+    compared_universes = data.get("compared_universes") or []
+    if not isinstance(compared_universes, (list, tuple)) or len(compared_universes) < 2:
+        issues.append(ProductContractIssue("COMPARISON_UNIVERSE_MISSING", "blocking", "Comparison classification must declare at least two compared universes", comparison_id or artifact))
+        compared_universes = []
+    for index, universe in enumerate(compared_universes):
+        if not isinstance(universe, Mapping):
+            issues.append(ProductContractIssue("COMPARISON_UNIVERSE_INVALID", "blocking", "Compared universe must be a structured object", comparison_id or artifact))
+            continue
+        for field_name in ("universe_id", "universe_label", "strategic_equivalence"):
+            if not normalize_truthy(universe.get(field_name)):
+                issues.append(ProductContractIssue("COMPARISON_UNIVERSE_FIELD_MISSING", "blocking", f"Compared universe missing field: {field_name}", comparison_id or artifact))
+        if universe.get("strategic_equivalence") not in VALID_STRATEGIC_EQUIVALENCE:
+            issues.append(ProductContractIssue("COMPARISON_STRATEGIC_EQUIVALENCE_INVALID", "blocking", f"Compared universe {index} has invalid strategic equivalence", comparison_id or artifact))
+
+    comparison_types = data.get("comparison_type") or []
+    if isinstance(comparison_types, str):
+        comparison_types = [comparison_types]
+    if not comparison_types:
+        issues.append(ProductContractIssue("COMPARISON_TYPE_MISSING", "blocking", "Comparison classification must declare at least one comparison type", comparison_id or artifact))
+    invalid_types = sorted(set(str(item) for item in comparison_types) - VALID_COMPARISON_TYPES)
+    for invalid_type in invalid_types:
+        issues.append(ProductContractIssue("COMPARISON_TYPE_INVALID", "blocking", f"Comparison type is not valid: {invalid_type}", comparison_id or artifact))
+
+    governance_status = str(data.get("governance_status") or "")
+    if governance_status not in VALID_COMPARISON_GOVERNANCE_STATUSES:
+        issues.append(ProductContractIssue("COMPARISON_GOVERNANCE_INVALID", "blocking", "Comparison governance status is not valid", comparison_id or artifact))
+    elif not invalid_types:
+        minimum_status = comparison_governance_minimum_status({**data, "comparison_type": comparison_types, "compared_universes": compared_universes})
+        if COMPARISON_GOVERNANCE_RANK[governance_status] < COMPARISON_GOVERNANCE_RANK[minimum_status]:
+            issues.append(ProductContractIssue("COMPARISON_GOVERNANCE_TOO_WEAK", "blocking", "Comparison governance status is weaker than the classified claim requires", comparison_id or artifact))
+
+    if governance_status in {COMPARISON_GOVERNANCE_ALLOWED_WITH_LIMITATION, COMPARISON_GOVERNANCE_PRESENTATION_RESTRICTED}:
+        if not normalize_truthy(data.get("required_limitation_or_disclaimer_semantics")):
+            issues.append(ProductContractIssue("COMPARISON_LIMITATION_REQUIRED", "blocking", "Restricted comparison must declare limitation or disclaimer semantics", comparison_id or artifact))
+
+    stabilized_claim_refs = as_mapping(data.get("stabilized_claim_refs"))
+    reconciliation_status = str(stabilized_claim_refs.get("reconciliation_status") or "")
+    if reconciliation_status == COMPARISON_GOVERNANCE_BLOCKED and governance_status != COMPARISON_GOVERNANCE_BLOCKED:
+        issues.append(ProductContractIssue("COMPARISON_RECONCILIATION_BLOCKED", "blocking", "Blocked claim reconciliation must block the comparison", comparison_id or artifact))
+    if knowledge_set_stabilized and comparison_is_material(data):
+        knowledge_refs = stabilized_claim_refs.get("knowledge_refs") or []
+        if isinstance(knowledge_refs, str):
+            knowledge_refs = [knowledge_refs]
+        invalid_reconciliation_statuses = {"", "not_applicable", "pending", "missing", "unresolved", "unknown"}
+        if reconciliation_status in invalid_reconciliation_statuses:
+            issues.append(ProductContractIssue("COMPARISON_RECONCILIATION_REQUIRED", "blocking", "Material comparison must be reconciled after Knowledge stabilization", comparison_id or artifact))
+        if not normalize_truthy(knowledge_refs):
+            issues.append(ProductContractIssue("COMPARISON_KNOWLEDGE_REFS_REQUIRED", "blocking", "Material comparison must resolve to stabilized Knowledge references", comparison_id or artifact))
+        knowledge_refs_index = knowledge_ref_index(knowledge_items)
+        missing_refs = sorted(str(ref) for ref in knowledge_refs if str(ref) not in knowledge_refs_index)
+        for missing_ref in missing_refs:
+            issues.append(ProductContractIssue("COMPARISON_KNOWLEDGE_REF_UNRESOLVED", "blocking", "Comparison knowledge reference does not resolve in stabilized Knowledge Set", missing_ref))
+
+    allowed_behavior = as_mapping(data.get("allowed_projection_behavior"))
+    analytical_behavior = allowed_behavior.get("analytical")
+    executive_behavior = allowed_behavior.get("executive")
+    if analytical_behavior not in ANALYTICAL_COMPARISON_BEHAVIORS:
+        issues.append(ProductContractIssue("COMPARISON_ANALYTICAL_BEHAVIOR_INVALID", "blocking", "Analytical projection behavior is missing or invalid", comparison_id or artifact))
+    if executive_behavior not in EXECUTIVE_COMPARISON_BEHAVIORS:
+        issues.append(ProductContractIssue("COMPARISON_EXECUTIVE_BEHAVIOR_INVALID", "blocking", "Executive projection behavior is missing or invalid", comparison_id or artifact))
+    if governance_status == COMPARISON_GOVERNANCE_BLOCKED and (analytical_behavior != "suppress_claim" or executive_behavior != "suppress_claim"):
+        issues.append(ProductContractIssue("COMPARISON_BLOCKED_BEHAVIOR_INVALID", "blocking", "Blocked comparison must be suppressed in analytical and executive projections", comparison_id or artifact))
+
+    return issues
+
+
+def validate_comparison_classifications(
+    items: Iterable[ComparisonClassification | Mapping[str, Any]],
+    *,
+    artifact: str = "comparison_classifications",
+    knowledge_set_stabilized: bool = False,
+    knowledge_items: Iterable[Mapping[str, Any]] = (),
+) -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    seen: set[str] = set()
+    for index, item in enumerate(items):
+        data = comparison_classification_to_dict(item)
+        comparison_id = str(data.get("comparison_id") or "")
+        if comparison_id in seen:
+            issues.append(ProductContractIssue("COMPARISON_ID_DUPLICATED", "blocking", "Comparison classification identity is duplicated", comparison_id))
+        if comparison_id:
+            seen.add(comparison_id)
+        issues.extend(
+            validate_comparison_classification(
+                data,
+                artifact=f"{artifact}#{index}",
+                knowledge_set_stabilized=knowledge_set_stabilized,
+                knowledge_items=knowledge_items,
+            )
+        )
+    return issues
+
+
+def comparison_classification_index(items: Iterable[Mapping[str, Any]]) -> dict[str, Mapping[str, Any]]:
+    return {
+        str(item.get("comparison_id")): item
+        for item in items
+        if isinstance(item, Mapping) and normalize_truthy(item.get("comparison_id"))
+    }
+
+
+def validate_recommendation_comparison_refs(item: Mapping[str, Any], comparison_index: Mapping[str, Mapping[str, Any]]) -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    refs = item.get("comparison_refs") or []
+    if isinstance(refs, str):
+        refs = [refs]
+    for comparison_ref in refs:
+        comparison_id = str(comparison_ref)
+        classification = comparison_index.get(comparison_id)
+        if classification is None:
+            issues.append(ProductContractIssue("RECOMMENDATION_COMPARISON_REF_UNKNOWN", "blocking", "Recommendation references an unknown comparison classification", comparison_id))
+            continue
+        if classification.get("governance_status") == COMPARISON_GOVERNANCE_BLOCKED:
+            issues.append(ProductContractIssue("RECOMMENDATION_BLOCKED_COMPARISON", "blocking", "Recommendation cannot depend on a blocked comparison", comparison_id))
+            continue
+        if has_unknown_restrictive_comparison(classification):
+            category = item.get("category")
+            if recommendation_has_conclusive_unknown_decision(item):
+                issues.append(ProductContractIssue("RECOMMENDATION_UNKNOWN_COMPARISON_CONCLUSIVE", "blocking", "Recommendation cannot make a conclusive economic, hierarchy or optimization decision from an unknown-equivalence comparison", comparison_id))
+                continue
+            if category == RECOMMENDATION_MEASURABLE_EXPERIMENT and recommendation_resolves_unknown_without_conclusive_decision(item):
+                continue
+            if category == RECOMMENDATION_NON_ACTIONABLE_HYPOTHESIS and recommendation_resolves_unknown_without_conclusive_decision(item):
+                continue
+            if category == RECOMMENDATION_VERIFIABLE_ACTION and recommendation_resolves_unknown_without_conclusive_decision(item):
+                continue
+            issues.append(ProductContractIssue("RECOMMENDATION_UNKNOWN_COMPARISON_UNGOVERNED", "blocking", "Recommendation based on unknown-equivalence comparison must remain non-conclusive and explicitly resolve or preserve uncertainty", comparison_id))
+    return issues
+
+
+def find_blocked_comparison_refs(value: Any, blocked_ids: set[str], path: str = "sections") -> list[str]:
+    findings: list[str] = []
+    if isinstance(value, Mapping):
+        for key, nested_value in value.items():
+            key_text = str(key)
+            current_path = f"{path}.{key_text}"
+            if key_text in {"comparison_ref", "comparison_id"} and str(nested_value) in blocked_ids:
+                findings.append(current_path)
+            elif key_text in {"comparison_refs", "comparison_classification_refs"} and isinstance(nested_value, (list, tuple, set)):
+                for comparison_ref in nested_value:
+                    if str(comparison_ref) in blocked_ids:
+                        findings.append(current_path)
+            findings.extend(find_blocked_comparison_refs(nested_value, blocked_ids, current_path))
+    elif isinstance(value, (list, tuple)):
+        for index, nested_value in enumerate(value):
+            findings.extend(find_blocked_comparison_refs(nested_value, blocked_ids, f"{path}[{index}]"))
+    return findings
 
 def validate_coverage_row(row: CoverageMatrixRow | Mapping[str, Any]) -> list[ProductContractIssue]:
     data = row.to_dict() if isinstance(row, CoverageMatrixRow) else dict(row)
@@ -509,6 +983,7 @@ def validate_knowledge_item(item: Mapping[str, Any]) -> list[ProductContractIssu
     for field_name in ("knowledge_id", "evidence_refs", "interpretation", "limitation_or_uncertainty"):
         if not normalize_truthy(item.get(field_name)):
             issues.append(ProductContractIssue("KNOWLEDGE_MISSING_FIELD", "blocking", f"Knowledge missing field: {field_name}"))
+    issues.extend(validate_campaign_signal_interpretation(item, artifact="knowledge"))
     return issues
 
 
@@ -542,6 +1017,7 @@ def validate_recommendation(item: Mapping[str, Any]) -> list[ProductContractIssu
     for field_name in required:
         if not normalize_truthy(item.get(field_name)):
             issues.append(ProductContractIssue("RECOMMENDATION_MISSING_FIELD", "blocking", f"Recommendation missing field: {field_name}"))
+    issues.extend(validate_campaign_signal_interpretation(item, artifact="recommendation"))
     return issues
 
 
@@ -578,9 +1054,22 @@ def validate_common_core(core: CommonProductCore) -> list[ProductContractIssue]:
     if not core.evidence_refs:
         issues.append(ProductContractIssue("CORE_MISSING_EVIDENCE_REFS", "blocking", "Common core must declare evidence references"))
     issues.extend(validate_coverage_matrix(core.coverage_matrix))
+    issues.extend(validate_strategic_context_constraints(core.strategic_context_constraints, artifact="common_core.strategic_context_constraints"))
     for knowledge_claim in core.knowledge_claims:
         issues.extend(validate_knowledge_item(knowledge_claim))
     issues.extend(validate_recommendations(core.recommendations))
+    comparison_items = tuple(dict(item) for item in core.comparison_classifications)
+    issues.extend(
+        validate_comparison_classifications(
+            comparison_items,
+            artifact="common_core.comparison_classifications",
+            knowledge_set_stabilized=True,
+            knowledge_items=core.knowledge_claims,
+        )
+    )
+    comparison_index = comparison_classification_index(comparison_items)
+    for recommendation in core.recommendations:
+        issues.extend(validate_recommendation_comparison_refs(recommendation, comparison_index))
     return issues
 
 
@@ -593,7 +1082,9 @@ def build_projection(core: CommonProductCore, projection_type: str, sections: It
         coverage_states={row.question_id: row.coverage_state for row in core.coverage_matrix},
         unknowns=core.unknowns,
         limitations=core.limitations,
+        comparison_classifications=tuple(dict(item) for item in core.comparison_classifications),
         sections=tuple(dict(section) for section in sections),
+        strategic_context_constraints=core.strategic_context_constraints,
     )
 
 
@@ -608,6 +1099,10 @@ def validate_projection_equivalence(core: CommonProductCore, projection: Product
         issues.append(ProductContractIssue("PROJECTION_UNKNOWN_DIVERGENCE", "blocking", "Projection changes UNKNOWNs"))
     if tuple(data.get("limitations", ())) != core.limitations:
         issues.append(ProductContractIssue("PROJECTION_LIMITATION_DIVERGENCE", "blocking", "Projection changes limitations"))
+    if dict(data.get("strategic_context_constraints") or {}) != dict(core.strategic_context_constraints):
+        issues.append(ProductContractIssue("PROJECTION_STRATEGIC_CONTEXT_DIVERGENCE", "blocking", "Projection changes strategic context constraints"))
+    if list(data.get("comparison_classifications") or []) != [dict(item) for item in core.comparison_classifications]:
+        issues.append(ProductContractIssue("PROJECTION_COMPARISON_CLASSIFICATION_DIVERGENCE", "blocking", "Projection changes comparison classifications"))
     for field_name in PROHIBITED_PRESENTATION_FIELDS:
         if field_name in data:
             issues.append(ProductContractIssue("PROJECTION_FIELD_PROHIBITED", "blocking", f"Projection cannot contain field: {field_name}"))
@@ -640,6 +1135,8 @@ class CanonicalProjectionSource:
     future_evidence_gaps: Mapping[str, str]
     exclusions: tuple[str, ...]
     traceability: Mapping[str, Any]
+    comparison_classifications: tuple[Mapping[str, Any], ...] = ()
+    strategic_context_constraints: Mapping[str, Any] = field(default_factory=lambda: copy.deepcopy(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS))
     schema_family: str = CANONICAL_PROJECTION_SCHEMA_FAMILY
     schema_version: str = CANONICAL_PROJECTION_SCHEMA_VERSION
     specification: str = CANONICAL_PROJECTION_SPECIFICATION
@@ -675,8 +1172,10 @@ class CanonicalProjectionSource:
             "limitations": list(self.limitations),
             "unknowns": list(self.unknowns),
             "future_evidence_gaps": dict(self.future_evidence_gaps),
+            "comparison_classifications": [dict(item) for item in self.comparison_classifications],
             "exclusions": list(self.exclusions),
             "traceability": dict(self.traceability),
+            "strategic_context_constraints": dict(self.strategic_context_constraints),
         }
         if include_fingerprint:
             payload["semantic_fingerprint"] = self.semantic_fingerprint
@@ -695,7 +1194,9 @@ class CanonicalProductProjection:
     recommendation_refs: tuple[Mapping[str, Any], ...]
     knowledge_refs: tuple[str, ...]
     communication_context: Mapping[str, Any]
+    comparison_classifications: tuple[Mapping[str, Any], ...] = ()
     sections: tuple[Mapping[str, Any], ...] = ()
+    strategic_context_constraints: Mapping[str, Any] = field(default_factory=lambda: copy.deepcopy(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS))
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -709,7 +1210,9 @@ class CanonicalProductProjection:
             "recommendation_refs": [dict(item) for item in self.recommendation_refs],
             "knowledge_refs": list(self.knowledge_refs),
             "communication_context": dict(self.communication_context),
+            "comparison_classifications": [dict(item) for item in self.comparison_classifications],
             "sections": [dict(section) for section in self.sections],
+            "strategic_context_constraints": dict(self.strategic_context_constraints),
         }
 
 
@@ -872,8 +1375,10 @@ def build_canonical_projection_source(
         {"recommendation_id": str(item)} for item in common_core.get("recommendations") or []
     )
     exclusions = stable_text_items(recommendation_set.get("excluded_actions"))
+    comparison_classifications = as_tuple_of_mappings(common_core.get("comparison_classifications"))
     limitations = stable_text_items(common_core.get("limitations"), knowledge_set.get("risks"))
     unknowns = stable_text_items(common_core.get("unknowns"), knowledge_set.get("unknowns"))
+    strategic_context_constraints = strategic_constraints_payload(common_core.get("strategic_context_constraints"))
     cps_integrated_view = dict(integrated_view) if integrated_view is not None else build_default_integrated_view(knowledge_set, common_core, coverage_states)
     cps_decision_patterns = tuple(dict(item) for item in decision_patterns) if decision_patterns is not None else build_default_decision_patterns(knowledge_set)
     source_artifacts = {
@@ -884,6 +1389,7 @@ def build_canonical_projection_source(
         "coverage_matrix": manifest.get("artifact_paths", {}).get("coverage_matrix"),
         "common_product_core": manifest.get("artifact_paths", {}).get("common_product_core") or common_core.get("artifact_id"),
         "manifest": manifest.get("artifact_paths", {}).get("manifest") or manifest.get("artifact_id"),
+        "ccd": strategic_context_constraints.get("source_artifact"),
     }
     return CanonicalProjectionSource(
         artifact_id=artifact_id or f"{common_core.get('artifact_id', 'AUC-001')}-CANONICAL-PROJECTION-SOURCE",
@@ -914,12 +1420,16 @@ def build_canonical_projection_source(
         unknowns=unknowns,
         future_evidence_gaps=infer_future_evidence_gaps(limitations, unknowns, exclusions, coverage_states),
         exclusions=exclusions,
+        comparison_classifications=comparison_classifications,
         traceability={
             "common_core_fingerprint": common_core.get("semantic_fingerprint") or manifest.get("common_core_fingerprint"),
             "artifact_fingerprints": manifest.get("artifact_fingerprints", {}),
             "coverage_matrix_states_source": "coverage_matrix" if coverage_matrix else "common_core",
             "presentation_must_not_consult_prompts_for_content": True,
+            "strategic_context_source": strategic_context_constraints.get("source_artifact"),
+            "strategic_context_refs": list(strategic_context_constraints.get("source_refs") or []),
         },
+        strategic_context_constraints=strategic_context_constraints,
     )
 
 
@@ -941,6 +1451,7 @@ def validate_canonical_projection_source(cps: CanonicalProjectionSource | Mappin
         "limitations",
         "unknowns",
         "traceability",
+        "strategic_context_constraints",
     )
     for field_name in required:
         if not normalize_truthy(data.get(field_name)):
@@ -950,6 +1461,16 @@ def validate_canonical_projection_source(cps: CanonicalProjectionSource | Mappin
         issues.append(ProductContractIssue("CPS_SCHEMA_FAMILY_INVALID", "blocking", "Canonical Projection Source schema family is invalid"))
     if data.get("specification") != CANONICAL_PROJECTION_SPECIFICATION:
         issues.append(ProductContractIssue("CPS_SPECIFICATION_INVALID", "blocking", "Canonical Projection Source must declare SPEC-015"))
+    issues.extend(validate_strategic_context_constraints(data.get("strategic_context_constraints"), artifact="canonical_projection_source.strategic_context_constraints"))
+    comparison_items = as_tuple_of_mappings(data.get("comparison_classifications"))
+    issues.extend(
+        validate_comparison_classifications(
+            comparison_items,
+            artifact="canonical_projection_source.comparison_classifications",
+            knowledge_set_stabilized=True,
+            knowledge_items=data.get("knowledge_claims") or (),
+        )
+    )
 
     coverage_states = dict(data.get("coverage_states") or {})
     for question_id, state in coverage_states.items():
@@ -960,11 +1481,15 @@ def validate_canonical_projection_source(cps: CanonicalProjectionSource | Mappin
         issues.append(ProductContractIssue("CPS_MISSING_COVERAGE_STATE", "blocking", "CPS is missing coverage state", question_id))
 
     for item in data.get("knowledge_claims") or []:
-        if isinstance(item, Mapping) and not normalize_truthy(item.get("knowledge_id")):
-            issues.append(ProductContractIssue("CPS_KNOWLEDGE_WITHOUT_ID", "blocking", "CPS knowledge claim must preserve a stable identity"))
+        if isinstance(item, Mapping):
+            if not normalize_truthy(item.get("knowledge_id")):
+                issues.append(ProductContractIssue("CPS_KNOWLEDGE_WITHOUT_ID", "blocking", "CPS knowledge claim must preserve a stable identity"))
+            issues.extend(validate_campaign_signal_interpretation(item, artifact="canonical_projection_source.knowledge_claim"))
     for item in data.get("recommendations") or []:
-        if isinstance(item, Mapping) and not normalize_truthy(item.get("recommendation_id")):
-            issues.append(ProductContractIssue("CPS_RECOMMENDATION_WITHOUT_ID", "blocking", "CPS recommendation must preserve a stable identity"))
+        if isinstance(item, Mapping):
+            if not normalize_truthy(item.get("recommendation_id")):
+                issues.append(ProductContractIssue("CPS_RECOMMENDATION_WITHOUT_ID", "blocking", "CPS recommendation must preserve a stable identity"))
+            issues.extend(validate_campaign_signal_interpretation(item, artifact="canonical_projection_source.recommendation"))
     return issues
 
 
@@ -987,7 +1512,9 @@ def build_projection_from_cps(
         recommendation_refs=tuple(recommendation_identity(item) for item in cps.recommendations),
         knowledge_refs=tuple(value for value in (knowledge_identity(item) for item in cps.knowledge_claims) if value),
         communication_context=dict(communication_context or {"projection": projection_type}),
+        comparison_classifications=tuple(dict(item) for item in cps.comparison_classifications),
         sections=tuple(dict(section) for section in sections),
+        strategic_context_constraints=cps.strategic_context_constraints,
     )
 
 
@@ -1100,6 +1627,11 @@ def validate_projection_against_cps(
         issues.append(ProductContractIssue("PROJECTION_LIMITATION_DIVERGENCE", "blocking", "Projection changes limitations"))
     if dict(data.get("future_evidence_gaps") or {}) != dict(cps.future_evidence_gaps):
         issues.append(ProductContractIssue("PROJECTION_GAP_DIVERGENCE", "blocking", "Projection changes future evidence gaps"))
+    if dict(data.get("strategic_context_constraints") or {}) != dict(cps.strategic_context_constraints):
+        issues.append(ProductContractIssue("PROJECTION_STRATEGIC_CONTEXT_DIVERGENCE", "blocking", "Projection changes strategic context constraints"))
+    expected_comparisons = [dict(item) for item in cps.comparison_classifications]
+    if list(data.get("comparison_classifications") or []) != expected_comparisons:
+        issues.append(ProductContractIssue("PROJECTION_COMPARISON_CLASSIFICATION_DIVERGENCE", "blocking", "Projection changes comparison classifications"))
     if data.get("derived_from_projection"):
         issues.append(ProductContractIssue("PROJECTION_SIBLING_RULE_VIOLATION", "blocking", "Projection cannot derive from another projection"))
 
@@ -1108,6 +1640,13 @@ def validate_projection_against_cps(
         issues.append(ProductContractIssue("PROJECTION_RECOMMENDATION_DIVERGENCE", "blocking", "Projection changes recommendation identity, priority or success criteria"))
 
     sections = data.get("sections", ())
+    blocked_comparison_ids = {
+        str(item.get("comparison_id"))
+        for item in cps.comparison_classifications
+        if isinstance(item, Mapping) and item.get("governance_status") == COMPARISON_GOVERNANCE_BLOCKED
+    }
+    for blocked_path in find_blocked_comparison_refs(sections, blocked_comparison_ids):
+        issues.append(ProductContractIssue("PROJECTION_BLOCKED_COMPARISON_PRESENTED", "blocking", f"Projection presents a blocked comparison: {blocked_path}"))
     prohibited_paths = find_prohibited_nested_fields(sections, PROHIBITED_PRESENTATION_SECTION_FIELDS, "sections")
     for prohibited_path in prohibited_paths:
         issues.append(ProductContractIssue("PROJECTION_FIELD_PROHIBITED", "blocking", f"Projection section cannot contain canonical field: {prohibited_path}"))

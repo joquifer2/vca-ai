@@ -1,0 +1,60 @@
+{
+  "artifact_id": "AUC-001-STRATEGIC-CONTEXT-FULL-RERUN-2026-06-30-MANIFEST",
+  "status": "BLOCKED",
+  "blocked_phase": "Phase 07 - Evidence Acquisition",
+  "generated_at": "2026-07-24T17:30:44Z",
+  "namespace": "outputs/auc-001/exec-2026-07-24-strategic-context-full-rerun-2026-06-30",
+  "original_instruction": "Genera el informe analítico y el informe ejecutivo de calidad de los leads hasta el 30 de junio de 2026.",
+  "mode": "complete_execution",
+  "cutoff": "2026-06-30",
+  "period": {
+    "start": "2026-04-18",
+    "end": "2026-06-30",
+    "basis": "MCP source coverage confirmed by successful lead summary query"
+  },
+  "source_policy": {
+    "bigquery_mcp_only": true,
+    "cli_used": false,
+    "fallback_used": false,
+    "historical_outputs_used_as_new_evidence": false
+  },
+  "strategic_context": {
+    "ccd_source": "knowledge/client/ccd.md",
+    "profile_path": "analytical_use_cases/auc-001/faro-strategic-context-profile.json",
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "source_artifact": "knowledge/client/ccd.md",
+    "required_traceability_field": "ccd_constraint_ref",
+    "forbidden_comparison": "universal_kpi_ranking_across_layers",
+    "loaded_before_data_provider_validation": true
+  },
+  "artifact_paths": {
+    "context_definition": "execution/context-definition.json",
+    "mcp_preflight_record": "execution/mcp-preflight-record.json",
+    "evidence_acquisition_record": "execution/evidence-acquisition-record.json",
+    "blocked_validation": "validations/blocked-validation.json",
+    "handoff": "handoff/reviewer-qa-handoff.md",
+    "analytical_report": null,
+    "executive_report": null,
+    "evidence_set": null,
+    "knowledge_set": null,
+    "recommendation_set": null,
+    "common_product_core": null,
+    "canonical_projection_source": null
+  },
+  "validation_decisions": {
+    "data_provider_validation": "PASS",
+    "evidence_acquisition": "BLOCKED",
+    "package_completeness": "BLOCKED",
+    "spec_014": "not_evaluable",
+    "spec_015": "not_evaluable",
+    "spec_016": "BLOCKED"
+  },
+  "blocker": {
+    "request_id": "auc001-strctx-20260724-q-leads-monthly",
+    "error_code": "ERR_QUOTA_LIMIT_EXCEEDED",
+    "error_reason": "The daily request quota is exhausted.",
+    "trace_reference": "trc-92d4554f4cd54e6d9b2d4dde2b6ea1e9"
+  },
+  "acceptance_final_declared_by_implementation": false
+}

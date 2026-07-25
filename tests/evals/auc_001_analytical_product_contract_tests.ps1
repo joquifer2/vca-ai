@@ -237,7 +237,7 @@ for definition in QUESTION_DEFINITIONS:
     if definition.taxonomy == 'mandatory':
         rows.append(CoverageMatrixRow(definition.question_id, COVERAGE_COMPLETE, 'answered', ('EVD-001',), depth(definition.question_id), robustness))
     else:
-        rows.append(CoverageMatrixRow(definition.question_id, COVERAGE_NOT_APPLICABLE, 'outside current execution boundary'))
+        rows.append(CoverageMatrixRow(definition.question_id, COVERAGE_NOT_APPLICABLE, 'outside current execution boundary', (), depth(definition.question_id), robustness))
 recommendation = {
     'category': 'verifiable_action',
     'knowledge_refs': ['KNW-001'],
@@ -428,6 +428,208 @@ assert any(issue.code == 'PROJECTION_FIELD_PROHIBITED' for issue in projection_i
 print('QA blocking adversarial cases are covered')
 "@
 Invoke-PythonCheck 'QA blocking adversarial closure cases' $adversarialClosureCode
+
+$strategicContextCode = @"
+from tools.auc_001_analytical_product_contract import (
+    DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS,
+    validate_strategic_context_constraints,
+    validate_knowledge_item,
+    validate_recommendation,
+)
+
+assert validate_strategic_context_constraints(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS) == []
+bad_constraints = dict(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS)
+bad_constraints['source_artifact'] = 'docs/context_refs.md'
+assert any(issue.code == 'STRATEGIC_CONTEXT_SOURCE_INVALID' for issue in validate_strategic_context_constraints(bad_constraints))
+
+attention_bad = {
+    'knowledge_id': 'KNW-ATT-BAD',
+    'evidence_refs': ['EVD-001'],
+    'interpretation': 'ATTENTION is efficient by CPL',
+    'limitation_or_uncertainty': 'CCD applies',
+    'signal_layer': 'ATTENTION',
+    'kpi_family': 'cpl',
+    'ccd_constraint_ref': 'knowledge/client/ccd.md#campaign_signal',
+}
+assert any(issue.code == 'FARO_ATTENTION_FORBIDDEN_KPI' for issue in validate_knowledge_item(attention_bad))
+attention_good = dict(attention_bad, interpretation='ATTENTION reflects useful interest', kpi_family='attention')
+assert validate_knowledge_item(attention_good) == []
+
+activation_missing_scope = {
+    'knowledge_id': 'KNW-ACT-BAD',
+    'evidence_refs': ['EVD-002'],
+    'interpretation': 'ACTIVATION is efficient',
+    'limitation_or_uncertainty': 'CCD applies',
+    'signal_layer': 'ACTIVATION',
+    'kpi_family': 'cost_quality',
+    'ccd_constraint_ref': 'knowledge/client/ccd.md#campaign_signal',
+}
+activation_issues = validate_knowledge_item(activation_missing_scope)
+assert any(issue.code == 'FARO_ACTIVATION_INTERPRETATION_REQUIRED' for issue in activation_issues)
+assert any(issue.code == 'FARO_ACTIVATION_COST_SEPARATION_REQUIRED' for issue in activation_issues)
+activation_good = dict(
+    activation_missing_scope,
+    interpretation_scope='retargeting',
+    cost_separation=['direct_cost', 'complete_or_assisted_cost'],
+)
+assert validate_knowledge_item(activation_good) == []
+
+commercial_bad = {
+    'category': 'verifiable_action',
+    'knowledge_refs': ['KNW-COM'],
+    'action': 'scale commercial winner',
+    'supporting_evidence': 'commercial matched universe',
+    'verifiable_result': 'budget decision recorded',
+    'closure_criterion': 'decision uses commercial matched universe',
+    'risk': 'sample drift',
+    'dependency': 'authorized evidence',
+    'signal_layer': 'COMMERCIAL',
+    'kpi_family': 'video_consumption',
+    'ccd_constraint_ref': 'knowledge/client/ccd.md#campaign_signal',
+}
+assert any(issue.code == 'FARO_COMMERCIAL_FORBIDDEN_PRIMARY_KPI' for issue in validate_recommendation(commercial_bad))
+commercial_wrong_universe = dict(commercial_bad, kpi_family='cost_quality', universe='all_signals')
+assert any(issue.code == 'FARO_COMMERCIAL_UNIVERSE_REQUIRED' for issue in validate_recommendation(commercial_wrong_universe))
+commercial_good = dict(commercial_bad, kpi_family='cost_quality', universe='commercial_matched')
+assert validate_recommendation(commercial_good) == []
+
+universal = dict(attention_good, claim_type='universal_kpi_ranking')
+assert any(issue.code == 'FARO_UNIVERSAL_KPI_RANKING' for issue in validate_knowledge_item(universal))
+missing_ref = dict(attention_good)
+missing_ref.pop('ccd_constraint_ref')
+assert any(issue.code == 'CAMPAIGN_SIGNAL_CCD_REF_MISSING' for issue in validate_knowledge_item(missing_ref))
+print('CCD/FARO strategic context constraints and adversarial layer rules passed')
+"@
+Invoke-PythonCheck 'CCD/FARO strategic context constraints' $strategicContextCode
+
+$cpsStrategicContextCode = @"
+from tools.auc_001_analytical_product_contract import (
+    QUESTION_DEFINITIONS,
+    CoverageMatrixRow,
+    RobustnessRecord,
+    CommonProductCore,
+    COVERAGE_COMPLETE,
+    COVERAGE_NOT_APPLICABLE,
+    build_canonical_projection_source,
+    validate_canonical_projection_source,
+    build_projection_from_cps,
+    validate_projection_against_cps,
+)
+
+def depth(qid):
+    return {
+        'evidence': 'observed',
+        'comparison': 'baseline',
+        'interpretation': 'meaning',
+        'business_implication': 'decision relevance',
+        'limitation_or_uncertainty': 'declared limit',
+        'conclusion_or_hypothesis': 'supported conclusion',
+        'traceability': ['EVD-001'],
+    }
+robustness = RobustnessRecord(denominator=30, observed_volume=30, coverage='matched', granularity='question', comparator='baseline', sample_sufficiency='sufficient')
+rows = []
+for definition in QUESTION_DEFINITIONS:
+    if definition.taxonomy == 'mandatory':
+        rows.append(CoverageMatrixRow(definition.question_id, COVERAGE_COMPLETE, 'answered', ('EVD-001',), depth(definition.question_id), robustness))
+    else:
+        rows.append(CoverageMatrixRow(definition.question_id, COVERAGE_NOT_APPLICABLE, 'outside current execution boundary', (), depth(definition.question_id), robustness))
+recommendation = {
+    'recommendation_id': 'REC-001',
+    'category': 'verifiable_action',
+    'knowledge_refs': ['KNW-001'],
+    'action': 'Review commercial acquisition scaling',
+    'supporting_evidence': 'commercial matched universe',
+    'verifiable_result': 'decision recorded',
+    'closure_criterion': 'uses commercial matched universe',
+    'risk': 'sample drift',
+    'dependency': 'authorized evidence',
+    'signal_layer': 'COMMERCIAL',
+    'kpi_family': 'cost_quality',
+    'universe': 'commercial_matched',
+    'ccd_constraint_ref': 'knowledge/client/ccd.md#campaign_signal',
+}
+core = CommonProductCore(
+    period={'start': '2026-06-01', 'end': '2026-06-30'},
+    scope={'use_case': 'AUC-001'},
+    sources=('marts.fct_lead_enriched', 'marts.fct_spend'),
+    evidence_refs=('EVD-001',),
+    canonical_metrics={'matched_leads': 100},
+    coverage_matrix=tuple(rows),
+    knowledge_claims=({
+        'knowledge_id': 'KNW-001',
+        'evidence_refs': ['EVD-001'],
+        'interpretation': 'COMMERCIAL is direct acquisition in the matched commercial universe',
+        'limitation_or_uncertainty': 'CCD applies',
+        'signal_layer': 'COMMERCIAL',
+        'kpi_family': 'cost_quality',
+        'universe': 'commercial_matched',
+        'ccd_constraint_ref': 'knowledge/client/ccd.md#campaign_signal',
+    },),
+    recommendations=(recommendation,),
+    limitations=('partial coverage remains visible',),
+    unknowns=('creative causality UNKNOWN',),
+)
+cps = build_canonical_projection_source(core.to_dict(), coverage_matrix={'rows': [row.to_dict() for row in rows]}, knowledge_set={'knowledge_claims': list(core.knowledge_claims)}, recommendation_set={'recommendations': list(core.recommendations)})
+assert validate_canonical_projection_source(cps) == []
+projection = build_projection_from_cps(cps, 'executive', sections=({'title': 'decision', 'cps_ref': cps.artifact_id},))
+assert projection.strategic_context_constraints == cps.strategic_context_constraints
+assert validate_projection_against_cps(cps, projection) == []
+tampered = projection.to_dict()
+tampered['strategic_context_constraints'] = {'source_artifact': 'wrong.md'}
+assert any(issue.code == 'PROJECTION_STRATEGIC_CONTEXT_DIVERGENCE' for issue in validate_projection_against_cps(cps, tampered))
+tampered_cps = cps.to_dict()
+tampered_cps.pop('strategic_context_constraints')
+assert any(issue.code == 'CPS_MISSING_BLOCK' for issue in validate_canonical_projection_source(tampered_cps))
+print('CPS and Presentation preserve CCD/FARO strategic context traceability')
+"@
+Invoke-PythonCheck 'CPS and Presentation CCD/FARO preservation' $cpsStrategicContextCode
+
+
+$contextualSeparationCode = @"
+import json
+from pathlib import Path
+from tools.auc_001_canonical_cost_quality_model import STRATEGIC_CONTEXT_CONSTRAINTS, load_strategic_context_profile
+
+profile_path = Path('analytical_use_cases/auc-001/faro-strategic-context-profile.json')
+profile = json.loads(profile_path.read_text(encoding='utf-8'))
+assert profile == STRATEGIC_CONTEXT_CONSTRAINTS
+assert load_strategic_context_profile() == profile
+assert profile['profile_id'] == 'AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE'
+assert profile['interpretation_dimension'] == 'campaign_signal'
+assert set(profile['layers']) == {'ATTENTION', 'ACTIVATION', 'COMMERCIAL'}
+assert profile['layers']['ACTIVATION']['required_cost_separation'] == ['direct_cost', 'complete_or_assisted_cost']
+
+for contract_path in [
+    'docs/contracts/evidence.contract.md',
+    'docs/contracts/knowledge.contract.md',
+    'docs/contracts/recommendation.contract.md',
+    'docs/contracts/presentation.contract.md',
+]:
+    text = Path(contract_path).read_text(encoding='utf-8-sig')
+    forbidden = ['AUC-001', 'auc-001', 'FARO', 'campaign_signal', 'ATTENTION', 'ACTIVATION', 'COMMERCIAL', 'commercial_matched']
+    present = [token for token in forbidden if token in text]
+    assert not present, f'{contract_path} contains domain tokens: {present}'
+    assert 'Contextual Constraint Declaration' in text
+    assert 'fuente canonica' in text or 'fuente canonica' in text.lower()
+    assert 'UNKNOWN' in text
+
+alternate_profile = {
+    'profile_id': 'OTHER-USE-CASE-CONTEXT-PROFILE',
+    'profile_version': '1.0.0',
+    'use_case_id': 'OTHER-USE-CASE',
+    'scope': 'other_dimension_interpretation',
+    'source_artifact': 'knowledge/client/other-context.md',
+    'source_refs': ['knowledge/client/other-context.md#rules'],
+    'required_traceability_field': 'context_constraint_ref',
+    'layers': {'OTHER_LAYER': {'rule_id': 'OTHER-LAYER', 'required_interpretation': 'other'}},
+    'global_rules': {'required_traceability': 'context_constraint_ref'},
+}
+required_schema = {'profile_id', 'profile_version', 'use_case_id', 'scope', 'source_artifact', 'source_refs', 'layers', 'global_rules'}
+assert required_schema <= set(alternate_profile)
+print('AUC-001 uses local profile, transversal contracts remain abstract, alternate profile schema is possible')
+"@
+Invoke-PythonCheck 'Contextual profile separation and extensibility' $contextualSeparationCode
+
 $failures = @($Results | Where-Object { $_.Status -ne 'PASS' })
 $Results | Format-Table -AutoSize
 

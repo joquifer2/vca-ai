@@ -67,5 +67,5 @@ No `gcloud`, `bq`, direct BigQuery client, fallback, historical report, previous
 
 ## Deviations and unavailable references
 
-- `presentation-policies/analytical-review.md` was referenced by `references.md` but was not present in the repository path search. The run still used the requested `analytical-review` projection, base Presentation Contract, and explicit user requirements.
+- The analytical Presentation Policy canonical route is `.github/presentation_policies/analytical-review.md`. The run used the requested `analytical-review` projection, base Presentation Contract, and explicit user requirements.
 - `docs/experiments/knowledge-construction-profile-v0.2.md` was referenced by `CHECKLIST.md` but was not present. The available Skill file `.github/skills/meta-lead-quality-analysis/knowledge-construction-profile.md`, titled Knowledge Construction Profile v0.2, was used.

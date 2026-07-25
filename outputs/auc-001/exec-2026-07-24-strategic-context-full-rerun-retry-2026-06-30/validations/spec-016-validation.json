@@ -1,0 +1,11 @@
+{
+  "artifact_id": "AUC-001-SPEC-016-VALIDATION",
+  "schema_family": "auc_001_operational_acceptance_package",
+  "schema_version": "auc_001_operational_acceptance_package.v1",
+  "specification": "SPEC-016",
+  "contract_id": "AUC-001-OPERATIONAL-ACCEPTANCE-PACKAGE-CONTRACT",
+  "contract_version": "spec-016.v1",
+  "package_root": "outputs/auc-001/exec-2026-07-24-strategic-context-full-rerun-retry-2026-06-30",
+  "decision": "PASS",
+  "issues": []
+}

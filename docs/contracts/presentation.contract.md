@@ -123,21 +123,10 @@ Framework, tras validar el contenido generado por Reasoning Layer y Recommendati
 - [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
 - [specs/spec-010-presentation-projection-selection.md](/specs/spec-010-presentation-projection-selection.md)
 - [specs/spec-011-communication-context-representation-transformation.md](/specs/spec-011-communication-context-representation-transformation.md)
-- [specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md)
-- [specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md)
-- [specs/spec-016-auc-001-operational-acceptance-package-contract.md](/specs/spec-016-auc-001-operational-acceptance-package-contract.md)
-- [docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md)
-- [docs/decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md)
 - [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 - [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
 
-## AUC-001 Canonical Projection Alignment
-
-Para AUC-001, las ejecuciones posteriores a P04 deben aplicar SPEC-014 y SPEC-015 antes de materializar informes. Presentation Layer consume el `Canonical Projection Source` y el contenido canónico aprobado; no consume prompts independientes, no deriva el informe ejecutivo desde el analítico ni el analítico desde el ejecutivo, y no introduce conocimiento nuevo.
-
-Cuando exista un execution package persistido, la trazabilidad física de Presentation se verifica mediante SPEC-016. Este apartado no modifica la semántica general del contrato; solo registra la dependencia vigente de AUC-001.
 ## Unknown Handling
 
 | Unknown | Handling |
@@ -173,12 +162,6 @@ Cuando consuma la misma proyeccion seleccionada y el mismo contenido canonico ap
 | SPEC-004 | Contract framework |
 | SPEC-010 | Presentation projection selection |
 | SPEC-011 | Communication context representation transformation |
-| SPEC-014 | AUC-001 Analytical Product Contract |
-| SPEC-015 | AUC-001 Canonical Projection Consolidation |
-| SPEC-016 | AUC-001 Operational Acceptance Package Contract |
-| VCA-AUC-001-ARCH-002 | Presentation projection architecture |
-| AUC-001 | Analytical use case |
-| meta-lead-quality-analysis | Skill |
 
 ## Evidence
 
@@ -186,8 +169,6 @@ Cuando consuma la misma proyeccion seleccionada y el mismo contenido canonico ap
 - SPEC-002 establece que Presentation Layer construye artefactos finales a partir de conocimiento ya generado y no puede crear nueva evidencia ni reinterpretar conclusiones.
 - SPEC-004 reconoce el Presentation Contract como categoria fundacional para delimitar contenido aprobado para presentacion.
 - SPEC-010 exige distinguir entre proyeccion analitica y proyeccion ejecutiva, seleccionadas desde el Execution Context canonicalizado.
-- VCA-AUC-001-ARCH-002 define que la proyeccion analitica y el Executive Report son representaciones paralelas del mismo contenido validado y no se derivan entre si.
-- AUC-001 requiere un informe ejecutivo con contexto, fuentes de evidencia, preparacion, analisis, razonamiento, recomendaciones, limitaciones y pendientes.
 - La skill asociada exige que el informe incluya limitaciones y pendientes sin introducir supuestos no verificados.
 
 ## Risks
@@ -196,10 +177,7 @@ Cuando consuma la misma proyeccion seleccionada y el mismo contenido canonico ap
 |---|---|---|---|
 | Presentacion crea contenido nuevo | Important | Rompe trazabilidad entre evidencia, conocimiento y salida | SPEC-001; SPEC-002 |
 | Prioridades alteradas por formato | Important | Cambia el significado de recomendaciones aprobadas | SPEC-002; SPEC-004 |
-| Limitaciones omitidas | Important | Puede presentar conclusiones como mas firmes de lo permitido | AUC-001; skill |
-| Trazabilidad insuficiente en salida | Important | Debilita revision ejecutiva y auditoria posterior | SPEC-004; AUC-001 |
 | Presentation Layer selecciona proyeccion ad hoc | Important | Rompe dependencia con Execution Context canonicalizado | SPEC-010 |
-| Executive Report deriva de una proyeccion analitica | Important | Introduce acoplamiento secuencial y riesgo de divergencia semantica | VCA-AUC-001-ARCH-002 |
 
 ## Definition of Done
 
@@ -212,3 +190,11 @@ Este contract cumple T-013 y queda alineado con T-044 cuando:
 5. Define readiness para construir la proyeccion seleccionada o Traceable Output sin sustituir el analisis.
 6. Exige que la proyeccion de presentacion sea determinada por el contexto canonicalizado cuando aplique.
 7. Preserva que Analytical Projection y Executive Report sean representaciones hermanas del mismo contenido aprobado.
+
+## Contextual Constraint Declaration
+
+Cuando Presentation represente contenido condicionado por contexto de negocio, dominio o estrategia, debe consumir las restricciones contextuales desde el Canonical Projection Source o artefacto canonico equivalente.
+
+Presentation debe conservar referencias al perfil aplicable, a la fuente canonica y a los identificadores estables de las reglas usadas por el contenido representado.
+
+Presentation no puede introducir nuevas interpretaciones contextuales, modificar restricciones aplicables ni ocultar UNKNOWNs, conflictos o limitaciones derivados del perfil. La validacion debe bloquear cualquier divergencia entre la representacion y las restricciones contextuales canonicas.

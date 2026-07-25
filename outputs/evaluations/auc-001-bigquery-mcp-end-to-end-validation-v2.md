@@ -99,7 +99,7 @@ The rejected queries were alternates used to test query shape and coverage. They
 
 ## Deviations
 
-1. `presentation-policies/analytical-review.md` was referenced but not found. The requested `analytical-review` projection was still applied through the Presentation Contract, analytical profile, and user instructions.
+1. The analytical Presentation Policy canonical route is `.github/presentation_policies/analytical-review.md`. The requested `analytical-review` projection was applied through the Presentation Contract, analytical profile, and user instructions.
 2. `docs/experiments/knowledge-construction-profile-v0.2.md` was referenced but not found. The Skill-local `knowledge-construction-profile.md`, titled v0.2, was used.
 3. `fct_performance_daily` and `dim_campaign_signal` were contract/context references but outside the current allowlist. They were not queried.
 4. Some alternate query shapes failed with `ERR_DRY_RUN_FAILED`. Successful equivalent or narrower query shapes were used for evidence where possible.

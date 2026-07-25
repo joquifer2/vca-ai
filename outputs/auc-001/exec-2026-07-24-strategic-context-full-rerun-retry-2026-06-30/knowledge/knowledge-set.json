@@ -1,0 +1,173 @@
+{
+  "artifact_id": "AUC-001-KNOWLEDGE-SET-20260724-RETRY2",
+  "status": "stabilized",
+  "derived_from": "AUC-001-EVIDENCE-SET-20260724-RETRY2",
+  "knowledge_claims": [
+    {
+      "knowledge_id": "K-001",
+      "claim": "El periodo contiene 1.329 leads y 397 leads A/B; Tier A representa 58 leads.",
+      "evidence_refs": [
+        "lead_summary"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+      ]
+    },
+    {
+      "knowledge_id": "K-002",
+      "claim": "Junio concentra el mayor volumen y la mayor cantidad absoluta de A/B, con score medio estable.",
+      "evidence_refs": [
+        "monthly"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+      ]
+    },
+    {
+      "knowledge_id": "K-003",
+      "claim": "Las respuestas de billete y ventana temporal explican la calidad observada.",
+      "evidence_refs": [
+        "signals"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+      ]
+    },
+    {
+      "knowledge_id": "K-004",
+      "claim": "COMMERCIAL matched soporta lectura coste-calidad directa: 873,650006 EUR, 1.187 leads, 344 A/B y 2,5397 EUR por A/B.",
+      "signal_layer": "COMMERCIAL",
+      "campaign_signal": "COMMERCIAL",
+      "kpi_family": "cost_quality",
+      "claim_type": "descriptive_within_layer",
+      "evidence_refs": [
+        "commercial_matched"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-LAYER-COMMERCIAL"
+      ]
+    },
+    {
+      "knowledge_id": "K-005",
+      "claim": "ATTENTION, ACTIVATION y COMMERCIAL permanecen como universos estratégicos no equivalentes; no hay ranking universal.",
+      "claim_type": "cross_layer_descriptive_non_equivalent",
+      "evidence_refs": [
+        "spend_by_signal"
+      ],
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-NO-UNIVERSAL-KPI"
+      ]
+    }
+  ],
+  "analytical_narrative": {
+    "narrative_id": "AN-001",
+    "text": "La calidad aparece cuando la captación consigue intención verificable. COMMERCIAL es el único universo con coste-calidad directo; ATTENTION y ACTIVATION mantienen lectura estratégica separada.",
+    "knowledge_refs": [
+      "K-001",
+      "K-003",
+      "K-004",
+      "K-005"
+    ],
+    "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal"
+  },
+  "limitations": [
+    "Eficiencia económica limitada a COMMERCIAL matched.",
+    "Comparación cross-layer descriptiva y no equivalente.",
+    "Sin fuente MCP de ventas/CRM final.",
+    "Temporalidad estabilizada a nivel mensual."
+  ],
+  "unknowns": [
+    "Revenue/CRM final: UNKNOWN.",
+    "Causalidad creativa: UNKNOWN."
+  ],
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal"
+}

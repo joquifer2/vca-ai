@@ -1,0 +1,47 @@
+{
+  "artifact_id": "AUC-001-STRATEGIC-CONTEXT-FULL-RERUN-2026-06-30-BLOCKED-VALIDATION",
+  "status": "BLOCKED",
+  "checks": [
+    {
+      "check": "Strategic Context Profile loaded",
+      "status": "PASS",
+      "evidence": "context-definition.json contains strategic_context_constraints from analytical_use_cases/auc-001/faro-strategic-context-profile.json"
+    },
+    {
+      "check": "ccd_constraint_ref appears in required canonical artifacts",
+      "status": "BLOCKED",
+      "evidence": "Canonical artifacts were not generated because evidence acquisition stopped in Phase 07."
+    },
+    {
+      "check": "strategic_context_constraints transported to Knowledge/Common Product Core/CPS/Presentation",
+      "status": "BLOCKED",
+      "evidence": "No Knowledge Set, Common Product Core, Canonical Projection Source or Presentation was materialized."
+    },
+    {
+      "check": "physical package complete",
+      "status": "BLOCKED",
+      "evidence": "Blocked package contains diagnostic artifacts only; complete SPEC-016 package cannot be produced without stabilized Evidence Set."
+    },
+    {
+      "check": "both projections derive from same execution",
+      "status": "BLOCKED",
+      "evidence": "No analytical or executive report generated."
+    },
+    {
+      "check": "no universal FARO layer KPI ranking",
+      "status": "PASS",
+      "evidence": "No Presentation was generated; no ranking was introduced."
+    },
+    {
+      "check": "declared sources match used sources",
+      "status": "PASS",
+      "evidence": "Manifest and context-definition list loaded context and MCP resources actually used before blockage."
+    },
+    {
+      "check": "no CLI or fallback",
+      "status": "PASS",
+      "evidence": "Only BigQuery MCP Server calls were used for Data Provider Validation and evidence acquisition."
+    }
+  ],
+  "recommended_state": "BLOCKED"
+}

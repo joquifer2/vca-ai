@@ -1,0 +1,31 @@
+{
+  "artifact_id": "AUC-001-STRATEGIC-CONTEXT-EXIT-GATE-20260724",
+  "gate": "Exit Gate - Strategic Context iteration",
+  "decision": "PASS WITH CONDITIONS",
+  "final_acceptance_scope": "Strategic Context loading, transport, traceability and projection declaration for AUC-001 retry2",
+  "package_namespace": "outputs/auc-001/exec-2026-07-24-strategic-context-full-rerun-retry-2026-06-30",
+  "accepted_at_utc": "2026-07-24T17:54:05.9924410Z",
+  "accepted_by": "QA Gate Agent",
+  "objective_original": "Demostrar que el Strategic Context canónico fue cargado, transportado y declarado hasta la proyección final.",
+  "basis": [
+    "SPEC-014 PASS",
+    "SPEC-015 PASS",
+    "SPEC-016 PASS",
+    "semantic equivalence PASS",
+    "ccd_constraint_ref present in canonical artifacts",
+    "strategic_context_constraints transported to Evidence, Knowledge, Common Product Core, Canonical Projection Source and projections",
+    "no universal KPI ranking across FARO layers",
+    "BigQuery MCP-only evidence policy declared and validated"
+  ],
+  "residual_conditions": [
+    {
+      "condition_id": "COND-001",
+      "description": "evidence-acquisition-record stores summarized SQL reference instead of full literal SQL for MCP calls",
+      "impact": "Operational reproducibility condition; does not affect Strategic Context objective, semantic equivalence, FARO separation, ccd_constraint_ref transport, or projection validity."
+    }
+  ],
+  "closure_statement": "Strategic Context iteration is concluded. Residual condition does not affect the original Strategic Context validation objective.",
+  "exit_gate_closed": true,
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+  "strategic_context_profile": "analytical_use_cases/auc-001/faro-strategic-context-profile.json"
+}

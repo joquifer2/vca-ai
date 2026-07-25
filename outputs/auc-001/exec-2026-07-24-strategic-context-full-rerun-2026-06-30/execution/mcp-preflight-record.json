@@ -1,0 +1,61 @@
+{
+  "artifact_id": "AUC-001-STRATEGIC-CONTEXT-FULL-RERUN-2026-06-30-MCP-PREFLIGHT",
+  "status": "PASS",
+  "provider": "BigQuery MCP Server",
+  "workspace": "vca",
+  "project_id": "datamart-vca-494114",
+  "auth_context": "server_adc",
+  "canonical_discover_metadata_contract": "docs/contracts/bigquery-mcp-discover-metadata.contract.md",
+  "calls": [
+    {
+      "request_id": "auc001-strctx-20260724-discover-workspace",
+      "scope_request": "workspace",
+      "resource_selector": "workspace:vca",
+      "status": "success",
+      "trace_reference": "trc-b3b75df410aa42c8a25d17dd42c1f6f9"
+    },
+    {
+      "request_id": "auc001-strctx-20260724-discover-dataset-intermediate",
+      "scope_request": "dataset",
+      "resource_selector": "dataset:intermediate",
+      "status": "success",
+      "trace_reference": "trc-5371dac4d9d34f64a239f81f66216e1e"
+    },
+    {
+      "request_id": "auc001-strctx-20260724-discover-dataset-marts",
+      "scope_request": "dataset",
+      "resource_selector": "dataset:marts",
+      "status": "success",
+      "trace_reference": "trc-4cae632655f94fb7a3a9c6040597f138"
+    },
+    {
+      "request_id": "auc001-strctx-20260724-discover-table-leads",
+      "scope_request": "table",
+      "resource_selector": "table:marts.fct_lead_enriched",
+      "status": "success",
+      "trace_reference": "trc-ab498949c126402492464491fa0535f9"
+    },
+    {
+      "request_id": "auc001-strctx-20260724-discover-table-scoring",
+      "scope_request": "table",
+      "resource_selector": "table:intermediate.int_faro_lead_scoring",
+      "status": "success",
+      "trace_reference": "trc-82ed03ee540543ad826c0b36d1f44bb7"
+    },
+    {
+      "request_id": "auc001-strctx-20260724-discover-table-spend",
+      "scope_request": "table",
+      "resource_selector": "table:marts.fct_spend",
+      "status": "success",
+      "trace_reference": "trc-1048e9852d0b438689c49591cc5eb599"
+    },
+    {
+      "request_id": "auc001-strctx-20260724-discover-table-campaign-signal",
+      "scope_request": "table",
+      "resource_selector": "table:marts.dim_campaign_signal",
+      "status": "success",
+      "trace_reference": "trc-9c9f2e01f16b482591850de26f76aa5b"
+    }
+  ],
+  "decision": "All canonical selectors succeeded. Evidence acquisition was authorized to start."
+}

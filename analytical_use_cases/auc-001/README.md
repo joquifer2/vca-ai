@@ -18,6 +18,26 @@
 | Paquete real post-P04 | `outputs/auc-001/p04-acceptance/2026-07-22/` aceptado finalmente por QA Gate Agent el 2026-07-22 |
 | Fecha del closure gate | 2026-07-22 |
 
+## Iteracion experimental cerrada
+
+| Campo | Valor |
+|---|---|
+| Iteracion | AUC-001-EXP-COMP-001 |
+| Estado | CLOSED - EXIT GATE PASS |
+| Decision arquitectonica | EXPERIMENT FIRST; solucion hibrida local en AUC-001 |
+| Entry Gate | [../../gates/auc-001-exp-comp-001-entry-gate.md](/gates/auc-001-exp-comp-001-entry-gate.md) |
+| Task Plan | [../../tasks/auc-001-exp-comp-001-comparison-governance-task-plan.md](/tasks/auc-001-exp-comp-001-comparison-governance-task-plan.md) |
+| Especificacion experimental final | [../../docs/evaluations/auc-001/experiments/auc-001-exp-comp-001-final-experimental-specification.md](/docs/evaluations/auc-001/experiments/auc-001-exp-comp-001-final-experimental-specification.md) |
+| Memo arquitectonico aprobado | [../../docs/decisions/auc-001/auc-001-exp-comp-001-architectural-memo.md](/docs/decisions/auc-001/auc-001-exp-comp-001-architectural-memo.md) |
+| Revision del Reviewer | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-reviewer-review.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-reviewer-review.md) |
+| Registro de resolucion de cambios | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-five-change-resolution-record.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-five-change-resolution-record.md) |
+| Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-implementation-handoff.md) |
+| QA final | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-final-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-final-qa-validation.md) |
+| Ejecucion experimental | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-experimental-execution-report.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-experimental-execution-report.md) |
+| Exit Gate | [../../gates/auc-001-exp-comp-001-exit-gate.md](/gates/auc-001-exp-comp-001-exit-gate.md) |
+| Registro de cierre | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md) |
+
+AUC-001-EXP-COMP-001 queda cerrada con Exit Gate `PASS`. La iteracion valida localmente que la clasificacion explicita de comparaciones reduce inferencias economicas o jerarquias implicitas sin eliminar comparaciones descriptivas utiles. No modifica Strategic Context, no abre una nueva SPEC Foundation, no altera SPEC-014/SPEC-015/SPEC-016, no adquiere evidencia nueva, no ejecuta BigQuery MCP y no genera outputs analiticos reales.
 ## Artefactos canónicos
 
 | Responsabilidad | Artefacto |

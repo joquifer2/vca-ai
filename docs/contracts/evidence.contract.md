@@ -104,7 +104,6 @@ Analytical Layer / fase Analisis.
 - [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
 - [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
 - [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
-- [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 - [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
 
 ## Unknown Handling
@@ -135,15 +134,12 @@ Una instancia concreta del Evidence Contract debe describir de forma estable el 
 | SPEC-001 | Lifecycle |
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
-| AUC-001 | Analytical use case |
-| meta-lead-quality-analysis | Skill |
 
 ## Evidence
 
 - SPEC-001 define Analisis como la fase que produce evidencia observable a partir del modelo analitico preparado.
 - SPEC-002 establece que la Analytical Layer produce evidencia observable sin introducir conclusiones de negocio ni recomendaciones.
 - SPEC-004 reconoce el Evidence Contract como categoria fundacional para formalizar hallazgos observables separados de interpretacion.
-- AUC-001 requiere separar hechos observables, evidencia derivada, interpretaciones y recomendaciones.
 - La skill asociada exige no inventar datos, segmentos, campanas, periodos ni conclusiones no sustentadas.
 
 ## Risks
@@ -151,9 +147,7 @@ Una instancia concreta del Evidence Contract debe describir de forma estable el 
 | Risk | Severity | Impact | Evidence |
 |---|---|---|---|
 | Evidencia mezclada con interpretacion | Important | Rompe la separacion entre Analisis y Razonamiento | SPEC-001; SPEC-002 |
-| Hallazgos sin trazabilidad | Important | Debilita auditabilidad y confiabilidad | SPEC-004; AUC-001 |
 | Limitaciones ocultas | Important | Puede inducir razonamiento posterior no sustentado | SPEC-001; skill |
-| Evidencia insuficiente tratada como concluyente | Important | Produce conclusiones no verificables | AUC-001; skill |
 
 ## Definition of Done
 
@@ -165,63 +159,19 @@ Este contract cumple T-010 cuando:
 4. Declara trazabilidad entre evidencia y modelo analitico.
 5. Propaga UNKNOWN, limitaciones e incertidumbre antes de Razonamiento.
 
-## AUC-001 Post-Closure Cost-Quality Evidence Rules
+## Contextual Constraint Declaration
 
-Estas reglas aplican solo a la evolucion post-cierre `AUC-001-PCI-001` definida por SPEC-012. No reabren el ciclo experimental original ni modifican outputs historicos.
+Cuando una ejecucion requiera contexto de negocio, dominio o estrategia para interpretar evidencia en fases posteriores, Evidence debe declarar las restricciones contextuales aplicables como un bloque estructurado y trazable.
 
-### Runtime Boundary
+El bloque debe incluir, como minimo:
 
-| Fase | Responsabilidad |
-|---|---|
-| Evidence Acquisition | Adquirir agregados lead-side y spend-side mediante BigQuery MCP, sin unir fuentes ni interpretar. |
-| Analytical Preparation | Normalizar, limpiar, validar y agregar cada fuente de forma independiente. |
-| Evidence Set Construction | Ejecutar full outer join determinista, asignar coverage states, reconciliar totales, calcular invariantes y construir el Evidence Set coste-calidad. |
+- identificador estable del perfil o artefacto local que materializa las restricciones;
+- fuente canonica y referencias de origen;
+- alcance de aplicacion;
+- reglas transportadas en forma estructurada;
+- estado de aplicabilidad por evidencia, metrica o dimension afectada;
+- limitaciones, UNKNOWNs o conflictos detectados.
 
-### Canonical Model vs Executed Evidence Set
+Evidence no interpreta esas restricciones. Solo las conserva como contexto, linaje y condicion de uso para Knowledge, Recommendations y Presentation.
 
-| Elemento | Regla |
-|---|---|
-| Canonical model | Reglas estables de fuentes, normalizacion, universos, metricas, invariantes y blockers. |
-| Executed Evidence Set | Instancia para un periodo, execution_id, datos, resultados, limitaciones y trazabilidad especificos. |
-| Historical outputs | Permanecen inmutables y no pueden sobrescribirse ni usarse como expected values. |
-| Post-closure outputs | Para `AUC-001-PCI-001` deben declarar la iteracion y persistirse bajo `outputs/auc-001/pci-001/2026-06-30/`; futuras iteraciones usaran `outputs/auc-001/pci-00N/<execution-date>/`. |
-
-### Coverage States
-
-| Estado | Regla |
-|---|---|
-| `matched` | Lead-side valido y spend `COMMERCIAL` valido para el mismo `ad_id_norm`. |
-| `lead_only` | Lead-side valido sin spend `COMMERCIAL` emparejado; no soporta CPL/CPQL. |
-| `spend_only` | Spend `COMMERCIAL` valido sin lead-side emparejado; no implica cero leads reales ni ineficiencia automatica. |
-| `UNKNOWN` | Clasificacion no fiable por ID invalido, colision, duplicidad, periodo incompatible, señal invalida, fuente no validada o estructura incompleta. |
-
-### Economic Universes And Metrics
-
-El Evidence Set post-cierre debe distinguir `total_spend_all_signals`, `commercial_spend`, `matched_commercial_spend`, `spend_only_commercial_spend`, `total_leads`, `matched_leads`, `lead_only_leads`, `total_ab_leads`, `matched_ab_leads`, `lead_only_ab_leads`, Tier A total/matched y Tier B total/matched.
-
-Metricas permitidas: `cpl_commercial_matched`, `qualified_rate_ab_global`, `qualified_rate_ab_matched`, `cost_per_ab_commercial_matched`, `cost_per_tier_a_commercial_matched`, `spend_share_by_signal`, `spend_share_matched`, `lead_share_matched`, `ab_share_matched`, `commercial_spend_per_matched_lead_observed`.
-
-Metricas prohibidas: `CPL` sin universo, `CPQL` sin universo/señal/coverage, CPL/CPQL sobre `lead_only`, CPL/CPQL sobre `spend_only`, coste-calidad mezclando señales, rankings por `ad_name`, ratios con denominador cero convertido a cero y metricas que usen historicos como expected values.
-
-### Invariants And Precision
-
-```text
-commercial_spend = matched_spend + spend_only_spend
-lead_total = matched_leads + lead_only_leads
-ab_total = matched_ab_leads + lead_only_ab_leads
-tier_a_total = matched_tier_a + lead_only_tier_a
-tier_b_total = matched_tier_b + lead_only_tier_b
-prepared_ad_count = matched_ad_count + lead_only_ad_count + spend_only_ad_count
-```
-
-Moneda EUR, tipo recomendado `NUMERIC`, sin redondeo intermedio, presentacion monetaria a 2 decimales, tolerancia monetaria 0.01 EUR por fila y agregado, denominador cero como `NULL`, desconocidos como `NULL` o `UNKNOWN` explicito.
-
-### Publication Controls
-
-| Condicion | Clasificacion |
-|---|---|
-| Invariantes incumplidas, colisiones de `ad_id_norm`, periodos incompatibles, señal invalida, mezcla de señales, ausencia de trazabilidad MCP o fuente canonica no validada | Blocking error |
-| `spend_only` interpretado como cero leads reales sin sustentar recomendacion | Warning |
-| Muestra insuficiente para ranking o recomendacion | Presentation limitation |
-
-Todo blocking error debe detener la publicacion del Evidence Set completo, bloque afectado o metrica concreta segun el alcance definido en SPEC-012.
+Si una restriccion contextual requerida esta ausente, contradice la fuente canonica o no puede aplicarse al alcance declarado, Evidence debe registrar `UNKNOWN`, limitacion o bloqueo segun impacto.

@@ -7,6 +7,7 @@ artifacts.
 
 from __future__ import annotations
 
+import copy
 import json
 
 from dataclasses import dataclass, field
@@ -16,6 +17,7 @@ from typing import Any, Iterable
 
 
 COMMERCIAL_SIGNAL = "COMMERCIAL"
+PROFILE_RELATIVE_PATH = Path("analytical_use_cases") / "auc-001" / "faro-strategic-context-profile.json"
 SCHEMA_FAMILY = "auc_001_reconciliation_output"
 OUTPUT_SCHEMA_VERSION = "auc_001_reconciliation_output.v1"
 MODEL_NAME = "auc_001_canonical_cost_quality_model"
@@ -37,6 +39,18 @@ PROTECTED_OUTPUT_NAMESPACES = (
     Path("outputs") / "auc-001" / "pci-001" / "2026-06-30",
 )
 
+
+def profile_path(repo_root: str | Path | None = None) -> Path:
+    base = Path(repo_root) if repo_root is not None else Path(__file__).resolve().parents[1]
+    return base / PROFILE_RELATIVE_PATH
+
+
+def load_strategic_context_profile(repo_root: str | Path | None = None) -> dict[str, Any]:
+    path = profile_path(repo_root)
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+STRATEGIC_CONTEXT_CONSTRAINTS: dict[str, Any] = load_strategic_context_profile()
 
 @dataclass(frozen=True)
 class ThresholdsConfig:
@@ -133,6 +147,7 @@ class CostQualityModel:
             "schema_status": self.schema_status,
             "deprecated_aliases": dict(self.deprecated_aliases),
             "is_consumable": self.is_consumable,
+            "strategic_context_constraints": copy.deepcopy(STRATEGIC_CONTEXT_CONSTRAINTS),
             "spend_reconciliation": self.spend_reconciliation,
             "coverage_reconciliation": self.coverage_reconciliation,
         }
@@ -756,6 +771,7 @@ def validate_runtime_output_payload(payload: dict[str, Any]) -> list[str]:
         "spend_reconciliation",
         "coverage_reconciliation",
         "is_consumable",
+        "strategic_context_constraints",
         "runtime",
         "data_provider",
         "source_tables",

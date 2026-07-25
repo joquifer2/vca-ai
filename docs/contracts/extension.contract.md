@@ -148,7 +148,6 @@ Una instancia concreta del Extension Contract debe producir la misma declaracion
 - SPEC-003 define Skills, Routines, Templates y Contracts como categorias de extension y exige preservar core, boundaries, dominio y neutralidad tecnologica.
 - SPEC-004 reconoce el Extension Contract como categoria fundacional para declarar reglas de entrada y salida introducidas por una extension.
 - SPEC-007 define metadata, compatibility profile, reusability profile y evidence links para extensiones compatibles o reusables.
-- AUC-001 y la skill meta-lead-quality-analysis actuan como primera extension/capacidad analitica aprobada sin alterar el lifecycle comun.
 
 ## Risks
 

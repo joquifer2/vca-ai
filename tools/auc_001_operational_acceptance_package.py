@@ -15,6 +15,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping
 
+from tools.auc_001_canonical_cost_quality_model import STRATEGIC_CONTEXT_CONSTRAINTS as DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS
+
 
 SPECIFICATION = "SPEC-016"
 CONTRACT_ID = "AUC-001-OPERATIONAL-ACCEPTANCE-PACKAGE-CONTRACT"
@@ -33,6 +35,9 @@ ALLOWED_TABLES = {
 }
 EXECUTION_CONTEXT_FIELDS = {"project_id", "dataset_id", "max_bytes_billed"}
 RECONCILIATION_STATES = {"matched", "lead_only", "spend_only"}
+REQUIRED_STRATEGIC_CONTEXT_SOURCE = DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS.get("source_artifact")
+REQUIRED_STRATEGIC_CONTEXT_LAYERS = set(DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS.get("layers", {}))
+REQUIRED_STRATEGIC_CONTEXT_TRACEABILITY = (DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS.get("global_rules") or {}).get("required_traceability")
 
 REQUIRED_PACKAGE_ROLES = {
     "manifest": "execution/manifest.json",
@@ -290,6 +295,32 @@ def validate_handoff_text(text: str, artifact: str = "reviewer-qa-handoff.md") -
     return issues
 
 
+
+def validate_strategic_context_traceability(
+    payload: Mapping[str, Any],
+    artifact: str = "canonical-projection-source.json",
+) -> list[PackageIssue]:
+    """Validate strategic-context transport for future use-case packages."""
+    issues: list[PackageIssue] = []
+    constraints = payload.get("strategic_context_constraints")
+    if not isinstance(constraints, Mapping):
+        issues.append(PackageIssue("STRATEGIC_CONTEXT_CONSTRAINTS_MISSING", "blocking", "artifact must carry strategic_context_constraints", artifact))
+        return issues
+    if constraints.get("source_artifact") != REQUIRED_STRATEGIC_CONTEXT_SOURCE:
+        issues.append(PackageIssue("STRATEGIC_CONTEXT_SOURCE_INVALID", "blocking", "strategic context must trace to the profile-declared canonical source", artifact))
+    if not constraints.get("source_refs"):
+        issues.append(PackageIssue("STRATEGIC_CONTEXT_REFS_MISSING", "blocking", "strategic context must preserve CCD source refs", artifact))
+    layers = constraints.get("layers")
+    if not isinstance(layers, Mapping):
+        issues.append(PackageIssue("STRATEGIC_CONTEXT_LAYERS_MISSING", "blocking", "strategic context must declare profile layers", artifact))
+        return issues
+    missing_layers = sorted(REQUIRED_STRATEGIC_CONTEXT_LAYERS - set(layers))
+    if missing_layers:
+        issues.append(PackageIssue("STRATEGIC_CONTEXT_LAYER_MISSING", "blocking", f"strategic context missing profile layers: {missing_layers}", artifact))
+    global_rules = constraints.get("global_rules")
+    if not isinstance(global_rules, Mapping) or global_rules.get("required_traceability") != REQUIRED_STRATEGIC_CONTEXT_TRACEABILITY:
+        issues.append(PackageIssue("STRATEGIC_CONTEXT_TRACEABILITY_RULE_MISSING", "blocking", "context-dependent interpretation must require the profile-declared traceability field", artifact))
+    return issues
 def validate_package(package_root: str | Path) -> dict[str, Any]:
     root = Path(package_root)
     issues: list[PackageIssue] = []
@@ -325,4 +356,3 @@ def validation_payload(root: Path, issues: list[PackageIssue]) -> dict[str, Any]
         "decision": "PASS" if not blocking else "BLOCKED",
         "issues": [issue.to_dict() for issue in issues],
     }
-

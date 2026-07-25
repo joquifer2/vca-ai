@@ -74,15 +74,19 @@ Esta referencia no redefine el contrato del servidor. Debe refrescarse desde `to
 
 ## Contexto de negocio
 
-Cuando estén disponibles:
+Obligatorio para restricciones contextuales locales de AUC-001:
 
-- CCD
+- `knowledge/client/ccd.md`
+- `analytical_use_cases/auc-001/faro-strategic-context-profile.json`
+
+Cuando esten disponibles y apliquen:
+
 - FARO
 - CLARO
 - KPIs oficiales
 - `project_brief.md`
 
-Estas referencias contienen las definiciones funcionales y de negocio que prevalecen sobre cualquier inferencia realizada desde el modelo de datos.
+Estas referencias contienen las definiciones funcionales y de negocio que prevalecen sobre cualquier inferencia realizada desde el modelo de datos. El contenido normativo del CCD no debe duplicarse. Las restricciones ejecutables necesarias para AUC-001 se materializan en el perfil local y se transportan mediante `strategic_context_constraints` con referencias trazables a `knowledge/client/ccd.md`.
 
 ---
 
@@ -128,13 +132,13 @@ Cuando corresponda a la solicitud:
 
 ### Analytical
 
-- `presentation-policies/analytical-review.md`
+- `.github/presentation_policies/analytical-review.md`
 
 ---
 
 ### Executive
 
-- `presentation-policies/executive-decision-support.md`
+- `.github/presentation_policies/executive-decision-support.md`
 
 Las Presentation Policies únicamente modifican la representación del contenido canónico.
 

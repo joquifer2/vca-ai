@@ -1,0 +1,75 @@
+{
+  "artifact_id": "AUC-001-STRATEGIC-CONTEXT-FULL-RERUN-2026-06-30-EVIDENCE-ACQUISITION-RECORD",
+  "status": "BLOCKED",
+  "strategy": "independent_queries_per_authorized_table_with_local_reconciliation",
+  "mcp_only": true,
+  "successful_queries": [
+    {
+      "request_id": "auc001-strctx-20260724-q-leads-summary",
+      "call_type": "query_read_only",
+      "dataset": "marts",
+      "tables": ["marts.fct_lead_enriched"],
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-06-30"
+      },
+      "granularity": "period_summary",
+      "sql": "SELECT COUNT(*) AS lead_count, COUNT(DISTINCT lead_id) AS distinct_leads, MIN(day) AS min_day, MAX(day) AS max_day, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, COUNTIF(UPPER(lead_tier) = 'B') AS tier_b_leads, COUNTIF(UPPER(lead_tier) = 'C') AS tier_c_leads, COUNTIF(UPPER(lead_tier) = 'D') AS tier_d_leads, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, AVG(score_inicial) AS avg_score, COUNTIF(ticket_status IS NOT NULL AND TRIM(ticket_status) != '') AS ticket_status_available, COUNTIF(is_qualified_for_meta_offline IS TRUE) AS offline_candidate_leads FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-06-30'",
+      "result": {
+        "lead_count": 1329,
+        "distinct_leads": 1329,
+        "min_day": "2026-04-18",
+        "max_day": "2026-06-30",
+        "tier_a_leads": 58,
+        "tier_b_leads": 339,
+        "tier_c_leads": 554,
+        "tier_d_leads": 378,
+        "ab_leads": 397,
+        "avg_score": 49.80285929270123,
+        "ticket_status_available": 1329,
+        "offline_candidate_leads": 397
+      },
+      "bytes_processed": 89329,
+      "trace_reference": "trc-ccbecb5d6cea44eb9c151093a824a7e1",
+      "used_as_evidence": false,
+      "non_use_reason": "Execution blocked before Evidence Set stabilization; partial query results are recorded for audit only."
+    }
+  ],
+  "rejected_queries": [
+    {
+      "request_id": "auc001-strctx-20260724-q-leads-monthly",
+      "call_type": "query_read_only",
+      "dataset": "marts",
+      "tables": ["marts.fct_lead_enriched"],
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "period": {
+        "start": "2026-04-18",
+        "end": "2026-06-30"
+      },
+      "granularity": "month",
+      "sql": "SELECT DATE_TRUNC(day, MONTH) AS month_start, COUNT(*) AS lead_count, COUNTIF(UPPER(lead_tier) IN ('A','B')) AS ab_leads, COUNTIF(UPPER(lead_tier) = 'A') AS tier_a_leads, AVG(score_inicial) AS avg_score FROM `datamart-vca-494114.marts.fct_lead_enriched` WHERE day BETWEEN DATE '2026-04-18' AND DATE '2026-06-30' GROUP BY month_start ORDER BY month_start",
+      "result": {
+        "status": "rejected",
+        "error_code": "ERR_QUOTA_LIMIT_EXCEEDED",
+        "error_reason": "The daily request quota is exhausted."
+      },
+      "trace_reference": "trc-92d4554f4cd54e6d9b2d4dde2b6ea1e9",
+      "used_as_evidence": false,
+      "handling": "blocked_execution_no_retry_no_fallback"
+    }
+  ],
+  "blocker": {
+    "phase": "Phase 07 - Evidence Acquisition",
+    "reason": "BigQuery MCP daily request quota exhausted during evidence acquisition.",
+    "contractual_decision": "Stop execution. Do not use partial evidence, CLI, fallback, historical reports or previous Evidence Sets."
+  }
+}

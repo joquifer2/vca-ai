@@ -1,0 +1,122 @@
+{
+  "artifact_id": "AUC-001-RECOMMENDATION-SET-20260724-RETRY2",
+  "status": "stabilized",
+  "derived_from": "AUC-001-KNOWLEDGE-SET-20260724-RETRY2",
+  "recommendations": [
+    {
+      "recommendation_id": "R-001",
+      "priority": "high",
+      "action": "Mantener escala comercial y reforzar filtros de intención verificable.",
+      "supporting_knowledge_refs": [
+        "K-003",
+        "K-004"
+      ],
+      "validation": "Medir A/B y Tier A por billete y ventana temporal.",
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-LAYER-COMMERCIAL"
+      ]
+    },
+    {
+      "recommendation_id": "R-002",
+      "priority": "medium",
+      "action": "Tratar ACTIVATION como reimpacto descriptivo, no como ganador económico frente a COMMERCIAL.",
+      "supporting_knowledge_refs": [
+        "K-005"
+      ],
+      "validation": "Comparar dentro de ACTIVATION antes de escalar.",
+      "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+      "strategic_context_constraint_refs": [
+        "AUC-001-FARO-GLOBAL-NO-UNIVERSAL-KPI"
+      ]
+    }
+  ],
+  "excluded_actions": [
+    "No ranking KPI universal entre capas FARO."
+  ],
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal"
+}

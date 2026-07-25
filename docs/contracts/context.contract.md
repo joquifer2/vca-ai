@@ -108,9 +108,6 @@ Framework.
 - [specs/spec-002-component-boundaries.md](/specs/spec-002-component-boundaries.md)
 - [specs/spec-004-transversal-contracts.md](/specs/spec-004-transversal-contracts.md)
 - [specs/spec-010-presentation-projection-selection.md](/specs/spec-010-presentation-projection-selection.md)
-- [docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md](/docs/decisions/auc-001/auc-001-execution-scope-canonicalization-architectural-decision.md)
-- [docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md](/docs/decisions/auc-001/auc-001-presentation-projection-architectural-decision.md)
-- [docs/decisions/auc-001/auc-001-documentary-alignment-decision.md](/docs/decisions/auc-001/auc-001-documentary-alignment-decision.md)
 - [analytical_use_cases/meta_lead_quality_analysis.md](/analytical_use_cases/meta_lead_quality_analysis.md)
 - [.github/skills/meta-lead-quality-analysis/SKILL.md](/.github/skills/meta-lead-quality-analysis/SKILL.md)
 - [gates/spec-008-development-entry-phase-gate.md](/gates/spec-008-development-entry-phase-gate.md)
@@ -120,7 +117,6 @@ Framework.
 | Unknown | Tratamiento |
 |---|---|
 | Periodo de analisis no definido | Bloquear avance hacia Discovery hasta declararlo |
-| Criterio operativo de lead de calidad no definido | Bloquear AUC-001 hasta documentar el criterio o marcarlo como insuficiente |
 | Fuente oficial de contexto no disponible | Marcar PENDING y evaluar si bloquea segun el caso |
 | Data Provider no disponible | No corresponde resolverlo en este contract; debe propagarse al Data Contract |
 | Alcance de campañas, conjuntos o creatividades no definido | Marcar UNKNOWN y bloquear si afecta a la interpretacion |
@@ -141,9 +137,6 @@ Este contract es documental y no ejecuta operaciones. Su reutilizacion debe mant
 | SPEC-002 | Boundary |
 | SPEC-004 | Contract framework |
 | SPEC-010 | Presentation projection selection |
-| VCA-AUC-001-ARCH-001 | Execution Scope Canonicalization |
-| VCA-AUC-001-ARCH-002 | Presentation projection architecture |
-| AUC-001 | Analytical use case |
 | meta-lead-quality-analysis | Skill |
 
 ## Evidence
@@ -152,16 +145,10 @@ Este contract es documental y no ejecuta operaciones. Su reutilizacion debe mant
 - SPEC-002 exige que los handoffs se materialicen en artefactos identificables y revisables.
 - SPEC-004 reconoce el Context Contract como categoria fundacional y exige metadata minima.
 - SPEC-010 exige que la seleccion de proyeccion se derive del Execution Context canonicalizado.
-- VCA-AUC-001-ARCH-001 define Execution Scope Canonicalization como responsabilidad reusable entre solicitud humana y Execution Context.
-- VCA-AUC-001-ARCH-002 establece que Presentation Layer materializa la proyeccion solicitada por el contexto, no una decision ad hoc.
-- AUC-001 y la skill asociada exigen confirmar objetivo, periodo, alcance operativo, criterio de lead de calidad y fuentes oficiales antes del analisis.
 
 ## Risks
 
 | Riesgo | Severidad | Impacto | Evidencia |
 |---|---|---|---|
-| Avanzar a datos sin contexto suficiente | Important | Puede producir evidencia no alineada con el objetivo | SPEC-001; AUC-001 |
 | Inferir contexto no publicado | Important | Rompe trazabilidad y puede introducir supuestos no verificados | docs/context_refs.md; skill |
 | Mezclar contexto con evidencia o interpretacion | Important | Rompe boundary compliance entre fases | SPEC-002; SPEC-004 |
-| Omitir canonicalizacion del alcance de ejecucion | Important | Puede heredar parametros de ejecuciones anteriores sin intencion documental | VCA-AUC-001-ARCH-001 |
-| Permitir proyeccion de presentacion ambigua | Important | Puede trasladar una decision de contexto a Presentation Layer | SPEC-010; VCA-AUC-001-ARCH-002 |

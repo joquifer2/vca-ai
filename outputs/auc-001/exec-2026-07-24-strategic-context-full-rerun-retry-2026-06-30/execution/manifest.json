@@ -1,0 +1,153 @@
+{
+  "artifact_id": "AUC-001-MANIFEST-20260724-RETRY2",
+  "specification": "SPEC-016",
+  "status": "FINAL_ACCEPTED",
+  "created_at_utc": "2026-07-24T19:46:52.486842+02:00",
+  "original_instruction": "Genera el informe analítico y el informe ejecutivo de calidad de los leads hasta el 30 de junio de 2026.",
+  "execution_mode": "complete_experimental_rerun",
+  "namespace": "outputs/auc-001/exec-2026-07-24-strategic-context-full-rerun-retry-2026-06-30",
+  "source_policy": {
+    "bigquery_mcp_only": true,
+    "cli_used": false,
+    "fallback_used": false,
+    "historical_evidence_used": false
+  },
+  "acquisition_strategy": "independent_table_queries_with_local_reconciliation",
+  "artifact_paths": {
+    "manifest": "execution/manifest.json",
+    "physical_traceability": "execution/physical-traceability.json",
+    "mcp_preflight_record": "execution/mcp-preflight-record.json",
+    "evidence_acquisition_record": "execution/evidence-acquisition-record.json",
+    "test_results": "execution/test-results.json",
+    "semantic_equivalence_validation": "execution/semantic-equivalence-validation.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "recommendation_set": "recommendations/recommendation-set.json",
+    "common_product_core": "product-core/common-product-core.json",
+    "canonical_projection_source": "product-core/canonical-projection-source.json",
+    "spec_014_validation": "validations/spec-014-validation.json",
+    "spec_015_validation": "validations/spec-015-validation.json",
+    "spec_016_validation": "validations/spec-016-validation.json",
+    "handoff": "handoff/reviewer-qa-handoff.md",
+    "context_definition": "execution/context-definition.json",
+    "analytical_report": "reports/analytical-report.md",
+    "executive_report": "reports/executive-report.md",
+    "analytical_projection": "product-core/analytical-projection.json",
+    "executive_projection": "product-core/executive-projection.json",
+    "exit_gate_strategic_context_validation": "validations/exit-gate-strategic-context-validation.json"
+  },
+  "artifact_fingerprints": {
+    "execution/mcp-preflight-record.json": "94ffff7fc27a9ffd7888fae5bb7a2fa3fd0f359eaedd3bbd6b0babc735940e57",
+    "execution/evidence-acquisition-record.json": "98fe4d558eaf4963918643324b5b9635ec08f03c6503bbf3ad784a9c52ec1ad3",
+    "execution/semantic-equivalence-validation.json": "97ad2fda2d49122f1494dd65ff879b4b295bbbeece9c8f4680e0d2d4115432bf",
+    "evidence/evidence-set.json": "cac3ecbd7b13ecd9195202a820a6f9865684a0e9d811331f549c44d5dba7c9ed",
+    "knowledge/knowledge-set.json": "6adf3ff7ff8b6c0468dcfb5f778e5fed8cd343d177d8a819528199fb9844ff61",
+    "recommendations/recommendation-set.json": "87e32ee8f598e0d3b93ab70248069595a86dbad9c59ddc6fea88a97cbc14bd7f",
+    "product-core/common-product-core.json": "445e578a00deddd8b720f42d4008d25be81975f31f24c0167b1be9b76354af37",
+    "product-core/canonical-projection-source.json": "16f898c8413a662014a208d242fb2b462ab7c510ba9d4fe6a37c44b414dc06e4",
+    "validations/spec-014-validation.json": "f96fd5cfe26002fc7f1154a4a71fc0b5d33bea8309b0ab44fd7b2f2733cc3f67",
+    "validations/spec-015-validation.json": "134ce67bc0a57253f23a225bbf088a37fa42d612dd6fb89f780f1f0c80c7eff4",
+    "handoff/reviewer-qa-handoff.md": "db0dc976a95ba3514e66ba58bd21aff197495d1156780133739eb485dcb7553b",
+    "execution/context-definition.json": "24bf861cd21e18049204da281c53d7041a4c91964e0f14857080bac633e1f481",
+    "reports/analytical-report.md": "48b11ff3ec72f3938fa79267d1f4c4d4fcc2d2d52b11afb03ad4901cd4b7ab95",
+    "reports/executive-report.md": "32fe4454b17e9a3a9f3df702aee6eb43c0fbb82a99a64cd72a4614430ff9a12a",
+    "product-core/analytical-projection.json": "e441f0fd26d45d96fffcad1b085f93d560895b16f5dde9305aef657a30b24584",
+    "product-core/executive-projection.json": "ff1913ded5e5e49d92fbe89b3c11a6d11cef28c3e4140324b5f12787b441bec9"
+  },
+  "common_core_fingerprint": "ad6ffb5ee3d12b14d930e18624a7e5ecc23f5ba5f7415d26f891a2d6ba33209b",
+  "canonical_projection_source_id": "AUC-001-CANONICAL-PROJECTION-SOURCE-20260724-RETRY2",
+  "canonical_projection_source_fingerprint": "576433d7dc818e194bd0d428a13e7a36e111207984c97c9ea20f60a10a919a2d",
+  "validation_results": {
+    "SPEC-014": "PASS",
+    "SPEC-015": "PASS",
+    "SPEC-016": "PASS",
+    "EXIT_GATE_STRATEGIC_CONTEXT": "PASS WITH CONDITIONS"
+  },
+  "acceptance_final_declared_by_implementation": false,
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "ccd_constraint_ref": "knowledge/client/ccd.md#campaign_signal",
+  "final_acceptance_reference": "validations/exit-gate-strategic-context-validation.json"
+}

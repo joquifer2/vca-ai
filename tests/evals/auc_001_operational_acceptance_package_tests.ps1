@@ -110,6 +110,29 @@ print('controlled package validates SPEC-016 physical contract')
 "@
 Invoke-PythonCheck 'Controlled package physical validation' $physicalCode
 
+
+$strategicTraceabilityCode = @"
+from tools.auc_001_operational_acceptance_package import validate_strategic_context_traceability
+
+valid = {
+    'strategic_context_constraints': {
+        'source_artifact': 'knowledge/client/ccd.md',
+        'source_refs': ['knowledge/client/ccd.md#campaign_signal'],
+        'layers': {'ATTENTION': {}, 'ACTIVATION': {}, 'COMMERCIAL': {}},
+        'global_rules': {'required_traceability': 'ccd_constraint_ref'},
+    }
+}
+assert validate_strategic_context_traceability(valid) == []
+missing = {}
+assert any(issue.code == 'STRATEGIC_CONTEXT_CONSTRAINTS_MISSING' for issue in validate_strategic_context_traceability(missing))
+bad = {'strategic_context_constraints': dict(valid['strategic_context_constraints'], source_artifact='docs/context_refs.md')}
+assert any(issue.code == 'STRATEGIC_CONTEXT_SOURCE_INVALID' for issue in validate_strategic_context_traceability(bad))
+missing_layer = {'strategic_context_constraints': dict(valid['strategic_context_constraints'], layers={'ATTENTION': {}, 'COMMERCIAL': {}})}
+assert any(issue.code == 'STRATEGIC_CONTEXT_LAYER_MISSING' for issue in validate_strategic_context_traceability(missing_layer))
+print('future package CCD/FARO strategic context traceability helper passed')
+"@
+Invoke-PythonCheck 'CCD/FARO strategic traceability helper' $strategicTraceabilityCode
+
 $Results | Format-Table -AutoSize
 $failures = @($Results | Where-Object { $_.Status -ne 'PASS' })
 if ($failures.Count -gt 0) {
