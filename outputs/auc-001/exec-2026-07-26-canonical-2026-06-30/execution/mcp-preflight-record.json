@@ -1,0 +1,56 @@
+{
+  "artifact_id": "AUC-001-MCP-PREFLIGHT-20260726-CANONICAL",
+  "specification": "SPEC-016",
+  "status": "PASS",
+  "provider": "BigQuery MCP",
+  "acquisition_strategy": "independent_table_queries_with_local_reconciliation",
+  "multi_table_mcp_queries_allowed_as_evidence": false,
+  "planned_tables": [
+    "marts.fct_lead_enriched",
+    "intermediate.int_faro_lead_scoring",
+    "marts.fct_spend",
+    "marts.dim_campaign_signal"
+  ],
+  "execution_contexts": {
+    "marts": {
+      "project_id": "datamart-vca-494114",
+      "dataset_id": "marts",
+      "max_bytes_billed": 1073741824
+    },
+    "intermediate": {
+      "project_id": "datamart-vca-494114",
+      "dataset_id": "intermediate",
+      "max_bytes_billed": 1073741824
+    }
+  },
+  "spec_014_grain_readiness": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "partial",
+    "AQ-004": "complete",
+    "AQ-005": "partial",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "complete",
+    "CQ-002": "complete",
+    "CQ-003": "not_available",
+    "CQ-004": "complete",
+    "CQ-005": "partial",
+    "CQ-006": "not_available",
+    "CQ-007": "not_available",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "reconciliation_states_preserved": [
+    "matched",
+    "lead_only",
+    "spend_only"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "artifact_id": "AUC-001-PHYSICAL-TRACEABILITY-20260726-CANONICAL",
+  "status": "PASS",
+  "namespace_hygiene_pass": true,
+  "manifest_sha256": "f16f0ddb10a2050120bc3a0463e36e6665d9788facd7394398a04f31b7943260",
+  "test_results_sha256": "3e3af0547f4fb83740ae7b005b7544374acc2d18d8bdd19af9a5f3dec14702fb",
+  "artifact_inventory": {
+    "manifest": "execution/manifest.json",
+    "physical_traceability": "execution/physical-traceability.json",
+    "mcp_preflight_record": "execution/mcp-preflight-record.json",
+    "evidence_acquisition_record": "execution/evidence-acquisition-record.json",
+    "test_results": "execution/test-results.json",
+    "semantic_equivalence_validation": "execution/semantic-equivalence-validation.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "analytical_investigation_record": "knowledge/analytical-investigation-record.json",
+    "recommendation_set": "recommendations/recommendation-set.json",
+    "coverage_matrix": "coverage-matrix/coverage-matrix.json",
+    "common_product_core": "product-core/common-product-core.json",
+    "canonical_projection_source": "product-core/canonical-projection-source.json",
+    "spec_014_validation": "validations/spec-014-validation.json",
+    "spec_015_validation": "validations/spec-015-validation.json",
+    "spec_016_validation": "validations/spec-016-validation.json",
+    "spec_017_validation": "validations/spec-017-validation.json",
+    "handoff": "handoff/reviewer-qa-handoff.md",
+    "context_definition": "execution/context-definition.json",
+    "analytical_report": "reports/analytical-report.md",
+    "executive_report": "reports/executive-report.md"
+  }
+}

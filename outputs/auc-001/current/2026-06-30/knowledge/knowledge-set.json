@@ -1,0 +1,64 @@
+{
+  "execution_id": "auc001-current-2026-06-30",
+  "status": "stabilized",
+  "insights": [
+    {
+      "id": "K-001",
+      "claim": "The acquisition system generated high volume, but most of the volume is low or medium-low quality: A/B leads are 29.9% and Tier A is 4.4%.",
+      "support": ["lead_tier_total"],
+      "coverage": "complete"
+    },
+    {
+      "id": "K-002",
+      "claim": "June scaled volume materially without improving the A/B mix: June produced 776 leads and 229 A/B leads, with a 29.5% A/B rate.",
+      "support": ["lead_monthly_tier", "lead_weekly_quality"],
+      "coverage": "partial",
+      "markers": ["not_comparable_for_partial_weeks"]
+    },
+    {
+      "id": "K-003",
+      "claim": "The strongest quality separator is declared travel commitment and timing: leads with tickets already bought produce 88.7% A/B and 26.6% Tier A; solo-looking leads produce 5.7% A/B and 0% Tier A.",
+      "support": ["scoring_billetes", "ticket_status", "scoring_cuando_viaja"],
+      "coverage": "complete"
+    },
+    {
+      "id": "K-004",
+      "claim": "Retargeting/activation has better quality rate than cold capture but lower scale and higher observed matched cost per A/B lead.",
+      "support": ["lead_campaign", "spend_ad_all_normalized"],
+      "coverage": "partial",
+      "ccd_constraint_ref": "AUC-001-FARO-LAYER-ACTIVATION"
+    },
+    {
+      "id": "K-005",
+      "claim": "Two commercial ads dominate both volume and quality contribution, creating dependency: ViajeSinEstres and ViajaComoInvitado generate 1002 leads and 288 A/B leads.",
+      "support": ["lead_ad_all_normalized", "spend_ad_all_normalized"],
+      "coverage": "complete",
+      "markers": ["concentration"]
+    },
+    {
+      "id": "K-006",
+      "claim": "Several smaller assets have stronger quality rates, especially FiltroBilletes variants, but sample sizes are smaller and should not be treated as definitive winners.",
+      "support": ["lead_ad_all_normalized", "spend_ad_all_normalized"],
+      "coverage": "partial",
+      "markers": ["low_sample"]
+    },
+    {
+      "id": "K-007",
+      "claim": "The main trade-off is scale versus quality density: cold commercial capture supplies most leads and lowest commercial matched cost, while activation and intent-filtering assets supply denser A/B and Tier A signals at lower scale.",
+      "support": ["lead_campaign", "spend_signal_total", "lead_ad_all_normalized"],
+      "coverage": "partial"
+    }
+  ],
+  "analytical_narrative": "AUC-001 shows a system that has learned to buy volume efficiently, but has not yet concentrated enough of that volume in high-intent demand. The best quality signals are not generic creative performance signals; they are declared commercial maturity signals: tickets, near-term travel timing and a more complete/private experience need. The operational challenge is not simply lowering cost per lead, but increasing the share of spend and learning signal attached to those high-intent combinations without losing the scale currently provided by commercial capture.",
+  "risks": [
+    "Optimizing on generic CPL would reward volume that is mostly C/D.",
+    "Treating attention campaigns as direct lead generators would violate FARO campaign-signal interpretation.",
+    "Creative winners cannot be declared causally with the current evidence.",
+    "Absence of CRM/revenue prevents validation of post-lead commercial conversion."
+  ],
+  "unknowns": [
+    "Commercial conversion, revenue and opportunity quality after lead capture.",
+    "Causal impact of creative concepts.",
+    "Whether weekly changes represent learning, fatigue, budget effects or normal volatility."
+  ]
+}

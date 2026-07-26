@@ -1,0 +1,54 @@
+{
+  "execution_id": "auc001-current-2026-06-30",
+  "status": "stabilized",
+  "recommendations": [
+    {
+      "id": "R-001",
+      "priority": "high",
+      "category": "measurable_experiment",
+      "action": "Run a controlled optimization test that increases exposure to ticket/near-term-travel intent filters while preserving a scale guardrail.",
+      "supporting_knowledge": ["K-003", "K-007"],
+      "expected_impact": "Higher A/B and Tier A share, conditional on not collapsing lead volume.",
+      "success_metric": "A/B rate and cost_per_ab_commercial_matched",
+      "guardrail": "Do not reduce total commercial matched leads below an agreed minimum volume.",
+      "confidence": "medium-high",
+      "review_condition": "Review after sufficient matched commercial leads accumulate for comparison."
+    },
+    {
+      "id": "R-002",
+      "priority": "high",
+      "category": "measurable_experiment",
+      "action": "Create a focused creative/adset test around FiltroBilletes and mature-intent messaging, separating cold commercial and activation contexts.",
+      "supporting_knowledge": ["K-004", "K-006", "K-007"],
+      "expected_impact": "Improve quality density; scale impact unknown.",
+      "success_metric": "A/B rate, Tier A rate, cost_per_ab_commercial_matched or activation observed matched cost per A/B with FARO layer separation.",
+      "guardrail": "Do not compare ATTENTION, ACTIVATION and COMMERCIAL as one universal KPI ranking.",
+      "confidence": "medium",
+      "review_condition": "Promote only if quality lift remains after sample-size review."
+    },
+    {
+      "id": "R-003",
+      "priority": "medium",
+      "category": "verifiable_action",
+      "action": "Add a recurring evidence view that exposes matched, lead_only and spend_only by normalized ad_id and campaign signal.",
+      "supporting_knowledge": ["K-005", "K-007"],
+      "expected_impact": "Reduce ambiguity in future cost-quality decisions.",
+      "success_metric": "Coverage states visible in every AUC-001 execution.",
+      "guardrail": "Do not use ad_name as join key.",
+      "confidence": "high",
+      "review_condition": "Close when future reports can cite the view without manual reconciliation."
+    },
+    {
+      "id": "R-004",
+      "priority": "medium",
+      "category": "non_actionable_hypothesis",
+      "action": "Treat post-lead quality and revenue as unresolved until GIAV/CRM evidence is authorized and reconciled.",
+      "supporting_knowledge": ["K-001", "K-003"],
+      "expected_impact": "Prevents overclaiming lead quality as sales quality.",
+      "success_metric": "CRM/revenue coverage state changes from not_available to complete or partial in a future authorized scope.",
+      "guardrail": "Do not infer sales value from FARO tier alone.",
+      "confidence": "high",
+      "review_condition": "Revisit after CRM source is governed and allowlisted."
+    }
+  ]
+}

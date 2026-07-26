@@ -1,0 +1,21 @@
+{
+  "artifact_id": "AUC-001-TEST-RESULTS-20260726-CANONICAL",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "partial_execution_blocked",
+      "result": "PASS",
+      "artifact": "outputs/auc-001/current/2026-06-30"
+    },
+    {
+      "name": "canonical_package_materialized",
+      "result": "PASS",
+      "artifact": "outputs/auc-001/exec-2026-07-26-canonical-2026-06-30"
+    },
+    {
+      "name": "current_pointer_only_after_validation",
+      "result": "PASS",
+      "artifact": "outputs/auc-001/current/current-execution.json"
+    }
+  ]
+}

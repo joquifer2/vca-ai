@@ -1,0 +1,85 @@
+{
+  "artifact_id": "AUC-001-KNOWLEDGE-SET-20260726-CANONICAL",
+  "schema_family": "auc_001_knowledge_set",
+  "status": "stabilized",
+  "derived_from": "AUC-001-AIR-20260726-CANONICAL",
+  "analytical_investigation_record_artifact": "knowledge/analytical-investigation-record.json",
+  "knowledge_claims": [
+    {
+      "knowledge_id": "K-001",
+      "evidence_refs": [
+        "lead_tier_total",
+        "monthly_tier"
+      ],
+      "finding_refs": [
+        "F-001",
+        "F-005"
+      ],
+      "claim": "The period generated 397 A/B leads and 58 Tier A leads.",
+      "interpretation": "Because A/B density stays near 30 percent while volume grows, scaling improved absolute qualified volume but not quality density.",
+      "limitation_or_uncertainty": "No CRM revenue validation is available."
+    },
+    {
+      "knowledge_id": "K-002",
+      "evidence_refs": [
+        "ticket_status",
+        "travel_window"
+      ],
+      "finding_refs": [
+        "F-002"
+      ],
+      "claim": "Intent signals separate high-quality and low-quality leads.",
+      "interpretation": "The evidence explains that explicit trip readiness, especially tickets and near travel windows, is materially more associated with A/B and Tier A quality.",
+      "limitation_or_uncertainty": "This is association, not causal proof."
+    },
+    {
+      "knowledge_id": "K-003",
+      "evidence_refs": [
+        "spend_by_signal",
+        "commercial_matched"
+      ],
+      "finding_refs": [
+        "F-003"
+      ],
+      "claim": "COMMERCIAL matched supports direct cost-quality reading.",
+      "interpretation": "COMMERCIAL can be interpreted economically because the matched universe links spend and leads; ATTENTION and ACTIVATION are not equivalent decision layers.",
+      "limitation_or_uncertainty": "Cross-layer KPI ranking is not allowed by the FARO profile."
+    },
+    {
+      "knowledge_id": "K-004",
+      "evidence_refs": [
+        "top_ads",
+        "campaigns"
+      ],
+      "finding_refs": [
+        "F-004"
+      ],
+      "claim": "Ad-level qualified volume is concentrated.",
+      "interpretation": "The concentration implies a practical testing focus, but it does not prove that creative content caused quality outcomes.",
+      "limitation_or_uncertainty": "Creative causality remains UNKNOWN."
+    }
+  ],
+  "analytical_narrative": {
+    "text": "Lead quality is primarily separated by observable intent, while economics must remain inside the governed COMMERCIAL matched universe.",
+    "phenomenon": "Volume scaled in June while A/B density stayed stable.",
+    "trade_off": "Scaling volume without stronger intent filters increases C/D burden.",
+    "dominant_risk": "Using a universal KPI across FARO layers would misread strategic roles.",
+    "strategic_implication": "Protect commercial acquisition and test intent filters before declaring optimization winners.",
+    "knowledge_refs": [
+      "K-001",
+      "K-002",
+      "K-003",
+      "K-004"
+    ]
+  },
+  "limitations": [
+    "No revenue or CRM final outcome source.",
+    "No creative causality source.",
+    "FARO layers are strategically non-equivalent."
+  ],
+  "unknowns": [
+    "Revenue quality",
+    "Creative causality",
+    "Assisted impact of ATTENTION"
+  ]
+}

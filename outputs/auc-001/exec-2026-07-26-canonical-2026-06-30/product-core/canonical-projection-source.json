@@ -1,0 +1,601 @@
+{
+  "artifact_id": "AUC-001-CPS-20260726-CANONICAL",
+  "schema_family": "auc_001_canonical_projection_source",
+  "schema_version": "auc_001_canonical_projection_source.v1",
+  "specification": "SPEC-015",
+  "contract_version": "spec-015.v1",
+  "status": "stabilized_for_presentation",
+  "source_artifacts": {
+    "context_definition": "execution/context-definition.json",
+    "evidence_set": "evidence/evidence-set.json",
+    "knowledge_set": "knowledge/knowledge-set.json",
+    "recommendation_set": "recommendations/recommendation-set.json",
+    "coverage_matrix": "coverage-matrix/coverage-matrix.json",
+    "common_product_core": "product-core/common-product-core.json",
+    "analytical_investigation_record": "knowledge/analytical-investigation-record.json",
+    "spec_017_validation": "validations/spec-017-validation.json",
+    "manifest": "execution/manifest.json",
+    "ccd": "knowledge/client/ccd.md"
+  },
+  "product_contract": {
+    "id": "SPEC-014",
+    "version": "spec-014.v1",
+    "schema_family": "auc_001_analytical_product_contract",
+    "schema_version": "auc_001_analytical_product_contract.v1"
+  },
+  "projection_contracts": {
+    "projection_selection": "SPEC-010",
+    "communication_context_transformation": "SPEC-011",
+    "canonical_projection_consolidation": "SPEC-015"
+  },
+  "period": {
+    "start_date": "2026-04-18",
+    "end_date": "2026-06-30",
+    "cutoff_date": "2026-06-30"
+  },
+  "scope": {
+    "use_case_id": "AUC-001",
+    "analysis": "Meta lead quality through 2026-06-30"
+  },
+  "sources": [
+    "BigQuery MCP: marts.fct_lead_enriched",
+    "BigQuery MCP: intermediate.int_faro_lead_scoring",
+    "BigQuery MCP: marts.fct_spend",
+    "BigQuery MCP: marts.dim_campaign_signal"
+  ],
+  "canonical_metrics": {
+    "lead_coverage": {
+      "min_day": "2026-04-18",
+      "max_day": "2026-06-30",
+      "lead_count": 1329
+    },
+    "lead_tier_total": {
+      "A": {
+        "lead_count": 58,
+        "avg_lead_score": 86.9828
+      },
+      "B": {
+        "lead_count": 339,
+        "avg_lead_score": 67.9912
+      },
+      "C": {
+        "lead_count": 554,
+        "avg_lead_score": 48.8285
+      },
+      "D": {
+        "lead_count": 378,
+        "avg_lead_score": 29.2143
+      }
+    },
+    "monthly_tier": [
+      {
+        "month": "2026-04",
+        "leads": 184,
+        "ab": 57,
+        "a": 8
+      },
+      {
+        "month": "2026-05",
+        "leads": 369,
+        "ab": 111,
+        "a": 19
+      },
+      {
+        "month": "2026-06",
+        "leads": 776,
+        "ab": 229,
+        "a": 31
+      }
+    ],
+    "platform": [
+      {
+        "platform": "fb",
+        "leads": 894,
+        "ab": 278,
+        "a": 39,
+        "avg_score": 50.198
+      },
+      {
+        "platform": "ig",
+        "leads": 435,
+        "ab": 119,
+        "a": 19,
+        "avg_score": 48.991
+      }
+    ],
+    "ticket_status": [
+      {
+        "bucket": "solo_mirando",
+        "leads": 838,
+        "ab": 48,
+        "a": 0,
+        "avg_score": 40.5334
+      },
+      {
+        "bucket": "en_proceso",
+        "leads": 314,
+        "ab": 192,
+        "a": 11,
+        "avg_score": 61.0064
+      },
+      {
+        "bucket": "tiene_billetes",
+        "leads": 177,
+        "ab": 157,
+        "a": 47,
+        "avg_score": 73.8136
+      }
+    ],
+    "travel_window": [
+      {
+        "bucket": "aun_no_claro",
+        "leads": 463,
+        "ab": 26,
+        "a": 0
+      },
+      {
+        "bucket": "entre_3_y_6_meses",
+        "leads": 342,
+        "ab": 100,
+        "a": 5
+      },
+      {
+        "bucket": "entre_1_y_3_meses",
+        "leads": 142,
+        "ab": 94,
+        "a": 12
+      },
+      {
+        "bucket": "menos_de_1_mes",
+        "leads": 80,
+        "ab": 74,
+        "a": 26
+      }
+    ],
+    "campaigns": [
+      {
+        "campaign": "[META]_[CLP]_[CAPTACION]_[ABO]",
+        "leads": 1187,
+        "ab": 344,
+        "a": 48,
+        "avg_score": 49.3715
+      },
+      {
+        "campaign": "[META]_[CLP]_[RTG]_[CBO]",
+        "leads": 142,
+        "ab": 53,
+        "a": 10,
+        "avg_score": 53.4085
+      }
+    ],
+    "spend_by_signal": {
+      "COMMERCIAL": 875.850006,
+      "ATTENTION": 308.54,
+      "ACTIVATION": 221.86,
+      "TOTAL": 1406.250006
+    },
+    "commercial_matched": {
+      "spend": 873.650006,
+      "leads": 1187,
+      "ab": 344,
+      "a": 48,
+      "cpl": 0.736,
+      "cost_per_ab": 2.5397,
+      "cost_per_a": 18.201
+    },
+    "activation_observed": {
+      "spend": 221.18,
+      "leads": 142,
+      "ab": 53,
+      "a": 10,
+      "cost_per_ab": 4.1732
+    },
+    "top_ads": [
+      {
+        "ad_id_norm": "120245828603090721",
+        "leads": 643,
+        "ab": 187,
+        "a": 23
+      },
+      {
+        "ad_id_norm": "120245829545180721",
+        "leads": 359,
+        "ab": 101,
+        "a": 17
+      },
+      {
+        "ad_id_norm": "120247352473020721",
+        "leads": 118,
+        "ab": 42,
+        "a": 9
+      }
+    ]
+  },
+  "coverage_states": {
+    "AQ-001": "complete",
+    "AQ-002": "complete",
+    "AQ-003": "partial",
+    "AQ-004": "complete",
+    "AQ-005": "partial",
+    "AQ-006": "complete",
+    "AQ-007": "complete",
+    "AQ-008": "complete",
+    "AQ-009": "partial",
+    "AQ-010": "complete",
+    "AQ-011": "complete",
+    "CQ-001": "complete",
+    "CQ-002": "complete",
+    "CQ-003": "not_available",
+    "CQ-004": "complete",
+    "CQ-005": "partial",
+    "CQ-006": "not_available",
+    "CQ-007": "not_available",
+    "NAQ-001": "not_applicable",
+    "NAQ-002": "not_applicable",
+    "NAQ-003": "not_applicable",
+    "NAQ-004": "not_applicable",
+    "NAQ-005": "not_applicable"
+  },
+  "knowledge_claims": [
+    {
+      "knowledge_id": "K-001",
+      "evidence_refs": [
+        "lead_tier_total",
+        "monthly_tier"
+      ],
+      "finding_refs": [
+        "F-001",
+        "F-005"
+      ],
+      "claim": "The period generated 397 A/B leads and 58 Tier A leads.",
+      "interpretation": "Because A/B density stays near 30 percent while volume grows, scaling improved absolute qualified volume but not quality density.",
+      "limitation_or_uncertainty": "No CRM revenue validation is available."
+    },
+    {
+      "knowledge_id": "K-002",
+      "evidence_refs": [
+        "ticket_status",
+        "travel_window"
+      ],
+      "finding_refs": [
+        "F-002"
+      ],
+      "claim": "Intent signals separate high-quality and low-quality leads.",
+      "interpretation": "The evidence explains that explicit trip readiness, especially tickets and near travel windows, is materially more associated with A/B and Tier A quality.",
+      "limitation_or_uncertainty": "This is association, not causal proof."
+    },
+    {
+      "knowledge_id": "K-003",
+      "evidence_refs": [
+        "spend_by_signal",
+        "commercial_matched"
+      ],
+      "finding_refs": [
+        "F-003"
+      ],
+      "claim": "COMMERCIAL matched supports direct cost-quality reading.",
+      "interpretation": "COMMERCIAL can be interpreted economically because the matched universe links spend and leads; ATTENTION and ACTIVATION are not equivalent decision layers.",
+      "limitation_or_uncertainty": "Cross-layer KPI ranking is not allowed by the FARO profile."
+    },
+    {
+      "knowledge_id": "K-004",
+      "evidence_refs": [
+        "top_ads",
+        "campaigns"
+      ],
+      "finding_refs": [
+        "F-004"
+      ],
+      "claim": "Ad-level qualified volume is concentrated.",
+      "interpretation": "The concentration implies a practical testing focus, but it does not prove that creative content caused quality outcomes.",
+      "limitation_or_uncertainty": "Creative causality remains UNKNOWN."
+    }
+  ],
+  "analytical_narrative": {
+    "text": "Lead quality is primarily separated by observable intent, while economics must remain inside the governed COMMERCIAL matched universe.",
+    "phenomenon": "Volume scaled in June while A/B density stayed stable.",
+    "trade_off": "Scaling volume without stronger intent filters increases C/D burden.",
+    "dominant_risk": "Using a universal KPI across FARO layers would misread strategic roles.",
+    "strategic_implication": "Protect commercial acquisition and test intent filters before declaring optimization winners.",
+    "knowledge_refs": [
+      "K-001",
+      "K-002",
+      "K-003",
+      "K-004"
+    ]
+  },
+  "integrated_view": {
+    "status": "canonicalized_from_knowledge",
+    "signals": [
+      {
+        "finding_id": "F-001",
+        "observation": "The period has 1329 leads, 397 A/B leads and 58 Tier A leads.",
+        "support": [
+          "lead_tier_total",
+          "monthly_tier"
+        ],
+        "uncertainty": "Tier quality is observed, not downstream revenue.",
+        "related_findings": [
+          "F-002",
+          "F-003"
+        ]
+      },
+      {
+        "finding_id": "F-002",
+        "observation": "Ticket and travel-window intent explain the strongest quality separation.",
+        "support": [
+          "ticket_status",
+          "travel_window"
+        ],
+        "uncertainty": "Association is not causal without a controlled test.",
+        "related_findings": [
+          "F-001",
+          "F-004"
+        ]
+      },
+      {
+        "finding_id": "F-003",
+        "observation": "COMMERCIAL matched is the only direct cost-quality universe: 873.650006 EUR, 1187 leads and 344 A/B.",
+        "support": [
+          "spend_by_signal",
+          "commercial_matched",
+          "activation_observed"
+        ],
+        "uncertainty": "ATTENTION and ACTIVATION are non-equivalent FARO layers.",
+        "related_findings": [
+          "F-001",
+          "F-005"
+        ]
+      },
+      {
+        "finding_id": "F-004",
+        "observation": "The two largest commercial ads concentrate 1002 leads and 288 A/B leads.",
+        "support": [
+          "top_ads",
+          "campaigns"
+        ],
+        "uncertainty": "Ad labels do not prove creative causality.",
+        "related_findings": [
+          "F-002",
+          "F-003"
+        ]
+      },
+      {
+        "finding_id": "F-005",
+        "observation": "June scales to 776 leads and 229 A/B; A/B rate remains near April and May.",
+        "support": [
+          "monthly_tier"
+        ],
+        "uncertainty": "Weekly edges are partial weeks and not a causal trend basis.",
+        "related_findings": [
+          "F-001",
+          "F-003"
+        ]
+      }
+    ],
+    "analytical_narrative_ref": null,
+    "quality_explanation": "Lead quality is primarily separated by observable intent, while economics must remain inside the governed COMMERCIAL matched universe.",
+    "coverage_states": {
+      "AQ-001": "complete",
+      "AQ-002": "complete",
+      "AQ-003": "partial",
+      "AQ-004": "complete",
+      "AQ-005": "partial",
+      "AQ-006": "complete",
+      "AQ-007": "complete",
+      "AQ-008": "complete",
+      "AQ-009": "partial",
+      "AQ-010": "complete",
+      "AQ-011": "complete",
+      "CQ-001": "complete",
+      "CQ-002": "complete",
+      "CQ-003": "not_available",
+      "CQ-004": "complete",
+      "CQ-005": "partial",
+      "CQ-006": "not_available",
+      "CQ-007": "not_available",
+      "NAQ-001": "not_applicable",
+      "NAQ-002": "not_applicable",
+      "NAQ-003": "not_applicable",
+      "NAQ-004": "not_applicable",
+      "NAQ-005": "not_applicable"
+    },
+    "canonical_metric_keys": [
+      "activation_observed",
+      "campaigns",
+      "commercial_matched",
+      "lead_coverage",
+      "lead_tier_total",
+      "monthly_tier",
+      "platform",
+      "spend_by_signal",
+      "ticket_status",
+      "top_ads",
+      "travel_window"
+    ]
+  },
+  "decision_patterns": [
+    {
+      "pattern_id": "analytical_narrative",
+      "basis": "Lead quality is primarily separated by observable intent, while economics must remain inside the governed COMMERCIAL matched universe.",
+      "priority": "contextual",
+      "knowledge_refs": [
+        "K-001",
+        "K-002",
+        "K-003",
+        "K-004"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "recommendation_id": "R-001",
+      "category": "measurable_experiment",
+      "knowledge_refs": [
+        "K-002",
+        "K-003"
+      ],
+      "hypothesis": "A stricter ticket/travel-window intent emphasis will raise A/B density without collapsing commercial volume.",
+      "action": "Run a controlled commercial test that prioritizes ticket and near-window intent prompts.",
+      "population": "Meta Lead Ads commercial matched traffic.",
+      "primary_metric": "A/B lead rate and Tier A count in COMMERCIAL matched.",
+      "guardrail": "Do not reduce total qualified A/B volume below the current monthly baseline.",
+      "expected_direction": "Higher A/B density and stable qualified volume.",
+      "success_criterion": "A/B rate improves with no loss in Tier A count.",
+      "validation_window": "One complete comparable campaign period.",
+      "evidence_dependency": "Future BigQuery MCP evidence at the same grain.",
+      "uncertainty": "Association is observed; causal lift must be tested.",
+      "stop_or_review_condition": "Stop if C/D share rises or commercial volume collapses."
+    },
+    {
+      "recommendation_id": "R-002",
+      "category": "verifiable_action",
+      "knowledge_refs": [
+        "K-003"
+      ],
+      "action": "Keep ATTENTION, ACTIVATION and COMMERCIAL in separate reporting blocks.",
+      "supporting_evidence": "Spend_by_signal and commercial_matched evidence show non-equivalent FARO universes.",
+      "verifiable_result": "Reports contain no universal KPI ranking across FARO layers.",
+      "closure_criterion": "SPEC-017 and Presentation checks preserve layer separation.",
+      "risk": "Cross-layer ranking may overstate economic efficiency.",
+      "dependency": "FARO strategic context profile remains active."
+    },
+    {
+      "recommendation_id": "R-003",
+      "category": "non_actionable_hypothesis",
+      "knowledge_refs": [
+        "K-004"
+      ],
+      "hypothesis": "Some ad_id_norm clusters may carry reusable intent framing.",
+      "support": "Top ads concentrate qualified volume.",
+      "uncertainty": "No creative-causality evidence is available.",
+      "missing_evidence": "Controlled creative test or creative metadata.",
+      "promotion_condition": "Promote only after a future controlled experiment."
+    }
+  ],
+  "limitations": [
+    "No revenue or CRM final outcome source.",
+    "No creative causality source.",
+    "FARO layers are strategically non-equivalent."
+  ],
+  "unknowns": [
+    "Revenue quality",
+    "Creative causality",
+    "Assisted impact of ATTENTION"
+  ],
+  "future_evidence_gaps": {
+    "revenue_or_crm": "declared_dependency_on_future_evidence",
+    "creative_causality": "declared_dependency_on_future_evidence",
+    "provider_limited_temporality": "declared_dependency_on_future_evidence"
+  },
+  "comparison_classifications": [],
+  "exclusions": [
+    "No universal KPI ranking across FARO layers.",
+    "No creative winner claim."
+  ],
+  "traceability": {
+    "common_core_fingerprint": "9e3f551f7c70ae7af1ce06d479af5d561797d2809433fe383341cefa1064ea1d",
+    "artifact_fingerprints": {},
+    "coverage_matrix_states_source": "coverage_matrix",
+    "presentation_must_not_consult_prompts_for_content": true,
+    "strategic_context_source": "knowledge/client/ccd.md",
+    "strategic_context_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ]
+  },
+  "strategic_context_constraints": {
+    "profile_id": "AUC-001-FARO-STRATEGIC-CONTEXT-PROFILE",
+    "profile_version": "1.0.0",
+    "use_case_id": "AUC-001",
+    "scope": "campaign_signal_interpretation",
+    "constraint_family": "CCD_FARO_CAMPAIGN_SIGNAL_INTERPRETATION",
+    "source_artifact": "knowledge/client/ccd.md",
+    "source_refs": [
+      "knowledge/client/ccd.md#campaign_signal",
+      "knowledge/client/ccd.md#principios-interpretacion-faro",
+      "knowledge/client/ccd.md#lectura-multicapa"
+    ],
+    "stable_identifiers": {
+      "attention_layer": "AUC-001-FARO-LAYER-ATTENTION",
+      "activation_layer": "AUC-001-FARO-LAYER-ACTIVATION",
+      "commercial_layer": "AUC-001-FARO-LAYER-COMMERCIAL",
+      "universal_kpi_rule": "AUC-001-FARO-GLOBAL-NO-UNIVERSAL-KPI",
+      "ccd_traceability_rule": "AUC-001-FARO-GLOBAL-CCD-TRACEABILITY"
+    },
+    "interpretation_dimension": "campaign_signal",
+    "required_traceability_field": "ccd_constraint_ref",
+    "layers": {
+      "ATTENTION": {
+        "rule_id": "AUC-001-FARO-LAYER-ATTENTION",
+        "required_interpretation": "attention_or_useful_interest",
+        "allowed_kpi_families": [
+          "attention",
+          "useful_attention",
+          "spend_share"
+        ],
+        "forbidden_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ],
+        "forbidden_primary_kpi_families": [
+          "direct_leads",
+          "cpl",
+          "qualified_cpl",
+          "direct_commercial_efficiency"
+        ]
+      },
+      "ACTIVATION": {
+        "rule_id": "AUC-001-FARO-LAYER-ACTIVATION",
+        "required_interpretation": "retargeting_or_prior_interest_activation",
+        "allowed_interpretation_scopes": [
+          "retargeting",
+          "prior_interest_activation",
+          "retargeting_or_prior_interest_activation"
+        ],
+        "required_cost_separation": [
+          "direct_cost",
+          "complete_or_assisted_cost"
+        ],
+        "forbidden_interpretations": [
+          "mixed_with_cold_traffic",
+          "universal_cpl_efficiency"
+        ]
+      },
+      "COMMERCIAL": {
+        "rule_id": "AUC-001-FARO-LAYER-COMMERCIAL",
+        "required_interpretation": "direct_acquisition",
+        "allowed_cost_quality_universe": "commercial_matched",
+        "forbidden_primary_kpi_families": [
+          "video_consumption",
+          "attention_only"
+        ]
+      }
+    },
+    "metric_families": {
+      "cost_metric_families": [
+        "cost",
+        "cost_quality",
+        "cost_efficiency",
+        "cpl",
+        "qualified_cpl",
+        "cost_per",
+        "cost_per_ab"
+      ],
+      "universal_kpi_ranking_claim_types": [
+        "universal_kpi_ranking"
+      ],
+      "universal_kpi_ranking_comparison_scopes": [
+        "cross_layer_universal_kpi"
+      ]
+    },
+    "global_rules": {
+      "forbidden_comparison": "universal_kpi_ranking_across_layers",
+      "required_traceability": "ccd_constraint_ref"
+    }
+  },
+  "semantic_fingerprint": "2dac3ce8b3418109ce7bcca3b561e84a07d1a06109296196578feab3b37a9b2f"
+}

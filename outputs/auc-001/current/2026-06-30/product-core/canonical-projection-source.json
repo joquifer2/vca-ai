@@ -1,0 +1,12 @@
+{
+  "execution_id": "auc001-current-2026-06-30",
+  "source_artifacts": [
+    "evidence/evidence-set.json",
+    "knowledge/knowledge-set.json",
+    "recommendations/recommendation-set.json",
+    "product-core/common-product-core.json"
+  ],
+  "projection_policy": "analytical textual report for business/marketing review",
+  "semantic_equivalence": "Presentation must not add evidence, knowledge, recommendations or priority changes.",
+  "approved_message": "High volume is present, quality is concentrated in A/B and especially Tier A, and the strongest optimization path is to increase exposure to high-intent signals while preserving scale."
+}

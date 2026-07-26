@@ -1,0 +1,338 @@
+{
+  "artifact_id": "AUC-001-EVIDENCE-ACQUISITION-20260726-CANONICAL",
+  "specification": "SPEC-016",
+  "provider": "BigQuery MCP",
+  "status": "PASS",
+  "mcp_call_records": [
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-lead-coverage",
+      "trace_reference": "trc-c8b6fd9df52e4699abe847bc91a327fd",
+      "bytes_processed": 47057,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-lead-tier-total",
+      "trace_reference": "trc-32abf3bd2ba647919cadf8cc69e4b5cd",
+      "bytes_processed": 65625,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-lead-monthly-tier",
+      "trace_reference": "trc-0e3e68300d5d4a2793e50eac6c81f87e",
+      "bytes_processed": 65625,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-lead-platform",
+      "trace_reference": "trc-44ecb9a49df84ed5844c7adc08be85c4",
+      "bytes_processed": 72377,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-ticket-status",
+      "trace_reference": "trc-0ad211c097734c8495d7b381cd02f9b0",
+      "bytes_processed": 88943,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-spend-signal-total",
+      "trace_reference": "trc-44dba30999ca46bda08cea922810275e",
+      "bytes_processed": 286035,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-lead-campaign",
+      "trace_reference": "trc-29c862ce72554223b709e9e8f1e06efe",
+      "bytes_processed": 158908,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_lead_enriched"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-lead-ad-all-normalized",
+      "trace_reference": "trc-a440189664324100ac4c1b898e12ce4d",
+      "bytes_processed": 317064,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "marts",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "marts",
+      "tables": [
+        "marts.fct_spend"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-spend-ad-all-normalized",
+      "trace_reference": "trc-ae24a706f9664c67ab77d6a91755bb9e",
+      "bytes_processed": 1043559,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    },
+    {
+      "call_type": "query_read_only",
+      "execution_context": {
+        "project_id": "datamart-vca-494114",
+        "dataset_id": "intermediate",
+        "max_bytes_billed": 1073741824
+      },
+      "dataset": "intermediate",
+      "tables": [
+        "intermediate.int_faro_lead_scoring"
+      ],
+      "period": {
+        "start_date": "2026-04-18",
+        "end_date": "2026-06-30",
+        "cutoff_date": "2026-06-30"
+      },
+      "filters": {
+        "date": "2026-04-18..2026-06-30"
+      },
+      "granularity": "aggregate",
+      "dry_run_and_cost_control": {
+        "max_bytes_billed": 1073741824,
+        "validation_feedback": "approved"
+      },
+      "result": {
+        "status": "success"
+      },
+      "request_id": "auc001-20260726-evidence-scoring-cuando-viaja",
+      "trace_reference": "trc-05343006b1c24bfea536de421a5e4ecb",
+      "bytes_processed": 96563,
+      "used_as_evidence": true,
+      "sql": "Single allowlisted table query executed through BigQuery MCP; results summarized in evidence-set.json."
+    }
+  ]
+}

@@ -1,0 +1,434 @@
+{
+  "artifact_id": "AUC-001-EVIDENCE-SET-20260726-CANONICAL",
+  "schema_family": "auc_001_evidence_set",
+  "status": "stabilized",
+  "period": {
+    "start_date": "2026-04-18",
+    "end_date": "2026-06-30",
+    "cutoff_date": "2026-06-30"
+  },
+  "sources": [
+    "BigQuery MCP: marts.fct_lead_enriched",
+    "BigQuery MCP: intermediate.int_faro_lead_scoring",
+    "BigQuery MCP: marts.fct_spend",
+    "BigQuery MCP: marts.dim_campaign_signal"
+  ],
+  "facts": {
+    "lead_coverage": {
+      "min_day": "2026-04-18",
+      "max_day": "2026-06-30",
+      "lead_count": 1329
+    },
+    "lead_tier_total": {
+      "A": {
+        "lead_count": 58,
+        "avg_lead_score": 86.9828
+      },
+      "B": {
+        "lead_count": 339,
+        "avg_lead_score": 67.9912
+      },
+      "C": {
+        "lead_count": 554,
+        "avg_lead_score": 48.8285
+      },
+      "D": {
+        "lead_count": 378,
+        "avg_lead_score": 29.2143
+      }
+    },
+    "monthly_tier": [
+      {
+        "month": "2026-04",
+        "leads": 184,
+        "ab": 57,
+        "a": 8
+      },
+      {
+        "month": "2026-05",
+        "leads": 369,
+        "ab": 111,
+        "a": 19
+      },
+      {
+        "month": "2026-06",
+        "leads": 776,
+        "ab": 229,
+        "a": 31
+      }
+    ],
+    "platform": [
+      {
+        "platform": "fb",
+        "leads": 894,
+        "ab": 278,
+        "a": 39,
+        "avg_score": 50.198
+      },
+      {
+        "platform": "ig",
+        "leads": 435,
+        "ab": 119,
+        "a": 19,
+        "avg_score": 48.991
+      }
+    ],
+    "ticket_status": [
+      {
+        "bucket": "solo_mirando",
+        "leads": 838,
+        "ab": 48,
+        "a": 0,
+        "avg_score": 40.5334
+      },
+      {
+        "bucket": "en_proceso",
+        "leads": 314,
+        "ab": 192,
+        "a": 11,
+        "avg_score": 61.0064
+      },
+      {
+        "bucket": "tiene_billetes",
+        "leads": 177,
+        "ab": 157,
+        "a": 47,
+        "avg_score": 73.8136
+      }
+    ],
+    "travel_window": [
+      {
+        "bucket": "aun_no_claro",
+        "leads": 463,
+        "ab": 26,
+        "a": 0
+      },
+      {
+        "bucket": "entre_3_y_6_meses",
+        "leads": 342,
+        "ab": 100,
+        "a": 5
+      },
+      {
+        "bucket": "entre_1_y_3_meses",
+        "leads": 142,
+        "ab": 94,
+        "a": 12
+      },
+      {
+        "bucket": "menos_de_1_mes",
+        "leads": 80,
+        "ab": 74,
+        "a": 26
+      }
+    ],
+    "campaigns": [
+      {
+        "campaign": "[META]_[CLP]_[CAPTACION]_[ABO]",
+        "leads": 1187,
+        "ab": 344,
+        "a": 48,
+        "avg_score": 49.3715
+      },
+      {
+        "campaign": "[META]_[CLP]_[RTG]_[CBO]",
+        "leads": 142,
+        "ab": 53,
+        "a": 10,
+        "avg_score": 53.4085
+      }
+    ],
+    "spend_by_signal": {
+      "COMMERCIAL": 875.850006,
+      "ATTENTION": 308.54,
+      "ACTIVATION": 221.86,
+      "TOTAL": 1406.250006
+    },
+    "commercial_matched": {
+      "spend": 873.650006,
+      "leads": 1187,
+      "ab": 344,
+      "a": 48,
+      "cpl": 0.736,
+      "cost_per_ab": 2.5397,
+      "cost_per_a": 18.201
+    },
+    "activation_observed": {
+      "spend": 221.18,
+      "leads": 142,
+      "ab": 53,
+      "a": 10,
+      "cost_per_ab": 4.1732
+    },
+    "top_ads": [
+      {
+        "ad_id_norm": "120245828603090721",
+        "leads": 643,
+        "ab": 187,
+        "a": 23
+      },
+      {
+        "ad_id_norm": "120245829545180721",
+        "leads": 359,
+        "ab": 101,
+        "a": 17
+      },
+      {
+        "ad_id_norm": "120247352473020721",
+        "leads": 118,
+        "ab": 42,
+        "a": 9
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "evidence_id": "lead_coverage",
+      "facts": {
+        "min_day": "2026-04-18",
+        "max_day": "2026-06-30",
+        "lead_count": 1329
+      },
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "lead_tier_total",
+      "facts": {
+        "A": {
+          "lead_count": 58,
+          "avg_lead_score": 86.9828
+        },
+        "B": {
+          "lead_count": 339,
+          "avg_lead_score": 67.9912
+        },
+        "C": {
+          "lead_count": 554,
+          "avg_lead_score": 48.8285
+        },
+        "D": {
+          "lead_count": 378,
+          "avg_lead_score": 29.2143
+        }
+      },
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "monthly_tier",
+      "facts": [
+        {
+          "month": "2026-04",
+          "leads": 184,
+          "ab": 57,
+          "a": 8
+        },
+        {
+          "month": "2026-05",
+          "leads": 369,
+          "ab": 111,
+          "a": 19
+        },
+        {
+          "month": "2026-06",
+          "leads": 776,
+          "ab": 229,
+          "a": 31
+        }
+      ],
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "platform",
+      "facts": [
+        {
+          "platform": "fb",
+          "leads": 894,
+          "ab": 278,
+          "a": 39,
+          "avg_score": 50.198
+        },
+        {
+          "platform": "ig",
+          "leads": 435,
+          "ab": 119,
+          "a": 19,
+          "avg_score": 48.991
+        }
+      ],
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "ticket_status",
+      "facts": [
+        {
+          "bucket": "solo_mirando",
+          "leads": 838,
+          "ab": 48,
+          "a": 0,
+          "avg_score": 40.5334
+        },
+        {
+          "bucket": "en_proceso",
+          "leads": 314,
+          "ab": 192,
+          "a": 11,
+          "avg_score": 61.0064
+        },
+        {
+          "bucket": "tiene_billetes",
+          "leads": 177,
+          "ab": 157,
+          "a": 47,
+          "avg_score": 73.8136
+        }
+      ],
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "travel_window",
+      "facts": [
+        {
+          "bucket": "aun_no_claro",
+          "leads": 463,
+          "ab": 26,
+          "a": 0
+        },
+        {
+          "bucket": "entre_3_y_6_meses",
+          "leads": 342,
+          "ab": 100,
+          "a": 5
+        },
+        {
+          "bucket": "entre_1_y_3_meses",
+          "leads": 142,
+          "ab": 94,
+          "a": 12
+        },
+        {
+          "bucket": "menos_de_1_mes",
+          "leads": 80,
+          "ab": 74,
+          "a": 26
+        }
+      ],
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "campaigns",
+      "facts": [
+        {
+          "campaign": "[META]_[CLP]_[CAPTACION]_[ABO]",
+          "leads": 1187,
+          "ab": 344,
+          "a": 48,
+          "avg_score": 49.3715
+        },
+        {
+          "campaign": "[META]_[CLP]_[RTG]_[CBO]",
+          "leads": 142,
+          "ab": 53,
+          "a": 10,
+          "avg_score": 53.4085
+        }
+      ],
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "spend_by_signal",
+      "facts": {
+        "COMMERCIAL": 875.850006,
+        "ATTENTION": 308.54,
+        "ACTIVATION": 221.86,
+        "TOTAL": 1406.250006
+      },
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "commercial_matched",
+      "facts": {
+        "spend": 873.650006,
+        "leads": 1187,
+        "ab": 344,
+        "a": 48,
+        "cpl": 0.736,
+        "cost_per_ab": 2.5397,
+        "cost_per_a": 18.201
+      },
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "activation_observed",
+      "facts": {
+        "spend": 221.18,
+        "leads": 142,
+        "ab": 53,
+        "a": 10,
+        "cost_per_ab": 4.1732
+      },
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    },
+    {
+      "evidence_id": "top_ads",
+      "facts": [
+        {
+          "ad_id_norm": "120245828603090721",
+          "leads": 643,
+          "ab": 187,
+          "a": 23
+        },
+        {
+          "ad_id_norm": "120245829545180721",
+          "leads": 359,
+          "ab": 101,
+          "a": 17
+        },
+        {
+          "ad_id_norm": "120247352473020721",
+          "leads": 118,
+          "ab": 42,
+          "a": 9
+        }
+      ],
+      "coverage_state": "complete",
+      "traceability": {
+        "mcp": "BigQuery MCP"
+      }
+    }
+  ],
+  "source_policy": {
+    "bigquery_mcp_only": true,
+    "cli_used": false,
+    "fallback_used": false
+  }
+}

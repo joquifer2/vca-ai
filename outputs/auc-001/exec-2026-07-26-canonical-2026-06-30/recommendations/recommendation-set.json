@@ -1,0 +1,55 @@
+{
+  "artifact_id": "AUC-001-RECOMMENDATION-SET-20260726-CANONICAL",
+  "status": "stabilized",
+  "derived_from": "AUC-001-KNOWLEDGE-SET-20260726-CANONICAL",
+  "recommendations": [
+    {
+      "recommendation_id": "R-001",
+      "category": "measurable_experiment",
+      "knowledge_refs": [
+        "K-002",
+        "K-003"
+      ],
+      "hypothesis": "A stricter ticket/travel-window intent emphasis will raise A/B density without collapsing commercial volume.",
+      "action": "Run a controlled commercial test that prioritizes ticket and near-window intent prompts.",
+      "population": "Meta Lead Ads commercial matched traffic.",
+      "primary_metric": "A/B lead rate and Tier A count in COMMERCIAL matched.",
+      "guardrail": "Do not reduce total qualified A/B volume below the current monthly baseline.",
+      "expected_direction": "Higher A/B density and stable qualified volume.",
+      "success_criterion": "A/B rate improves with no loss in Tier A count.",
+      "validation_window": "One complete comparable campaign period.",
+      "evidence_dependency": "Future BigQuery MCP evidence at the same grain.",
+      "uncertainty": "Association is observed; causal lift must be tested.",
+      "stop_or_review_condition": "Stop if C/D share rises or commercial volume collapses."
+    },
+    {
+      "recommendation_id": "R-002",
+      "category": "verifiable_action",
+      "knowledge_refs": [
+        "K-003"
+      ],
+      "action": "Keep ATTENTION, ACTIVATION and COMMERCIAL in separate reporting blocks.",
+      "supporting_evidence": "Spend_by_signal and commercial_matched evidence show non-equivalent FARO universes.",
+      "verifiable_result": "Reports contain no universal KPI ranking across FARO layers.",
+      "closure_criterion": "SPEC-017 and Presentation checks preserve layer separation.",
+      "risk": "Cross-layer ranking may overstate economic efficiency.",
+      "dependency": "FARO strategic context profile remains active."
+    },
+    {
+      "recommendation_id": "R-003",
+      "category": "non_actionable_hypothesis",
+      "knowledge_refs": [
+        "K-004"
+      ],
+      "hypothesis": "Some ad_id_norm clusters may carry reusable intent framing.",
+      "support": "Top ads concentrate qualified volume.",
+      "uncertainty": "No creative-causality evidence is available.",
+      "missing_evidence": "Controlled creative test or creative metadata.",
+      "promotion_condition": "Promote only after a future controlled experiment."
+    }
+  ],
+  "excluded_actions": [
+    "No universal KPI ranking across FARO layers.",
+    "No creative winner claim."
+  ]
+}

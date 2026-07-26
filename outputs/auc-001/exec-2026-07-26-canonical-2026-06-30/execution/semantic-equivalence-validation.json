@@ -1,0 +1,15 @@
+{
+  "artifact_id": "AUC-001-SEMANTIC-EQUIVALENCE-20260726-CANONICAL",
+  "decision": "PASS",
+  "validated_artifacts": [
+    "product-core/common-product-core.json",
+    "product-core/canonical-projection-source.json",
+    "knowledge/analytical-investigation-record.json"
+  ],
+  "projection_pairs": [
+    {
+      "source": "9e3f551f7c70ae7af1ce06d479af5d561797d2809433fe383341cefa1064ea1d",
+      "projection": "2dac3ce8b3418109ce7bcca3b561e84a07d1a06109296196578feab3b37a9b2f"
+    }
+  ]
+}

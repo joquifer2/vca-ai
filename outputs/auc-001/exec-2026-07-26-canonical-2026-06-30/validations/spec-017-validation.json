@@ -1,0 +1,80 @@
+{
+  "artifact_id": "AUC-001-SPEC-017-VALIDATION-20260726-CANONICAL",
+  "specification": "SPEC-017",
+  "decision": "PASS",
+  "checks": {
+    "FR-001": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-002": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-003": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-004": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-005": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-006": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-007": {
+      "status": "complete",
+      "evidence_refs": [
+        "lead_tier_total"
+      ],
+      "finding_refs": [
+        "F-001"
+      ]
+    },
+    "FR-008": {
+      "status": "complete",
+      "evidence_refs": [
+        "commercial_matched"
+      ],
+      "finding_refs": [
+        "F-003"
+      ]
+    }
+  },
+  "conditions": []
+}

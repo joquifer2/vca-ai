@@ -1,0 +1,8 @@
+{
+  "artifact_id": "AUC-001-SPEC-015-VALIDATION-20260726-CANONICAL",
+  "specification": "SPEC-015",
+  "decision": "PASS",
+  "common_core_fingerprint": "9e3f551f7c70ae7af1ce06d479af5d561797d2809433fe383341cefa1064ea1d",
+  "canonical_projection_source_fingerprint": "2dac3ce8b3418109ce7bcca3b561e84a07d1a06109296196578feab3b37a9b2f",
+  "conditions": []
+}

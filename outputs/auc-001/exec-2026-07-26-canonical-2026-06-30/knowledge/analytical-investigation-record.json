@@ -1,0 +1,134 @@
+{
+  "artifact_id": "AUC-001-AIR-20260726-CANONICAL",
+  "schema_family": "auc_001_analytical_investigation_record",
+  "status": "stabilized",
+  "derived_from": "AUC-001-EVIDENCE-SET-20260726-CANONICAL",
+  "evidence_set_ref": "evidence/evidence-set.json",
+  "analytical_questions": [
+    "AQ-001",
+    "AQ-002",
+    "AQ-003",
+    "AQ-004",
+    "AQ-005",
+    "AQ-006",
+    "AQ-007",
+    "AQ-008",
+    "AQ-009",
+    "AQ-010",
+    "AQ-011",
+    "CQ-001",
+    "CQ-002",
+    "CQ-003",
+    "CQ-004",
+    "CQ-005",
+    "CQ-006",
+    "CQ-007",
+    "NAQ-001",
+    "NAQ-002",
+    "NAQ-003",
+    "NAQ-004",
+    "NAQ-005"
+  ],
+  "alternative_hypotheses": [
+    "Volume alone explains quality.",
+    "Intent signals explain quality separation.",
+    "Cross-layer cost ranking identifies the best FARO layer."
+  ],
+  "contrasts_performed": [
+    "Tier distribution by month.",
+    "Intent buckets against A/B and Tier A.",
+    "COMMERCIAL matched economics separated from ATTENTION and ACTIVATION.",
+    "Ad_id_norm concentration without creative causality."
+  ],
+  "discarded_hypotheses": [
+    "Cross-layer universal KPI ranking is discarded by CCD/FARO governance.",
+    "Creative winner causality is discarded because no causal creative evidence was authorized."
+  ],
+  "robustness_and_limits": [
+    "Evidence covers 2026-04-18 through 2026-06-30.",
+    "Revenue and CRM outcomes remain UNKNOWN.",
+    "Cost-quality claims are limited to COMMERCIAL matched."
+  ],
+  "intermediate_findings": [
+    {
+      "finding_id": "F-001",
+      "analytical_question_id": "AQ-002",
+      "observation": "The period has 1329 leads, 397 A/B leads and 58 Tier A leads.",
+      "importance": "Quality density is material because 70.1 percent remains C/D.",
+      "uncertainty": "Tier quality is observed, not downstream revenue.",
+      "related_findings": [
+        "F-002",
+        "F-003"
+      ],
+      "evidence_refs": [
+        "lead_tier_total",
+        "monthly_tier"
+      ],
+      "comparison": "Compared total tier mix across A, B, C and D."
+    },
+    {
+      "finding_id": "F-002",
+      "analytical_question_id": "AQ-006",
+      "observation": "Ticket and travel-window intent explain the strongest quality separation.",
+      "importance": "Tiene billetes reaches 157 A/B from 177 leads; menos de 1 mes reaches 74 A/B from 80 leads.",
+      "uncertainty": "Association is not causal without a controlled test.",
+      "related_findings": [
+        "F-001",
+        "F-004"
+      ],
+      "evidence_refs": [
+        "ticket_status",
+        "travel_window"
+      ],
+      "comparison": "Compared intent buckets against solo_mirando and aun_no_claro."
+    },
+    {
+      "finding_id": "F-003",
+      "analytical_question_id": "AQ-003",
+      "observation": "COMMERCIAL matched is the only direct cost-quality universe: 873.650006 EUR, 1187 leads and 344 A/B.",
+      "importance": "Cost per A/B is 2.5397 EUR in the commercial matched universe.",
+      "uncertainty": "ATTENTION and ACTIVATION are non-equivalent FARO layers.",
+      "related_findings": [
+        "F-001",
+        "F-005"
+      ],
+      "evidence_refs": [
+        "spend_by_signal",
+        "commercial_matched",
+        "activation_observed"
+      ],
+      "comparison": "Compared cost-quality only within governed signal layers."
+    },
+    {
+      "finding_id": "F-004",
+      "analytical_question_id": "AQ-005",
+      "observation": "The two largest commercial ads concentrate 1002 leads and 288 A/B leads.",
+      "importance": "Lead volume and qualified volume are concentrated in a small set of ads.",
+      "uncertainty": "Ad labels do not prove creative causality.",
+      "related_findings": [
+        "F-002",
+        "F-003"
+      ],
+      "evidence_refs": [
+        "top_ads",
+        "campaigns"
+      ],
+      "comparison": "Compared top ad_id_norm buckets by leads and A/B leads."
+    },
+    {
+      "finding_id": "F-005",
+      "analytical_question_id": "AQ-009",
+      "observation": "June scales to 776 leads and 229 A/B; A/B rate remains near April and May.",
+      "importance": "Volume increased without a proportional quality-density improvement.",
+      "uncertainty": "Weekly edges are partial weeks and not a causal trend basis.",
+      "related_findings": [
+        "F-001",
+        "F-003"
+      ],
+      "evidence_refs": [
+        "monthly_tier"
+      ],
+      "comparison": "Compared April, May and June monthly buckets."
+    }
+  ]
+}

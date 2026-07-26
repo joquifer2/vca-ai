@@ -1,0 +1,22 @@
+{
+  "execution_id": "auc001-current-2026-06-30",
+  "period": "2026-04-18 to 2026-06-30",
+  "core_metrics": {
+    "leads": 1329,
+    "ab_leads": 397,
+    "ab_rate": 0.2987,
+    "tier_a_leads": 58,
+    "tier_a_rate": 0.0436,
+    "commercial_matched_spend": 873.650006,
+    "cpl_commercial_matched": 0.736,
+    "cost_per_ab_commercial_matched": 2.5397,
+    "cost_per_tier_a_commercial_matched": 18.201
+  },
+  "main_claim": "VCA is buying scalable lead volume, but the high-quality layer remains narrow and is best explained by declared intent signals rather than volume alone.",
+  "material_limitations": [
+    "CRM/revenue not available.",
+    "Creative causality UNKNOWN.",
+    "Weekly temporal interpretation partial.",
+    "FARO campaign-signal constraints apply."
+  ]
+}

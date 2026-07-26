@@ -1,0 +1,335 @@
+{
+  "artifact_id": "AUC-001-SPEC-014-VALIDATION-20260726-CANONICAL",
+  "specification": "SPEC-014",
+  "decision": "PASS WITH DECLARED LIMITATIONS",
+  "material_depth_validation": {
+    "AQ-001": {
+      "question_id": "AQ-001",
+      "coverage_state": "complete",
+      "evidence": [
+        "lead_coverage",
+        "monthly_tier"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "lead_coverage",
+          "monthly_tier"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-002": {
+      "question_id": "AQ-002",
+      "coverage_state": "complete",
+      "evidence": [
+        "lead_tier_total"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "lead_tier_total"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-003": {
+      "question_id": "AQ-003",
+      "coverage_state": "partial",
+      "evidence": [
+        "commercial_matched",
+        "spend_by_signal"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "commercial_matched",
+          "spend_by_signal"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-004": {
+      "question_id": "AQ-004",
+      "coverage_state": "complete",
+      "evidence": [
+        "campaigns"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "campaigns"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-005": {
+      "question_id": "AQ-005",
+      "coverage_state": "partial",
+      "evidence": [
+        "top_ads"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "top_ads"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-006": {
+      "question_id": "AQ-006",
+      "coverage_state": "complete",
+      "evidence": [
+        "ticket_status",
+        "travel_window"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "ticket_status",
+          "travel_window"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-007": {
+      "question_id": "AQ-007",
+      "coverage_state": "complete",
+      "evidence": [
+        "lead_tier_total",
+        "commercial_matched"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "lead_tier_total",
+          "commercial_matched"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-008": {
+      "question_id": "AQ-008",
+      "coverage_state": "complete",
+      "evidence": [
+        "platform"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "platform"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-009": {
+      "question_id": "AQ-009",
+      "coverage_state": "partial",
+      "evidence": [
+        "monthly_tier"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "monthly_tier"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-010": {
+      "question_id": "AQ-010",
+      "coverage_state": "complete",
+      "evidence": [
+        "spend_by_signal"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "spend_by_signal"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "AQ-011": {
+      "question_id": "AQ-011",
+      "coverage_state": "complete",
+      "evidence": [
+        "campaigns",
+        "top_ads"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "campaigns",
+          "top_ads"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "CQ-001": {
+      "question_id": "CQ-001",
+      "coverage_state": "complete",
+      "evidence": [
+        "lead_coverage"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "lead_coverage"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "CQ-002": {
+      "question_id": "CQ-002",
+      "coverage_state": "complete",
+      "evidence": [
+        "ticket_status"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "ticket_status"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "CQ-003": {
+      "question_id": "CQ-003",
+      "coverage_state": "not_available",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "CQ-004": {
+      "question_id": "CQ-004",
+      "coverage_state": "complete",
+      "evidence": [
+        "commercial_matched"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "commercial_matched"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "CQ-005": {
+      "question_id": "CQ-005",
+      "coverage_state": "partial",
+      "evidence": [
+        "activation_observed"
+      ],
+      "comparison": "Compared against the relevant period, tier, signal, platform, campaign, adset, or ad universe.",
+      "interpretation": "The evidence explains the observed lead quality pattern while preserving uncertainty and non-equivalent FARO layers.",
+      "business_implication": "Use the result to prioritize controlled commercial learning, not unconstrained spend shifts.",
+      "limitation_or_uncertainty": "No CRM revenue source and no creative causality source were authorized for this execution.",
+      "conclusion_or_hypothesis": "Quality improves when intent signals are explicit; further action remains testable.",
+      "traceability": {
+        "evidence_refs": [
+          "activation_observed"
+        ],
+        "air": "knowledge/analytical-investigation-record.json"
+      }
+    },
+    "CQ-006": {
+      "question_id": "CQ-006",
+      "coverage_state": "not_available",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "CQ-007": {
+      "question_id": "CQ-007",
+      "coverage_state": "not_available",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "NAQ-001": {
+      "question_id": "NAQ-001",
+      "coverage_state": "not_applicable",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "NAQ-002": {
+      "question_id": "NAQ-002",
+      "coverage_state": "not_applicable",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "NAQ-003": {
+      "question_id": "NAQ-003",
+      "coverage_state": "not_applicable",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "NAQ-004": {
+      "question_id": "NAQ-004",
+      "coverage_state": "not_applicable",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    },
+    "NAQ-005": {
+      "question_id": "NAQ-005",
+      "coverage_state": "not_applicable",
+      "reason": "Question is outside the authorized evidence scope or explicitly not applicable for AUC-001.",
+      "limitation_or_uncertainty": "Not promoted to Presentation as a new analytical claim."
+    }
+  }
+}
