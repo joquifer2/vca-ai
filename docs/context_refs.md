@@ -59,6 +59,11 @@ cliente:
 | P01 | SPEC-014 Analytical Product Contract | [../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
 | P04 | SPEC-015 Canonical Projection Consolidation | [../specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md) |
 | Post-P04 | SPEC-016 Operational Acceptance Package Contract | [../specs/spec-016-auc-001-operational-acceptance-package-contract.md](/specs/spec-016-auc-001-operational-acceptance-package-contract.md) |
+| Post-P04 | SPEC-017 Diagnostico Analitico Multicapa | [../specs/spec-017-auc-001-diagnostico-analitico-multicapa.md](/specs/spec-017-auc-001-diagnostico-analitico-multicapa.md) |
+| Post-P04 | AUC-001-SPEC-017-TP-001 Task Plan | [../tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md](/tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md) |
+| Post-P04 | AUC-001 SPEC-017 Entry Gate documental | [../gates/auc-001-spec-017-entry-gate.md](/gates/auc-001-spec-017-entry-gate.md) |
+| Post-P04 | AUC-001 SPEC-017 Closure Gate documental/local | [../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md) |
+| Post-P04 | AUC-001 SPEC-017 Iteration Closure Record | [evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
 | IC-001 | AUC-001 IC-001 Task Plan | [../tasks/auc-001-ic-001-integral-product-consolidation-task-plan.md](/tasks/auc-001-ic-001-integral-product-consolidation-task-plan.md) |
 | IC-001 | AUC-001 IC-001 Entry Gate | [../gates/auc-001-ic-001-entry-gate.md](/gates/auc-001-ic-001-entry-gate.md) |
 | IC-001 | AUC-001 IC-001 Closure Gate | [../gates/auc-001-ic-001-closure-gate.md](/gates/auc-001-ic-001-closure-gate.md) |
@@ -164,21 +169,22 @@ cliente:
 | 2026-07-24 | Planificar implementacion AUC-001-EXP-COMP-001 | Tasks Planner Agent traduce la especificacion experimental y el Entry Gate `PASS WITH CONDITIONS` en un plan implementable local. No ejecuta codigo, no adquiere evidencia, no usa BigQuery, no genera outputs reales y no modifica Strategic Context ni SPEC-014/SPEC-015/SPEC-016 | [../tasks/auc-001-exp-comp-001-comparison-governance-task-plan.md](/tasks/auc-001-exp-comp-001-comparison-governance-task-plan.md); [../gates/auc-001-exp-comp-001-entry-gate.md](/gates/auc-001-exp-comp-001-entry-gate.md) |
 | 2026-07-25 | Implementar y validar AUC-001-EXP-COMP-001 | Implementation Agent implementa el contrato experimental local de gobernanza de comparaciones; Reviewer Agent y QA Gate Agent validan las correcciones; la ejecucion experimental local obtiene `PASS`. No adquiere evidencia nueva, no ejecuta BigQuery, no genera outputs reales y no promueve la solucion a Foundation | [evaluations/auc-001/validations/auc-001-exp-comp-001-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-implementation-handoff.md); [evaluations/auc-001/validations/auc-001-exp-comp-001-final-qa-validation.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-final-qa-validation.md); [evaluations/auc-001/validations/auc-001-exp-comp-001-experimental-execution-report.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-experimental-execution-report.md) |
 | 2026-07-25 | Cerrar AUC-001-EXP-COMP-001 | QA Gate Agent emite Exit Gate `PASS` y Documentation Agent registra el cierre documental. Estado canonico: `AUC-001-EXP-COMP-001 CLOSED - EXPERIMENTAL COMPARISON GOVERNANCE PASS`. No autoriza ejecucion real, nueva evidencia, cambios de Strategic Context, SPEC Foundation ni promocion a AIF Foundation | [../gates/auc-001-exp-comp-001-exit-gate.md](/gates/auc-001-exp-comp-001-exit-gate.md); [evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md) |
-
+| 2026-07-25 | Incorporar SPEC-017 Diagnostico Analitico Multicapa en AUC-001 | Implementation Agent incorpora la specification aprobada como artefacto local versionado y alinea Skill, Runbook, Checklist, perfiles, indices y handoff para Reviewer/QA. No ejecuta BigQuery/MCP, no adquiere evidencia, no modifica outputs historicos, no reabre SPEC-014/SPEC-015/SPEC-016 y persiste un gate documental de entrada no final para trazabilidad del QA Entry Gate conversacional | [../specs/spec-017-auc-001-diagnostico-analitico-multicapa.md](/specs/spec-017-auc-001-diagnostico-analitico-multicapa.md); [../tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md](/tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md); [../gates/auc-001-spec-017-entry-gate.md](/gates/auc-001-spec-017-entry-gate.md); [handoffs/auc-001-spec-017-reviewer-qa-handoff.md](/docs/handoffs/auc-001-spec-017-reviewer-qa-handoff.md) |
+| 2026-07-25 | Cerrar AUC-001-SPEC-017-TP-001 | Documentation Agent registra el cierre oficial documental/local tras Reviewer post-implementation `PASS` y QA Gate de cierre/revalidacion documental-local `PASS` sin condiciones. Estado canonico: `AUC-001-SPEC-017-TP-001 CLOSED - DOCUMENTARY LOCAL SPEC-017 PASS`. No autoriza ejecucion real, BigQuery/MCP, evidencia nueva, reports reales, outputs historicos, cambios de SPEC-014/SPEC-015/SPEC-016, cambios de contratos ni aceptacion final de paquete AUC-001 | [../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md); [evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
 ---
 
 
 ## 4.1 Modelo operativo canónico AUC-001
 
-AUC-001 se opera como producto consolidado mediante SPEC-014, SPEC-015 y SPEC-016 tras el cierre IC-001, sin abrir nueva Specification para la consolidacion integral.
+AUC-001 se opera como producto consolidado mediante SPEC-014, SPEC-015 y SPEC-016 tras el cierre IC-001. SPEC-017 especializa la profundidad diagnostica local de Knowledge Generation y Recommendation Generation sin reabrir SPEC-014/SPEC-015/SPEC-016 ni abrir una nueva consolidacion integral.
 
 | Capa | Responsabilidad vigente |
 |---|---|
 | Skill / Runbook / Checklist | Resolver la solicitud breve, ejecutar el orden operativo, bloquear si falla MCP/preflight/grano/cobertura y verificar completitud. |
 | Data / MCP | Adquirir evidencia solo mediante BigQuery MCP cuando haya nueva ejecución; registrar preflight y todas las llamadas, incluidas rechazadas y descartadas. |
 | Evidence | Construir hechos trazables, coverage states, `UNKNOWN`, `partial`, `not_available`, limitaciones y reconciliación local controlada. |
-| Knowledge | Derivar interpretación únicamente desde Evidence estabilizada. |
-| Recommendations | Derivar acciones únicamente desde Knowledge estabilizado, con criterio de éxito visible. |
+| Knowledge | Derivar interpretación únicamente desde Evidence estabilizada y aplicar profundidad diagnostica multicapa conforme a SPEC-017 cuando la evidencia lo permita. |
+| Recommendations | Derivar acciones únicamente desde Knowledge estabilizado, con prioridad, impacto, metrica, guardrail, confianza y condicion de revision cuando aplique SPEC-017. |
 | Common Product Core | Compartir contenido obligatorio definido por SPEC-014. |
 | Canonical Projection Source | Fuente intermedia única de ambas proyecciones conforme a SPEC-015. |
 | Presentation | Materializar analytical/executive como hermanas, sin nuevo conocimiento ni derivación entre proyecciones. |
@@ -275,6 +281,6 @@ apis:
 ```yaml
 ultima_actualizacion: 2026-07-25
 actualizado_por: Documentation Agent
-motivo: Cierre documental AUC-001-EXP-COMP-001 tras Exit Gate PASS; referencias alineadas sin reabrir P02/P03/P04/SPEC-016 ni outputs historicos
-version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-exp-comp-001-closed
+motivo: Cierre oficial documental/local de AUC-001-SPEC-017-TP-001 tras Reviewer PASS y QA PASS sin reabrir P02/P03/P04/SPEC-014/SPEC-015/SPEC-016, sin BigQuery/MCP, sin evidencia nueva y sin outputs historicos
+version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-spec-017-closed
 ```

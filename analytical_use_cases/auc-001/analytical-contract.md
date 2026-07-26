@@ -11,6 +11,8 @@
 
 El caso de uso base permanece activo y validado en [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md); este contrato fija la articulacion operativa vigente del caso de uso.
 
+Referencia documental local: [SPEC-017 - AUC-001 Diagnostico Analitico Multicapa](/specs/spec-017-auc-001-diagnostico-analitico-multicapa.md) especializa la profundidad diagnostica minima de AUC-001 sin sustituir este contrato ni modificar SPEC-014, SPEC-015 o SPEC-016.
+
 ## 1. Propósito
 
 AUC-001 existe para producir una lectura analitica estable sobre la calidad de leads en Meta Ads, la eficiencia de la inversion y las implicaciones de negocio derivadas de esa lectura.
@@ -174,5 +176,6 @@ Este contrato consolida conocimiento validado en:
 - [docs/evaluations/auc-001/investigations/auc-001-analytical-investigation-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-analytical-investigation-analysis.md)
 - [docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md](/docs/evaluations/auc-001/validations/auc-001-knowledge-depth-recovery-validation.md)
 - [docs/evaluations/auc-001/investigations/auc-001-minimum-evidence-contract-analysis.md](/docs/evaluations/auc-001/investigations/auc-001-minimum-evidence-contract-analysis.md)
+- [specs/spec-017-auc-001-diagnostico-analitico-multicapa.md](/specs/spec-017-auc-001-diagnostico-analitico-multicapa.md)
 
 La lectura del contrato debe hacerse junto con [analytical_use_cases/meta_lead_quality_analysis.md](../meta_lead_quality_analysis.md) como documento base del caso de uso.

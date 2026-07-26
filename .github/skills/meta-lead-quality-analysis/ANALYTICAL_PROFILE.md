@@ -165,6 +165,17 @@ El analisis debe priorizar metricas que conecten coste con calidad.
 
 El CPL debe tratarse como metrica incompleta si no se acompana de calidad.
 
+Para AUC-001, cuando el analisis trate eficiencia coste-calidad bajo SPEC-017, debe priorizar metricas canonicas con universo y coverage declarados:
+
+- `matched_commercial_spend`;
+- `cost_per_ab_commercial_matched`;
+- `cost_per_tier_a_commercial_matched` cuando el denominador sea suficiente;
+- denominador usado en cada tasa o coste;
+- coverage state aplicable;
+- suficiencia de muestra.
+
+Un CPL generico o aislado no sostiene una conclusion de eficiencia si no queda anclado a estas metricas canonicas o a una equivalencia documentada con universo, denominador y coverage.
+
 ---
 
 ## Operaciones analiticas esperadas
@@ -238,6 +249,8 @@ El perfil debe ayudar a clasificar unidades de decision segun calidad y coste.
 | Incierta | Cualquiera | Evidencia insuficiente | Ampliar datos antes de decidir |
 
 La decision probable no debe presentarse como recomendacion final si no existe evidencia suficiente.
+
+Esta matriz solo orienta la lectura diagnostica. Puede reconocer que una recomendacion futura deberia ser evaluable, pero la accion, prioridad, impacto, metrica de exito, guardrail, confianza y condicion de revision pertenecen a Recommendation Generation y deben derivar del Knowledge Set estabilizado.
 
 ---
 
@@ -438,14 +451,18 @@ El analisis debe evitar:
 
 - celebrar volumen sin revisar calidad;
 - optimizar por CPL como si fuera eficiencia completa;
+- concluir eficiencia desde CPL, coste o volumen sin `matched_commercial_spend`, denominador, coverage y muestra;
 - mezclar costes de granularidades distintas sin control;
 - comparar campanas con coberturas de datos diferentes como si fueran equivalentes;
 - inferir causalidad creativa sin metadata suficiente;
+- convertir asociaciones temporales, de creatividad o de inversion en causalidad;
 - ocultar ausencia de CRM, conversion posterior o eventos de calidad;
 - recomendar eventos de Conversion API ya implementados;
 - inventar score, umbrales o categorias sin explicar la logica;
 - presentar hipotesis como conclusiones;
-- presentar recomendaciones no soportadas por datos.
+- presentar recomendaciones no soportadas por datos;
+- formular acciones dentro de Knowledge Generation;
+- usar outputs historicos como evidencia de una ejecucion actual.
 
 ---
 
@@ -474,6 +491,7 @@ Este perfil debe operar subordinado a los artefactos metodologicos del proyecto.
 | Artefacto | Relacion |
 | --- | --- |
 | Analytical Use Case | Define el problema y el alcance del caso |
+| SPEC-017 Diagnostico Analitico Multicapa | Especializa la profundidad diagnostica minima local de AUC-001 |
 | Data Contract | Declara fuentes disponibles, cobertura y limitaciones |
 | Discovery Contract | Identifica entidades, dimensiones, metricas y relaciones |
 | Analytical Contract | Formaliza el modelo preparado para analisis |

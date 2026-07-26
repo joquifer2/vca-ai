@@ -1002,23 +1002,28 @@ Disponer de un criterio único y gobernado para priorizar la atención comercial
 
 Todas las integraciones, dashboards y automatizaciones deberán utilizar la definición oficial de **Qualified Lead** establecida por FARO.
 
-# **2026-07-14**
+# **2026-07-07 — Campaña de escalado optimizada a QualifiedLead**
 
 **Decisión**
 
-Optimizar las campañas de Meta por el evento **QualifiedLead**, en lugar de mantener la optimización principal por formularios recibidos, como prueba controlada de aprendizaje.
+Crear una campaña específica de escalado en Meta Ads que optimice con el evento `QualifiedLead`, manteniéndola como una capa diferenciada de las campañas de prueba y captación.
+
+Dentro de FARO, la campaña se clasifica mediante `campaign_signal = COMMERCIAL`. No pertenece a `ATTENTION` ni a `ACTIVATION`: su función es generar y escalar leads con calidad comercial a un coste sostenible.
+
+La señal `QualifiedLead` procede de los leads A+B identificados mediante el scoring FARO y enviados a Meta mediante Conversions API.
 
 **Motivo**
 
-Dilucidar la hipótesis de si alimentar a Meta con una señal de calidad comercial permite obtener más leads cualificados **A/B** que continuar optimizando únicamente por volumen de formularios recibidos.
+Orientar progresivamente el aprendizaje de Meta hacia la calidad comercial del lead, en lugar de optimizar exclusivamente por volumen de formularios recibidos. La separación de la campaña permite probar y escalar este criterio sin trasladar de inmediato todo el presupuesto ni alterar simultáneamente el aprendizaje del resto de campañas.
 
-**Impacto**
+**Impacto y criterios de seguimiento**
 
-La lectura de resultados deberá comparar la evolución de los leads cualificados **A/B**, la tasa de cualificación y el coste por lead cualificado frente al escenario previo de optimización por formularios. 
-
-Cuando exista información comercial suficiente y comparable, podrá utilizarse como evidencia complementaria, pero no forma parte actualmente del criterio principal de evaluación del experimento. 
-
-La decisión no implica considerar los formularios recibidos como KPI principal de éxito cuando exista una señal suficiente y estable del evento `QualifiedLead`.
+- Las configuraciones, audiencias o creatividades deben acumular evidencia suficiente antes de escalarse.
+- La campaña debe evaluarse exclusivamente con la lógica y los KPIs oficiales de la capa `COMMERCIAL` de FARO; no mediante CPAU ni métricas propias de Atención o Activación.
+- Sus indicadores principales son volumen de `QualifiedLead`, tasa de cualificación, coste por `QualifiedLead`, CPL, capacidad de entrega y calidad comercial posterior.
+- Deben vigilarse la estabilidad y latencia de la señal, la fase de aprendizaje y el solapamiento con otras campañas.
+- Los incrementos presupuestarios deben apoyarse en una muestra suficiente.
+- La estrategia deberá revisarse si el volumen de señales no permite un aprendizaje estable, aparecen problemas de atribución o la mejora de calidad no compensa el incremento del coste.
 
 # **14. Conocimiento del Dominio**
 

@@ -10,6 +10,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import re
 
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Mapping
@@ -25,6 +26,7 @@ CANONICAL_PROJECTION_SCHEMA_FAMILY = "auc_001_canonical_projection_source"
 CANONICAL_PROJECTION_SCHEMA_VERSION = "auc_001_canonical_projection_source.v1"
 CANONICAL_PROJECTION_CONTRACT_VERSION = "spec-015.v1"
 CANONICAL_PROJECTION_SPECIFICATION = "SPEC-015"
+ANALYTICAL_DEPTH_SPECIFICATION = "SPEC-017"
 
 COVERAGE_COMPLETE = "complete"
 COVERAGE_PARTIAL = "partial"
@@ -113,6 +115,58 @@ ROBUSTNESS_FIELDS = (
     "granularity",
     "comparator",
     "sample_sufficiency",
+)
+
+FINDING_REQUIRED_FIELDS = (
+    "finding_id",
+    "analytical_question_id",
+    "observation",
+    "importance",
+    "uncertainty",
+    "related_findings",
+)
+
+FINDING_SUPPORT_FIELDS = ("evidence_refs", "support")
+FINDING_CONTRAST_FIELDS = ("comparison", "contrast", "contrast_performed")
+
+AIR_REQUIRED_FIELDS = (
+    "analytical_questions",
+    "alternative_hypotheses",
+    "contrasts_performed",
+    "discarded_hypotheses",
+    "robustness_and_limits",
+)
+
+SPEC_017_FUNCTIONAL_REQUIREMENTS = (
+    "FR-001",
+    "FR-002",
+    "FR-003",
+    "FR-004",
+    "FR-005",
+    "FR-006",
+    "FR-007",
+    "FR-008",
+)
+
+DESCRIPTIVE_METRIC_PATTERN = re.compile(
+    r"\b\d+(?:[.,]\d+)?\s*(?:%|percent|leads?|tier|cpl|cost|spend|eur|qualified|qualified_rate|ab)\b",
+    re.IGNORECASE,
+)
+INTERPRETIVE_MARKERS = (
+    "because",
+    "explains",
+    "implies",
+    "constrains",
+    "trade-off",
+    "trade off",
+    "risk",
+    "uncertainty",
+    "therefore",
+    "not equivalent",
+    "non-equivalent",
+    "material",
+    "limits",
+    "separates",
 )
 
 PROHIBITED_EVIDENCE_INTERPRETIVE_FIELDS = {
@@ -966,6 +1020,128 @@ def validate_robustness_record(record: RobustnessRecord | Mapping[str, Any], *, 
     return issues
 
 
+def validate_finding_item(item: Mapping[str, Any], *, artifact: str = "analytical_investigation_record") -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    finding_id = str(item.get("finding_id") or "")
+    for field_name in FINDING_REQUIRED_FIELDS:
+        if not normalize_truthy(item.get(field_name)):
+            issues.append(ProductContractIssue("FINDING_MISSING_FIELD", "blocking", f"Finding missing field: {field_name}", finding_id or artifact))
+    if not any(normalize_truthy(item.get(field_name)) for field_name in FINDING_SUPPORT_FIELDS):
+        issues.append(ProductContractIssue("FINDING_WITHOUT_EVIDENCE", "blocking", "Finding must trace to Evidence support", finding_id or artifact))
+    if not any(normalize_truthy(item.get(field_name)) for field_name in FINDING_CONTRAST_FIELDS):
+        issues.append(ProductContractIssue("FINDING_WITHOUT_CONTRAST", "blocking", "Finding must document comparison or contrast", finding_id or artifact))
+    if normalize_truthy(item.get("recommendation")) or normalize_truthy(item.get("recommendations")):
+        issues.append(ProductContractIssue("FINDING_CONTAINS_RECOMMENDATION", "blocking", "Finding cannot contain recommendations", finding_id or artifact))
+    return issues
+
+
+def analytical_investigation_findings(record: Mapping[str, Any]) -> tuple[Mapping[str, Any], ...]:
+    for field_name in ("findings", "intermediate_findings", "analytical_findings", "analytical_investigation_record"):
+        value = record.get(field_name)
+        if isinstance(value, list):
+            return tuple(item for item in value if isinstance(item, Mapping))
+    return ()
+
+
+def validate_analytical_investigation_record(record: Mapping[str, Any] | None, *, artifact: str = "analytical_investigation_record") -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    if not isinstance(record, Mapping) or not record:
+        return [ProductContractIssue("AIR_NOT_MATERIALIZED", "blocking", "Analytical Investigation Record must be materialized before Knowledge", artifact)]
+    if not normalize_truthy(record.get("derived_from")) and not normalize_truthy(record.get("evidence_set_ref")):
+        issues.append(ProductContractIssue("AIR_WITHOUT_EVIDENCE_SET", "blocking", "AIR must trace to the stabilized Evidence Set", artifact))
+    for field_name in AIR_REQUIRED_FIELDS:
+        if not normalize_truthy(record.get(field_name)):
+            issues.append(ProductContractIssue("AIR_MISSING_FIELD", "blocking", f"AIR missing field: {field_name}", artifact))
+    findings = analytical_investigation_findings(record)
+    if not findings:
+        issues.append(ProductContractIssue("AIR_FINDINGS_MISSING", "blocking", "AIR must contain intermediate findings", artifact))
+    for finding in findings:
+        issues.extend(validate_finding_item(finding, artifact=artifact))
+    return issues
+
+
+def finding_ref_index(record: Mapping[str, Any]) -> set[str]:
+    return {str(item.get("finding_id")) for item in analytical_investigation_findings(record) if normalize_truthy(item.get("finding_id"))}
+
+
+def validate_knowledge_item_depth(item: Mapping[str, Any], available_findings: set[str]) -> list[ProductContractIssue]:
+    issues = validate_knowledge_item(item)
+    knowledge_id = str(item.get("knowledge_id") or "")
+    finding_refs = item.get("finding_refs") or item.get("finding_ids")
+    if not normalize_truthy(finding_refs):
+        issues.append(ProductContractIssue("KNOWLEDGE_WITHOUT_FINDING", "blocking", "Knowledge must derive from accepted intermediate findings", knowledge_id))
+    else:
+        refs = {str(ref) for ref in (finding_refs if isinstance(finding_refs, (list, tuple, set)) else [finding_refs])}
+        missing_refs = sorted(ref for ref in refs if ref not in available_findings)
+        if missing_refs:
+            issues.append(ProductContractIssue("KNOWLEDGE_FINDING_REF_MISSING", "blocking", f"Knowledge references unknown findings: {missing_refs}", knowledge_id))
+    if not normalize_truthy(item.get("interpretation")) and normalize_truthy(item.get("claim")):
+        issues.append(ProductContractIssue("KNOWLEDGE_DESCRIPTIVE_CLAIM", "blocking", "Knowledge claim must contain interpretation, not only a descriptive claim", knowledge_id))
+    interpretation = str(item.get("interpretation") or "")
+    has_interpretive_marker = any(marker in interpretation.lower() for marker in INTERPRETIVE_MARKERS)
+    if DESCRIPTIVE_METRIC_PATTERN.search(interpretation) and not has_interpretive_marker:
+        issues.append(ProductContractIssue("KNOWLEDGE_DESCRIPTIVE_INTERPRETATION", "blocking", "Knowledge interpretation must explain meaning, not only restate metrics", knowledge_id))
+    return issues
+
+
+def validate_phase09_material_depth(knowledge_set: Mapping[str, Any], analytical_investigation_record: Mapping[str, Any] | None) -> list[ProductContractIssue]:
+    issues = validate_analytical_investigation_record(analytical_investigation_record)
+    available_findings = finding_ref_index(analytical_investigation_record or {})
+    knowledge_items = as_tuple_of_mappings(knowledge_set.get("knowledge_claims"))
+    if not knowledge_items:
+        issues.append(ProductContractIssue("KNOWLEDGE_SET_EMPTY", "blocking", "Knowledge Set must contain stabilized Knowledge items"))
+    for item in knowledge_items:
+        issues.extend(validate_knowledge_item_depth(item, available_findings))
+    narrative = as_mapping(knowledge_set.get("analytical_narrative"))
+    if not normalize_truthy(narrative.get("text")):
+        issues.append(ProductContractIssue("ANALYTICAL_NARRATIVE_MISSING", "blocking", "Analytical Narrative must be stabilized before Recommendations"))
+    for field_name in ("phenomenon", "trade_off", "dominant_risk", "strategic_implication", "knowledge_refs"):
+        if not normalize_truthy(narrative.get(field_name)):
+            issues.append(ProductContractIssue("ANALYTICAL_NARRATIVE_DEPTH_MISSING", "blocking", f"Analytical Narrative missing depth field: {field_name}"))
+    return issues
+
+
+def validate_spec_017_validation(payload: Mapping[str, Any] | None, *, artifact: str = "spec-017-validation.json") -> list[ProductContractIssue]:
+    issues: list[ProductContractIssue] = []
+    if not isinstance(payload, Mapping) or not payload:
+        return [ProductContractIssue("SPEC017_VALIDATION_NOT_MATERIALIZED", "blocking", "SPEC-017 physical validation is required before CPS/Presentation", artifact)]
+    if payload.get("specification") != ANALYTICAL_DEPTH_SPECIFICATION:
+        issues.append(ProductContractIssue("SPEC017_SPECIFICATION_INVALID", "blocking", "SPEC-017 validation must declare SPEC-017", artifact))
+    decision = str(payload.get("decision") or "")
+    if decision not in {"PASS", "PASS WITH CONDITIONS"}:
+        issues.append(ProductContractIssue("SPEC017_VALIDATION_NOT_PASS", "blocking", "SPEC-017 validation must pass or pass with non-blocking conditions", artifact))
+    for field_name in ("conditions", "issues", "open_conditions", "blocking_conditions"):
+        entries = payload.get(field_name) or []
+        if isinstance(entries, Mapping):
+            entries = entries.values()
+        if not isinstance(entries, Iterable) or isinstance(entries, (str, bytes)):
+            continue
+        for entry in entries:
+            if not isinstance(entry, Mapping):
+                continue
+            severity = str(entry.get("severity") or entry.get("status") or entry.get("decision") or "").lower()
+            if severity in {"blocking", "blocked", "fail", "failed"} or entry.get("blocking") is True:
+                issues.append(ProductContractIssue("SPEC017_BLOCKING_CONDITION_OPEN", "blocking", "SPEC-017 validation cannot pass with blocking conditions", artifact))
+    checks = payload.get("checks") or payload.get("requirements") or payload.get("functional_requirements")
+    if not isinstance(checks, Mapping):
+        issues.append(ProductContractIssue("SPEC017_CHECKS_MISSING", "blocking", "SPEC-017 validation must evaluate functional requirements", artifact))
+        return issues
+    for requirement_id in SPEC_017_FUNCTIONAL_REQUIREMENTS:
+        check = checks.get(requirement_id)
+        if not isinstance(check, Mapping):
+            issues.append(ProductContractIssue("SPEC017_REQUIREMENT_MISSING", "blocking", f"SPEC-017 requirement not evaluated: {requirement_id}", artifact))
+            continue
+        status = str(check.get("status") or check.get("result") or "")
+        if status not in {"complete", "partial", "not_available", "not_applicable", "UNKNOWN", "blocked", "PASS", "PASS WITH CONDITIONS"}:
+            issues.append(ProductContractIssue("SPEC017_REQUIREMENT_STATUS_INVALID", "blocking", f"SPEC-017 requirement has invalid status: {requirement_id}", artifact))
+        if not normalize_truthy(check.get("evidence_refs")) and not normalize_truthy(check.get("finding_refs")) and status not in {"not_available", "not_applicable", "UNKNOWN"}:
+            issues.append(ProductContractIssue("SPEC017_REQUIREMENT_UNTRACED", "blocking", f"SPEC-017 requirement lacks evidence or finding trace: {requirement_id}", artifact))
+        if status in {"partial", "UNKNOWN"} and not any(normalize_truthy(check.get(field_name)) for field_name in ("condition", "conditions", "limitation", "limitations", "why_partial", "insufficiency_reason")):
+            issues.append(ProductContractIssue("SPEC017_PARTIAL_WITHOUT_CONDITION", "blocking", f"SPEC-017 partial or UNKNOWN requirement must declare condition or limitation: {requirement_id}", artifact))
+        if status == "blocked":
+            issues.append(ProductContractIssue("SPEC017_REQUIREMENT_BLOCKED", "blocking", f"SPEC-017 requirement is blocked: {requirement_id}", artifact))
+    return issues
+
 def validate_evidence_item(item: Mapping[str, Any]) -> list[ProductContractIssue]:
     fields = set(item)
     prohibited = sorted(fields & PROHIBITED_EVIDENCE_INTERPRETIVE_FIELDS)
@@ -1301,8 +1477,9 @@ def build_default_integrated_view(
     knowledge_set: Mapping[str, Any],
     common_core: Mapping[str, Any],
     coverage_states: Mapping[str, str],
+    analytical_investigation_record: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
-    investigation = as_tuple_of_mappings(knowledge_set.get("analytical_investigation_record"))
+    investigation = analytical_investigation_findings(analytical_investigation_record or {})
     narrative = as_mapping(knowledge_set.get("analytical_narrative"))
     return {
         "status": "canonicalized_from_knowledge",
@@ -1310,7 +1487,7 @@ def build_default_integrated_view(
             {
                 "finding_id": item.get("finding_id"),
                 "observation": item.get("observation"),
-                "support": list(item.get("support") or []),
+                "support": list(item.get("support") or item.get("evidence_refs") or []),
                 "uncertainty": item.get("uncertainty"),
                 "related_findings": list(item.get("related_findings") or []),
             }
@@ -1358,6 +1535,7 @@ def build_canonical_projection_source(
     recommendation_set: Mapping[str, Any] | None = None,
     coverage_matrix: Mapping[str, Any] | None = None,
     manifest: Mapping[str, Any] | None = None,
+    analytical_investigation_record: Mapping[str, Any] | None = None,
     integrated_view: Mapping[str, Any] | None = None,
     decision_patterns: Iterable[Mapping[str, Any]] | None = None,
     artifact_id: str | None = None,
@@ -1366,6 +1544,7 @@ def build_canonical_projection_source(
     knowledge_set = as_mapping(knowledge_set)
     recommendation_set = as_mapping(recommendation_set)
     manifest = as_mapping(manifest)
+    analytical_investigation_record = as_mapping(analytical_investigation_record)
     coverage_states = extract_coverage_states(common_core, coverage_matrix)
     knowledge_claims = as_tuple_of_mappings(knowledge_set.get("knowledge_claims")) or tuple(
         {"knowledge_id": str(index + 1), "claim": claim}
@@ -1379,7 +1558,7 @@ def build_canonical_projection_source(
     limitations = stable_text_items(common_core.get("limitations"), knowledge_set.get("risks"))
     unknowns = stable_text_items(common_core.get("unknowns"), knowledge_set.get("unknowns"))
     strategic_context_constraints = strategic_constraints_payload(common_core.get("strategic_context_constraints"))
-    cps_integrated_view = dict(integrated_view) if integrated_view is not None else build_default_integrated_view(knowledge_set, common_core, coverage_states)
+    cps_integrated_view = dict(integrated_view) if integrated_view is not None else build_default_integrated_view(knowledge_set, common_core, coverage_states, analytical_investigation_record)
     cps_decision_patterns = tuple(dict(item) for item in decision_patterns) if decision_patterns is not None else build_default_decision_patterns(knowledge_set)
     source_artifacts = {
         "context_definition": manifest.get("artifact_paths", {}).get("context_definition"),
@@ -1388,6 +1567,8 @@ def build_canonical_projection_source(
         "recommendation_set": manifest.get("artifact_paths", {}).get("recommendation_set") or recommendation_set.get("artifact_id"),
         "coverage_matrix": manifest.get("artifact_paths", {}).get("coverage_matrix"),
         "common_product_core": manifest.get("artifact_paths", {}).get("common_product_core") or common_core.get("artifact_id"),
+        "analytical_investigation_record": manifest.get("artifact_paths", {}).get("analytical_investigation_record") or knowledge_set.get("analytical_investigation_record_artifact"),
+        "spec_017_validation": manifest.get("artifact_paths", {}).get("spec_017_validation"),
         "manifest": manifest.get("artifact_paths", {}).get("manifest") or manifest.get("artifact_id"),
         "ccd": strategic_context_constraints.get("source_artifact"),
     }
@@ -1462,6 +1643,20 @@ def validate_canonical_projection_source(cps: CanonicalProjectionSource | Mappin
     if data.get("specification") != CANONICAL_PROJECTION_SPECIFICATION:
         issues.append(ProductContractIssue("CPS_SPECIFICATION_INVALID", "blocking", "Canonical Projection Source must declare SPEC-015"))
     issues.extend(validate_strategic_context_constraints(data.get("strategic_context_constraints"), artifact="canonical_projection_source.strategic_context_constraints"))
+    source_artifacts = dict(data.get("source_artifacts") or {})
+    for role in ("analytical_investigation_record", "spec_017_validation"):
+        if not normalize_truthy(source_artifacts.get(role)):
+            issues.append(ProductContractIssue("CPS_MISSING_SOURCE_ARTIFACT", "blocking", f"CPS must declare source artifact before Presentation: {role}", role))
+
+    integrated_view = as_mapping(data.get("integrated_view"))
+    integrated_findings = as_tuple_of_mappings(integrated_view.get("signals"))
+    if not integrated_findings:
+        issues.append(ProductContractIssue("CPS_AIR_FINDINGS_MISSING", "blocking", "CPS integrated view must preserve AIR findings"))
+    for finding in integrated_findings:
+        if not normalize_truthy(finding.get("finding_id")):
+            issues.append(ProductContractIssue("CPS_FINDING_WITHOUT_ID", "blocking", "CPS finding must preserve stable finding_id"))
+        if not normalize_truthy(finding.get("support")):
+            issues.append(ProductContractIssue("CPS_FINDING_WITHOUT_SUPPORT", "blocking", "CPS finding must preserve AIR Evidence support", str(finding.get("finding_id") or "canonical_projection_source.integrated_view")))
     comparison_items = as_tuple_of_mappings(data.get("comparison_classifications"))
     issues.extend(
         validate_comparison_classifications(
@@ -1484,12 +1679,12 @@ def validate_canonical_projection_source(cps: CanonicalProjectionSource | Mappin
         if isinstance(item, Mapping):
             if not normalize_truthy(item.get("knowledge_id")):
                 issues.append(ProductContractIssue("CPS_KNOWLEDGE_WITHOUT_ID", "blocking", "CPS knowledge claim must preserve a stable identity"))
-            issues.extend(validate_campaign_signal_interpretation(item, artifact="canonical_projection_source.knowledge_claim"))
+            issues.extend(validate_knowledge_item(item))
     for item in data.get("recommendations") or []:
         if isinstance(item, Mapping):
             if not normalize_truthy(item.get("recommendation_id")):
                 issues.append(ProductContractIssue("CPS_RECOMMENDATION_WITHOUT_ID", "blocking", "CPS recommendation must preserve a stable identity"))
-            issues.extend(validate_campaign_signal_interpretation(item, artifact="canonical_projection_source.recommendation"))
+            issues.extend(validate_recommendation(item))
     return issues
 
 

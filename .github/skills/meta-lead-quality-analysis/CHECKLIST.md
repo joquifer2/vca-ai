@@ -93,10 +93,17 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] Existe un Knowledge Set estabilizado.
 - [ ] Se ha aplicado `.github/skills/meta-lead-quality-analysis/ANALYTICAL_PROFILE.md` como guia de preguntas y criterios de calidad analitica.
 - [ ] Se ha aplicado `.github/skills/meta-lead-quality-analysis/knowledge-construction-profile.md` como guia interna solo durante Knowledge Generation.
-- [ ] Existe un Analytical Investigation Record interno previo al Knowledge Set.
+- [ ] Existe un Analytical Investigation Record fisico o registro persistido verificable previo al Knowledge Set.
 - [ ] Los findings intermedios estan trazados al Evidence Set.
-- [ ] Cada finding intermedio declara observacion, soporte, importancia e incertidumbre.
+- [ ] Cada finding intermedio declara observacion, soporte, importancia, incertidumbre, contraste realizado y relacion con otros findings o hipotesis.
 - [ ] Se han aplicado operaciones analiticas relevantes segun la evidencia disponible: segmentacion, comparacion, ranking multicriterio, temporalidad, relaciones, combinaciones, cobertura, robustez, trade-offs o contraste de explicaciones alternativas.
+- [ ] La matriz coste-calidad compara campanas y anuncios con leads, A/B, Tier A, `matched_commercial_spend`, metricas canonicas, peso relativo, coverage y suficiencia de muestra, o declara insuficiencia.
+- [ ] La temporalidad semanal se trata solo cuando es comparable; fatiga, aprendizaje y piezas recientes quedan como hipotesis observables o `UNKNOWN`/`not_available`/`partial`/`not_applicable`.
+- [ ] Los trade-offs volumen-calidad-coste incluyen variacion estimada o hipotetica condicionada por evidencia, riesgo de escala y condicion de revision.
+- [ ] La concentracion declara peso relativo en leads, A/B, Tier A y spend, o el limite que impide hacerlo.
+- [ ] El ruido C/D queda localizado por las capas disponibles o se declara `not_available`, `UNKNOWN`, `partial` o `not_applicable`.
+- [ ] Los cruces señal-inversion y las hipotesis alternativas se presentan como asociaciones observables no causales.
+- [ ] Los estados `complete`, `partial`, `not_available`, `not_applicable`, `UNKNOWN` y `blocked` y los marcadores `low_sample`, `not_comparable`, `missing_dimension` y `coverage_limited` se preservan cuando aplican.
 - [ ] Las observaciones sin materialidad, robustez o utilidad para decision fueron descartadas o marcadas como limitadas.
 - [ ] El conocimiento deriva de la evidencia y de la consolidacion de findings intermedios.
 - [ ] No se limita a repetir metricas, rankings o tablas.
@@ -119,15 +126,39 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] Todas las recomendaciones derivan del Knowledge Set.
 - [ ] Las prioridades están definidas.
 - [ ] No existen recomendaciones sin justificación.
+- [ ] Cada recomendacion cubierta por SPEC-017 incluye prioridad, impacto estimado o hipotetico condicionado por evidencia, metrica de exito, guardrail, confianza y condicion de revision.
 
 ---
 
+---
+
+# 6.1 Antipatrones prohibidos SPEC-017
+
+- [ ] No se concluye eficiencia desde CPL, coste o volumen sin metricas canonicas, denominador, coverage y muestra.
+- [ ] No se afirma causalidad creativa, aprendizaje o fatiga sin comparabilidad y soporte suficiente.
+- [ ] No se formulan recomendaciones dentro de Knowledge Generation.
+- [ ] No se usan outputs historicos como evidencia de la ejecucion actual.
+- [ ] No se ocultan estados `UNKNOWN`, `partial`, `not_available`, `not_applicable`, `blocked` ni markers aplicables.
+
+---
+
+# 6.2 Checks documentales/locales SPEC-017
+
+Estos checks son no analiticos: no ejecutan AUC-001, no consumen evidencia, no consultan fuentes y no validan resultados por mera presencia literal de palabras.
+
+- [ ] `S017-DOC-CHECK-001` verifica trazabilidad estructural FR-001..FR-008 hacia AC-001..AC-012 en SPEC-017.
+- [ ] `S017-DOC-CHECK-002` verifica que los artefactos documentan cobertura multicapa y reglas de insuficiencia.
+- [ ] `S017-DOC-CHECK-003` verifica separacion documental entre Knowledge Generation, Recommendation Generation y Presentation.
+- [ ] `S017-DOC-CHECK-004` verifica que estados, markers y metricas canonicas tienen funcion declarada, denominador, coverage o muestra cuando aplica.
+- [ ] `S017-DOC-CHECK-005` verifica que los patrones prohibidos quedan formulados como restricciones de razonamiento o checklist operativo.
+
+---
 # 7. Canonical Projection Source
 
 - [ ] Existe Coverage Matrix conforme a SPEC-014 cuando el alcance requiere producto analítico completo.
 - [ ] Existe Common Product Core conforme a SPEC-014 antes de Presentation.
 - [ ] Existe Canonical Projection Source conforme a SPEC-015 antes de cualquier informe.
-- [ ] El Canonical Projection Source deriva del núcleo canónico, Knowledge y Recommendation Sets aprobados.
+- [ ] El Canonical Projection Source deriva del nucleo canonico, Knowledge y Recommendation Sets aprobados, y declara como fuentes el Analytical Investigation Record y la validacion fisica de SPEC-017.
 - [ ] Analytical report y executive report, si ambos existen, derivan del mismo Canonical Projection Source.
 - [ ] Ninguna proyección deriva de otra proyección.
 - [ ] Las variaciones entre analytical y executive son de selección, densidad, orden, énfasis, formato o audiencia, no de contenido semántico nuevo.
@@ -161,6 +192,9 @@ Su única responsabilidad es verificar que el contenido canónico está completo
 - [ ] La estrategia MCP usa consultas independientes por tabla autorizada y reconciliación local controlada hasta que el gap multi-tabla sea resuelto formalmente.
 - [ ] El grano adquirido permite cumplir SPEC-014; si no lo permite, la ejecución queda bloqueada o declara insuficiencia antes de Presentation.
 - [ ] Existen manifest, artifact fingerprints y physical traceability reproducibles.
+- [ ] El manifest referencia `knowledge/analytical-investigation-record.json` o registro persistido equivalente.
+- [ ] Existe `validations/spec-017-validation.json` y evalua materialmente FR-001..FR-008 con trazabilidad a evidencia o findings.
+- [ ] `validations/spec-014-validation.json` evalua profundidad por pregunta; no acepta `complete` por presencia formal.
 - [ ] El namespace no contiene `__pycache__`, `.pyc` ni residuos no contractuales.
 - [ ] El handoff declara comandos ejecutados, resultados, limitaciones y desviaciones.
 - [ ] `READY_FOR_REVALIDATION` no se declara como aceptación final sin gate QA físico.

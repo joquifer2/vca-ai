@@ -7,14 +7,15 @@
 | Estado operativo | Active |
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
-| Closure gate | P04 CLOSED; SPEC-016 CLOSED; IC-001 CLOSED; P04 acceptance FINAL ACCEPTED |
-| Estado post-cierre vigente | AUC-001 POST-P04 ACCEPTANCE FINAL ACCEPTED - INTEGRAL PRODUCT CONSOLIDATION CLOSED |
+| Closure gate | P04 CLOSED; SPEC-016 CLOSED; IC-001 CLOSED; P04 acceptance FINAL ACCEPTED; SPEC-017 documentary/local CLOSED |
+| Estado post-cierre vigente | AUC-001 POST-P04 ACCEPTANCE FINAL ACCEPTED - INTEGRAL PRODUCT CONSOLIDATION CLOSED - SPEC-017 DOCUMENTARY LOCAL CLOSED |
 | P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
 | P02 | Analytical Product Contract real execution cerrado con PASS WITH DECLARED LIMITATIONS el 2026-07-21 |
 | P03 | Experimental representation revision cerrada con PASS el 2026-07-22 |
 | P04 | Canonical Projection Consolidation cerrada con PASS el 2026-07-22 |
 | SPEC-016 | Operational Acceptance Package Contract cerrado con PASS el 2026-07-22 |
 | IC-001 | Integral Product Consolidation cerrada con PASS el 2026-07-22 sin nueva Specification |
+| SPEC-017 | Diagnostico Analitico Multicapa incorporado y cerrado documental/localmente con PASS el 2026-07-25 |
 | Paquete real post-P04 | `outputs/auc-001/p04-acceptance/2026-07-22/` aceptado finalmente por QA Gate Agent el 2026-07-22 |
 | Fecha del closure gate | 2026-07-22 |
 
@@ -38,6 +39,22 @@
 | Registro de cierre | [../../docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md) |
 
 AUC-001-EXP-COMP-001 queda cerrada con Exit Gate `PASS`. La iteracion valida localmente que la clasificacion explicita de comparaciones reduce inferencias economicas o jerarquias implicitas sin eliminar comparaciones descriptivas utiles. No modifica Strategic Context, no abre una nueva SPEC Foundation, no altera SPEC-014/SPEC-015/SPEC-016, no adquiere evidencia nueva, no ejecuta BigQuery MCP y no genera outputs analiticos reales.
+
+## Iteracion documental/local SPEC-017 cerrada
+
+| Campo | Valor |
+|---|---|
+| Iteracion | AUC-001-SPEC-017-TP-001 |
+| Estado | CLOSED - DOCUMENTARY LOCAL SPEC-017 PASS |
+| Specification | [../../specs/spec-017-auc-001-diagnostico-analitico-multicapa.md](/specs/spec-017-auc-001-diagnostico-analitico-multicapa.md) |
+| Task Plan | [../../tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md](/tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md) |
+| Entry Gate | [../../gates/auc-001-spec-017-entry-gate.md](/gates/auc-001-spec-017-entry-gate.md) |
+| Reviewer/QA Handoff | [../../docs/handoffs/auc-001-spec-017-reviewer-qa-handoff.md](/docs/handoffs/auc-001-spec-017-reviewer-qa-handoff.md) |
+| Closure Gate | [../../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md) |
+| Registro de cierre | [../../docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
+
+`AUC-001-SPEC-017-TP-001` queda cerrada tras Reviewer post-implementation `PASS` y QA Gate documental-local `PASS` sin condiciones. El cierre no autoriza ejecucion analitica real, BigQuery/MCP, evidencia nueva, reports reales, modificacion de outputs historicos ni aceptacion final de un paquete AUC-001.
+
 ## Artefactos canónicos
 
 | Responsabilidad | Artefacto |
@@ -49,6 +66,11 @@ AUC-001-EXP-COMP-001 queda cerrada con Exit Gate `PASS`. La iteracion valida loc
 | SPEC-014 Analytical Product Contract | [../../specs/spec-014-auc-001-analytical-product-contract.md](/specs/spec-014-auc-001-analytical-product-contract.md) |
 | SPEC-015 Canonical Projection Consolidation | [../../specs/spec-015-auc-001-canonical-projection-consolidation.md](/specs/spec-015-auc-001-canonical-projection-consolidation.md) |
 | SPEC-016 Operational Acceptance Package Contract | [../../specs/spec-016-auc-001-operational-acceptance-package-contract.md](/specs/spec-016-auc-001-operational-acceptance-package-contract.md) |
+| SPEC-017 Diagnostico Analitico Multicapa | [../../specs/spec-017-auc-001-diagnostico-analitico-multicapa.md](/specs/spec-017-auc-001-diagnostico-analitico-multicapa.md) |
+| AUC-001-SPEC-017-TP-001 Task Plan | [../../tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md](/tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md) |
+| AUC-001 SPEC-017 Entry Gate documental | [../../gates/auc-001-spec-017-entry-gate.md](/gates/auc-001-spec-017-entry-gate.md) |
+| AUC-001 SPEC-017 Closure Gate documental/local | [../../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md) |
+| AUC-001 SPEC-017 Iteration Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
 | P01 Architectural Memo | [../../docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
 | P01 Documentary Closure Gate | [../../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
 | P02 Task Plan | [../../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
@@ -111,6 +133,8 @@ AUC-001-EXP-COMP-001 queda cerrada con Exit Gate `PASS`. La iteracion valida loc
 | AUC-001 P04 Implementation Handoff | [../../docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md](/docs/evaluations/auc-001/validations/auc-001-p04-implementation-handoff.md) |
 | AUC-001 P04 Semantic Equivalence QA Gate | [../../gates/auc-001-p04-semantic-equivalence-qa-gate.md](/gates/auc-001-p04-semantic-equivalence-qa-gate.md) |
 | AUC-001 P04 Exit Gate | [../../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
+| AUC-001 SPEC-017 Closure Gate | [../../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md) |
+| AUC-001 SPEC-017 Iteration Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
 | IC-001 | AUC-001 IC-001 Closure Gate | [../../gates/auc-001-ic-001-closure-gate.md](/gates/auc-001-ic-001-closure-gate.md) |
 
 ## Decisiones vigentes
@@ -195,7 +219,7 @@ Clasificación vigente de artefactos:
 
 | Clase | Artefactos |
 |---|---|
-| Canónicos vigentes | AUC definition, analytical contract, SPEC-014, SPEC-015, SPEC-016, Skill, Runbook, Checklist, Data Contract, Presentation Contract, BigQuery MCP discover_metadata contract reference, tests y herramientas asociadas. |
+| Canónicos vigentes | AUC definition, analytical contract, SPEC-014, SPEC-015, SPEC-016, SPEC-017, Skill, Runbook, Checklist, Data Contract, Presentation Contract, BigQuery MCP discover_metadata contract reference, tests y herramientas asociadas. |
 | Operativos | `tools/auc_001_analytical_product_contract.py`, `tools/auc_001_operational_acceptance_package.py`, suites `tests/evals/auc_001_*`, task plans y gates vigentes autorizados. |
 | Históricos preservados | `outputs/auc-001/2026-06-30/`, `outputs/auc-001/pci-001/2026-06-30/`, `outputs/auc-001/pci-002/2026-06-30/`, corpus y evaluaciones históricas. |
 | Experimentales cerrados | P03 y su namespace `outputs/auc-001/p03/2026-07-22/`; se conservan por trazabilidad y no son fuente analítica nueva. |
@@ -203,7 +227,7 @@ Clasificación vigente de artefactos:
 | Paquete real final aceptado | `outputs/auc-001/p04-acceptance/2026-07-22/` queda `FINAL ACCEPTED` por gate QA físico final; su manifest interno conserva `READY_FOR_REVALIDATION` como estado de paquete producido por Implementation. |
 | Gaps fuera del flujo principal | MCP multi-tabla, revenue/CRM, causalidad creativa, metadata creativa adicional y temporalidad limitada por proveedor. |
 
-Regla de operación: las futuras ejecuciones completas deben construir el paquete físico conforme a SPEC-016; las proyecciones analytical y executive deben derivar del mismo Canonical Projection Source conforme a SPEC-015; y la cobertura, `UNKNOWN`, `partial`, `not_available`, limitaciones y recomendaciones deben preservar SPEC-014.
+Regla de operación: las futuras ejecuciones completas deben construir el paquete físico conforme a SPEC-016; las proyecciones analytical y executive deben derivar del mismo Canonical Projection Source conforme a SPEC-015; la cobertura, `UNKNOWN`, `partial`, `not_available`, limitaciones y recomendaciones deben preservar SPEC-014; y la profundidad diagnostica local debe aplicar SPEC-017 cuando la evidencia autorizada lo permita.
 ## Evidencia histórica
 
 - Índice de evaluaciones: [../../docs/evaluations/README.md](/docs/evaluations/README.md)

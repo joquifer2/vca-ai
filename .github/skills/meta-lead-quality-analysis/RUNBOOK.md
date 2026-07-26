@@ -89,6 +89,7 @@ Input:
 Acciones:
 
 - leer las fuentes oficiales aplicables: `docs/context_refs.md`, Analytical Use Case, Data Contract, Presentation Contract, `knowledge/client/ccd.md`, `analytical_use_cases/auc-001/faro-strategic-context-profile.json`, FARO, CLARO, KPIs oficiales y `project_brief.md` cuando aplique;
+- cargar `specs/spec-017-auc-001-diagnostico-analitico-multicapa.md` como specification local aprobada cuando la ejecucion requiera profundidad diagnostica AUC-001;
 - aplicar las definiciones oficiales por encima de inferencias del modelo de datos;
 - cuando aplique contexto estrategico AUC-001, cargar `analytical_use_cases/auc-001/faro-strategic-context-profile.json` y derivar `strategic_context_constraints` trazables al CCD sin duplicar su contenido normativo;
 - registrar referencias ausentes o rutas rotas como limitaciones o bloqueos segun impacto.
@@ -388,9 +389,12 @@ Acciones:
 - derivar conocimiento exclusivamente desde el Evidence Set estabilizado;
 - aplicar `strategic_context_constraints` desde el perfil local a toda interpretacion cubierta por ese perfil;
 - aplicar los perfiles analiticos correspondientes;
+- aplicar SPEC-017 como criterio local de diagnostico multicapa, sin modificar SPEC-014, SPEC-015 ni SPEC-016;
 - ejecutar un programa de investigacion analitica antes de estabilizar el Knowledge Set;
-- seleccionar preguntas de negocio adaptadas a la evidencia disponible, incluyendo volumen, calidad, eficiencia, variables explicativas, equilibrio volumen-calidad-coste, trade-offs, patrones, anomalias, robustez y limitaciones cuando apliquen;
-- aplicar operaciones analiticas compuestas, no solo lectura de tablas: segmentacion, comparacion, ranking multicriterio, analisis temporal, analisis relacional, combinaciones de variables, concentracion, cobertura, materialidad, robustez y contraste entre explicaciones alternativas;
+- seleccionar preguntas de negocio adaptadas a la evidencia disponible, incluyendo volumen, calidad, eficiencia, variables explicativas, equilibrio volumen-calidad-coste, trade-offs, patrones, anomalias, robustez, concentracion, ruido C/D, cruces señal-inversion y limitaciones cuando apliquen;
+- aplicar operaciones analiticas compuestas, no solo lectura de tablas: segmentacion, comparacion, ranking multicriterio, matriz coste-calidad, analisis temporal comparable, analisis relacional, combinaciones de variables, concentracion, cobertura, materialidad, robustez, trade-offs estimados o hipoteticos condicionados por evidencia y contraste entre explicaciones alternativas;
+- declarar denominador, coverage y suficiencia de muestra en lecturas coste-calidad, temporales, de concentracion, ruido C/D y trade-off;
+- conservar los estados `complete`, `partial`, `not_available`, `not_applicable`, `UNKNOWN` y `blocked`, y los marcadores `low_sample`, `not_comparable`, `missing_dimension` y `coverage_limited` cuando apliquen;
 - construir un Analytical Investigation Record interno con findings intermedios trazados al Evidence Set;
 - para cada finding intermedio, registrar que se observa, que evidencia lo soporta, por que importa, que incertidumbre permanece y con que otros findings se relaciona;
 - descartar observaciones que no superen el umbral de materialidad, robustez o utilidad para decision;
@@ -417,6 +421,7 @@ Gate:
 
 - detener si no existe investigacion analitica previa al Knowledge Set;
 - detener si los findings intermedios no estan trazados al Evidence Set;
+- detener o degradar a `partial`, `not_available`, `not_applicable`, `UNKNOWN` o `blocked` si un requisito de SPEC-017 no puede sostenerse con evidencia autorizada;
 - detener si el Knowledge Set solo repite metricas, rankings o tablas sin explicar significado, trade-offs, patrones, relaciones o limites;
 - detener si el Knowledge Set introduce hechos no presentes en Evidence o recomendaciones prematuras;
 - detener si la Analytical Narrative no deriva exclusivamente del Knowledge Set estabilizado;
@@ -428,6 +433,7 @@ Definition of Done:
 - existe un Analytical Investigation Record trazable, usado como puente interno entre Evidence y Knowledge;
 - existe un Knowledge Set consolidado, explicativo y derivado exclusivamente del Evidence Set;
 - el Knowledge Set responde a las principales preguntas de negocio soportadas por la evidencia y declara explicitamente lo que no puede concluirse;
+- el Knowledge Set aplica el diagnostico multicapa de SPEC-017 cuando la evidencia lo permite, o declara estados y marcadores de insuficiencia cuando no lo permite;
 - existe una Analytical Narrative breve, trazable y derivada exclusivamente del Knowledge Set estabilizado;
 - la Analytical Narrative identifica fenomeno principal, relaciones entre Knowledge items, hallazgos estructurales y secundarios, trade-off, riesgo dominante, implicacion estrategica e idea central memorable;
 - la Analytical Narrative no introduce recomendaciones ni contenido no aprobado.
@@ -444,7 +450,7 @@ Acciones:
 
 - derivar recomendaciones exclusivamente del Knowledge Set;
 - conservar en cada recomendacion dependiente del perfil local la trazabilidad al Knowledge item y a la regla contextual correspondiente;
-- incluir prioridad, accion, soporte, riesgo, impacto esperado y validacion posterior;
+- incluir prioridad, accion, soporte, riesgo, impacto estimado o hipotetico condicionado por evidencia, metrica de exito, guardrail, confianza y condicion de revision;
 - no introducir recomendaciones sin finding de soporte;
 - estabilizar el Recommendation Set antes de Presentation.
 
@@ -459,6 +465,13 @@ Gate:
 Definition of Done:
 
 - todas las recomendaciones son trazables, priorizadas y derivadas del Knowledge Set.
+- las recomendaciones cubiertas por SPEC-017 son evaluables y declaran prioridad, impacto, metrica, guardrail, confianza y condicion de revision.
+
+## Gate fisico corregido previo a CPS / Presentation / current
+
+Antes de construir o aceptar un Canonical Projection Source, antes de generar cualquier Presentation y antes de publicar o resolver `outputs/auc-001/current/`, la ejecucion debe invocar el enforcement local de `tools/auc_001_execution_orchestration.py`.
+
+El gate debe devolver `PASS`. Cualquier resultado `BLOCKED`, excepcion de paquete, manifest ausente, AIR ausente, findings ausentes, trazabilidad Evidence -> AIR -> Findings -> Knowledge incompleta, SPEC-017 no materializada o profundidad no aprobada detiene la ejecucion en la fase previa. No se permite degradar este fallo a entrega parcial ni a `READY_FOR_REVALIDATION`.
 
 ## Fase 11 - Canonical Content Validation Gate
 

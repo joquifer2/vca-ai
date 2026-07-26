@@ -16,6 +16,9 @@ Su objetivo es mejorar el siguiente Knowledge Set mediante razonamiento explicit
 - Propaga la incertidumbre cuando falten datos, metadata o coverage.
 - Considera explicaciones alternativas antes de estabilizar una conclusion.
 - Mantiene la frontera entre knowledge y recommendation.
+- No formula acciones, optimizaciones, reasignaciones ni instrucciones operativas dentro de Knowledge Generation.
+- Usa `complete`, `partial`, `not_available`, `not_applicable`, `UNKNOWN` y `blocked` como estados de suficiencia cuando SPEC-017 no pueda cumplirse con evidencia autorizada.
+- Usa `low_sample`, `not_comparable`, `missing_dimension` y `coverage_limited` como marcadores de limite interpretativo, no como decoracion textual.
 
 ## Analytical Questions
 
@@ -25,6 +28,9 @@ Su objetivo es mejorar el siguiente Knowledge Set mediante razonamiento explicit
 - Que observaciones se mantienen estables en mas de un slice?
 - Donde se concentra la evidencia, y esa concentracion es informativa o accidental?
 - Que trade-off aparece entre volumen, calidad y coste?
+- Que matriz coste-calidad multicriterio puede sostenerse con denominador, coverage y muestra suficientes?
+- Donde se localiza el ruido C/D y que capa o dimension impide localizarlo mejor?
+- Que hipotesis alternativas siguen plausibles y cuales deben quedar UNKNOWN?
 - Que cambia al leer por coverage state en lugar de por total?
 - Que explicacion encaja mejor y que alternativa sigue siendo plausible?
 - Que no puede concluirse porque la evidencia es incompleta, parcial o faltante?
@@ -147,6 +153,14 @@ Despues de formar Findings, consolidalos en un Knowledge Set coherente.
 
 Al consolidar, confirma los Findings mas solidos, separa interpretaciones respaldadas de explicaciones tentativas, identifica lo desconocido, registra riesgos de lectura erronea y preserva la frontera entre knowledge y recommendation.
 
+## Relacion con SPEC-017
+
+Para AUC-001, `specs/spec-017-auc-001-diagnostico-analitico-multicapa.md` especializa los minimos de profundidad diagnostica de este perfil. Durante Knowledge Generation, aplica sus ocho requisitos funcionales cuando la evidencia autorizada lo permita y declara `complete`, `partial`, `not_available`, `not_applicable`, `UNKNOWN` o `blocked` cuando no lo permita.
+
+Los requisitos de recomendaciones evaluables de SPEC-017 pueden reconocerse como condiciones que el Knowledge Set debe soportar mediante insights, hipotesis, conclusiones, prioridades, riesgos e incertidumbres. La accion, prioridad final, impacto, metrica de exito, guardrail, confianza y condicion de revision pertenecen a Recommendation Generation y deben derivar del Knowledge Set estabilizado.
+
+Este perfil no debe convertir los requisitos de SPEC-017 en recomendaciones. La transformacion accionable pertenece a Recommendation Generation y debe derivar del Knowledge Set estabilizado.
+
 ## Anti-patterns
 
 - Listar metricas sin interpretarlas.
@@ -157,6 +171,7 @@ Al consolidar, confirma los Findings mas solidos, separa interpretaciones respal
 - Ignorar coverage states o leer spend_only y lead_only como matched.
 - Ocultar incertidumbre porque complica la narrativa.
 - Usar volumen o CPL por si solos como prueba de calidad o rendimiento.
+- Concluir eficiencia coste-calidad sin metricas canonicas, denominador, coverage y muestra.
 - Hacer recommendations antes de estabilizar el knowledge.
 - Colapsar varios Findings en un resumen vago.
 - Sobreajustarse a una unica referencia dominante.

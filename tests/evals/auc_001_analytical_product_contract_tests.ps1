@@ -569,7 +569,18 @@ core = CommonProductCore(
     limitations=('partial coverage remains visible',),
     unknowns=('creative causality UNKNOWN',),
 )
-cps = build_canonical_projection_source(core.to_dict(), coverage_matrix={'rows': [row.to_dict() for row in rows]}, knowledge_set={'knowledge_claims': list(core.knowledge_claims)}, recommendation_set={'recommendations': list(core.recommendations)})
+knowledge_payload = {
+    'knowledge_claims': list(core.knowledge_claims),
+    'analytical_investigation_record': [{
+        'finding_id': 'FND-001',
+        'observation': 'commercial matched supports direct acquisition reading',
+        'support': ['EVD-001'],
+        'uncertainty': 'CCD applies',
+        'related_findings': [],
+    }],
+}
+manifest_payload = {'artifact_paths': {'analytical_investigation_record': 'knowledge/analytical-investigation-record.json', 'spec_017_validation': 'validations/spec-017-validation.json'}}
+cps = build_canonical_projection_source(core.to_dict(), coverage_matrix={'rows': [row.to_dict() for row in rows]}, knowledge_set=knowledge_payload, recommendation_set={'recommendations': list(core.recommendations)}, manifest=manifest_payload, analytical_investigation_record={'findings': knowledge_payload['analytical_investigation_record']})
 assert validate_canonical_projection_source(cps) == []
 projection = build_projection_from_cps(cps, 'executive', sections=({'title': 'decision', 'cps_ref': cps.artifact_id},))
 assert projection.strategic_context_constraints == cps.strategic_context_constraints

@@ -93,6 +93,14 @@ Queda prohibido:
 - introducir acceso directo a BigQuery cuando el workspace exige MCP;
 - continuar cuando no pueda verificarse la autorizacion de una fuente.
 
+## Enforcement de ejecucion real
+
+Toda ejecucion real AUC-001 invocada por lenguaje natural debe pasar por el guard de orquestacion `tools/auc_001_execution_orchestration.py` antes de materializar `Canonical Projection Source`, `Presentation` o actualizar `outputs/auc-001/current/`.
+
+La ruta legacy `Evidence -> Knowledge -> CPS/Presentation` y cualquier paquete minimo sin `execution/manifest.json`, `knowledge/analytical-investigation-record.json`, findings intermedios, validacion material SPEC-017 o PASS de profundidad quedan bloqueados y no pueden declararse ejecucion completada.
+
+`outputs/auc-001/current/` solo puede representar una ejecucion fisica que valide `PASS` o contener un puntero `current-execution.json` hacia una ejecucion fisica validada.
+
 ## Marco canónico vigente de AUC-001
 
 Para ejecuciones AUC-001 posteriores a P04, la cadena operativa vigente incorpora tres contratos específicos sin cambiar la semántica del lifecycle base:
@@ -101,7 +109,7 @@ Para ejecuciones AUC-001 posteriores a P04, la cadena operativa vigente incorpor
 - `SPEC-015 - AUC-001 Canonical Projection Consolidation`: exige un `Canonical Projection Source` previo a cualquier informe; analytical y executive son proyecciones hermanas derivadas del mismo núcleo, no de prompts independientes ni una de otra.
 - `SPEC-016 - AUC-001 Operational Acceptance Package Contract`: define preflight MCP, registro completo de llamadas MCP, estrategia de consultas independientes por tabla con reconciliación local controlada, manifest, fingerprints, trazabilidad física, higiene de namespace y handoff verificable.
 
-Estos contratos son dependencias vigentes de la skill. No autorizan ampliar fuentes, reinterpretar SPEC-014/SPEC-015, modificar el servidor BigQuery MCP ni reutilizar outputs históricos como evidencia nueva.
+Estos contratos y SPEC-017 son dependencias vigentes de la skill. No autorizan ampliar fuentes, reinterpretar SPEC-014/SPEC-015/SPEC-016, modificar el servidor BigQuery MCP ni reutilizar outputs históricos como evidencia nueva.
 ## Modos de ejecucion
 
 AUC-001 admite dos modos.

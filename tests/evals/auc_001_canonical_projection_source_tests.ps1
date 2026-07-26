@@ -32,6 +32,11 @@ knowledge_set = json.loads((base / 'knowledge/knowledge-set.json').read_text(enc
 recommendation_set = json.loads((base / 'recommendations/recommendation-set.json').read_text(encoding='utf-8'))
 coverage_matrix = json.loads((base / 'coverage-matrix/coverage-matrix.json').read_text(encoding='utf-8'))
 manifest = json.loads((base / 'execution/manifest.json').read_text(encoding='utf-8'))
+manifest.setdefault('artifact_paths', {})['analytical_investigation_record'] = 'knowledge/analytical-investigation-record.json'
+manifest.setdefault('artifact_paths', {})['spec_017_validation'] = 'validations/spec-017-validation.json'
+air = {'findings': [dict(item) for item in knowledge_set['analytical_investigation_record']]}
+air['findings'][0].pop('support', None)
+air['findings'][0]['evidence_refs'] = ['EVD-AIR-TRACE']
 
 cps = build_canonical_projection_source(
     common_core,
@@ -39,6 +44,7 @@ cps = build_canonical_projection_source(
     recommendation_set=recommendation_set,
     coverage_matrix=coverage_matrix,
     manifest=manifest,
+    analytical_investigation_record=air,
 )
 payload = cps.to_dict()
 assert payload['schema_family'] == CANONICAL_PROJECTION_SCHEMA_FAMILY
@@ -49,6 +55,7 @@ assert payload['product_contract']['id'] == 'SPEC-014'
 assert len(payload['knowledge_claims']) == 6
 assert len(payload['recommendations']) == 4
 assert payload['integrated_view']['signals'][0]['finding_id'] == 'FND-001'
+assert payload['integrated_view']['signals'][0]['support'] == ['EVD-AIR-TRACE']
 assert payload['coverage_states']['AQ-010'] == 'complete'
 assert payload['future_evidence_gaps']['revenue_or_crm'] == 'declared_dependency_on_future_evidence'
 assert payload['future_evidence_gaps']['creative_causality'] == 'declared_dependency_on_future_evidence'
@@ -75,8 +82,13 @@ knowledge_set = json.loads((base / 'knowledge/knowledge-set.json').read_text(enc
 recommendation_set = json.loads((base / 'recommendations/recommendation-set.json').read_text(encoding='utf-8'))
 coverage_matrix = json.loads((base / 'coverage-matrix/coverage-matrix.json').read_text(encoding='utf-8'))
 manifest = json.loads((base / 'execution/manifest.json').read_text(encoding='utf-8'))
+manifest.setdefault('artifact_paths', {})['analytical_investigation_record'] = 'knowledge/analytical-investigation-record.json'
+manifest.setdefault('artifact_paths', {})['spec_017_validation'] = 'validations/spec-017-validation.json'
+air = {'findings': [dict(item) for item in knowledge_set['analytical_investigation_record']]}
+air['findings'][0].pop('support', None)
+air['findings'][0]['evidence_refs'] = ['EVD-AIR-TRACE']
 
-cps = build_canonical_projection_source(common_core, knowledge_set=knowledge_set, recommendation_set=recommendation_set, coverage_matrix=coverage_matrix, manifest=manifest)
+cps = build_canonical_projection_source(common_core, knowledge_set=knowledge_set, recommendation_set=recommendation_set, coverage_matrix=coverage_matrix, manifest=manifest, analytical_investigation_record=air)
 analytical = build_projection_from_cps(cps, 'analytical', sections=({'title': 'coverage matrix summary', 'content_ref': 'cps.integrated_view'},))
 executive = build_projection_from_cps(cps, 'executive', sections=({'title': 'decision summary', 'content_ref': 'cps.decision_patterns'},))
 assert validate_projection_against_cps(cps, analytical) == []
@@ -105,8 +117,13 @@ knowledge_set = json.loads((base / 'knowledge/knowledge-set.json').read_text(enc
 recommendation_set = json.loads((base / 'recommendations/recommendation-set.json').read_text(encoding='utf-8'))
 coverage_matrix = json.loads((base / 'coverage-matrix/coverage-matrix.json').read_text(encoding='utf-8'))
 manifest = json.loads((base / 'execution/manifest.json').read_text(encoding='utf-8'))
+manifest.setdefault('artifact_paths', {})['analytical_investigation_record'] = 'knowledge/analytical-investigation-record.json'
+manifest.setdefault('artifact_paths', {})['spec_017_validation'] = 'validations/spec-017-validation.json'
+air = {'findings': [dict(item) for item in knowledge_set['analytical_investigation_record']]}
+air['findings'][0].pop('support', None)
+air['findings'][0]['evidence_refs'] = ['EVD-AIR-TRACE']
 
-cps = build_canonical_projection_source(common_core, knowledge_set=knowledge_set, recommendation_set=recommendation_set, coverage_matrix=coverage_matrix, manifest=manifest)
+cps = build_canonical_projection_source(common_core, knowledge_set=knowledge_set, recommendation_set=recommendation_set, coverage_matrix=coverage_matrix, manifest=manifest, analytical_investigation_record=air)
 projection = build_projection_from_cps(cps, 'executive', sections=({'title': 'summary', 'text': 'El producto recupera el valor historico.'},))
 issues = validate_projection_against_cps(cps, projection)
 assert any(issue.code == 'PROJECTION_NEW_KNOWLEDGE_BLOCKED' for issue in issues), [issue.to_dict() for issue in issues]
@@ -142,8 +159,13 @@ knowledge_set = json.loads((base / 'knowledge/knowledge-set.json').read_text(enc
 recommendation_set = json.loads((base / 'recommendations/recommendation-set.json').read_text(encoding='utf-8'))
 coverage_matrix = json.loads((base / 'coverage-matrix/coverage-matrix.json').read_text(encoding='utf-8'))
 manifest = json.loads((base / 'execution/manifest.json').read_text(encoding='utf-8'))
+manifest.setdefault('artifact_paths', {})['analytical_investigation_record'] = 'knowledge/analytical-investigation-record.json'
+manifest.setdefault('artifact_paths', {})['spec_017_validation'] = 'validations/spec-017-validation.json'
+air = {'findings': [dict(item) for item in knowledge_set['analytical_investigation_record']]}
+air['findings'][0].pop('support', None)
+air['findings'][0]['evidence_refs'] = ['EVD-AIR-TRACE']
 
-cps = build_canonical_projection_source(common_core, knowledge_set=knowledge_set, recommendation_set=recommendation_set, coverage_matrix=coverage_matrix, manifest=manifest)
+cps = build_canonical_projection_source(common_core, knowledge_set=knowledge_set, recommendation_set=recommendation_set, coverage_matrix=coverage_matrix, manifest=manifest, analytical_investigation_record=air)
 projection = build_projection_from_cps(cps, 'executive')
 payload = projection.to_dict()
 payload['coverage_states']['AQ-009'] = 'complete'

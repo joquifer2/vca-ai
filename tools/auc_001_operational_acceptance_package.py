@@ -16,6 +16,18 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from tools.auc_001_canonical_cost_quality_model import STRATEGIC_CONTEXT_CONSTRAINTS as DEFAULT_STRATEGIC_CONTEXT_CONSTRAINTS
+from tools.auc_001_analytical_product_contract import (
+    QUESTION_DEFINITIONS,
+    VALID_PRODUCT_COVERAGE_STATES,
+    analytical_investigation_findings,
+    validate_analytical_investigation_record,
+    validate_canonical_projection_source,
+    validate_coverage_matrix,
+    validate_knowledge_item,
+    validate_phase09_material_depth,
+    validate_recommendation,
+    validate_spec_017_validation,
+)
 
 
 SPECIFICATION = "SPEC-016"
@@ -48,12 +60,14 @@ REQUIRED_PACKAGE_ROLES = {
     "semantic_equivalence_validation": "execution/semantic-equivalence-validation.json",
     "evidence_set": "evidence/evidence-set.json",
     "knowledge_set": "knowledge/knowledge-set.json",
+    "analytical_investigation_record": "knowledge/analytical-investigation-record.json",
     "recommendation_set": "recommendations/recommendation-set.json",
     "common_product_core": "product-core/common-product-core.json",
     "canonical_projection_source": "product-core/canonical-projection-source.json",
     "spec_014_validation": "validations/spec-014-validation.json",
     "spec_015_validation": "validations/spec-015-validation.json",
     "spec_016_validation": "validations/spec-016-validation.json",
+    "spec_017_validation": "validations/spec-017-validation.json",
     "handoff": "handoff/reviewer-qa-handoff.md",
 }
 
@@ -92,6 +106,10 @@ class PackageIssue:
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def read_json_if_exists(path: Path) -> dict[str, Any]:
+    return read_json(path) if path.exists() else {}
 
 
 def stable_json_hash(payload: Any) -> str:
@@ -321,6 +339,291 @@ def validate_strategic_context_traceability(
     if not isinstance(global_rules, Mapping) or global_rules.get("required_traceability") != REQUIRED_STRATEGIC_CONTEXT_TRACEABILITY:
         issues.append(PackageIssue("STRATEGIC_CONTEXT_TRACEABILITY_RULE_MISSING", "blocking", "context-dependent interpretation must require the profile-declared traceability field", artifact))
     return issues
+
+def product_issues_to_package_issues(product_issues: list[Any], artifact: str) -> list[PackageIssue]:
+    converted: list[PackageIssue] = []
+    for issue in product_issues:
+        payload = issue.to_dict() if hasattr(issue, "to_dict") else dict(issue)
+        converted.append(PackageIssue(str(payload.get("code")), str(payload.get("severity") or "blocking"), str(payload.get("message")), str(payload.get("artifact") or artifact)))
+    return converted
+
+
+def artifact_path(root: Path, manifest: Mapping[str, Any], role: str) -> Path:
+    rel = dict(manifest.get("artifact_paths") or {}).get(role) or REQUIRED_PACKAGE_ROLES[role]
+    return root / rel
+
+
+def artifact_ref(path: Path, root: Path, role: str) -> str:
+    return posix_rel(path, root) if path.exists() else REQUIRED_PACKAGE_ROLES[role]
+
+
+def material_condition_is_blocking(entry: Mapping[str, Any]) -> bool:
+    state = str(entry.get("severity") or entry.get("status") or entry.get("decision") or "").lower()
+    return state in {"blocking", "blocked", "fail", "failed"} or entry.get("blocking") is True
+
+
+def material_condition_entries(payload: Mapping[str, Any], *field_names: str) -> list[Mapping[str, Any]]:
+    entries: list[Mapping[str, Any]] = []
+    for field_name in field_names:
+        value = payload.get(field_name) or []
+        if isinstance(value, Mapping):
+            value = value.values()
+        if isinstance(value, (str, bytes)):
+            continue
+        try:
+            iterator = iter(value)
+        except TypeError:
+            continue
+        entries.extend(item for item in iterator if isinstance(item, Mapping))
+    return entries
+
+
+def canonical_spec014_question_ids() -> set[str]:
+    return {definition.question_id for definition in QUESTION_DEFINITIONS}
+
+def expected_spec014_question_ids(*payloads: Mapping[str, Any]) -> set[str]:
+    question_ids: set[str] = canonical_spec014_question_ids()
+    for payload in payloads:
+        if not isinstance(payload, Mapping):
+            continue
+        states = payload.get("coverage_states")
+        if isinstance(states, Mapping):
+            question_ids.update(str(key) for key in states)
+        matrix = payload.get("coverage_matrix") or payload.get("rows")
+        if isinstance(matrix, Mapping):
+            matrix = matrix.get("rows")
+        if isinstance(matrix, list):
+            for row in matrix:
+                if isinstance(row, Mapping) and row.get("question_id"):
+                    question_ids.add(str(row.get("question_id")))
+    return question_ids
+
+
+def validate_common_product_core_payload(payload: Mapping[str, Any], artifact: str = "common-product-core.json") -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    required = ("period", "scope", "sources", "evidence_refs", "canonical_metrics", "knowledge_claims", "recommendations", "limitations", "unknowns", "strategic_context_constraints")
+    for field_name in required:
+        if not payload.get(field_name):
+            issues.append(PackageIssue("COMMON_CORE_FIELD_MISSING", "blocking", f"Common Product Core missing field: {field_name}", artifact))
+    coverage_states = payload.get("coverage_states")
+    coverage_matrix = payload.get("coverage_matrix")
+    if isinstance(coverage_matrix, Mapping):
+        coverage_matrix = coverage_matrix.get("rows")
+    if isinstance(coverage_matrix, list):
+        issues.extend(product_issues_to_package_issues(validate_coverage_matrix(coverage_matrix), artifact))
+    elif isinstance(coverage_states, Mapping) and coverage_states:
+        for question_id, state in coverage_states.items():
+            if state not in VALID_PRODUCT_COVERAGE_STATES:
+                issues.append(PackageIssue("COMMON_CORE_COVERAGE_STATE_INVALID", "blocking", f"Common Product Core invalid coverage state for {question_id}: {state}", artifact))
+    else:
+        issues.append(PackageIssue("COMMON_CORE_COVERAGE_MISSING", "blocking", "Common Product Core must carry coverage matrix or coverage states", artifact))
+    for index, item in enumerate(payload.get("knowledge_claims") or []):
+        if not isinstance(item, Mapping):
+            issues.append(PackageIssue("COMMON_CORE_KNOWLEDGE_NOT_STRUCTURED", "blocking", "Common Product Core knowledge claims must be structured Knowledge items", f"{artifact}#knowledge_claims[{index}]"))
+            continue
+        issues.extend(product_issues_to_package_issues(validate_knowledge_item(item), f"{artifact}#knowledge_claims[{index}]"))
+    for index, item in enumerate(payload.get("recommendations") or []):
+        if not isinstance(item, Mapping):
+            issues.append(PackageIssue("COMMON_CORE_RECOMMENDATION_NOT_STRUCTURED", "blocking", "Common Product Core recommendations must be structured Recommendation items", f"{artifact}#recommendations[{index}]"))
+            continue
+        issues.extend(product_issues_to_package_issues(validate_recommendation(item), f"{artifact}#recommendations[{index}]"))
+    issues.extend(validate_strategic_context_traceability(payload, artifact))
+    return issues
+
+
+def validate_spec015_validation(payload: Mapping[str, Any], cps_issues: list[PackageIssue], artifact: str = "spec-015-validation.json") -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    if payload.get("specification") != "SPEC-015":
+        issues.append(PackageIssue("SPEC015_SPECIFICATION_INVALID", "blocking", "SPEC-015 validation must declare SPEC-015", artifact))
+    if payload.get("decision") not in {"PASS", "PASS WITH CONDITIONS"} and payload.get("status") not in {"PASS", "PASS WITH CONDITIONS"}:
+        issues.append(PackageIssue("SPEC015_VALIDATION_NOT_PASS", "blocking", "SPEC-015 validation must pass before Presentation", artifact))
+    for entry in material_condition_entries(payload, "conditions", "issues", "open_conditions", "blocking_conditions"):
+        if material_condition_is_blocking(entry):
+            issues.append(PackageIssue("SPEC015_BLOCKING_CONDITION_OPEN", "blocking", "SPEC-015 validation cannot pass with blocking conditions", artifact))
+    if any(issue.severity == "blocking" for issue in cps_issues):
+        issues.append(PackageIssue("SPEC015_CPS_CONTENT_INVALID", "blocking", "SPEC-015 validation cannot pass while CPS content has blocking issues", artifact))
+    return issues
+
+
+def validate_semantic_equivalence_validation(payload: Mapping[str, Any], artifact: str = "semantic-equivalence-validation.json") -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    decision = payload.get("decision") or payload.get("status")
+    if decision not in {"PASS", "PASS WITH CONDITIONS"}:
+        issues.append(PackageIssue("SEMANTIC_EQUIVALENCE_NOT_PASS", "blocking", "semantic equivalence validation must pass before Presentation", artifact))
+    if not payload.get("source_artifacts") and not payload.get("validated_artifacts") and not payload.get("projection_pairs"):
+        issues.append(PackageIssue("SEMANTIC_EQUIVALENCE_TRACE_MISSING", "blocking", "semantic equivalence validation must declare validated artifacts", artifact))
+    for entry in material_condition_entries(payload, "conditions", "issues", "open_conditions", "blocking_conditions"):
+        if material_condition_is_blocking(entry):
+            issues.append(PackageIssue("SEMANTIC_EQUIVALENCE_BLOCKING_CONDITION_OPEN", "blocking", "semantic equivalence cannot pass with blocking conditions", artifact))
+    return issues
+
+
+def validate_spec016_validation(payload: Mapping[str, Any], artifact: str = "spec-016-validation.json") -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    if payload.get("specification") != "SPEC-016":
+        issues.append(PackageIssue("SPEC016_SPECIFICATION_INVALID", "blocking", "SPEC-016 validation artifact must declare SPEC-016", artifact))
+    if payload.get("decision") not in {"PASS", "PASS WITH CONDITIONS", "READY_FOR_REVALIDATION"} and payload.get("status") not in {"PASS", "PASS WITH CONDITIONS", "READY_FOR_REVALIDATION"}:
+        issues.append(PackageIssue("SPEC016_VALIDATION_NOT_PASS", "blocking", "SPEC-016 validation artifact must declare local validation success", artifact))
+    for entry in material_condition_entries(payload, "conditions", "issues", "open_conditions", "blocking_conditions"):
+        if material_condition_is_blocking(entry):
+            issues.append(PackageIssue("SPEC016_BLOCKING_CONDITION_OPEN", "blocking", "SPEC-016 validation cannot pass with blocking conditions", artifact))
+    return issues
+
+
+def validate_spec014_material_validation(
+    payload: Mapping[str, Any],
+    artifact: str = "spec-014-validation.json",
+    expected_question_ids: set[str] | None = None,
+) -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    if payload.get("specification") != "SPEC-014":
+        issues.append(PackageIssue("SPEC014_SPECIFICATION_INVALID", "blocking", "SPEC-014 validation must declare SPEC-014", artifact))
+    if payload.get("decision") not in {"PASS", "PASS WITH CONDITIONS", "PASS WITH DECLARED LIMITATIONS"}:
+        issues.append(PackageIssue("SPEC014_VALIDATION_NOT_PASS", "blocking", "SPEC-014 validation must pass with material depth checks", artifact))
+    material = payload.get("material_depth_validation") or payload.get("question_depth_checks") or payload.get("coverage_question_checks")
+    if not isinstance(material, Mapping) or not material:
+        issues.append(PackageIssue("SPEC014_MATERIAL_DEPTH_MISSING", "blocking", "SPEC-014 validation must evaluate depth by analytical question", artifact))
+        return issues
+    expected_question_ids = expected_question_ids if expected_question_ids is not None else canonical_spec014_question_ids()
+    missing = sorted(expected_question_ids - {str(question_id) for question_id in material})
+    for question_id in missing:
+        issues.append(PackageIssue("SPEC014_QUESTION_MISSING", "blocking", f"SPEC-014 validation missing analytical question: {question_id}", artifact))
+    blocked = []
+    for question_id, check in material.items():
+        if not isinstance(check, Mapping):
+            issues.append(PackageIssue("SPEC014_QUESTION_CHECK_INVALID", "blocking", f"SPEC-014 question check is not structured: {question_id}", artifact))
+            continue
+        state = check.get("coverage_state") or check.get("status")
+        if state == "blocked" or check.get("decision") == "FAIL":
+            blocked.append(str(question_id))
+        material_fields = ("evidence", "comparison", "interpretation", "business_implication", "limitation_or_uncertainty", "conclusion_or_hypothesis")
+        if state in {"complete", "partial"}:
+            for field_name in material_fields:
+                if not check.get(field_name):
+                    issues.append(PackageIssue("SPEC014_MATERIAL_DEPTH_FIELD_MISSING", "blocking", f"Question lacks material depth field {field_name}: {question_id}", artifact))
+        elif state in {"not_available", "not_applicable", "UNKNOWN"}:
+            if not (check.get("limitation_or_uncertainty") or check.get("insufficiency_reason") or check.get("reason")):
+                issues.append(PackageIssue("SPEC014_INSUFFICIENCY_REASON_MISSING", "blocking", f"Question with insufficient coverage must declare reason: {question_id}", artifact))
+        else:
+            issues.append(PackageIssue("SPEC014_QUESTION_STATUS_INVALID", "blocking", f"SPEC-014 question status invalid: {question_id}", artifact))
+    if blocked:
+        issues.append(PackageIssue("SPEC014_QUESTION_BLOCKED", "blocking", f"SPEC-014 blocked questions prevent CPS/Presentation: {blocked}", artifact))
+    return issues
+
+
+def validate_cps_air_physical_link(cps: Mapping[str, Any], air: Mapping[str, Any], air_artifact: str, cps_artifact: str) -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    if not isinstance(cps, Mapping) or not isinstance(air, Mapping) or not cps or not air:
+        return issues
+
+    air_support_by_id = {
+        str(item.get("finding_id")): set(str(ref) for ref in (item.get("support") or item.get("evidence_refs") or []))
+        for item in analytical_investigation_findings(air)
+        if item.get("finding_id")
+    }
+    cps_signals = dict(cps.get("integrated_view") or {}).get("signals") or []
+    cps_support_by_id = {
+        str(item.get("finding_id")): set(str(ref) for ref in (item.get("support") or []))
+        for item in cps_signals
+        if isinstance(item, Mapping) and item.get("finding_id")
+    }
+    air_ids = set(air_support_by_id)
+    cps_ids = set(cps_support_by_id)
+
+    missing_from_cps = sorted(air_ids - cps_ids)
+    extra_in_cps = sorted(cps_ids - air_ids)
+    if missing_from_cps:
+        issues.append(PackageIssue("CPS_AIR_FINDING_NOT_PRESERVED", "blocking", f"CPS integrated view omits physical AIR findings: {missing_from_cps}", cps_artifact))
+    if extra_in_cps:
+        issues.append(PackageIssue("CPS_AIR_FINDING_NOT_PHYSICAL", "blocking", f"CPS integrated view contains findings absent from physical AIR: {extra_in_cps}", cps_artifact))
+    for finding_id in sorted(air_ids & cps_ids):
+        if air_support_by_id[finding_id] != cps_support_by_id[finding_id]:
+            issues.append(PackageIssue("CPS_AIR_SUPPORT_MISMATCH", "blocking", f"CPS support does not match physical AIR support for finding: {finding_id}", cps_artifact))
+
+    source_artifacts = dict(cps.get("source_artifacts") or {})
+    if source_artifacts.get("analytical_investigation_record") != air_artifact:
+        issues.append(PackageIssue("CPS_AIR_SOURCE_ARTIFACT_MISMATCH", "blocking", "CPS must point to the physical AIR artifact it preserves", cps_artifact))
+    return issues
+
+def evidence_reference_index(evidence_set: Mapping[str, Any]) -> set[str]:
+    refs: set[str] = set()
+    if evidence_set.get("artifact_id"):
+        refs.add(str(evidence_set.get("artifact_id")))
+    facts = evidence_set.get("facts")
+    if isinstance(facts, Mapping):
+        refs.update(str(key) for key in facts)
+    for field_name in ("evidence", "records", "items", "metrics"):
+        value = evidence_set.get(field_name)
+        if isinstance(value, Mapping):
+            value = value.values()
+        if isinstance(value, list):
+            for item in value:
+                if isinstance(item, Mapping):
+                    for id_field in ("evidence_id", "id", "metric_id", "artifact_id"):
+                        if item.get(id_field):
+                            refs.add(str(item.get(id_field)))
+    return refs
+
+
+def validate_air_evidence_trace(air: Mapping[str, Any], evidence_set: Mapping[str, Any], artifact: str) -> list[PackageIssue]:
+    issues: list[PackageIssue] = []
+    evidence_refs = evidence_reference_index(evidence_set)
+    if not evidence_refs:
+        issues.append(PackageIssue("EVIDENCE_REFERENCE_INDEX_EMPTY", "blocking", "Evidence Set must expose stable references before AIR can be traced", artifact))
+        return issues
+    for finding in analytical_investigation_findings(air):
+        finding_id = str(finding.get("finding_id") or artifact)
+        support_refs = finding.get("support") or finding.get("evidence_refs") or []
+        if isinstance(support_refs, (str, bytes)):
+            support_refs = [support_refs]
+        missing = sorted(str(ref) for ref in support_refs if str(ref) not in evidence_refs)
+        if missing:
+            issues.append(PackageIssue("AIR_FINDING_EVIDENCE_REF_MISSING", "blocking", f"AIR finding references Evidence not present in physical Evidence Set: {missing}", finding_id))
+    return issues
+
+
+def validate_pre_cps_depth_gate(package_root: str | Path) -> dict[str, Any]:
+    root = Path(package_root)
+    issues: list[PackageIssue] = []
+    if not root.exists():
+        issues.append(PackageIssue("PACKAGE_ROOT_MISSING", "blocking", "package root does not exist", str(root)))
+        return validation_payload(root, issues)
+
+    required_roles = (
+        "manifest",
+        "evidence_set",
+        "knowledge_set",
+        "analytical_investigation_record",
+        "spec_014_validation",
+        "spec_017_validation",
+    )
+    manifest_path = root / REQUIRED_PACKAGE_ROLES["manifest"]
+    if not manifest_path.exists():
+        for role in required_roles:
+            rel = REQUIRED_PACKAGE_ROLES[role]
+            if not (root / rel).exists():
+                issues.append(PackageIssue("PRE_CPS_ROLE_MISSING", "blocking", f"pre-CPS depth gate role missing: {role}", rel))
+        return validation_payload(root, issues)
+
+    manifest = read_json(manifest_path)
+    paths = {role: artifact_path(root, manifest, role) for role in required_roles}
+    for role, path in paths.items():
+        if not path.exists():
+            issues.append(PackageIssue("PRE_CPS_ROLE_MISSING", "blocking", f"pre-CPS depth gate role missing: {role}", artifact_ref(path, root, role)))
+
+    evidence_set = read_json(paths["evidence_set"]) if paths["evidence_set"].exists() else {}
+    knowledge_set = read_json(paths["knowledge_set"]) if paths["knowledge_set"].exists() else {}
+    air = read_json(paths["analytical_investigation_record"]) if paths["analytical_investigation_record"].exists() else {}
+    spec014_validation = read_json(paths["spec_014_validation"]) if paths["spec_014_validation"].exists() else {}
+    spec017_validation = read_json(paths["spec_017_validation"]) if paths["spec_017_validation"].exists() else {}
+
+    issues.extend(product_issues_to_package_issues(validate_analytical_investigation_record(air), artifact_ref(paths["analytical_investigation_record"], root, "analytical_investigation_record")))
+    issues.extend(validate_air_evidence_trace(air, evidence_set, artifact_ref(paths["analytical_investigation_record"], root, "analytical_investigation_record")))
+    issues.extend(product_issues_to_package_issues(validate_phase09_material_depth(knowledge_set, air), artifact_ref(paths["knowledge_set"], root, "knowledge_set")))
+    issues.extend(validate_spec014_material_validation(spec014_validation, artifact_ref(paths["spec_014_validation"], root, "spec_014_validation")))
+    issues.extend(product_issues_to_package_issues(validate_spec_017_validation(spec017_validation), artifact_ref(paths["spec_017_validation"], root, "spec_017_validation")))
+    return validation_payload(root, issues)
+
 def validate_package(package_root: str | Path) -> dict[str, Any]:
     root = Path(package_root)
     issues: list[PackageIssue] = []
@@ -329,17 +632,69 @@ def validate_package(package_root: str | Path) -> dict[str, Any]:
         return validation_payload(root, issues)
 
     issues.extend(find_namespace_hygiene_issues(root))
-    manifest = read_json(root / "execution/manifest.json")
-    traceability = read_json(root / "execution/physical-traceability.json")
-    preflight = read_json(root / "execution/mcp-preflight-record.json")
-    evidence_record = read_json(root / "execution/evidence-acquisition-record.json")
-    handoff = (root / "handoff/reviewer-qa-handoff.md").read_text(encoding="utf-8")
+
+    manifest_path = root / REQUIRED_PACKAGE_ROLES["manifest"]
+    if not manifest_path.exists():
+        for role, rel in REQUIRED_PACKAGE_ROLES.items():
+            if not (root / rel).exists():
+                issues.append(PackageIssue("PACKAGE_ROLE_MISSING", "blocking", f"required package role missing: {role}", rel))
+        return validation_payload(root, issues)
+
+    manifest = read_json(manifest_path)
+    traceability = read_json_if_exists(root / "execution/physical-traceability.json")
+    preflight = read_json_if_exists(root / "execution/mcp-preflight-record.json")
+    evidence_record = read_json_if_exists(root / "execution/evidence-acquisition-record.json")
+    handoff_path = root / "handoff/reviewer-qa-handoff.md"
+    handoff = handoff_path.read_text(encoding="utf-8") if handoff_path.exists() else ""
 
     issues.extend(validate_manifest(manifest, root))
-    issues.extend(validate_physical_traceability(traceability, root))
-    issues.extend(validate_mcp_preflight_record(preflight))
-    issues.extend(validate_mcp_records(evidence_record))
-    issues.extend(validate_handoff_text(handoff))
+    if traceability:
+        issues.extend(validate_physical_traceability(traceability, root))
+    if preflight:
+        issues.extend(validate_mcp_preflight_record(preflight))
+    if evidence_record:
+        issues.extend(validate_mcp_records(evidence_record))
+    if handoff:
+        issues.extend(validate_handoff_text(handoff))
+
+    paths = {role: artifact_path(root, manifest, role) for role in REQUIRED_PACKAGE_ROLES}
+    knowledge_path = paths["knowledge_set"]
+    air_path = paths["analytical_investigation_record"]
+    coverage_path = paths.get("coverage_matrix")
+    common_core_path = paths["common_product_core"]
+    cps_path = paths["canonical_projection_source"]
+    semantic_path = paths["semantic_equivalence_validation"]
+    spec014_path = paths["spec_014_validation"]
+    spec015_path = paths["spec_015_validation"]
+    spec016_path = paths["spec_016_validation"]
+    spec017_path = paths["spec_017_validation"]
+
+    knowledge_set = read_json(knowledge_path) if knowledge_path.exists() else {}
+    air = read_json(air_path) if air_path.exists() else {}
+    coverage_matrix = read_json(coverage_path) if coverage_path and coverage_path.exists() else {}
+    common_core = read_json(common_core_path) if common_core_path.exists() else {}
+    cps = read_json(cps_path) if cps_path.exists() else {}
+    semantic_validation = read_json(semantic_path) if semantic_path.exists() else {}
+    spec014_validation = read_json(spec014_path) if spec014_path.exists() else {}
+    spec015_validation = read_json(spec015_path) if spec015_path.exists() else {}
+    spec016_validation = read_json(spec016_path) if spec016_path.exists() else {}
+    spec017_validation = read_json(spec017_path) if spec017_path.exists() else {}
+
+    expected_questions = expected_spec014_question_ids(coverage_matrix, common_core)
+    air_artifact = artifact_ref(air_path, root, "analytical_investigation_record")
+    cps_artifact = artifact_ref(cps_path, root, "canonical_projection_source")
+    cps_content_issues = product_issues_to_package_issues(validate_canonical_projection_source(cps), cps_artifact) if cps else [PackageIssue("CPS_NOT_MATERIALIZED", "blocking", "Canonical Projection Source content is required before Presentation", REQUIRED_PACKAGE_ROLES["canonical_projection_source"])]
+
+    issues.extend(product_issues_to_package_issues(validate_analytical_investigation_record(air), air_artifact))
+    issues.extend(product_issues_to_package_issues(validate_phase09_material_depth(knowledge_set, air), artifact_ref(knowledge_path, root, "knowledge_set")))
+    issues.extend(validate_common_product_core_payload(common_core, artifact_ref(common_core_path, root, "common_product_core")))
+    issues.extend(cps_content_issues)
+    issues.extend(validate_cps_air_physical_link(cps, air, air_artifact, cps_artifact))
+    issues.extend(validate_semantic_equivalence_validation(semantic_validation, artifact_ref(semantic_path, root, "semantic_equivalence_validation")))
+    issues.extend(validate_spec014_material_validation(spec014_validation, artifact_ref(spec014_path, root, "spec_014_validation"), expected_questions))
+    issues.extend(validate_spec015_validation(spec015_validation, cps_content_issues, artifact_ref(spec015_path, root, "spec_015_validation")))
+    issues.extend(validate_spec016_validation(spec016_validation, artifact_ref(spec016_path, root, "spec_016_validation")))
+    issues.extend(product_issues_to_package_issues(validate_spec_017_validation(spec017_validation), artifact_ref(spec017_path, root, "spec_017_validation")))
     return validation_payload(root, issues)
 
 

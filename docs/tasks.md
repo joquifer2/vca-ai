@@ -157,6 +157,15 @@ Este bloque registra la iteracion experimental local de gobernanza de comparacio
 | T-067 | Validar QA final AUC-001-EXP-COMP-001 | Validation / Governance | docs/evaluations/auc-001/validations/auc-001-exp-comp-001-final-qa-validation.md | T-066 | QA final emite `PASS` sobre implementacion experimental local | Completed - PASS |
 | T-068 | Ejecutar experimento AUC-001-EXP-COMP-001 | Validation / Experiment | docs/evaluations/auc-001/validations/auc-001-exp-comp-001-experimental-execution-report.md | T-067 | Ejecucion experimental local obtiene `PASS` sin evidencia nueva ni BigQuery | Completed - PASS |
 | T-069 | Cerrar iteracion AUC-001-EXP-COMP-001 | Documentation / Governance | gates/auc-001-exp-comp-001-exit-gate.md; docs/evaluations/auc-001/validations/auc-001-exp-comp-001-iteration-closure-record.md | T-068 | Exit Gate `PASS` y cierre documental persistido en indices | Completed - CLOSED WITH PASS |
+
+## Registro de iteracion documental/local AUC-001-SPEC-017-TP-001
+
+Este bloque registra la incorporacion y cierre documental/local de SPEC-017 en AUC-001. No ejecuta BigQuery/MCP, no adquiere evidencia nueva, no genera reports reales, no modifica outputs historicos, no toca SPEC-014/SPEC-015/SPEC-016 y no declara aceptacion final de un paquete AUC-001.
+
+| ID | Tarea | Tipo | Fuentes | Dependencias | Criterio de finalizacion | Estado |
+| --- | --- | --- | --- | --- | --- | --- |
+| T-070 | Incorporar SPEC-017 Diagnostico Analitico Multicapa | Documentation / Governance | specs/spec-017-auc-001-diagnostico-analitico-multicapa.md; tasks/auc-001-spec-017-diagnostico-analitico-multicapa-task-plan.md; gates/auc-001-spec-017-entry-gate.md; docs/handoffs/auc-001-spec-017-reviewer-qa-handoff.md | QA Entry Gate conversacional `PASS WITH CONDITIONS` | SPEC-017 queda versionada, referenciada por Skill/Runbook/Checklist/indices y lista para Reviewer/QA sin evidencia nueva | Completed - Reviewer PASS and QA PASS |
+| T-071 | Cerrar AUC-001-SPEC-017-TP-001 | Documentation / Governance | gates/auc-001-spec-017-closure-gate.md; docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md | T-070 | Closure Gate `PASS` y cierre documental/local persistido en indices sin outputs ni ejecucion real | Completed - CLOSED WITH PASS |
 ## Backlog de alineamiento del repositorio
 
 
@@ -369,6 +378,5 @@ Queremos únicamente preservar el descubrimiento y definir qué evidencia futura
 Este backlog debe actualizarse solo cuando cambien las specifications, las decisiones publicadas o el handoff de entrada a Tasks Planning del proyecto derivado.
 
 Si aparece una nueva necesidad documental no cubierta por las tareas existentes, debe registrarse como revision de Specification y no como ampliacion informal del backlog.
-
 
 

@@ -104,11 +104,13 @@ from tools.auc_001_operational_acceptance_package import validate_package
 
 root = Path('outputs/auc-001/spec-016-controlled-proof/2026-07-22')
 payload = validate_package(root)
-assert payload['decision'] == 'PASS', payload
+assert payload['decision'] == 'BLOCKED', payload
 assert payload['specification'] == 'SPEC-016'
-print('controlled package validates SPEC-016 physical contract')
+issue_codes = {item['code'] for item in payload['issues']}
+assert 'PACKAGE_ROLE_MISSING' in issue_codes or 'AIR_NOT_MATERIALIZED' in issue_codes, payload
+print('legacy controlled package is blocked by current Phase 09 physical-depth gate')
 "@
-Invoke-PythonCheck 'Controlled package physical validation' $physicalCode
+Invoke-PythonCheck 'Legacy package blocked by Phase 09 depth gate' $physicalCode
 
 
 $strategicTraceabilityCode = @"
@@ -132,6 +134,170 @@ assert any(issue.code == 'STRATEGIC_CONTEXT_LAYER_MISSING' for issue in validate
 print('future package CCD/FARO strategic context traceability helper passed')
 "@
 Invoke-PythonCheck 'CCD/FARO strategic traceability helper' $strategicTraceabilityCode
+
+
+$phase09Code = @"
+from tools.auc_001_analytical_product_contract import (
+    validate_analytical_investigation_record,
+    validate_phase09_material_depth,
+    validate_spec_017_validation,
+)
+
+air = {
+    'artifact_id': 'AIR-001',
+    'derived_from': 'EVD-001',
+    'analytical_questions': ['AQ-003'],
+    'alternative_hypotheses': ['retargeting vs mature intent'],
+    'contrasts_performed': ['commercial matched vs signal buckets'],
+    'discarded_hypotheses': ['creative causality confirmed'],
+    'robustness_and_limits': ['monthly only'],
+    'findings': [{
+        'finding_id': 'FND-001',
+        'analytical_question_id': 'AQ-003',
+        'observation': 'cost-quality is only direct in commercial matched',
+        'evidence_refs': ['EVD-001'],
+        'contrast': 'COMMERCIAL vs non-equivalent FARO layers',
+        'importance': 'prevents universal KPI ranking',
+        'uncertainty': 'CRM final unavailable',
+        'related_findings': ['FND-002'],
+    }],
+}
+knowledge = {
+    'knowledge_claims': [{
+        'knowledge_id': 'K-001',
+        'evidence_refs': ['EVD-001'],
+        'finding_refs': ['FND-001'],
+        'interpretation': 'COMMERCIAL matched is the only direct cost-quality universe.',
+        'limitation_or_uncertainty': 'FARO layers are not equivalent.',
+    }],
+    'analytical_narrative': {
+        'text': 'Quality is constrained by verified intent and non-equivalent signal layers.',
+        'phenomenon': 'verified intent concentrates quality',
+        'trade_off': 'volume vs qualified quality',
+        'dominant_risk': 'universal ranking across FARO layers',
+        'strategic_implication': 'optimize commercial matched without erasing layer boundaries',
+        'knowledge_refs': ['K-001'],
+    },
+}
+spec017 = {
+    'specification': 'SPEC-017',
+    'decision': 'PASS WITH CONDITIONS',
+    'checks': {rid: {'status': 'partial', 'finding_refs': ['FND-001'], 'condition': 'validated with declared coverage limitation'} for rid in ['FR-001','FR-002','FR-003','FR-004','FR-005','FR-006','FR-007','FR-008']},
+}
+assert validate_analytical_investigation_record(air) == []
+assert validate_phase09_material_depth(knowledge, air) == []
+assert validate_spec_017_validation(spec017) == []
+weak = {'knowledge_claims': [{'knowledge_id': 'K-001', 'claim': '1329 leads', 'evidence_refs': ['EVD-001']}], 'analytical_narrative': {'text': 'summary'}}
+descriptive = {'knowledge_claims': [{'knowledge_id': 'K-002', 'evidence_refs': ['EVD-001'], 'finding_refs': ['FND-001'], 'interpretation': '1329 leads and 14 percent Tier A', 'limitation_or_uncertainty': 'coverage limited'}], 'analytical_narrative': knowledge['analytical_narrative']}
+issues = validate_phase09_material_depth(weak, {})
+assert any(issue.code == 'AIR_NOT_MATERIALIZED' for issue in issues)
+assert any(issue.code == 'KNOWLEDGE_WITHOUT_FINDING' for issue in issues)
+assert any(issue.code == 'KNOWLEDGE_DESCRIPTIVE_CLAIM' for issue in issues)
+descriptive_issues = validate_phase09_material_depth(descriptive, air)
+assert any(issue.code == 'KNOWLEDGE_DESCRIPTIVE_INTERPRETATION' for issue in descriptive_issues), [issue.to_dict() for issue in descriptive_issues]
+blocking_spec017 = dict(spec017)
+blocking_spec017['conditions'] = [{'severity': 'blocking', 'message': 'open blocker'}]
+assert any(issue.code == 'SPEC017_BLOCKING_CONDITION_OPEN' for issue in validate_spec_017_validation(blocking_spec017))
+partial_without_condition = {'specification': 'SPEC-017', 'decision': 'PASS WITH CONDITIONS', 'checks': {rid: {'status': 'partial', 'finding_refs': ['FND-001']} for rid in ['FR-001','FR-002','FR-003','FR-004','FR-005','FR-006','FR-007','FR-008']}}
+assert any(issue.code == 'SPEC017_PARTIAL_WITHOUT_CONDITION' for issue in validate_spec_017_validation(partial_without_condition))
+print('Phase 09 material depth validators pass valid AIR and block descriptive Knowledge')
+"@
+Invoke-PythonCheck 'Phase 09 AIR and material depth validators' $phase09Code
+
+$reviewRegressionCode = @"
+from tools.auc_001_analytical_product_contract import validate_canonical_projection_source
+from tools.auc_001_operational_acceptance_package import (
+    validate_cps_air_physical_link,
+    validate_semantic_equivalence_validation,
+    validate_spec014_material_validation,
+    validate_spec015_validation,
+    validate_spec016_validation,
+)
+
+single_question_spec014 = {
+    'specification': 'SPEC-014',
+    'decision': 'PASS',
+    'material_depth_validation': {
+        'AQ-001': {
+            'status': 'complete',
+            'evidence': 'EVD-001',
+            'comparison': 'A vs B',
+            'interpretation': 'explains material difference',
+            'business_implication': 'supports a decision',
+            'limitation_or_uncertainty': 'none declared',
+            'conclusion_or_hypothesis': 'supported hypothesis',
+        }
+    },
+}
+spec014_issues = validate_spec014_material_validation(single_question_spec014)
+assert any(issue.code == 'SPEC014_QUESTION_MISSING' for issue in spec014_issues), [issue.to_dict() for issue in spec014_issues]
+
+condition_shadow = {
+    'specification': 'SPEC-015',
+    'decision': 'PASS WITH CONDITIONS',
+    'conditions': [{'severity': 'non_blocking'}],
+    'issues': [{'severity': 'blocking', 'message': 'hidden blocker'}],
+}
+assert any(issue.code == 'SPEC015_BLOCKING_CONDITION_OPEN' for issue in validate_spec015_validation(condition_shadow, []))
+assert any(issue.code == 'SEMANTIC_EQUIVALENCE_BLOCKING_CONDITION_OPEN' for issue in validate_semantic_equivalence_validation({'decision': 'PASS', 'source_artifacts': ['cps'], 'conditions': [{'severity': 'non_blocking'}], 'issues': [{'severity': 'blocking'}]}))
+assert any(issue.code == 'SPEC016_BLOCKING_CONDITION_OPEN' for issue in validate_spec016_validation({'specification': 'SPEC-016', 'decision': 'PASS', 'conditions': [{'severity': 'non_blocking'}], 'issues': [{'severity': 'blocking'}]}))
+
+physical_air = {'findings': [{'finding_id': 'FND-PHYSICAL'}]}
+cps = {
+    'source_artifacts': {'analytical_investigation_record': 'knowledge/analytical-investigation-record.json'},
+    'integrated_view': {'signals': [{'finding_id': 'FND-EMBEDDED'}]},
+}
+link_issues = validate_cps_air_physical_link(cps, physical_air, 'knowledge/analytical-investigation-record.json', 'product-core/canonical-projection-source.json')
+assert any(issue.code == 'CPS_AIR_FINDING_NOT_PRESERVED' for issue in link_issues), [issue.to_dict() for issue in link_issues]
+assert any(issue.code == 'CPS_AIR_FINDING_NOT_PHYSICAL' for issue in link_issues), [issue.to_dict() for issue in link_issues]
+source_issues = validate_cps_air_physical_link(cps, physical_air, 'knowledge/other-air.json', 'product-core/canonical-projection-source.json')
+assert any(issue.code == 'CPS_AIR_SOURCE_ARTIFACT_MISMATCH' for issue in source_issues), [issue.to_dict() for issue in source_issues]
+
+cps_without_support = {
+    'schema_family': 'auc_001_canonical_projection_source',
+    'specification': 'SPEC-015',
+    'source_artifacts': {'analytical_investigation_record': 'knowledge/analytical-investigation-record.json', 'spec_017_validation': 'validations/spec-017-validation.json'},
+    'product_contract': {'id': 'SPEC-014'},
+    'projection_contracts': {'projection_selection': 'SPEC-010', 'communication_context_transformation': 'SPEC-011', 'canonical_projection_consolidation': 'SPEC-015'},
+    'period': {'start': '2026-01-01'},
+    'scope': {'case': 'AUC-001'},
+    'sources': ['evidence/evidence-set.json'],
+    'canonical_metrics': {'lead_count': 1},
+    'coverage_states': {qid: 'not_applicable' for qid in ['AQ-001','AQ-002','AQ-003','AQ-004','AQ-005','AQ-006','AQ-007','AQ-008','AQ-009','AQ-010','AQ-011','CQ-001','CQ-002','CQ-003','CQ-004','CQ-005','CQ-006','CQ-007','NAQ-001','NAQ-002','NAQ-003','NAQ-004','NAQ-005']},
+    'knowledge_claims': [{'knowledge_id': 'K-001', 'evidence_refs': ['EVD-001'], 'interpretation': 'because trace exists', 'limitation_or_uncertainty': 'none'}],
+    'integrated_view': {'signals': [{'finding_id': 'FND-SUPPORT', 'observation': 'obs', 'support': []}]},
+    'recommendations': [{'recommendation_id': 'R-001', 'knowledge_refs': ['K-001'], 'action': 'review', 'rationale': 'because trace exists'}],
+    'limitations': ['none'],
+    'unknowns': ['none'],
+    'traceability': {'common_core_fingerprint': 'abc'},
+    'strategic_context_constraints': {'source_artifact': 'knowledge/client/ccd.md', 'source_refs': ['ccd'], 'layers': {}, 'global_rules': {'required_traceability': 'ccd_constraint_ref'}},
+}
+assert any(issue.code == 'CPS_FINDING_WITHOUT_SUPPORT' for issue in validate_canonical_projection_source(cps_without_support))
+support_mismatch = validate_cps_air_physical_link(
+    {'source_artifacts': {'analytical_investigation_record': 'knowledge/analytical-investigation-record.json'}, 'integrated_view': {'signals': [{'finding_id': 'FND-SUPPORT', 'support': []}]}},
+    {'findings': [{'finding_id': 'FND-SUPPORT', 'evidence_refs': ['EVD-001']}]},
+    'knowledge/analytical-investigation-record.json',
+    'product-core/canonical-projection-source.json',
+)
+assert any(issue.code == 'CPS_AIR_SUPPORT_MISMATCH' for issue in support_mismatch), [issue.to_dict() for issue in support_mismatch]
+print('review regression cases block incomplete SPEC-014, shadowed blockers, AIR/CPS drift and support loss')
+"@
+Invoke-PythonCheck 'Reviewer regression blockers' $reviewRegressionCode
+$retry2BlockedCode = @"
+from pathlib import Path
+from tools.auc_001_operational_acceptance_package import validate_package
+
+root = Path('outputs/auc-001/exec-2026-07-24-strategic-context-full-rerun-retry-2026-06-30')
+payload = validate_package(root)
+assert payload['decision'] == 'BLOCKED', payload
+codes = {issue['code'] for issue in payload['issues']}
+assert 'PACKAGE_ROLE_MISSING' in codes, payload
+assert 'AIR_NOT_MATERIALIZED' in codes, payload
+assert 'SPEC017_VALIDATION_NOT_MATERIALIZED' in codes, payload
+assert 'SPEC014_MATERIAL_DEPTH_MISSING' in codes, payload
+print('2026-07-24 retry2 package is blocked by current operational depth validation')
+"@
+Invoke-PythonCheck 'Retry2 package blocked by operational depth gate' $retry2BlockedCode
 
 $Results | Format-Table -AutoSize
 $failures = @($Results | Where-Object { $_.Status -ne 'PASS' })

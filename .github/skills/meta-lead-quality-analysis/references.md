@@ -102,6 +102,7 @@ En particular:
 - AUC-001 Analytical Product Contract (SPEC-014)
 - AUC-001 Canonical Projection Consolidation (SPEC-015)
 - AUC-001 Operational Acceptance Package Contract (SPEC-016)
+- AUC-001 Diagnostico Analitico Multicapa (SPEC-017)
 
 La skill no necesita reinterpretarlas.
 
@@ -115,6 +116,7 @@ Durante la Fase 09 del Runbook deben consultarse:
 
 - `.github/skills/meta-lead-quality-analysis/ANALYTICAL_PROFILE.md`
 - `.github/skills/meta-lead-quality-analysis/knowledge-construction-profile.md`
+- `specs/spec-017-auc-001-diagnostico-analitico-multicapa.md`
 
 Estos perfiles guian el programa interno de investigacion analitica y la consolidacion del Knowledge Set.
 
