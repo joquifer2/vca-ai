@@ -1,0 +1,113 @@
+{
+  "artifact_id": "AUC-001-CANONICAL-PRESENTATION-VALIDATION",
+  "route": "canonical_enriched_stable",
+  "decision": "PASS",
+  "issues": [],
+  "canonical_presentation_coverage": {
+    "scope": "canonical enriched presentation coverage",
+    "historical_outputs_as_evidence": false,
+    "required_dimensions": [
+      {
+        "id": "quality_tiers",
+        "label": "Tiers de calidad",
+        "facts": [
+          "lead_tier_total"
+        ]
+      },
+      {
+        "id": "monthly_evolution",
+        "label": "Evolucion mensual",
+        "facts": [
+          "monthly_tier"
+        ]
+      },
+      {
+        "id": "weekly_pattern",
+        "label": "Patron semanal",
+        "facts": [
+          "weekly_quality"
+        ]
+      },
+      {
+        "id": "platform",
+        "label": "Plataforma",
+        "facts": [
+          "platform"
+        ]
+      },
+      {
+        "id": "intent_signals",
+        "label": "Senales de intencion",
+        "facts": [
+          "ticket_status",
+          "travel_window"
+        ]
+      },
+      {
+        "id": "campaign",
+        "label": "Campana",
+        "facts": [
+          "campaigns"
+        ]
+      },
+      {
+        "id": "adset",
+        "label": "Conjunto de anuncios",
+        "facts": [
+          "adsets"
+        ]
+      },
+      {
+        "id": "ad",
+        "label": "Anuncio",
+        "facts": [
+          "top_ads"
+        ]
+      },
+      {
+        "id": "signal_spend",
+        "label": "Inversion por senal FARO",
+        "facts": [
+          "spend_by_signal",
+          "commercial_matched"
+        ]
+      },
+      {
+        "id": "temporal_spend",
+        "label": "Inversion temporal",
+        "facts": [
+          "spend_monthly",
+          "spend_weekly"
+        ]
+      },
+      {
+        "id": "ad_spend",
+        "label": "Inversion por anuncio",
+        "facts": [
+          "spend_ad"
+        ]
+      },
+      {
+        "id": "coverage",
+        "label": "Cobertura y UNKNOWNs",
+        "facts": [
+          "commercial_matched"
+        ]
+      },
+      {
+        "id": "recommendations",
+        "label": "Recomendaciones",
+        "facts": []
+      }
+    ]
+  },
+  "historical_outputs_as_evidence": false,
+  "source_artifacts": [
+    "evidence/evidence-set.json",
+    "knowledge/analytical-investigation-record.json",
+    "knowledge/knowledge-set.json",
+    "recommendations/recommendation-set.json",
+    "product-core/common-product-core.json",
+    "product-core/canonical-projection-source.json"
+  ]
+}

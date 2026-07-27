@@ -17,12 +17,18 @@ from tools.auc_001_analytical_product_contract import (  # noqa: E402
 from tools.auc_001_canonical_cost_quality_model import (  # noqa: E402
     STRATEGIC_CONTEXT_CONSTRAINTS,
 )
+from tools.auc_001_canonical_enrichment import (  # noqa: E402
+    build_enriched_auc001_canonical_content,
+)
 from tools.auc_001_execution_orchestration import (  # noqa: E402
     require_before_cps,
     require_before_presentation,
     write_current_pointer,
 )
 from tools.auc_001_operational_acceptance_package import validate_package  # noqa: E402
+from tools.auc_001_canonical_presentation import (  # noqa: E402
+    materialize_canonical_presentation_reports_after_gate,
+)
 
 
 ROOT = Path("outputs/auc-001/exec-2026-07-26-canonical-2026-06-30")
@@ -217,123 +223,16 @@ def main() -> None:
     }
     dump("evidence/evidence-set.json", evidence)
 
-    findings = [
-        {
-            "finding_id": "F-001",
-            "analytical_question_id": "AQ-002",
-            "observation": "The period has 1329 leads, 397 A/B leads and 58 Tier A leads.",
-            "importance": "Quality density is material because 70.1 percent remains C/D.",
-            "uncertainty": "Tier quality is observed, not downstream revenue.",
-            "related_findings": ["F-002", "F-003"],
-            "evidence_refs": ["lead_tier_total", "monthly_tier"],
-            "comparison": "Compared total tier mix across A, B, C and D.",
-        },
-        {
-            "finding_id": "F-002",
-            "analytical_question_id": "AQ-006",
-            "observation": "Ticket and travel-window intent explain the strongest quality separation.",
-            "importance": "Tiene billetes reaches 157 A/B from 177 leads; menos de 1 mes reaches 74 A/B from 80 leads.",
-            "uncertainty": "Association is not causal without a controlled test.",
-            "related_findings": ["F-001", "F-004"],
-            "evidence_refs": ["ticket_status", "travel_window"],
-            "comparison": "Compared intent buckets against solo_mirando and aun_no_claro.",
-        },
-        {
-            "finding_id": "F-003",
-            "analytical_question_id": "AQ-003",
-            "observation": "COMMERCIAL matched is the only direct cost-quality universe: 873.650006 EUR, 1187 leads and 344 A/B.",
-            "importance": "Cost per A/B is 2.5397 EUR in the commercial matched universe.",
-            "uncertainty": "ATTENTION and ACTIVATION are non-equivalent FARO layers.",
-            "related_findings": ["F-001", "F-005"],
-            "evidence_refs": ["spend_by_signal", "commercial_matched", "activation_observed"],
-            "comparison": "Compared cost-quality only within governed signal layers.",
-        },
-        {
-            "finding_id": "F-004",
-            "analytical_question_id": "AQ-005",
-            "observation": "The two largest commercial ads concentrate 1002 leads and 288 A/B leads.",
-            "importance": "Lead volume and qualified volume are concentrated in a small set of ads.",
-            "uncertainty": "Ad labels do not prove creative causality.",
-            "related_findings": ["F-002", "F-003"],
-            "evidence_refs": ["top_ads", "campaigns"],
-            "comparison": "Compared top ad_id_norm buckets by leads and A/B leads.",
-        },
-        {
-            "finding_id": "F-005",
-            "analytical_question_id": "AQ-009",
-            "observation": "June scales to 776 leads and 229 A/B; A/B rate remains near April and May.",
-            "importance": "Volume increased without a proportional quality-density improvement.",
-            "uncertainty": "Weekly edges are partial weeks and not a causal trend basis.",
-            "related_findings": ["F-001", "F-003"],
-            "evidence_refs": ["monthly_tier"],
-            "comparison": "Compared April, May and June monthly buckets.",
-        },
-    ]
-    air = {
-        "artifact_id": "AUC-001-AIR-20260726-CANONICAL",
-        "schema_family": "auc_001_analytical_investigation_record",
-        "status": "stabilized",
-        "derived_from": evidence["artifact_id"],
-        "evidence_set_ref": "evidence/evidence-set.json",
-        "analytical_questions": [definition.question_id for definition in QUESTION_DEFINITIONS],
-        "alternative_hypotheses": [
-            "Volume alone explains quality.",
-            "Intent signals explain quality separation.",
-            "Cross-layer cost ranking identifies the best FARO layer.",
-        ],
-        "contrasts_performed": [
-            "Tier distribution by month.",
-            "Intent buckets against A/B and Tier A.",
-            "COMMERCIAL matched economics separated from ATTENTION and ACTIVATION.",
-            "Ad_id_norm concentration without creative causality.",
-        ],
-        "discarded_hypotheses": [
-            "Cross-layer universal KPI ranking is discarded by CCD/FARO governance.",
-            "Creative winner causality is discarded because no causal creative evidence was authorized.",
-        ],
-        "robustness_and_limits": [
-            "Evidence covers 2026-04-18 through 2026-06-30.",
-            "Revenue and CRM outcomes remain UNKNOWN.",
-            "Cost-quality claims are limited to COMMERCIAL matched.",
-        ],
-        "intermediate_findings": findings,
-    }
+    enriched = build_enriched_auc001_canonical_content(
+        metrics,
+        evidence_artifact_id=evidence["artifact_id"],
+        question_ids=[definition.question_id for definition in QUESTION_DEFINITIONS],
+    )
+    findings = enriched["findings"]
+    air = enriched["air"]
     dump("knowledge/analytical-investigation-record.json", air)
 
-    knowledge_claims = [
-        {
-            "knowledge_id": "K-001",
-            "evidence_refs": ["lead_tier_total", "monthly_tier"],
-            "finding_refs": ["F-001", "F-005"],
-            "claim": "The period generated 397 A/B leads and 58 Tier A leads.",
-            "interpretation": "Because A/B density stays near 30 percent while volume grows, scaling improved absolute qualified volume but not quality density.",
-            "limitation_or_uncertainty": "No CRM revenue validation is available.",
-        },
-        {
-            "knowledge_id": "K-002",
-            "evidence_refs": ["ticket_status", "travel_window"],
-            "finding_refs": ["F-002"],
-            "claim": "Intent signals separate high-quality and low-quality leads.",
-            "interpretation": "The evidence explains that explicit trip readiness, especially tickets and near travel windows, is materially more associated with A/B and Tier A quality.",
-            "limitation_or_uncertainty": "This is association, not causal proof.",
-        },
-        {
-            "knowledge_id": "K-003",
-            "evidence_refs": ["spend_by_signal", "commercial_matched"],
-            "finding_refs": ["F-003"],
-            "claim": "COMMERCIAL matched supports direct cost-quality reading.",
-            "interpretation": "COMMERCIAL can be interpreted economically because the matched universe links spend and leads; ATTENTION and ACTIVATION are not equivalent decision layers.",
-            "limitation_or_uncertainty": "Cross-layer KPI ranking is not allowed by the FARO profile.",
-        },
-        {
-            "knowledge_id": "K-004",
-            "evidence_refs": ["top_ads", "campaigns"],
-            "finding_refs": ["F-004"],
-            "claim": "Ad-level qualified volume is concentrated.",
-            "interpretation": "The concentration implies a practical testing focus, but it does not prove that creative content caused quality outcomes.",
-            "limitation_or_uncertainty": "Creative causality remains UNKNOWN.",
-        },
-    ]
+    knowledge_claims = enriched["knowledge_claims"]
     knowledge = {
         "artifact_id": "AUC-001-KNOWLEDGE-SET-20260726-CANONICAL",
         "schema_family": "auc_001_knowledge_set",
@@ -341,68 +240,23 @@ def main() -> None:
         "derived_from": air["artifact_id"],
         "analytical_investigation_record_artifact": "knowledge/analytical-investigation-record.json",
         "knowledge_claims": knowledge_claims,
-        "analytical_narrative": {
-            "text": "Lead quality is primarily separated by observable intent, while economics must remain inside the governed COMMERCIAL matched universe.",
-            "phenomenon": "Volume scaled in June while A/B density stayed stable.",
-            "trade_off": "Scaling volume without stronger intent filters increases C/D burden.",
-            "dominant_risk": "Using a universal KPI across FARO layers would misread strategic roles.",
-            "strategic_implication": "Protect commercial acquisition and test intent filters before declaring optimization winners.",
-            "knowledge_refs": ["K-001", "K-002", "K-003", "K-004"],
-        },
-        "limitations": [
-            "No revenue or CRM final outcome source.",
-            "No creative causality source.",
-            "FARO layers are strategically non-equivalent.",
-        ],
-        "unknowns": ["Revenue quality", "Creative causality", "Assisted impact of ATTENTION"],
+        "analytical_narrative": enriched["analytical_narrative"],
+        "limitations": enriched["limitations"],
+        "unknowns": enriched["unknowns"],
     }
     dump("knowledge/knowledge-set.json", knowledge)
 
-    recs = [
-        {
-            "recommendation_id": "R-001",
-            "category": "measurable_experiment",
-            "knowledge_refs": ["K-002", "K-003"],
-            "hypothesis": "A stricter ticket/travel-window intent emphasis will raise A/B density without collapsing commercial volume.",
-            "action": "Run a controlled commercial test that prioritizes ticket and near-window intent prompts.",
-            "population": "Meta Lead Ads commercial matched traffic.",
-            "primary_metric": "A/B lead rate and Tier A count in COMMERCIAL matched.",
-            "guardrail": "Do not reduce total qualified A/B volume below the current monthly baseline.",
-            "expected_direction": "Higher A/B density and stable qualified volume.",
-            "success_criterion": "A/B rate improves with no loss in Tier A count.",
-            "validation_window": "One complete comparable campaign period.",
-            "evidence_dependency": "Future BigQuery MCP evidence at the same grain.",
-            "uncertainty": "Association is observed; causal lift must be tested.",
-            "stop_or_review_condition": "Stop if C/D share rises or commercial volume collapses.",
-        },
-        {
-            "recommendation_id": "R-002",
-            "category": "verifiable_action",
-            "knowledge_refs": ["K-003"],
-            "action": "Keep ATTENTION, ACTIVATION and COMMERCIAL in separate reporting blocks.",
-            "supporting_evidence": "Spend_by_signal and commercial_matched evidence show non-equivalent FARO universes.",
-            "verifiable_result": "Reports contain no universal KPI ranking across FARO layers.",
-            "closure_criterion": "SPEC-017 and Presentation checks preserve layer separation.",
-            "risk": "Cross-layer ranking may overstate economic efficiency.",
-            "dependency": "FARO strategic context profile remains active.",
-        },
-        {
-            "recommendation_id": "R-003",
-            "category": "non_actionable_hypothesis",
-            "knowledge_refs": ["K-004"],
-            "hypothesis": "Some ad_id_norm clusters may carry reusable intent framing.",
-            "support": "Top ads concentrate qualified volume.",
-            "uncertainty": "No creative-causality evidence is available.",
-            "missing_evidence": "Controlled creative test or creative metadata.",
-            "promotion_condition": "Promote only after a future controlled experiment.",
-        },
-    ]
+    recs = enriched["recommendations"]
     recommendation_set = {
         "artifact_id": "AUC-001-RECOMMENDATION-SET-20260726-CANONICAL",
         "status": "stabilized",
         "derived_from": knowledge["artifact_id"],
         "recommendations": recs,
-        "excluded_actions": ["No universal KPI ranking across FARO layers.", "No creative winner claim."],
+        "excluded_actions": [
+            "No declarar ranking KPI universal entre capas FARO.",
+            "No declarar ganador creativo.",
+            "No optimizar por calidad semanal, conjunto de anuncios, inversion temporal o cruces inversion-anuncio sin evidencia canonica actual.",
+        ],
     }
     dump("recommendations/recommendation-set.json", recommendation_set)
 
@@ -499,6 +353,7 @@ def main() -> None:
         "context_definition": "execution/context-definition.json",
         "analytical_report": "reports/analytical-report.md",
         "executive_report": "reports/executive-report.md",
+        "canonical_presentation_validation": "validations/canonical-presentation-validation.json",
     }
     manifest = {
         "artifact_id": "AUC-001-MANIFEST-20260726-CANONICAL",
@@ -621,24 +476,6 @@ def main() -> None:
         "issues": [],
         "conditions": [],
     })
-    write("reports/analytical-report.md", """# Analisis de calidad de leads Meta Ads - AUC-001
-
-Periodo: 18 de abril de 2026 a 30 de junio de 2026.
-
-El periodo genero 1.329 leads. De ellos, 397 fueron A/B (29,9%) y 58 fueron Tier A (4,4%). La calidad no se explica por volumen puro: junio escalo hasta 776 leads y 229 A/B, pero la densidad A/B se mantuvo cerca de abril y mayo.
-
-La mayor separacion aparece en senales de intencion. `tiene_billetes` aporto 177 leads, 157 A/B y 47 Tier A. `en_proceso` aporto 314 leads y 192 A/B. En cambio, `solo_mirando` aporto 838 leads pero solo 48 A/B y ningun Tier A. En ventana temporal, `menos de 1 mes` concentro 74 A/B sobre 80 leads.
-
-En economia, solo COMMERCIAL matched permite lectura directa: 873,650006 EUR, 1.187 leads, 344 A/B y 2,5397 EUR por A/B. ATTENTION y ACTIVATION se preservan como capas FARO no equivalentes, por lo que no se declara ranking universal entre capas.
-
-La accion recomendada es proteger la escala comercial y probar filtros de intencion verificable, con medicion de A/B y Tier A. La concentracion por anuncio sirve como hipotesis operativa, no como causalidad creativa.
-""")
-    write("reports/executive-report.md", """# Informe ejecutivo - Calidad de leads
-
-Hasta el 30 de junio de 2026, Meta genero 1.329 leads, con 397 A/B y 58 Tier A. La calidad se concentra en leads con intencion clara: billetes comprados, compra en proceso y viaje cercano.
-
-Recomendacion principal: mantener la escala comercial, pero orientar tests y formularios hacia senales de intencion verificable. No comparar ATTENTION, ACTIVATION y COMMERCIAL como si fueran un unico ranking economico.
-""")
     write("handoff/reviewer-qa-handoff.md", f"""# Reviewer / QA Handoff
 
 ## Status
@@ -660,6 +497,16 @@ BigQuery MCP only. No CLI. No fallback. No historical Evidence Sets as analytica
 
 Revenue, CRM final outcomes, creative causality and assisted attention impact remain UNKNOWN.
 
+## Ruta canonica enriquecida estable
+
+La ruta canonica enriquecida queda promovida como salida estable de AUC-001.
+AIR mantiene 10 findings intermedios; Knowledge Set mantiene 7 claims con narrativa integrada;
+Recommendation Set mantiene 5 recomendaciones/hipotesis trazadas con prioridad, metricas,
+salvaguardas y condiciones de revision.
+
+analytical-report.md y executive-report.md se materializan como proyecciones Presentation
+hermanas despues del gate canonico. No se materializan adaptadores temporales ni informes
+experimentales compactos en el paquete estable.
 ## Deviations
 
 No material deviation from canonical route.
@@ -682,6 +529,43 @@ Not declared. Package is READY_FOR_REVALIDATION.
         rel: sha(rel)
         for key, rel in artifact_paths.items()
         if key not in {"manifest", "physical_traceability", "test_results", "spec_016_validation"}
+        and (ROOT / rel).exists()
+    }
+    dump("execution/manifest.json", manifest)
+    dump("execution/physical-traceability.json", {
+        "artifact_id": "AUC-001-PHYSICAL-TRACEABILITY-20260726-CANONICAL",
+        "status": "PASS",
+        "namespace_hygiene_pass": True,
+        "manifest_sha256": sha("execution/manifest.json"),
+        "test_results_sha256": sha("execution/test-results.json"),
+        "artifact_inventory": artifact_paths,
+    })
+    validation = validate_package(ROOT)
+    if validation["decision"] != "PASS":
+        print(json.dumps(validation, ensure_ascii=False, indent=2))
+        raise SystemExit(1)
+    dump("validations/spec-016-validation.json", validation)
+
+    presentation_validation = materialize_canonical_presentation_reports_after_gate(ROOT)
+    dump("execution/test-results.json", {
+        "artifact_id": "AUC-001-TEST-RESULTS-20260726-CANONICAL",
+        "status": "PASS",
+        "checks": [
+            {"name": "partial_execution_blocked", "result": "PASS", "artifact": "outputs/auc-001/current/2026-06-30"},
+            {"name": "canonical_package_materialized", "result": "PASS", "artifact": ROOT.as_posix()},
+            {"name": "current_pointer_only_after_validation", "result": "PASS", "artifact": "outputs/auc-001/current/current-execution.json"},
+            {
+                "name": "canonical_enriched_presentation_requires_canonical_gate",
+                "result": presentation_validation["decision"],
+                "artifact": "reports/analytical-report.md",
+            },
+        ],
+    })
+    manifest["artifact_fingerprints"] = {
+        rel: sha(rel)
+        for key, rel in artifact_paths.items()
+        if key not in {"manifest", "physical_traceability", "test_results", "spec_016_validation"}
+        and (ROOT / rel).exists()
     }
     dump("execution/manifest.json", manifest)
     dump("execution/physical-traceability.json", {

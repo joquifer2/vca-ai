@@ -7,8 +7,8 @@
 | Estado operativo | Active |
 | Estado de validación | Validated |
 | Ciclo experimental | Closed |
-| Closure gate | P04 CLOSED; SPEC-016 CLOSED; IC-001 CLOSED; P04 acceptance FINAL ACCEPTED; SPEC-017 documentary/local CLOSED |
-| Estado post-cierre vigente | AUC-001 POST-P04 ACCEPTANCE FINAL ACCEPTED - INTEGRAL PRODUCT CONSOLIDATION CLOSED - SPEC-017 DOCUMENTARY LOCAL CLOSED |
+| Closure gate | P04 CLOSED; SPEC-016 CLOSED; IC-001 CLOSED; P04 acceptance FINAL ACCEPTED; SPEC-017 documentary/local CLOSED; canonical enriched route EXIT GATE PASS; Stable Use Case Closure Gate PASS |
+| Estado post-cierre vigente | AUC-001 STABLE USE CASE - ITERATION CLOSED |
 | P01 | Analytical Product Contract Definition cerrado documentalmente con PASS el 2026-07-21 |
 | P02 | Analytical Product Contract real execution cerrado con PASS WITH DECLARED LIMITATIONS el 2026-07-21 |
 | P03 | Experimental representation revision cerrada con PASS el 2026-07-22 |
@@ -17,7 +17,7 @@
 | IC-001 | Integral Product Consolidation cerrada con PASS el 2026-07-22 sin nueva Specification |
 | SPEC-017 | Diagnostico Analitico Multicapa incorporado y cerrado documental/localmente con PASS el 2026-07-25 |
 | Paquete real post-P04 | `outputs/auc-001/p04-acceptance/2026-07-22/` aceptado finalmente por QA Gate Agent el 2026-07-22 |
-| Fecha del closure gate | 2026-07-22 |
+| Fecha del closure gate | 2026-07-27 |
 
 ## Iteracion experimental cerrada
 
@@ -71,6 +71,10 @@ AUC-001-EXP-COMP-001 queda cerrada con Exit Gate `PASS`. La iteracion valida loc
 | AUC-001 SPEC-017 Entry Gate documental | [../../gates/auc-001-spec-017-entry-gate.md](/gates/auc-001-spec-017-entry-gate.md) |
 | AUC-001 SPEC-017 Closure Gate documental/local | [../../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md) |
 | AUC-001 SPEC-017 Iteration Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
+| AUC-001 Canonical Enriched Route Exit Gate | [../../gates/auc-001-canonical-enriched-route-exit-gate.md](/gates/auc-001-canonical-enriched-route-exit-gate.md) |
+| AUC-001 Canonical Enriched Route Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-canonical-enriched-route-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-canonical-enriched-route-closure-record.md) |
+| AUC-001 Stable Use Case Closure Gate | [../../gates/auc-001-stable-use-case-closure-gate.md](/gates/auc-001-stable-use-case-closure-gate.md) |
+| AUC-001 Stable Use Case Iteration Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-stable-use-case-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-stable-use-case-iteration-closure-record.md) |
 | P01 Architectural Memo | [../../docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md](/docs/decisions/auc-001/auc-001-p01-analytical-product-contract-architectural-analysis.md) |
 | P01 Documentary Closure Gate | [../../gates/auc-001-p01-documentary-closure-gate.md](/gates/auc-001-p01-documentary-closure-gate.md) |
 | P02 Task Plan | [../../tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md](/tasks/auc-001-p02-analytical-product-contract-implementation-task-plan.md) |
@@ -135,6 +139,10 @@ AUC-001-EXP-COMP-001 queda cerrada con Exit Gate `PASS`. La iteracion valida loc
 | AUC-001 P04 Exit Gate | [../../gates/auc-001-p04-exit-gate.md](/gates/auc-001-p04-exit-gate.md) |
 | AUC-001 SPEC-017 Closure Gate | [../../gates/auc-001-spec-017-closure-gate.md](/gates/auc-001-spec-017-closure-gate.md) |
 | AUC-001 SPEC-017 Iteration Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-spec-017-iteration-closure-record.md) |
+| AUC-001 Canonical Enriched Route Exit Gate | [../../gates/auc-001-canonical-enriched-route-exit-gate.md](/gates/auc-001-canonical-enriched-route-exit-gate.md) |
+| AUC-001 Canonical Enriched Route Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-canonical-enriched-route-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-canonical-enriched-route-closure-record.md) |
+| AUC-001 Stable Use Case Closure Gate | [../../gates/auc-001-stable-use-case-closure-gate.md](/gates/auc-001-stable-use-case-closure-gate.md) |
+| AUC-001 Stable Use Case Iteration Closure Record | [../../docs/evaluations/auc-001/validations/auc-001-stable-use-case-iteration-closure-record.md](/docs/evaluations/auc-001/validations/auc-001-stable-use-case-iteration-closure-record.md) |
 | IC-001 | AUC-001 IC-001 Closure Gate | [../../gates/auc-001-ic-001-closure-gate.md](/gates/auc-001-ic-001-closure-gate.md) |
 
 ## Decisiones vigentes
@@ -206,6 +214,8 @@ Estado vigente IC-001: QA Gate Agent emitio el Closure Gate con `PASS` tras ejec
 
 Estado vigente del paquete real post-P04: QA Gate Agent revalido fisicamente `outputs/auc-001/p04-acceptance/2026-07-22/` y emitio `FINAL ACCEPTED` en [../../gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md](/gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md). El manifest del paquete permanece correctamente en `READY_FOR_REVALIDATION`; la aceptacion final la concede el gate QA, no el manifest.
 
+Estado vigente de la ruta canonica enriquecida: Reviewer Agent emitio `NO REGRESSION` tras resolver la localizacion visible al espanol. QA Gate Agent emite Exit Gate `PASS` el 2026-07-27 y promueve `outputs/auc-001/exec-2026-07-26-canonical-2026-06-30/` como paquete estable representado por `outputs/auc-001/current/current-execution.json`. El adaptador temporal queda retirado y los informes experimentales compactos no forman parte del paquete estable. El Stable Use Case Closure Gate registra formalmente `AUC-001 STABLE USE CASE - ITERATION CLOSED`.
+
 
 ## Modelo canónico operativo vigente tras IC-001
 
@@ -224,7 +234,8 @@ Clasificación vigente de artefactos:
 | Históricos preservados | `outputs/auc-001/2026-06-30/`, `outputs/auc-001/pci-001/2026-06-30/`, `outputs/auc-001/pci-002/2026-06-30/`, corpus y evaluaciones históricas. |
 | Experimentales cerrados | P03 y su namespace `outputs/auc-001/p03/2026-07-22/`; se conservan por trazabilidad y no son fuente analítica nueva. |
 | Cerrados sin reapertura | P02, P03, P04 y SPEC-016 mantienen sus decisiones y outputs intactos. |
-| Paquete real final aceptado | `outputs/auc-001/p04-acceptance/2026-07-22/` queda `FINAL ACCEPTED` por gate QA físico final; su manifest interno conserva `READY_FOR_REVALIDATION` como estado de paquete producido por Implementation. |
+| Paquete real final aceptado | `outputs/auc-001/p04-acceptance/2026-07-22/` queda `FINAL ACCEPTED` por gate QA fisico final; su manifest interno conserva `READY_FOR_REVALIDATION` como estado de paquete producido por Implementation. |
+| Ruta canonica enriquecida estable | `outputs/auc-001/exec-2026-07-26-canonical-2026-06-30/` queda promovido como salida estable; `current/` apunta solo a paquete validado; sin adaptador temporal ni informes experimentales compactos. |
 | Gaps fuera del flujo principal | MCP multi-tabla, revenue/CRM, causalidad creativa, metadata creativa adicional y temporalidad limitada por proveedor. |
 
 Regla de operación: las futuras ejecuciones completas deben construir el paquete físico conforme a SPEC-016; las proyecciones analytical y executive deben derivar del mismo Canonical Projection Source conforme a SPEC-015; la cobertura, `UNKNOWN`, `partial`, `not_available`, limitaciones y recomendaciones deben preservar SPEC-014; y la profundidad diagnostica local debe aplicar SPEC-017 cuando la evidencia autorizada lo permita.

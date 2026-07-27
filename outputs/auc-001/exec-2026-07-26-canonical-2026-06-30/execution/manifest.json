@@ -2,7 +2,7 @@
   "artifact_id": "AUC-001-MANIFEST-20260726-CANONICAL",
   "specification": "SPEC-016",
   "status": "READY_FOR_REVALIDATION",
-  "created_at_utc": "2026-07-26T10:18:53.201331+00:00",
+  "created_at_utc": "2026-07-27T16:26:41.081159+00:00",
   "execution_mode": "canonical_real_execution",
   "namespace": "outputs/auc-001/exec-2026-07-26-canonical-2026-06-30",
   "source_policy": {
@@ -31,27 +31,29 @@
     "handoff": "handoff/reviewer-qa-handoff.md",
     "context_definition": "execution/context-definition.json",
     "analytical_report": "reports/analytical-report.md",
-    "executive_report": "reports/executive-report.md"
+    "executive_report": "reports/executive-report.md",
+    "canonical_presentation_validation": "validations/canonical-presentation-validation.json"
   },
   "artifact_fingerprints": {
     "execution/mcp-preflight-record.json": "3f31745edb4c736695a6b5b6214c3581bbe0eebc5977431dc26e1e1fe31885da",
     "execution/evidence-acquisition-record.json": "e77571b3e9c5a2ec4d34b735722249587a891efd8b60506c61f1f188e3475ddd",
-    "execution/semantic-equivalence-validation.json": "0d697ca7f34b8846a392fe1b7f625b0ebbf4448a357d850db803ae330820027b",
+    "execution/semantic-equivalence-validation.json": "c18c1d435577a5151d7c30fdf63b7db484a178ae1c41e0072ff3d6043124c49b",
     "evidence/evidence-set.json": "a618f280bab2528659fe7b55790fd6764abde1c73f329f1ace4066c26202014e",
-    "knowledge/knowledge-set.json": "cb2562eb240f8263f306ce48f526ab6324d0e7a4ce54c199b72623572a270492",
-    "knowledge/analytical-investigation-record.json": "850483423438295239eaf0aadbc35a08cc939818dff916d15f9b9d43845956cf",
-    "recommendations/recommendation-set.json": "6ce77632bf7ade219e8ccbc2ea03f21403e72a22bc24a571852abc839664e815",
+    "knowledge/knowledge-set.json": "c668b3f33e65109301004e33ec55ab15585708062f850372a26b2a5b4b9ce53c",
+    "knowledge/analytical-investigation-record.json": "4771e3eba852dedd2c2c3c6ffd8e43630efc6ffbf8cadcc397c92cbf25cf782b",
+    "recommendations/recommendation-set.json": "4c71a87ae2f11a7e904778eda2555a0a0cecb2b12ddba42f62b04b79c52804fa",
     "coverage-matrix/coverage-matrix.json": "b22b0447b706c8dd7357eca031e17c01b69789e069daa3bf8f20cbaf5bd1bee6",
-    "product-core/common-product-core.json": "737bb98b47090c4801582194f8179105072eace0a0b86a3f8a930aa8edf7e29c",
-    "product-core/canonical-projection-source.json": "b010cb2b987d5f868c092e35a038a47034669c8e9b3c8f42cb4f95951a85850f",
+    "product-core/common-product-core.json": "4cd2669f325dd78e8eca249ffdfe14273add91a62cb9d4ef2eaecc208b7b6b35",
+    "product-core/canonical-projection-source.json": "2a634bb644cd36f7527f896a7abd187bb503dcd0544702a0771baa37a3d9709e",
     "validations/spec-014-validation.json": "39fc9c4f10bbf40381c5234ce0489b73167718a0a08eaad446add174cf1393f4",
-    "validations/spec-015-validation.json": "c004b9c4911537aa7cd0e7e6557b45d3358b9bfe6a4407a2ae34f442b7ec676e",
+    "validations/spec-015-validation.json": "05e3285ea8e05055b5eed56854d9a23c9ab6dae4127f9d1d3f50c5f1a224dff9",
     "validations/spec-017-validation.json": "0842d6a797fe667e5480ab1557628c124ade2f8567ee5fc030eafe1135e36f37",
-    "handoff/reviewer-qa-handoff.md": "24f8d8e1af56adf14ddde5310fddeb2b871f628262d471bcf85d003766f655b6",
+    "handoff/reviewer-qa-handoff.md": "be2ad75384546eb125b12b2adca99eda2c126a58430279688e89fb6c4565e581",
     "execution/context-definition.json": "3a5b505f85aa066f1519c26747a4a024adf3b4ac5cc4a6fc2257f27c83a2eaec",
-    "reports/analytical-report.md": "c8345abdf462b89c57c396020f196dbf613ade8f23bd38e58f6fb7578971e93e",
-    "reports/executive-report.md": "bb0884e9776552946cbbda98a5123a1938820b202c4776eb9f6ecf4d588f6760"
+    "reports/analytical-report.md": "3352933225366696bd262171087aad2e36125806c0c8154269e0347ab38b5319",
+    "reports/executive-report.md": "75832059104d86f0f472a7cff1ff4c8d6efc1fbf87e938635fb433201ca944ce",
+    "validations/canonical-presentation-validation.json": "19eab8f6224c9676075ebafc26f268eed7fee2bfc5164bc0a9473bc636c5fecf"
   },
-  "common_core_fingerprint": "9e3f551f7c70ae7af1ce06d479af5d561797d2809433fe383341cefa1064ea1d",
+  "common_core_fingerprint": "8b8a6632e5d2f20a90bb5732b10e0481e96809bd957892087d54a8dbedb4a527",
   "acceptance_final_declared_by_implementation": false
 }

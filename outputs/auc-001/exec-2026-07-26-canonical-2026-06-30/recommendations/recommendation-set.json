@@ -6,50 +6,88 @@
     {
       "recommendation_id": "R-001",
       "category": "measurable_experiment",
+      "priority": "high",
       "knowledge_refs": [
-        "K-002",
-        "K-003"
+        "K-003",
+        "K-004"
       ],
-      "hypothesis": "A stricter ticket/travel-window intent emphasis will raise A/B density without collapsing commercial volume.",
-      "action": "Run a controlled commercial test that prioritizes ticket and near-window intent prompts.",
-      "population": "Meta Lead Ads commercial matched traffic.",
-      "primary_metric": "A/B lead rate and Tier A count in COMMERCIAL matched.",
-      "guardrail": "Do not reduce total qualified A/B volume below the current monthly baseline.",
-      "expected_direction": "Higher A/B density and stable qualified volume.",
-      "success_criterion": "A/B rate improves with no loss in Tier A count.",
-      "validation_window": "One complete comparable campaign period.",
-      "evidence_dependency": "Future BigQuery MCP evidence at the same grain.",
-      "uncertainty": "Association is observed; causal lift must be tested.",
-      "stop_or_review_condition": "Stop if C/D share rises or commercial volume collapses."
+      "hypothesis": "Priorizar senales explicitas de billete, proceso de compra y ventana cercana aumentara la densidad A/B sin colapsar volumen cualificado.",
+      "action": "Ejecutar un test controlado en COMMERCIAL matched que enfatice estado de billete e intencion de ventana cercana en copy, formulario o routing.",
+      "population": "Trafico Meta Lead Ads COMMERCIAL matched.",
+      "primary_metric": "Tasa de leads A/B y conteo Tier A en COMMERCIAL matched.",
+      "secondary_metric": "Peso C/D y volumen total cualificado A/B.",
+      "guardrail": "No reducir el volumen cualificado A/B por debajo de la referencia mensual actual.",
+      "expected_direction": "Mayor densidad A/B con conteo Tier A estable o mejorado.",
+      "success_criterion": "La tasa A/B mejora mientras el conteo Tier A y los guardrails de volumen cualificado se mantienen estables.",
+      "validation_window": "Un periodo completo comparable de campana.",
+      "evidence_dependency": "Evidencia futura de BigQuery MCP al mismo grano.",
+      "uncertainty": "La asociacion observada debe validarse causalmente.",
+      "stop_or_review_condition": "Detener o redisenar si sube el peso C/D, cae el conteo Tier A o colapsa el volumen comercial."
     },
     {
       "recommendation_id": "R-002",
       "category": "verifiable_action",
-      "knowledge_refs": [
-        "K-003"
-      ],
-      "action": "Keep ATTENTION, ACTIVATION and COMMERCIAL in separate reporting blocks.",
-      "supporting_evidence": "Spend_by_signal and commercial_matched evidence show non-equivalent FARO universes.",
-      "verifiable_result": "Reports contain no universal KPI ranking across FARO layers.",
-      "closure_criterion": "SPEC-017 and Presentation checks preserve layer separation.",
-      "risk": "Cross-layer ranking may overstate economic efficiency.",
-      "dependency": "FARO strategic context profile remains active."
-    },
-    {
-      "recommendation_id": "R-003",
-      "category": "non_actionable_hypothesis",
+      "priority": "high",
       "knowledge_refs": [
         "K-004"
       ],
-      "hypothesis": "Some ad_id_norm clusters may carry reusable intent framing.",
-      "support": "Top ads concentrate qualified volume.",
-      "uncertainty": "No creative-causality evidence is available.",
-      "missing_evidence": "Controlled creative test or creative metadata.",
-      "promotion_condition": "Promote only after a future controlled experiment."
+      "action": "Mantener ATTENTION, ACTIVATION y COMMERCIAL en bloques de decision separados en todo informe AUC-001.",
+      "supporting_evidence": "spend_by_signal, commercial_matched y activation_observed preservan universos FARO no equivalentes.",
+      "verifiable_result": "Ningun informe contiene un ranking KPI universal entre capas FARO.",
+      "closure_criterion": "SPEC-017 y los checks de Presentation preservan la separacion de capas.",
+      "risk": "Rankear capas no equivalentes puede sobredimensionar eficiencia economica y mover presupuesto al rol estrategico equivocado.",
+      "dependency": "El perfil de contexto estrategico FARO permanece activo."
+    },
+    {
+      "recommendation_id": "R-003",
+      "category": "measurable_experiment",
+      "priority": "medium",
+      "knowledge_refs": [
+        "K-005"
+      ],
+      "hypothesis": "Un mix de portfolio que proteja la escala de adquisicion y aisle la densidad de retargeting mejorara la calidad de decision.",
+      "action": "Evaluar adquisicion y retargeting como roles complementarios, no como candidatos de sustitucion.",
+      "population": "Universo actual de leads Meta a nivel campana.",
+      "primary_metric": "Volumen A/B y tasa A/B por rol de campana.",
+      "guardrail": "No mover presupuesto solo por densidad sin comprobar volumen absoluto cualificado.",
+      "expected_direction": "Logica de asignacion mas clara entre roles de escala y densidad.",
+      "success_criterion": "Las decisiones por rol de campana preservan volumen cualificado y mejoran interpretabilidad.",
+      "validation_window": "Siguiente periodo comparable de reporting.",
+      "evidence_dependency": "Evidence Set actual a nivel campana y futuros cruces por conjunto de anuncios/inversion si se autorizan.",
+      "uncertainty": "Conjunto de anuncios e inversion temporal permanecen not_available.",
+      "stop_or_review_condition": "Revisar si la densidad de retargeting se usa para justificar sustitucion de escala de adquisicion sin guardrails de volumen."
+    },
+    {
+      "recommendation_id": "R-004",
+      "category": "non_actionable_hypothesis",
+      "priority": "medium",
+      "knowledge_refs": [
+        "K-006"
+      ],
+      "hypothesis": "Los clusters principales de ad_id_norm pueden contener encuadres de intencion reutilizables.",
+      "support": "top_ads concentra volumen cualificado y leads A/B.",
+      "uncertainty": "No hay evidencia de causalidad creativa, nombres de anuncio ni metadata creativa disponible.",
+      "missing_evidence": "Test creativo controlado o metadata creativa autorizada.",
+      "promotion_condition": "Promover solo despues de que un experimento controlado futuro conecte variacion creativa con calidad."
+    },
+    {
+      "recommendation_id": "R-005",
+      "category": "verifiable_action",
+      "priority": "medium",
+      "knowledge_refs": [
+        "K-007"
+      ],
+      "action": "Mantener calidad semanal, segmentacion por conjunto de anuncios, inversion temporal y cruces inversion-anuncio fuera de decisiones de optimizacion hasta que exista evidencia canonica actual.",
+      "supporting_evidence": "El Evidence Set canonico actual no contiene esas dimensiones.",
+      "verifiable_result": "Los informes marcan estas dimensiones como not_available o UNKNOWN.",
+      "closure_criterion": "Una ejecucion futura materializa estas dimensiones mediante evidencia MCP autorizada antes de usarlas.",
+      "risk": "Rellenar dimensiones ausentes desde outputs historicos reintroduciria la ruta de regresion.",
+      "dependency": "La adquisicion futura de evidencia sigue siendo solo MCP y autorizada por contrato."
     }
   ],
   "excluded_actions": [
-    "No universal KPI ranking across FARO layers.",
-    "No creative winner claim."
+    "No declarar ranking KPI universal entre capas FARO.",
+    "No declarar ganador creativo.",
+    "No optimizar por calidad semanal, conjunto de anuncios, inversion temporal o cruces inversion-anuncio sin evidencia canonica actual."
   ]
 }

@@ -23,6 +23,8 @@ Este directorio contiene gates documentales y records de decision de avance o ci
 | [auc-001-exp-comp-001-exit-gate.md](auc-001-exp-comp-001-exit-gate.md) | AUC-001 Comparison Governance Experimental Exit Gate | Passed | PASS |
 | [auc-001-spec-017-entry-gate.md](auc-001-spec-017-entry-gate.md) | AUC-001 SPEC-017 Documentary Entry Gate | Passed With Conditions | PASS WITH CONDITIONS |
 | [auc-001-spec-017-closure-gate.md](auc-001-spec-017-closure-gate.md) | AUC-001 SPEC-017 Documentary/Local Closure Gate | Passed | PASS |
+| [auc-001-canonical-enriched-route-exit-gate.md](auc-001-canonical-enriched-route-exit-gate.md) | AUC-001 Canonical Enriched Route Exit Gate | Passed | PASS |
+| [auc-001-stable-use-case-closure-gate.md](auc-001-stable-use-case-closure-gate.md) | AUC-001 Stable Use Case Closure Gate | Passed | PASS |
 | [specs-001-003-qa-gate.md](specs-001-003-qa-gate.md) | QA Gate | Documented | Historical/supporting |
 | [specs-004-007-qa-gate.md](specs-004-007-qa-gate.md) | QA Gate | Documented | Historical/supporting |
 
@@ -44,5 +46,9 @@ AUC-001-P04 is closed with Exit Gate `PASS`. It does not create an output namesp
 AUC-001-EXP-COMP-001 is closed with Exit Gate `PASS`. It does not create an output namespace because it validated a local experimental comparison-governance contract through synthetic fixtures, without acquiring evidence, consulting BigQuery MCP or materializing analytical outputs.
 
 AUC-001-SPEC-017-TP-001 is closed with documentary/local Closure Gate `PASS`. It does not create an output namespace because it only incorporated and indexed SPEC-017 as a local diagnostic-depth specialization, without acquiring evidence, consulting BigQuery MCP, generating real reports or accepting an analytical execution package.
+
+AUC-001 canonical enriched route is promoted with Exit Gate `PASS`. The stable real execution package is `outputs/auc-001/exec-2026-07-26-canonical-2026-06-30/`, represented by `outputs/auc-001/current/current-execution.json` only after package validation. Temporary adapter artifacts and compact experimental reports are not part of the stable package.
+
+AUC-001 is formally registered as a stable use case with Stable Use Case Closure Gate `PASS`. Future improvements must open a controlled successor iteration and cannot treat the stable package as an open workstream.
 
 Entry gates require the namespace to be defined before execution. Exit gates validate only artifacts contained inside the corresponding namespace.

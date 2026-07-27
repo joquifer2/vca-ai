@@ -2,8 +2,8 @@
   "artifact_id": "AUC-001-PHYSICAL-TRACEABILITY-20260726-CANONICAL",
   "status": "PASS",
   "namespace_hygiene_pass": true,
-  "manifest_sha256": "f16f0ddb10a2050120bc3a0463e36e6665d9788facd7394398a04f31b7943260",
-  "test_results_sha256": "3e3af0547f4fb83740ae7b005b7544374acc2d18d8bdd19af9a5f3dec14702fb",
+  "manifest_sha256": "b077f01ef0d074717f65159f4f4147e762dbcb34d5c7947b67524ae2f71c1da3",
+  "test_results_sha256": "0d841d82402e469ef2f3994888e3ad1ee0dd30c566a58548ac213229d5930916",
   "artifact_inventory": {
     "manifest": "execution/manifest.json",
     "physical_traceability": "execution/physical-traceability.json",
@@ -25,6 +25,7 @@
     "handoff": "handoff/reviewer-qa-handoff.md",
     "context_definition": "execution/context-definition.json",
     "analytical_report": "reports/analytical-report.md",
-    "executive_report": "reports/executive-report.md"
+    "executive_report": "reports/executive-report.md",
+    "canonical_presentation_validation": "validations/canonical-presentation-validation.json"
   }
 }

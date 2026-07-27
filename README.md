@@ -79,7 +79,7 @@ El proyecto ha completado su fase de definición y dispone de autorización para
 Actualmente cuenta con:
 
 * una arquitectura metodológica estable;
-* un primer caso de uso analítico completamente operativo;
+* un primer caso de uso analítico estable y completamente operativo;
 * capacidades documentadas para construir conocimiento analítico;
 * mecanismos formales de validación mediante gates;
 * y un primer ciclo experimental finalizado.
@@ -124,6 +124,10 @@ P03 cerro una revision experimental de representacion sobre el producto canonico
 SPEC-016 cerro con `PASS` el contrato operativo de execution package: preflight MCP, consultas independientes por tabla, reconciliacion local controlada, registro completo de llamadas MCP, manifest, fingerprints, trazabilidad fisica, higiene de namespace y handoff verificable. El gap de consultas MCP multi-tabla queda fuera del flujo operativo principal.
 
 AUC-001-IC-001 cerro con `PASS` la consolidacion integral estructural, documental y operativa. Estado canonico vigente: `AUC-001-IC-001 CLOSURE PASS - INTEGRAL PRODUCT CONSOLIDATION CLOSED`. AUC-001 queda como producto operativo trazable basado en SPEC-014, SPEC-015 y SPEC-016, sin reabrir P02/P03/P04 ni modificar outputs historicos. `outputs/auc-001/p04-acceptance/2026-07-22/` ha sido revalidado fisicamente y queda `FINAL ACCEPTED` por `gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md`; su manifest interno conserva correctamente `READY_FOR_REVALIDATION`.
+
+El 2026-07-27, QA Gate Agent promueve la ruta canonica enriquecida como salida estable de AUC-001 con Exit Gate `PASS`. El paquete vigente es `outputs/auc-001/exec-2026-07-26-canonical-2026-06-30/`, representado por `outputs/auc-001/current/current-execution.json`; el adaptador temporal y los informes experimentales compactos quedan retirados del paquete estable.
+
+Ese mismo dia, AUC-001 queda registrado formalmente como caso de uso estable con `gates/auc-001-stable-use-case-closure-gate.md`. Futuras mejoras deben abrir iteraciones sucesoras controladas.
 
 ### Namespace de outputs post-cierre
 
@@ -204,6 +208,8 @@ La evolución metodológica sigue una regla sencilla:
 14. `specs/spec-016-auc-001-operational-acceptance-package-contract.md`
 15. `gates/auc-001-ic-001-closure-gate.md`
 16. `gates/auc-001-p04-acceptance-final-physical-revalidation-gate.md`
+17. `gates/auc-001-canonical-enriched-route-exit-gate.md`
+18. `gates/auc-001-stable-use-case-closure-gate.md`
 
 ---
 

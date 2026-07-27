@@ -16,6 +16,11 @@
       "name": "current_pointer_only_after_validation",
       "result": "PASS",
       "artifact": "outputs/auc-001/current/current-execution.json"
+    },
+    {
+      "name": "canonical_enriched_presentation_requires_canonical_gate",
+      "result": "PASS",
+      "artifact": "reports/analytical-report.md"
     }
   ]
 }

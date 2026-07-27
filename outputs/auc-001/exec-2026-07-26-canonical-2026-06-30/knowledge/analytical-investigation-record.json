@@ -29,106 +29,203 @@
     "NAQ-004",
     "NAQ-005"
   ],
+  "analytical_operations": [
+    "tier mix segmentation",
+    "monthly volume-quality comparison",
+    "intent bucket contrast",
+    "FARO layer governance classification",
+    "platform and campaign descriptive comparison",
+    "ad concentration analysis",
+    "missing-dimension boundary audit"
+  ],
   "alternative_hypotheses": [
     "Volume alone explains quality.",
     "Intent signals explain quality separation.",
-    "Cross-layer cost ranking identifies the best FARO layer."
+    "Platform choice explains quality separation.",
+    "Campaign role explains quality trade-offs.",
+    "Cross-layer cost ranking identifies the best FARO layer.",
+    "Top ads prove creative causality."
   ],
   "contrasts_performed": [
-    "Tier distribution by month.",
-    "Intent buckets against A/B and Tier A.",
+    "A/B and Tier A against C/D across the full period.",
+    "April, May and June monthly quality density.",
+    "Ticket-status and travel-window high-intent buckets against exploratory buckets.",
     "COMMERCIAL matched economics separated from ATTENTION and ACTIVATION.",
-    "Ad_id_norm concentration without creative causality."
+    "Platform and campaign descriptive density against qualified volume.",
+    "Top ad_id_norm concentration without creative causality.",
+    "Available canonical dimensions against not_available baseline-pattern dimensions."
   ],
   "discarded_hypotheses": [
-    "Cross-layer universal KPI ranking is discarded by CCD/FARO governance.",
-    "Creative winner causality is discarded because no causal creative evidence was authorized."
+    "Volume alone is sufficient to explain quality.",
+    "Cross-layer universal KPI ranking is valid.",
+    "Top ads prove creative winner status.",
+    "Historical outputs can fill missing current evidence dimensions."
   ],
   "robustness_and_limits": [
     "Evidence covers 2026-04-18 through 2026-06-30.",
-    "Revenue and CRM outcomes remain UNKNOWN.",
-    "Cost-quality claims are limited to COMMERCIAL matched."
+    "Full-period denominator is 1329 leads.",
+    "Cost-quality claims are limited to COMMERCIAL matched.",
+    "Revenue, CRM and creative causality remain UNKNOWN.",
+    "Missing dimensions remain not_available and are not inferred."
   ],
   "intermediate_findings": [
     {
       "finding_id": "F-001",
       "analytical_question_id": "AQ-002",
-      "observation": "The period has 1329 leads, 397 A/B leads and 58 Tier A leads.",
-      "importance": "Quality density is material because 70.1 percent remains C/D.",
-      "uncertainty": "Tier quality is observed, not downstream revenue.",
+      "observation": "El periodo genera 1329 leads, 397 A/B y 58 Tier A.",
+      "importance": "La calidad existe, but 70.1 percent permanece en C/D; this constrains scale decisions.",
+      "uncertainty": "Tier quality is observed lead quality, not downstream revenue or CRM value.",
       "related_findings": [
         "F-002",
-        "F-003"
+        "F-003",
+        "F-006"
       ],
       "evidence_refs": [
         "lead_tier_total",
-        "monthly_tier"
+        "lead_coverage"
       ],
-      "comparison": "Compared total tier mix across A, B, C and D."
+      "comparison": "Tier A/B was compared against C/D with the full-period denominator."
     },
     {
       "finding_id": "F-002",
-      "analytical_question_id": "AQ-006",
-      "observation": "Ticket and travel-window intent explain the strongest quality separation.",
-      "importance": "Tiene billetes reaches 157 A/B from 177 leads; menos de 1 mes reaches 74 A/B from 80 leads.",
-      "uncertainty": "Association is not causal without a controlled test.",
+      "analytical_question_id": "AQ-009",
+      "observation": "Junio concentra 776 leads y 229 A/B, pero su tasa A/B (29.5 percent) queda cerca de abril (31.0 percent).",
+      "importance": "Volume grew faster than quality density; this separates scale success from structural quality improvement.",
+      "uncertainty": "Weekly comparability and intra-month edges remain not_available in the current Evidence Set.",
       "related_findings": [
         "F-001",
-        "F-004"
+        "F-010"
       ],
       "evidence_refs": [
-        "ticket_status",
-        "travel_window"
+        "monthly_tier"
       ],
-      "comparison": "Compared intent buckets against solo_mirando and aun_no_claro."
+      "comparison": "Monthly lead, A/B and Tier A counts were compared across April, May and June."
     },
     {
       "finding_id": "F-003",
-      "analytical_question_id": "AQ-003",
-      "observation": "COMMERCIAL matched is the only direct cost-quality universe: 873.650006 EUR, 1187 leads and 344 A/B.",
-      "importance": "Cost per A/B is 2.5397 EUR in the commercial matched universe.",
-      "uncertainty": "ATTENTION and ACTIVATION are non-equivalent FARO layers.",
+      "analytical_question_id": "AQ-006",
+      "observation": "`tiene_billetes` reaches 157 A/B from 177 leads, while `solo_mirando` reaches 48 A/B from 838 leads.",
+      "importance": "The ticket-status split explains a large quality gradient and changes what Marketing should test.",
+      "uncertainty": "The relation is observational; causality requires a controlled experiment.",
       "related_findings": [
-        "F-001",
-        "F-005"
+        "F-004",
+        "F-008"
       ],
       "evidence_refs": [
-        "spend_by_signal",
-        "commercial_matched",
-        "activation_observed"
+        "ticket_status"
       ],
-      "comparison": "Compared cost-quality only within governed signal layers."
+      "comparison": "High-intent ticket-status buckets were compared against exploratory demand."
     },
     {
       "finding_id": "F-004",
-      "analytical_question_id": "AQ-005",
-      "observation": "The two largest commercial ads concentrate 1002 leads and 288 A/B leads.",
-      "importance": "Lead volume and qualified volume are concentrated in a small set of ads.",
-      "uncertainty": "Ad labels do not prove creative causality.",
+      "analytical_question_id": "AQ-006",
+      "observation": "`menos_de_1_mes` reaches 74 A/B from 80 leads, while `aun_no_claro` reaches 26 A/B from 463 leads.",
+      "importance": "Travel-window readiness reinforces the intent explanation through an independent qualification signal.",
+      "uncertainty": "Travel window is a lead qualification signal, not a confirmed purchase outcome.",
+      "related_findings": [
+        "F-003",
+        "F-006"
+      ],
+      "evidence_refs": [
+        "travel_window"
+      ],
+      "comparison": "Near travel windows were compared with unclear travel windows using A/B and Tier A density."
+    },
+    {
+      "finding_id": "F-005",
+      "analytical_question_id": "AQ-003",
+      "observation": "COMMERCIAL matched links 873.650006 EUR, 1187 leads and 344 A/B.",
+      "importance": "The governed direct cost-quality universe has cost per A/B of 2.5397 EUR and cost per A of 18.201 EUR.",
+      "uncertainty": "This economic reading applies only to the matched COMMERCIAL universe.",
+      "related_findings": [
+        "F-006",
+        "F-009"
+      ],
+      "evidence_refs": [
+        "commercial_matched",
+        "spend_by_signal"
+      ],
+      "comparison": "Matched COMMERCIAL economics were separated from layer-level spend totals."
+    },
+    {
+      "finding_id": "F-006",
+      "analytical_question_id": "AQ-010",
+      "observation": "ATTENTION, ACTIVATION and COMMERCIAL carry different FARO roles and cannot be ranked as one universal efficiency table.",
+      "importance": "This prevents a false optimization claim based on non-equivalent strategic layers.",
+      "uncertainty": "Impacto asistido de ATTENTION remains UNKNOWN without downstream or assisted-effect evidence.",
+      "related_findings": [
+        "F-005",
+        "F-010"
+      ],
+      "evidence_refs": [
+        "spend_by_signal",
+        "activation_observed"
+      ],
+      "comparison": "FARO layers were compared by governance status, not by a universal KPI hierarchy."
+    },
+    {
+      "finding_id": "F-007",
+      "analytical_question_id": "AQ-008",
+      "observation": "Facebook contributes 894 leads and 278 A/B; Instagram contributes 435 leads and 119 A/B.",
+      "importance": "Platform differences are visible but not strong enough to override the intent and FARO findings.",
+      "uncertainty": "Platform is not isolated from campaign mix, ad mix or qualification intent.",
+      "related_findings": [
+        "F-003",
+        "F-008"
+      ],
+      "evidence_refs": [
+        "platform"
+      ],
+      "comparison": "Platform A/B density and Tier A counts were compared as descriptive segments."
+    },
+    {
+      "finding_id": "F-008",
+      "analytical_question_id": "AQ-004",
+      "observation": "The retargeting campaign has higher A/B density than the acquisition campaign, while acquisition carries most qualified volume.",
+      "importance": "This creates a volume-quality trade-off that must be handled as portfolio design, not as a simple winner/loser ranking.",
+      "uncertainty": "Campaign interpretation is partial because ad-set and temporal spend joins are not available.",
       "related_findings": [
         "F-002",
-        "F-003"
+        "F-007",
+        "F-009"
+      ],
+      "evidence_refs": [
+        "campaigns"
+      ],
+      "comparison": "Campaigns were compared by lead volume, A/B volume, Tier A and average score."
+    },
+    {
+      "finding_id": "F-009",
+      "analytical_question_id": "AQ-005",
+      "observation": "The top two ad_id_norm values concentrate 1002 leads and 288 A/B leads.",
+      "importance": "Ad concentration identifies where to inspect and test, but it does not prove creative causality.",
+      "uncertainty": "Ad names, creative metadata and controlled creative tests are unavailable.",
+      "related_findings": [
+        "F-003",
+        "F-008"
       ],
       "evidence_refs": [
         "top_ads",
         "campaigns"
       ],
-      "comparison": "Compared top ad_id_norm buckets by leads and A/B leads."
+      "comparison": "Top ads were ranked by lead and A/B concentration while preserving the creative-causality limit."
     },
     {
-      "finding_id": "F-005",
-      "analytical_question_id": "AQ-009",
-      "observation": "June scales to 776 leads and 229 A/B; A/B rate remains near April and May.",
-      "importance": "Volume increased without a proportional quality-density improvement.",
-      "uncertainty": "Weekly edges are partial weeks and not a causal trend basis.",
+      "finding_id": "F-010",
+      "analytical_question_id": "AQ-011",
+      "observation": "Weekly quality, ad-set segmentation, temporal spend and ad-spend joins are absent from the current canonical Evidence Set.",
+      "importance": "These missing dimensions define the boundary between current decisions and future evidence needs.",
+      "uncertainty": "The absence is not filled from historical outputs or inference.",
       "related_findings": [
-        "F-001",
-        "F-003"
+        "F-002",
+        "F-006",
+        "F-009"
       ],
       "evidence_refs": [
-        "monthly_tier"
+        "lead_coverage",
+        "commercial_matched"
       ],
-      "comparison": "Compared April, May and June monthly buckets."
+      "comparison": "Available canonical dimensions were contrasted with baseline-pattern dimensions that remain not_available."
     }
   ]
 }

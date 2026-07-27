@@ -9,77 +9,140 @@
       "knowledge_id": "K-001",
       "evidence_refs": [
         "lead_tier_total",
-        "monthly_tier"
+        "lead_coverage"
       ],
       "finding_refs": [
-        "F-001",
-        "F-005"
+        "F-001"
       ],
-      "claim": "The period generated 397 A/B leads and 58 Tier A leads.",
-      "interpretation": "Because A/B density stays near 30 percent while volume grows, scaling improved absolute qualified volume but not quality density.",
-      "limitation_or_uncertainty": "No CRM revenue validation is available."
+      "claim": "Meta aporta volumen cualificado material: 397 leads A/B y 58 leads Tier A.",
+      "interpretation": "La lectura operativa es que el canal es viable, pero la convivencia de calidad A/B con ruido C/D exige filtros de intencion antes de escalar decisiones.",
+      "limitation_or_uncertainty": "La calidad de revenue y la conversion CRM permanecen UNKNOWN."
     },
     {
       "knowledge_id": "K-002",
+      "evidence_refs": [
+        "monthly_tier"
+      ],
+      "finding_refs": [
+        "F-002"
+      ],
+      "claim": "Junio escala volumen cualificado sin probar una mejora estructural de calidad.",
+      "interpretation": "Como la densidad A/B mensual se mantiene cercana entre meses mientras crece el conteo de leads, mejora mas la escala absoluta que la densidad de calidad.",
+      "limitation_or_uncertainty": "La dinamica semanal esta not_available, por lo que no se declara causalidad intra-mes."
+    },
+    {
+      "knowledge_id": "K-003",
       "evidence_refs": [
         "ticket_status",
         "travel_window"
       ],
       "finding_refs": [
-        "F-002"
+        "F-003",
+        "F-004"
       ],
-      "claim": "Intent signals separate high-quality and low-quality leads.",
-      "interpretation": "The evidence explains that explicit trip readiness, especially tickets and near travel windows, is materially more associated with A/B and Tier A quality.",
-      "limitation_or_uncertainty": "This is association, not causal proof."
-    },
-    {
-      "knowledge_id": "K-003",
-      "evidence_refs": [
-        "spend_by_signal",
-        "commercial_matched"
-      ],
-      "finding_refs": [
-        "F-003"
-      ],
-      "claim": "COMMERCIAL matched supports direct cost-quality reading.",
-      "interpretation": "COMMERCIAL can be interpreted economically because the matched universe links spend and leads; ATTENTION and ACTIVATION are not equivalent decision layers.",
-      "limitation_or_uncertainty": "Cross-layer KPI ranking is not allowed by the FARO profile."
+      "claim": "La intencion explicita de viaje es el separador de calidad mas fuerte observado.",
+      "interpretation": "Los buckets de intencion explican mejor la brecha entre demanda exploratoria y concentracion A/B o Tier A que la plataforma o el volumen por si solos.",
+      "limitation_or_uncertainty": "Es una asociacion observacional, no una prueba causal."
     },
     {
       "knowledge_id": "K-004",
       "evidence_refs": [
-        "top_ads",
-        "campaigns"
+        "commercial_matched",
+        "spend_by_signal"
       ],
       "finding_refs": [
-        "F-004"
+        "F-005",
+        "F-006"
       ],
-      "claim": "Ad-level qualified volume is concentrated.",
-      "interpretation": "The concentration implies a practical testing focus, but it does not prove that creative content caused quality outcomes.",
-      "limitation_or_uncertainty": "Creative causality remains UNKNOWN."
+      "claim": "La interpretacion economica debe mantenerse dentro de los universos FARO gobernados.",
+      "interpretation": "COMMERCIAL matched permite lectura directa coste-calidad, mientras ATTENTION y ACTIVATION siguen siendo capas no equivalentes.",
+      "limitation_or_uncertainty": "Un ranking coste-calidad universal entre capas FARO es invalido."
+    },
+    {
+      "knowledge_id": "K-005",
+      "evidence_refs": [
+        "campaigns",
+        "platform"
+      ],
+      "finding_refs": [
+        "F-007",
+        "F-008"
+      ],
+      "claim": "Las decisiones de portfolio deben equilibrar escala de adquisicion y densidad de retargeting.",
+      "interpretation": "Adquisicion concentra la mayor parte del volumen cualificado, mientras retargeting muestra una bolsa de calidad mas densa pero menor; como los universos difieren, el aprendizaje es balance de portfolio y no sustitucion.",
+      "limitation_or_uncertainty": "Los cruces por conjunto de anuncios e inversion temporal estan not_available."
+    },
+    {
+      "knowledge_id": "K-006",
+      "evidence_refs": [
+        "top_ads"
+      ],
+      "finding_refs": [
+        "F-009"
+      ],
+      "claim": "La concentracion por anuncio sirve para priorizar tests, no para declarar ganadores creativos.",
+      "interpretation": "Los anuncios principales concentran volumen y leads A/B, lo que justifica prioridad de inspeccion; la causalidad sigue bloqueada sin metadata creativa o tests controlados.",
+      "limitation_or_uncertainty": "La causalidad creativa permanece UNKNOWN."
+    },
+    {
+      "knowledge_id": "K-007",
+      "evidence_refs": [
+        "lead_coverage",
+        "commercial_matched"
+      ],
+      "finding_refs": [
+        "F-010"
+      ],
+      "claim": "Las dimensiones ausentes son limites de decision, no huecos que rellenar con outputs historicos.",
+      "interpretation": "Calidad semanal, segmentacion por conjunto de anuncios, inversion temporal y cruces inversion-anuncio deben seguir como not_available hasta que exista evidencia canonica actual.",
+      "limitation_or_uncertainty": "Los outputs historicos no son evidencia ni valores esperados."
     }
   ],
   "analytical_narrative": {
-    "text": "Lead quality is primarily separated by observable intent, while economics must remain inside the governed COMMERCIAL matched universe.",
-    "phenomenon": "Volume scaled in June while A/B density stayed stable.",
-    "trade_off": "Scaling volume without stronger intent filters increases C/D burden.",
-    "dominant_risk": "Using a universal KPI across FARO layers would misread strategic roles.",
-    "strategic_implication": "Protect commercial acquisition and test intent filters before declaring optimization winners.",
+    "text": "La tesis integrada es que Meta ya genera volumen cualificado suficiente para seguir invirtiendo aprendizaje, pero la calidad se separa sobre todo por intención observable y no por volumen puro. El hallazgo estructural es la combinación de ruido C/D alto, densidad A/B estable durante la escala de junio y señales de intención muy discriminantes. El trade-off principal es aumentar volumen sin diluir calidad operativa. El riesgo dominante es convertir capas FARO no equivalentes en un ranking económico universal. La implicación estratégica es proteger COMMERCIAL matched como universo de decisión económica y usar intención explícita como hipótesis de test.",
+    "phenomenon": "existe volumen cualificado, pero la densidad de calidad queda condicionada por la separacion de intencion y el ruido C/D",
+    "structural_findings": [
+      "F-001",
+      "F-003",
+      "F-004",
+      "F-005",
+      "F-006"
+    ],
+    "secondary_findings": [
+      "F-002",
+      "F-007",
+      "F-008",
+      "F-009",
+      "F-010"
+    ],
+    "trade_off": "escalar volumen cualificado sin ampliar la carga exploratoria C/D",
+    "dominant_risk": "ranking KPI universal entre capas FARO no equivalentes",
+    "strategic_implication": "proteger la economia de COMMERCIAL matched y probar filtros de intencion explicita antes de mover presupuestos",
+    "memorable_idea": "La calidad no esta escondida en mas volumen; esta concentrada en senales de intencion verificables.",
     "knowledge_refs": [
       "K-001",
       "K-002",
       "K-003",
-      "K-004"
+      "K-004",
+      "K-005",
+      "K-006",
+      "K-007"
     ]
   },
   "limitations": [
-    "No revenue or CRM final outcome source.",
-    "No creative causality source.",
-    "FARO layers are strategically non-equivalent."
+    "No hay fuente de revenue ni resultado final CRM.",
+    "No hay fuente de causalidad creativa, nombres de anuncio ni metadata creativa.",
+    "Las capas FARO no son estrategicamente equivalentes.",
+    "Calidad semanal, segmentacion por conjunto de anuncios, inversion temporal y cruces inversion-anuncio estan not_available en el Evidence Set canonico actual.",
+    "Las diferencias por campana y plataforma son descriptivas salvo que evidencia futura aisle efectos de mix."
   ],
   "unknowns": [
-    "Revenue quality",
-    "Creative causality",
-    "Assisted impact of ATTENTION"
+    "Calidad de revenue",
+    "Conversion CRM o valor de venta",
+    "Causalidad creativa",
+    "Impacto asistido de ATTENTION",
+    "Dinamica semanal de calidad",
+    "Performance a nivel conjunto de anuncios",
+    "Relacion temporal inversion-calidad"
   ]
 }
