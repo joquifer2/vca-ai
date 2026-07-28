@@ -196,6 +196,25 @@ El paquete real de aceptacion post-P04 `outputs/auc-001/p04-acceptance/2026-07-2
 
 Los gaps MCP multi-tabla, revenue/CRM, causalidad creativa, metadata adicional y temporalidad limitada por proveedor quedan fuera del flujo operativo principal hasta nueva evidencia o decisión separada.
 
+## 4.2 Project Consolidation
+
+`Project Consolidation` es una iteracion documental de consolidacion del repositorio posterior al cierre estable de AUC-001.
+
+Estado: `QA VALIDATED / HUMAN VALIDATION PENDING`. No declara baseline definitivo, no reabre AUC-001, no modifica runtime, no ejecuta BigQuery/MCP, no genera outputs reales y no propone capacidades a AIF Foundation.
+
+| Clasificacion | Recurso | Fuente |
+|---|---|---|
+| Draft / Review | Architectural Consolidation Memo | [decisions/transversal/vca-ia-project-consolidation-candidate-baseline-architectural-memo.md](/docs/decisions/transversal/vca-ia-project-consolidation-candidate-baseline-architectural-memo.md) |
+| Draft / Review | Task Plan | [../tasks/vca-ia-project-consolidation-task-plan.md](/tasks/vca-ia-project-consolidation-task-plan.md) |
+| Draft / Review | Repository Governance Index | [repository-governance/README.md](/docs/repository-governance/README.md) |
+| Draft / Review | Repository Inventory | [repository-governance/repository-inventory.md](/docs/repository-governance/repository-inventory.md) |
+| Draft / Review | Documentation Taxonomy | [repository-governance/documentation-taxonomy.md](/docs/repository-governance/documentation-taxonomy.md) |
+| Draft / Review | Navigation Model | [repository-governance/navigation-model.md](/docs/repository-governance/navigation-model.md) |
+| Draft / Review | Repository Governance Guide | [repository-governance/repository-governance-guide.md](/docs/repository-governance/repository-governance-guide.md) |
+| QA Validated / Human Pending | Project Consolidation QA Gate | [../gates/vca-ia-project-consolidation-qa-gate.md](/gates/vca-ia-project-consolidation-qa-gate.md) |
+
+Regla de alcance: estos artefactos son documentales y requieren validacion humana antes de declarar cualquier baseline estable de consolidacion.
+
 ## 5. Evaluaciones principales
 
 | Clasificación | Recurso | Fuente |
@@ -281,8 +300,8 @@ apis:
 ## 8. Trazabilidad
 
 ```yaml
-ultima_actualizacion: 2026-07-25
+ultima_actualizacion: 2026-07-28
 actualizado_por: Documentation Agent
-motivo: Cierre oficial documental/local de AUC-001-SPEC-017-TP-001 tras Reviewer PASS y QA PASS sin reabrir P02/P03/P04/SPEC-014/SPEC-015/SPEC-016, sin BigQuery/MCP, sin evidencia nueva y sin outputs historicos
-version_contexto: vca-ia-contexto-oficial-development-authorized-auc-001-spec-017-closed
+motivo: Validacion QA documental de Project Consolidation como paquete de gobernanza del repositorio, manteniendo AUC-001 estable sin reabrir P02/P03/P04/SPEC-014/SPEC-015/SPEC-016/SPEC-017, sin BigQuery/MCP, sin evidencia nueva, sin outputs reales, sin propuesta a AIF Foundation y sin baseline definitivo hasta validacion humana
+version_contexto: vca-ia-contexto-oficial-development-authorized-project-consolidation-qa-validated-human-pending
 ```

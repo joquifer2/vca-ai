@@ -28,6 +28,8 @@
 | SPEC-011 | [spec-011/](spec-011/) |
 | Transversal | [transversal/](transversal/) |
 
-## Regla para documentos superados
+## Regla local para documentos superados
 
-Los documentos superados no se eliminan. Se mueven a `historical/` dentro de su scope cuando son planes ya ejecutados, assessments preliminares o registros intermedios sin vigencia operativa.
+Dentro de `docs/evaluations/`, los documentos superados no se eliminan. Se clasifican bajo `historical/` dentro de su scope cuando son planes ya ejecutados, assessments preliminares o registros intermedios sin vigencia operativa.
+
+Esta regla es local para la clasificacion interna de `docs/evaluations/`. No redefine la precedencia documental general del repositorio. Para resolver conflictos entre artefactos, aplicar exclusivamente la precedencia publicada en `.github/instructions/sdd.instructions.md`.
